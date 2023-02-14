@@ -2,7 +2,7 @@
   "name": "pets-support-front",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://makfiz.github.io/goit-react-hw-08-phonebook/",
+  "homepage": "https://makfiz.github.io/project_group_5_front/",
   "dependencies": {
     "@redux-devtools/extension": "^3.2.3",
     "@reduxjs/toolkit": "^1.9.0",
