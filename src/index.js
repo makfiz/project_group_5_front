@@ -13,13 +13,13 @@ import './index.css';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ThemeProvider theme={theme}>
     <React.StrictMode>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <BrowserRouter basename="">
-            <App />
-          </BrowserRouter>
-        </PersistGate>
-      </Provider>
+      {/* <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}> */}
+      <BrowserRouter basename="project_group_5_front">
+        <App />
+      </BrowserRouter>
+      {/* </PersistGate>
+      </Provider> */}
     </React.StrictMode>
   </ThemeProvider>
 );
