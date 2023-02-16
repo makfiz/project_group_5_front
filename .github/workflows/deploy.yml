@@ -13,7 +13,7 @@ jobs:
 
       - name: Install, build 🔧
         run: |
-          npm install --force
+          npm install 
 
           npm run build
 
