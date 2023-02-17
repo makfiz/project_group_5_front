@@ -29,7 +29,7 @@ export const App = () => {
           <Route path="friends" element={<FriendsPage />} />
           <Route path="registration" element={<RegisterPage />} />
           <Route path="login" element={<LoginPage />} />
-          <Route path="user" element={<UserPage />} />
+          {/* error  'UserPage' is not defined  react/jsx-no-undef <Route path="user" element={<UserPage />} />   */}
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
