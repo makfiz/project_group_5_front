@@ -1,4 +1,5 @@
 import { LoginBtn, RegisterBtn } from './AuthNav.styled';
+
 export const AuthNav = ({ onClick }) => {
   return (
     <>
