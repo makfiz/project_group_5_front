@@ -6,7 +6,7 @@ const size = {
   desktop: '1280px',
 };
 
-export const SectionTitle = styled.h2`
+export const SectionTitle = styled.h1`
   margin-top: 42px;
   margin-bottom: 28px;
   text-align: center;
