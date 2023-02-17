@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import OurFriends from "../components/OurFriends/OurFriends";
+import OurFriendsList from "../components/OurFriends/OurFriendsList";
 import { fetchOurFriends } from "../redux/OurFriends/operations";
 import { getFriends } from './../redux/OurFriends/selectors';
 
@@ -12,13 +12,13 @@ const FriendsPage = () => {
   dispatch(fetchOurFriends());
   }, [dispatch]);
 
-    const ourFriends = useSelector(getFriends)
+  const ourFriends = useSelector(getFriends);
   // console.log("ourFriends", ourFriends)
 
   return (
     <div>
       <h2>Our friends</h2>
-      <OurFriends ourFriends={ourFriends} />
+      <OurFriendsList ourFriends={ourFriends} />
     </div>
   );
 };
