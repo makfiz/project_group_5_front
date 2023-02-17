@@ -11,8 +11,12 @@ export const Link = styled(NavLink)`
   font-weight: 500;
   font-size: 32px;
   line-height: 44px;
+
   &:not(:last-child) {
     margin-bottom: 40px;
+    @media (min-width: ${size.desktop}) {
+      margin-bottom: 0;
+    }
   }
   &:focus {
     color: #f59256;

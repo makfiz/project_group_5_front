@@ -1,5 +1,7 @@
+import { NoticesSearch } from 'components/NoticesSearch/NoticesSearch';
+
 const NoticesPage = () => {
-  return <h2>notices page</h2>;
+  return <NoticesSearch></NoticesSearch>;
 };
 
 export default NoticesPage;

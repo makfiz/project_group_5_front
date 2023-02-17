@@ -47,7 +47,7 @@ export const MenuNonActive = styled.div`
   justify-content: space-between;
   align-items: baseline;
   @media (min-width: ${size.tablet}) {
-    margin-bottom: 60px;
+    /* margin-bottom: 60px; */
   }
 `;
 export const MenuAuthBtnWrap = styled.div`
