@@ -56,6 +56,7 @@ export const SearchField = styled.input`
   border-radius: ${p => p.theme.radii.medium};
   width: 200px;
   height: 40px;
+  cursor: pointer;
 
   font-size: ${p => p.theme.fontSizes.m};
   font-weight: ${p => p.theme.fontWeight.medium};
