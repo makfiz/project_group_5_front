@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-const size = {
-  mobile: '320px',
-  tablet: '768px',
-  desktop: '1280px',
-};
+
 export const LoginBtn = styled(NavLink)`
   width: 95px;
   height: 35px;
@@ -14,15 +10,15 @@ export const LoginBtn = styled(NavLink)`
   align-content: center;
   text-decoration: none;
   border-radius: 40px;
-  border: 2px solid #f59256;
-  background-color: #f59256;
-  color: #fff;
+  border: 2px solid ${p => p.theme.colors.hoverGoHome};
+  background-color: ${p => p.theme.colors.hoverGoHome};
+  color: ${p => p.theme.colors.white};
   margin-right: 12px;
-  &:focus {
-    background-color: #fff;
-    color: #181c27;
+  &.active {
+    background-color: ${p => p.theme.colors.white};
+    color: ${p => p.theme.colors.titleColor};
 
-    border-color: #f59256;
+    border-color: ${p => p.theme.colors.hoverGoHome};
   }
 `;
 export const RegisterBtn = styled(NavLink)`
@@ -34,17 +30,17 @@ export const RegisterBtn = styled(NavLink)`
   align-content: center;
   text-decoration: none;
   border-radius: 40px;
-  border: 2px solid #f59256;
-  background-color: #f59256;
-  color: #fff;
+  border: 2px solid ${p => p.theme.colors.hoverGoHome};
+  background-color: ${p => p.theme.colors.hoverGoHome};
+  color: ${p => p.theme.colors.white};
 
-  &:focus {
-    background-color: #fff;
-    color: #181c27;
+  &.active {
+    background-color: ${p => p.theme.colors.white};
+    color: ${p => p.theme.colors.titleColor};
 
-    border-color: #f59256;
+    border-color: ${p => p.theme.colors.hoverGoHome};
   }
-  @media (min-width: ${size.tablet}) {
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
     margin-right: 25px;
   }
 `;

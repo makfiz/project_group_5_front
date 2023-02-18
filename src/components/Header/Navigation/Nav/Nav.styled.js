@@ -1,30 +1,26 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-const size = {
-  mobile: '320px',
-  tablet: '768px',
-  desktop: '1280px',
-};
+
 export const Link = styled(NavLink)`
   text-decoration: none;
-  color: #181c27;
-  font-weight: 500;
+  color: ${p => p.theme.colors.black};
+  font-weight: ${p => p.theme.fontWeight.medium};
   font-size: 32px;
   line-height: 44px;
 
   &:not(:last-child) {
     margin-bottom: 40px;
-    @media (min-width: ${size.desktop}) {
+    @media (min-width: ${p => p.theme.screenSizes.desktop}) {
       margin-bottom: 0;
     }
   }
-  &:focus {
-    color: #f59256;
+  &.active {
+    color: ${p => p.theme.colors.hoverGoHome};
 
     text-decoration: underline;
   }
-  @media (min-width: ${size.desktop}) {
-    font-size: 20px;
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    font-size: ${p => p.theme.fontSizes.ms};
     line-height: 27px;
     margin-left: 80px;
   }
