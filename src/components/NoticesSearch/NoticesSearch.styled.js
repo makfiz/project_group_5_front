@@ -94,6 +94,7 @@ export const SearchBtn = styled.button`
   background-color: transparent;
   border: none;
   border-radius: ${p => p.theme.radii.round};
+  cursor: pointer;
 
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
     width: 24px;
