@@ -1,6 +1,7 @@
 import OurFriendsItem from "./OurFriendsItem";
 
 const OurFriendsList = ({ourFriends}) => {
+// console.log("ourFriends", ourFriends)
 
   return <div className="BoxFriendsList">
     <ul className="FriendsList">
