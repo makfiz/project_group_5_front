@@ -1,14 +1,10 @@
 import { LoginBtn, RegisterBtn } from './AuthNav.styled';
 
-export const AuthNav = ({ onClick }) => {
+export const AuthNav = () => {
   return (
     <>
-      <LoginBtn to="/login" onClick={onClick}>
-        Login
-      </LoginBtn>
-      <RegisterBtn to="/registration" onClick={onClick}>
-        Registration
-      </RegisterBtn>
+      <LoginBtn to="/login">Login</LoginBtn>
+      <RegisterBtn to="/registration">Registration</RegisterBtn>
     </>
   );
 };

@@ -9,14 +9,11 @@ export const Backdrop = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(17, 17, 17, 0.6);
-  backdrop-filter: blur(10px);
+  background-color: ${({ color = 'rgba(17, 17, 17, 0.6)' }) => color};
+  backdrop-filter: ${({ filter }) => (filter ? 'blur(0)' : 'blur(10px)')};
 `;
 
 export const StyledModal = styled.div`
-  background-color: ${p => p.theme.colors.white};
-  border-radius: 40px;
-  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-  max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 24px);
+  max-width: calc(100vw - 20px);
+  max-height: calc(100vh - 20px);
 `;

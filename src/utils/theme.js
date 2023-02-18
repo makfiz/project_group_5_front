@@ -1,9 +1,11 @@
 export const theme = {
   fontSizes: {
+    xs: '12px',
     s: '14px',
     m: '16px',
     ms: '20px',
     l: '24px',
+    ls: '36',
     xl: '48px',
   },
   fontWeight: {
@@ -19,12 +21,21 @@ export const theme = {
     hoverGoHome: '#F59256',
     titleColor: '#111111',
     placeholderColor: '#535353',
+    regModBack: '#ffffff',
+    transparent: 'transparent',
+    regModalTitleColor: ' #111111',
+    regModalLinkText: 'rgba(17, 17, 17, 0.6)',
+    regModalLink: '#3091EB',
+    regModalActiveBtn: '#F59256',
+    regModalplaceholderColor: 'rgba(17, 17, 17, 0.6)',
+    error: 'red',
   },
   shadows: {
     shadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.75)',
     insideShadow: 'inset 5px -4px 86px 0px rgba(0,0,0,0.22)',
     boxShadow: '2px 2px 2px 1px rgb(0 0 0 / 20%)',
     inputShadow: '7px 4px 14px rgba(49, 21, 4, 0.07)',
+    regModalShadow: '7px 4px 14px rgba(0, 0, 0, 0.11)',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   radii: {

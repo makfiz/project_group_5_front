@@ -27,7 +27,7 @@ const Modal = ({ children, onClick }) => {
   }
 
   return createPortal(
-    <Backdrop onClick={handleBackDropClick}>
+    <Backdrop onClick={handleBackDropClick} color="transparen" filter="true">
       <StyledModal>{children}</StyledModal>
     </Backdrop>,
     modalRoot
