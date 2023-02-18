@@ -19,30 +19,27 @@ export const SearchForm = styled.form`
 `;
 export const InputLabel = styled.label`
   position: relative;
+  box-sizing: border-box;
   display: block;
   width: 200px;
-  height: 40px;
 
   @media screen and (min-width: ${p => p.theme.screenSizes.mobile}) {
     width: 280px;
   }
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
     width: 608px;
-    height: 44px;
   }
 `;
 
 export const SearchField = styled.input`
-  /* TODO: Delete border box */
+  //TODO: Delete box sizing
   box-sizing: border-box;
   display: block;
-  padding: 9px 12px;
+  padding: 8px 11px;
   background-color: ${p => p.theme.colors.white};
   box-shadow: ${p => p.theme.shadows.inputShadow};
   border-radius: ${p => p.theme.radii.medium};
   width: 200px;
-  height: 40px;
-  cursor: pointer;
 
   font-size: ${p => p.theme.fontSizes.m};
   font-weight: ${p => p.theme.fontWeight.medium};
@@ -61,10 +58,9 @@ export const SearchField = styled.input`
     width: 280px;
   }
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
-    padding: 8px 12px 8px 20px;
+    padding: 7px 12px 8px 19px;
     border-radius: ${p => p.theme.radii.large};
     width: 608px;
-    height: 44px;
 
     font-size: ${p => p.theme.fontSizes.ms};
     line-height: 1.35;
@@ -84,6 +80,7 @@ export const SearchBtn = styled.button`
   background-color: transparent;
   border: none;
   border-radius: ${p => p.theme.radii.round};
+  cursor: pointer;
 
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
     width: 24px;
