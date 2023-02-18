@@ -1,9 +1,11 @@
 export const theme = {
   fontSizes: {
+    xs: '12px',
     s: '14px',
     m: '16px',
     ms: '20px',
     l: '24px',
+    lm: '28px',
     xl: '48px',
   },
   fontWeight: {
@@ -19,6 +21,7 @@ export const theme = {
     hoverGoHome: '#F59256',
     titleColor: '#111111',
     placeholderColor: '#535353',
+    deleteBtnColor: '#FF6101',
   },
   shadows: {
     shadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.75)',

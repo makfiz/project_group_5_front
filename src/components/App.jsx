@@ -4,6 +4,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import NewsPage from '../pages/NewsPage';
+import { NoticesList } from './NoticesList/NoticesList';
 
 const FriendsPage = lazy(() => import('../pages/FriendsPage'));
 const NoticesPage = lazy(() => import('../pages/NoticesPage'));
@@ -27,11 +28,11 @@ export const App = () => {
           <Route index element={<Navigate to="news" />} />
           <Route path="news" element={<NewsPage />} />
           <Route path="notices" element={<NoticesPage />}>
-            <Route path="lost_found" element={<div>Lost/Found</div>} />
-            <Route path="in_good_hands" element={<div>in_good_hands</div>} />
-            <Route path="sell" element={<div>sell</div>} />
-            <Route path="favorite_ads" element={<div>favorite_ads</div>} />
-            <Route path="my_ads" element={<div>my_ads</div>} />
+            <Route path="lost_found" element={<NoticesList />} />
+            <Route path="in_good_hands" element={<NoticesList />} />
+            <Route path="sell" element={<NoticesList />} />
+            <Route path="favorite_ads" element={<NoticesList />} />
+            <Route path="my_ads" element={<NoticesList />} />
           </Route>
           <Route path="friends" element={<FriendsPage />} />
           <Route path="registration" element={<RegisterPage />} />
