@@ -1,8 +1,10 @@
 import React from 'react';
 import { useRef, useState } from 'react';
+
+import { PageTitle } from 'components/PageTitle/PageTitle';
+
 import {
   SearchBarWrap,
-  Title,
   SearchForm,
   SearchField,
   SearchBtn,
@@ -23,7 +25,7 @@ export const NoticesSearch = () => {
   };
   return (
     <SearchBarWrap>
-      <Title>Find your favorite pet</Title>
+      <PageTitle>Find your favorite pet</PageTitle>
       <SearchForm onSubmit={handleSubmit}>
         <InputLabel htmlFor="search">
           <SearchField
