@@ -8,9 +8,7 @@ const size = {
 
 export const Article = styled.article`
   min-width: 280px;
-  &:not(:last-child) {
-    margin-bottom: 40px;
-  }
+  margin-bottom: 40px;
 
   @media (min-width: ${size.tablet}) {
     margin-bottom: 60px;
@@ -56,6 +54,41 @@ export const ArticleText = styled.p`
     margin-bottom: 40px;
   }
 `;
+
+export const Details = styled.p`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const ArticleDate = styled.span`
+  font-size: 16px;
+  line-height: 22px;
+  color: rgba(17, 17, 17, 0.6);
+`;
+
+export const ReadMoreLink = styled.a`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  text-decoration: underline;
+
+  color: #f59256;
+
+  /* &::after{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 0.5px;
+    background-color: #f59256;
+  } */
+
+  &:hover,
+  &:focus,
+  &:visited {
+    color: #ff6101;
+  }
+`;
+
 // export const SectionTitle = styled.h2`
 //   margin-top: 42px;
 //   margin-bottom: 28px;

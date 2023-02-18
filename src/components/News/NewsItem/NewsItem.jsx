@@ -2,7 +2,10 @@ import {
     Article, 
     Divider,
     ArticleTitle,
-    ArticleText
+    ArticleText,
+    ArticleDate,
+    Details,
+    ReadMoreLink,
 } from './NewsItem.styled';
 
 export function NewsItem({ article }) {
@@ -18,17 +21,37 @@ export function NewsItem({ article }) {
     }
   }
 
+  function convertData(date){
+    let updatedDate = "01/01/1999"
+    if (date) {
+      const articleDate = new Date(date);
+      const year = articleDate.getFullYear();
+      const month = () => {
+        let artMonth = articleDate.getMonth() + 1;
+        return artMonth <= 9 ? 
+          "0" + artMonth : artMonth
+      }
+      const day = () => {
+        let artDay = articleDate.getDate()
+        return artDay <= 9 ? 
+          "0" + artDay : artDay
+      }
+      updatedDate = `${year}/${month()}/${day()}`
+    }
+    return updatedDate;
+  }
+
   return (
       <Article>
         <Divider></Divider>
         <ArticleTitle>{cutter("title", title)}</ArticleTitle>
         <ArticleText>{cutter("text", description)}</ArticleText>
-        <p>
-          <span>{date}</span>
-          <a href={url} target="_blank" rel="noopener noreferrer">
+        <Details>
+          <ArticleDate>{convertData(date)}</ArticleDate>
+          <ReadMoreLink href={url} target="_blank" rel="noopener noreferrer">
             Read more
-          </a>
-        </p>
+          </ReadMoreLink>
+        </Details>
       </Article>
   );
 }
