@@ -8,6 +8,10 @@ import backgroundImageTab from '../../assets/images/background-tab.png';
 import portraitTab from '../../assets/images/portrait-tab.png';
 import backgroundImageTab2x from '../../assets/images/background-tab-2x.png';
 import portraitTab2x from '../../assets/images/portrait-tab-2x.png';
+import backgroundImageDesk from '../../assets/images/background-desk.png';
+import portraitDesk from '../../assets/images/portrait-desk.png';
+import backgroundImageDesk2x from '../../assets/images/background-desk-2x.png';
+import portraitDesk2x from '../../assets/images/portrait-desk-2x.png';
 
 export const PageWrapper = styled.div`
   height: 100vh;
@@ -49,6 +53,28 @@ export const PageWrapper = styled.div`
       background-image: url(${portraitTab2x}), url(${backgroundImageTab2x});
     }
   }
+
+  @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
+    max-width: ${p => p.theme.screenSizes.desktop};
+
+    background-image: url(${portraitDesk}), url(${backgroundImageDesk});
+
+    background-size: auto 98vh, contain;
+
+    background-position-y: bottom, bottom;
+
+    background-position-x: 98%, 32px;
+
+    @media only screen and (-webkit-min-device-pixel-ratio: 2),
+      only screen and (min--moz-device-pixel-ratio: 2),
+      only screen and (-moz-min-device-pixel-ratio: 2),
+      only screen and (-o-min-device-pixel-ratio: 2/1),
+      only screen and (min-device-pixel-ratio: 2),
+      only screen and (min-resolution: 192dpi),
+      only screen and (min-resolution: 2dppx) {
+      background-image: url(${portraitDesk2x}), url(${backgroundImageDesk2x});
+    }
+  }
 `;
 
 export const Container = styled.div`
@@ -70,6 +96,8 @@ export const Container = styled.div`
 
   @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
     max-width: ${p => p.theme.screenSizes.desktop};
+    padding-left: 16px;
+    padding-right: 16px;
   }
 `;
 
@@ -84,6 +112,10 @@ export const TitleWrapper = styled.div`
     margin-left: 0;
     margin-right: 0;
     max-width: 588px;
+  }
+
+  @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
+    margin-top: 92px;
   }
 `;
 
