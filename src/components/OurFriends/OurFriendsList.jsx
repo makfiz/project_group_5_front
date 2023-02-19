@@ -1,17 +1,18 @@
 import OurFriendsItem from "./OurFriendsItem";
+import { BoxFriendsList, FriendsList, FriendsItem } from './OurFriends.styled';
 
 const OurFriendsList = ({ourFriends}) => {
 // console.log("ourFriends", ourFriends)
 
-  return <div className="BoxFriendsList">
-    <ul className="FriendsList">
+  return <BoxFriendsList>
+    <FriendsList>
       {ourFriends.map(friend => (
-        <li key={friend._id} className="FriendsItem">
+        <FriendsItem key={friend._id}>
           <OurFriendsItem friend={friend} />
-        </li>
+        </FriendsItem>
       ))}
-    </ul>
-  </div>;
+    </FriendsList>
+  </BoxFriendsList>;
 }
 
 export default OurFriendsList;

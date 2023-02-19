@@ -17,7 +17,7 @@ const FriendsPage = () => {
 
   return (
     <div>
-      <h2>Our friends</h2>
+      <h1>Our friends</h1>
       <OurFriendsList ourFriends={ourFriends} />
     </div>
   );
