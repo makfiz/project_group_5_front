@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { Formik } from 'formik';
+// import { useDispatch } from 'react-redux';
 
 import { ModalTitle } from 'components/ModalTitle/ModalTitle';
 import { Button } from 'components/Button/Button';
 import { schema } from 'utils/registerValidationSchema';
+// import { registration } from 'redux/auth/operations';
 
 import {
   Wraper,
@@ -17,6 +19,10 @@ import {
   NextButtonWraper,
   LinkWraper,
   ErrorMessage,
+  InputPasswordWraper,
+  IconWraper,
+  ShowIcon,
+  HideIcon,
 } from './RegistrationForm.styled';
 
 const initialValues = {
@@ -31,6 +37,14 @@ const initialValues = {
 export const RegistrationForm = () => {
   const [onNext, setOnNext] = useState(false);
 
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmePassword, setShowConfirmePassword] = useState(false);
+
+  const [inputType, setInputType] = useState(true);
+  const [inputConfirmeType, setInputConfirmeType] = useState(true);
+
+  // const dispatch = useDispatch();
+
   const handleNextClick = () => {
     setOnNext(true);
   };
@@ -43,8 +57,20 @@ export const RegistrationForm = () => {
     if (values === '') {
       return;
     }
+
     console.log(values);
+    // dispatch(registration(values));
     resetForm();
+  };
+
+  const onShowPassword = () => {
+    setShowPassword(prevState => !prevState);
+    setInputType(prevState => !prevState);
+  };
+
+  const onShowConfirmePassword = () => {
+    setShowConfirmePassword(prevState => !prevState);
+    setInputConfirmeType(prevState => !prevState);
   };
 
   return (
@@ -62,14 +88,37 @@ export const RegistrationForm = () => {
                 <Input type="email" name="email" placeholder="Email" />
                 <ErrorMessage component="span" name="email" />
 
-                <Input type="password" name="password" placeholder="Password" />
+                <InputPasswordWraper>
+                  <Input
+                    type={inputType ? 'password' : 'text'}
+                    name="password"
+                    placeholder="Password"
+                  />
+                  <IconWraper>
+                    {showPassword ? (
+                      <ShowIcon onClick={onShowPassword} />
+                    ) : (
+                      <HideIcon onClick={onShowPassword} />
+                    )}
+                  </IconWraper>
+                </InputPasswordWraper>
                 <ErrorMessage component="span" name="password" />
 
-                <Input
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="Confirm Password"
-                />
+                <InputPasswordWraper>
+                  <Input
+                    type={inputConfirmeType ? 'password' : 'text'}
+                    name="confirmPassword"
+                    placeholder="Confirm Password"
+                  />
+
+                  <IconWraper>
+                    {showConfirmePassword ? (
+                      <ShowIcon onClick={onShowConfirmePassword} />
+                    ) : (
+                      <HideIcon onClick={onShowConfirmePassword} />
+                    )}
+                  </IconWraper>
+                </InputPasswordWraper>
                 <ErrorMessage component="span" name="confirmPassword" />
 
                 <NextButtonWraper>

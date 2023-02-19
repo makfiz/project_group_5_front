@@ -10,20 +10,20 @@ yup.addMethod(yup.string, 'leters', function () {
 
 yup.addMethod(yup.string, 'mail', function () {
   return this.matches(
-    /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+    /^[a-z0-9!#$%&'+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'+/=?^_`{|}~-]+)@(?:[a-z0-9](?:[a-z0-9-][a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
     'The email address is incorect'
   );
 });
 
 export const schema = yup.object().shape({
   email: yup.string().mail().required('Please enter your email!'),
-  password: yup.string().min('5').required('Please enter your password!'),
+  password: yup.string().min('7').required('Please enter your password!'),
 
   confirmPassword: yup
     .string()
-    .when('password', (password, field) =>
-      password ? field.required().oneOf(['password']) : field
-    ),
+    .label('confirm password')
+    .required()
+    .oneOf([yup.ref('password'), null], 'Passwords must match'),
   name: yup.string().min('3').leters().required('Please enter your name!'),
   city: yup
     .string()
