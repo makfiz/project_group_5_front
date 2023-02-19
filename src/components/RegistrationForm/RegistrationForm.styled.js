@@ -5,6 +5,8 @@ import {
   Field,
   ErrorMessage as ErrorFormicError,
 } from 'formik';
+import { FaEye } from 'react-icons/fa';
+import { FaEyeSlash } from 'react-icons/fa';
 
 export const Wraper = styled.div`
   display: flex;
@@ -167,5 +169,26 @@ export const ErrorMessage = styled(ErrorFormicError)`
 
   @media screen and (min-width: 768px) {
     margin-left: ${p => p.theme.space[5]}px;
+  }
+`;
+
+export const ShowIcon = styled(FaEye)`
+  color: ${p => p.theme.colors.regModalActiveBtn};
+  size: 2em;
+`;
+
+export const HideIcon = styled(FaEyeSlash)``;
+
+export const InputPasswordWraper = styled.div`
+  position: relative;
+`;
+
+export const IconWraper = styled.div`
+  position: absolute;
+  right: 20px;
+  top: 11px;
+
+  @media screen and (min-width: 768px) {
+    top: 14px;
   }
 `;

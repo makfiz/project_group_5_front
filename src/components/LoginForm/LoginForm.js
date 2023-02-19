@@ -1,3 +1,5 @@
+import { useState } from 'react';
+// import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 
 import { ModalTitle } from 'components/ModalTitle/ModalTitle';
@@ -13,21 +15,34 @@ import {
   ButtonWraper,
   LinkWraper,
   ErrorMessage,
+  ShowIcon,
+  HideIcon,
+  InputPasswordWraper,
+  IconWraper,
 } from './LoginForm.styled';
 import { schema } from 'utils/loginValidationSchema';
 
 const initialValues = { email: '', password: '' };
 
 export const LoginForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [inputType, setInputType] = useState(true);
+
   const handleSubmit = (values, { resetForm }) => {
     if (values === '') {
       return;
     }
+
     resetForm();
   };
 
+  const onShowPassword = () => {
+    setShowPassword(prevState => !prevState);
+    setInputType(prevState => !prevState);
+  };
+
   const onHandleClick = () => {
-    console.log('login');
+    console.log('must redirect on another page');
   };
 
   return (
@@ -43,7 +58,20 @@ export const LoginForm = () => {
             <Input type="email" name="email" placeholder="Email" />
             <ErrorMessage component="span" name="email" />
 
-            <Input type="password" name="password" placeholder="Password" />
+            <InputPasswordWraper>
+              <Input
+                type={inputType ? 'password' : 'text'}
+                name="password"
+                placeholder="Password"
+              />
+              <IconWraper>
+                {showPassword ? (
+                  <ShowIcon onClick={onShowPassword} />
+                ) : (
+                  <HideIcon onClick={onShowPassword} />
+                )}
+              </IconWraper>
+            </InputPasswordWraper>
             <ErrorMessage component="span" name="password" />
 
             <ButtonWraper>
@@ -54,7 +82,6 @@ export const LoginForm = () => {
                 children="Login"
               />
             </ButtonWraper>
-
             <LinkWraper>
               <LinkText>Don't have an account? </LinkText>
               <NavLink to="/registration">Register</NavLink>
