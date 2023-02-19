@@ -6,6 +6,7 @@ export const theme = {
     ms: '20px',
     l: '24px',
     ls: '36',
+    lm: '28px',
     xl: '48px',
   },
   fontWeight: {
@@ -29,6 +30,7 @@ export const theme = {
     regModalActiveBtn: '#F59256',
     regModalplaceholderColor: 'rgba(17, 17, 17, 0.6)',
     error: 'red',
+    deleteBtnColor: '#FF6101',
   },
   shadows: {
     shadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.75)',
