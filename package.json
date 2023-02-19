@@ -20,7 +20,8 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.2",
     "styled-components": "^5.3.6",
-    "styled-system": "^5.1.5"
+    "styled-system": "^5.1.5",
+    "yup": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
