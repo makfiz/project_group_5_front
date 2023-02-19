@@ -29,11 +29,20 @@ export const App = () => {
           <Route path="news" element={<NewsPage />} />
           <Route path="notices" element={<NoticesPage />}>
             <Route index element={<Navigate to="sell" />} />
-            <Route path="lost-found" element={<NoticesList />} />
-            <Route path="for-free" element={<NoticesList />} />
-            <Route path="sell" index element={<NoticesList />} />
-            <Route path="favorite" element={<NoticesList />} />
-            <Route path="own" element={<NoticesList />} />
+            <Route
+              path="lost-found"
+              element={<NoticesList search="lost_found" />}
+            />
+            <Route
+              path="for-free"
+              element={<NoticesList search="in_good_hands" />}
+            />
+            <Route path="sell" index element={<NoticesList search="sell" />} />
+            <Route
+              path="favorite"
+              element={<NoticesList search="favorite" />}
+            />
+            <Route path="own" element={<NoticesList search="own" />} />
           </Route>
           <Route path="friends" element={<FriendsPage />} />
           <Route path="registration" element={<RegisterPage />} />
