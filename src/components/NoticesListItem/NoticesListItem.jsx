@@ -12,7 +12,6 @@ import {
   DescriptionDefinitions,
 } from './NoticesListItem.styled';
 
-import imgExample from '../../assets/cardExample.jpg';
 import { ReactComponent as Favorite } from '../../assets/icons/Favorite.svg';
 
 export const NoticesListItem = () => {
@@ -23,7 +22,10 @@ export const NoticesListItem = () => {
   return (
     <Box>
       <ImgWrap>
-        <Img src={imgExample} alt="pet" />
+        <Img
+          src="https://cdn.shopify.com/s/files/1/1133/5028/files/LAB_DAISY_CROWN_2500_2000x.jpg?v=1661012224"
+          alt="pet"
+        />
         <ImgBadge category={category}>{category}</ImgBadge>
         <AddInFavoriteBtn type="button">
           <Favorite />
