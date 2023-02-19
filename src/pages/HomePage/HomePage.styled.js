@@ -4,6 +4,10 @@ import backgroundImageMob from '../../assets/images/background-mob.png';
 import portraitMob from '../../assets/images/portrait-mob.png';
 import backgroundImageMob2x from '../../assets/images/background-mob-2x.png';
 import portraitMob2x from '../../assets/images/portrait-mob-2x.png';
+import backgroundImageTab from '../../assets/images/background-tab.png';
+import portraitTab from '../../assets/images/portrait-tab.png';
+import backgroundImageTab2x from '../../assets/images/background-tab-2x.png';
+import portraitTab2x from '../../assets/images/portrait-tab-2x.png';
 
 export const PageWrapper = styled.div`
   height: 100vh;
@@ -12,9 +16,9 @@ export const PageWrapper = styled.div`
   margin-right: auto;
   background-image: url(${portraitMob}), url(${backgroundImageMob});
   background-repeat: no-repeat, no-repeat;
-  background-size: contain, cover;
+  background-size: contain, 100vw 100vh;
   background-position-y: bottom, bottom;
-  background-position-x: center, center;
+  background-position-x: center, left;
 
   @media only screen and (-webkit-min-device-pixel-ratio: 2),
     only screen and (min--moz-device-pixel-ratio: 2),
@@ -26,23 +30,72 @@ export const PageWrapper = styled.div`
     background-image: url(${portraitMob2x}), url(${backgroundImageMob2x});
   }
 
-  @media screen and (min-width: 500px) and (max-width: 767px) {
-    width: 500px;
+  @media screen and (min-width: 570px) and (max-width: 767px) {
+    background-size: 570px auto, 100vw 100vh;
+  }
+
+  @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
+    background-image: url(${portraitTab}), url(${backgroundImageTab});
+
+    background-size: auto 70vh, 100vw 100vh;
+
+    @media only screen and (-webkit-min-device-pixel-ratio: 2),
+      only screen and (min--moz-device-pixel-ratio: 2),
+      only screen and (-moz-min-device-pixel-ratio: 2),
+      only screen and (-o-min-device-pixel-ratio: 2/1),
+      only screen and (min-device-pixel-ratio: 2),
+      only screen and (min-resolution: 192dpi),
+      only screen and (min-resolution: 2dppx) {
+      background-image: url(${portraitTab2x}), url(${backgroundImageTab2x});
+    }
+  }
+`;
+
+export const Container = styled.div`
+  max-width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (min-width: ${p => p.theme.screenSizes.mobile}) {
+    max-width: ${p => p.theme.screenSizes.mobile};
+  }
+
+  @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
+    max-width: ${p => p.theme.screenSizes.tablet};
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
+    max-width: ${p => p.theme.screenSizes.desktop};
   }
 `;
 
 export const TitleWrapper = styled.div`
+  margin-top: 60px;
   margin-left: auto;
   margin-right: auto;
-  width: 280px;
+  max-width: 280px;
+
+  @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
+    margin-top: 88px;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 588px;
+  }
 `;
 
 export const Title = styled.h1`
-  margin-top: 60px;
-  margin-bottom: 58px;
   font-style: normal;
   font-weight: ${p => p.theme.fontWeight.bold};
   font-size: 32px;
   line-height: 1.38;
   color: ${p => p.theme.colors.black};
+
+  @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
+    font-size: 68px;
+    line-height: 1.47;
+  }
 `;

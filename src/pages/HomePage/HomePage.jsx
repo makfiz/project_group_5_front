@@ -1,11 +1,13 @@
-import { Title, TitleWrapper, PageWrapper } from './HomePage.styled';
+import { Title, TitleWrapper, PageWrapper, Container } from './HomePage.styled';
 
 const Home = () => {
   return (
     <PageWrapper>
-      <TitleWrapper>
-        <Title>Take good care of your small pets</Title>
-      </TitleWrapper>
+      <Container>
+        <TitleWrapper>
+          <Title>Take good care of your small pets</Title>
+        </TitleWrapper>
+      </Container>
     </PageWrapper>
   );
 };
