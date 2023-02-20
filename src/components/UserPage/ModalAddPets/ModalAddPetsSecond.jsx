@@ -1,34 +1,61 @@
 import { useState } from 'react';
-import { Field, ErrorMessage, Form, Formik } from 'formik';
-import { ReactComponent as CloseIcon } from '../../../assets/menu-icons/close-menu.svg';
-import defaultImg from '../../../assets/default-img/default.jpg'
+import { ErrorMessage, Form, Formik } from 'formik';
+import icons from '../../../assets/icons/icons.svg';
+import { Button } from 'components/Button/Button';
+import {
+  Container,
+  Title,
+  BtnStyle,
+  BtnClose,
+  CloseCross,
+  Wrapper,
+  BtnWrapper,
+  BtnWrapperNext,
+  ComentsWrapper,
+  PetLabel,
+  AddImgTitle,
+  AddImgBtn,
+  AddCross,
+  AddImg,
+  AddPhoto,
+  Coments,
+  FormWrapper
+} from './ModalAddPets.styled';
 
 export const ModalAddsPetSecond = (props) => {
   const [img, setImg] = useState(null);
-  const [valid] = useState(false);
-
+ 
   const handleSubmit = (values) => {
     props.next(values, true);
     props.closeModal();
   };
   return (
-    <div>
-      <button type="button" onClick={props.closeModal}>
-        <CloseIcon/>
-      </button>
-      <h3>Add pet</h3>
-      <div>
+    <Container>
+      <BtnClose type="button" onClick={props.closeModal}>
+        <CloseCross>
+        <svg>
+          <use href={icons + '#icon-blackCross'} />
+        </svg>
+        </CloseCross>  
+      </BtnClose>
+    <Wrapper>
+      <Title >Add pet</Title>
         <Formik initialValues={props.data} onSubmit={handleSubmit}>
           {({ setFieldValue }) => (
             <Form encType="multipart/form-data">
-              <p>Add photo and some comments</p>
-              <button type="button">
+              <AddImgTitle>Add photo and some comments</AddImgTitle>
+     <FormWrapper>
+              <AddImgBtn type="button">
                 {!img ? (
-                  <img src={defaultImg} alt="Pet"/>
+                  <AddCross>
+                  <svg>
+                    <use href={icons + '#icon-bigPlus'} />
+                  </svg>
+                  </AddCross>  
                 ) : (
-                  <img src={img} alt="avatar" />
+                  <AddImg src={img} alt="avatar" />
                 )}
-                <input
+                <AddPhoto
                   type="file"
                   accept="image/*"
                   onChange={(e) => {
@@ -38,27 +65,33 @@ export const ModalAddsPetSecond = (props) => {
                     
                   }}
                 />
-                <p>{!valid && 'Image is required'}</p>
-              </button>
-
-              <div>
-                <label> Comments</label>
-                  <Field name="comments" as="textarea" placeholder="Type comments" />
+                
+                </AddImgBtn>
+               </FormWrapper> 
+              <ComentsWrapper>
+                <PetLabel> Comments</PetLabel>
+                  <Coments name="comments" as="textarea" placeholder="Type comments" />
                   <ErrorMessage name="comments" component="p" />            
-              </div>
+              </ComentsWrapper>
 
-              <div>
-                <button type="submit">
-                  Done
-                </button>
-                <button type="button" onClick={props.prev}>
-                  Back
-                </button>
-              </div>
+              <BtnWrapper>
+                <BtnWrapperNext>
+                <Button
+                  type="submit"
+                  style={BtnStyle}
+                  children="Done"
+                  />
+                </BtnWrapperNext> 
+                <Button
+                  style={BtnStyle}
+                  onClick={props.prev}
+                  children="Back"
+                />
+              </BtnWrapper>
             </Form>
           )}
         </Formik>
-      </div>
-    </div>
+      </Wrapper>
+    </Container>
   );
 };
