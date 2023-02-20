@@ -26,7 +26,7 @@ export const UserDataItem = ({ label, value }) => {
 
   return (
     <Container>
-      <UserInfoLabel>Name:</UserInfoLabel>
+      <UserInfoLabel>{label}:</UserInfoLabel>
       {isEditing ? (
         <UserInfoWrapper>
           <EditInput
