@@ -15,12 +15,12 @@ export const NoticesList = ({ askedPage }) => {
   const dispatch = useDispatch();
   const ads = useSelector(selectNotices);
 
-  const [searchParams] = useSearchParams();
-  const search = searchParams.get('search');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const search = searchParams.get('search') ?? '';
   const page = searchParams.get('page') ?? 1;
-
-  // TODO: Something with page limit
-  const limit = searchParams.get('limit') ?? 5;
+  const limit = searchParams.get('limit') ?? endPoints.limit;
+  const nextSearchParams =
+    search !== '' ? { page, limit, search } : { page, limit };
 
   useEffect(() => {
     const controller = new AbortController();
@@ -33,6 +33,7 @@ export const NoticesList = ({ askedPage }) => {
             params: { page, limit, search },
           })
         );
+        setSearchParams(nextSearchParams);
         break;
       case 'lost_found':
         dispatch(
@@ -41,6 +42,7 @@ export const NoticesList = ({ askedPage }) => {
             params: { page, limit, search },
           })
         );
+        setSearchParams(nextSearchParams);
         break;
       case 'in_good_hands':
         dispatch(
@@ -49,6 +51,7 @@ export const NoticesList = ({ askedPage }) => {
             params: { page, limit, search },
           })
         );
+        setSearchParams(nextSearchParams);
         break;
       default:
         return;
