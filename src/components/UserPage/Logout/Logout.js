@@ -1,5 +1,10 @@
-import { LogoutLink } from './Logout.styled';
+import { LogoutLink, LogoutIcon } from './Logout.styled';
 
 export const Logout = () => {
-  return <LogoutLink>Log Out</LogoutLink>;
+  return (
+    <LogoutLink>
+      {/* <LogoutIcon /> */}
+      Log Out
+    </LogoutLink>
+  );
 };

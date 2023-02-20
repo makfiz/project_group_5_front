@@ -13,6 +13,31 @@ export const Container = styled.div`
   }
 `;
 
+export const EditPhotoLink = styled.a`
+  margin-left: auto;
+  margin-top: 12px;
+  margin-bottom: 34px;
+  width: fit-content;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.83;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
+  color: #111111;
+
+  cursor: pointer;
+
+  &:hover {
+    color: ${p => p.theme.colors.regModalActiveBtn};
+  }
+  &:focus {
+    color: ${p => p.theme.colors.regModalActiveBtn};
+  }
+`;
+
 export const UserPageHeader = styled.h2`
   display: block;
 
