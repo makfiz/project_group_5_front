@@ -113,13 +113,11 @@ export const Container = styled.div`
 `;
 
 export const TitleWrapper = styled.div`
-  /* margin-top: 60px; */
   margin-left: auto;
   margin-right: auto;
   max-width: 280px;
 
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
-    /* margin-top: 88px; */
     margin-left: 0;
     margin-right: 0;
     max-width: 588px;
