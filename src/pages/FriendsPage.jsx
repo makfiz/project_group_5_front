@@ -1,5 +1,26 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import OurFriendsList from "../components/OurFriends/OurFriendsList";
+import { fetchOurFriends } from "../redux/OurFriends/operations";
+import { getFriends } from './../redux/OurFriends/selectors';
+
 const FriendsPage = () => {
-  return <h2>Friends page</h2>;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+  dispatch(fetchOurFriends());
+  }, [dispatch]);
+
+  const ourFriends = useSelector(getFriends);
+  // console.log("ourFriends", ourFriends)
+
+  return (
+    <div>
+      <h1>Our friends</h1>
+      <OurFriendsList ourFriends={ourFriends} />
+    </div>
+  );
 };
 
 export default FriendsPage;

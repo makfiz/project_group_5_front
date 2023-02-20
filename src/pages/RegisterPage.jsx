@@ -1,6 +1,7 @@
 import Modal from '../components/Modal/Modal';
 import { useState, useEffect } from 'react';
 import { RegistrationForm } from 'components/RegistrationForm/RegistrationForm';
+
 const RegisterPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -11,6 +12,7 @@ const RegisterPage = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
   return (
     <>
       {isModalOpen && (
