@@ -38,13 +38,34 @@ export const ArticleTitle = styled.h2`
   line-height: 33px;
   letter-spacing: -0.01em;
 
+  overflow: hidden;
+  white-space: wrap;
+  text-overflow: ellipsis;
+  max-height: 66px;
+
   margin-bottom: 16px;
 `;
+
+export const TextPreview = styled.div`
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 154px; */
+  /* overflow: hidden;
+  white-space: pre-wrap;
+    text-overflow: ellipsis;
+  max-height: 154px; */
+
+`
 
 export const ArticleText = styled.p`
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
+  overflow: hidden;
+  white-space: wrap;
+  text-overflow: ellipsis;
+  max-height: 154px;
+
 
   color: #111321;
 
@@ -52,6 +73,12 @@ export const ArticleText = styled.p`
 
   @media (min-width: ${size.tablet}) {
     margin-bottom: 40px;
+    max-height: 132px;
+
+  }
+
+  @media (min-width: ${size.desktop}) {
+    max-height: 110px;
   }
 `;
 

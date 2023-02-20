@@ -2,6 +2,7 @@ import {
     Article, 
     Divider,
     ArticleTitle,
+    TextPreview,
     ArticleText,
     ArticleDate,
     Details,
@@ -11,15 +12,15 @@ import {
 export function NewsItem({ article }) {
   const { title, url, description, date } = article;
 
-  function cutter(type, text) {
-    switch(type) {
-        case "title":
-            return text.slice(0, 45);
-        case "text":
-            return text.slice(0, 231);
-        default: return null;
-    }
-  }
+  // function cutter(type, text) {
+  //   switch(type) {
+  //       case "title":
+  //           return text.slice(0, 45);
+  //       case "text":
+  //           return text.slice(0, 231);
+  //       default: return null;
+  //   }
+  // }
 
   function convertData(date){
     let updatedDate = "01/01/1999"
@@ -44,8 +45,11 @@ export function NewsItem({ article }) {
   return (
       <Article>
         <Divider></Divider>
-        <ArticleTitle>{cutter("title", title)}</ArticleTitle>
-        <ArticleText>{cutter("text", description)}</ArticleText>
+        <ArticleTitle>{title}</ArticleTitle>
+        <TextPreview>
+        <ArticleText>{description}</ArticleText>
+
+        </TextPreview>
         <Details>
           <ArticleDate>{convertData(date)}</ArticleDate>
           <ReadMoreLink href={url} target="_blank" rel="noopener noreferrer">
