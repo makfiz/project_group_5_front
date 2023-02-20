@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-
 import { useSearchParams } from 'react-router-dom';
+
 import { Title } from "components/Title/Title"; 
 import { NewsList } from "components/News/NewsList/NewsList";
-// import { Loader } from "components/Loader/Loader";
 import { Container } from "../components/Header/Header.styled"
+// import { Loader } from "components/Loader/Loader";
 
 // додати лоадер
 // додати обробку помилок
