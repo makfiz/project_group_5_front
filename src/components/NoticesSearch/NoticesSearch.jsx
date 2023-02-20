@@ -1,8 +1,13 @@
-import React from 'react';
-import { useRef, useState } from 'react';
+import React, { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
+
+import { setQueryValue } from 'redux/notices/searchQuerySlice';
+import { selectNoticesSearchQuery } from 'redux/notices/selectors';
 
 import { PageTitle } from 'components/PageTitle/PageTitle';
-
+import { ReactComponent as SearchIcon } from '../../assets/icons/searchIcon.svg';
+import { ReactComponent as ResetForm } from '../../assets/icons/resetForm.svg';
 import {
   SearchBarWrap,
   SearchForm,
@@ -10,35 +15,42 @@ import {
   SearchBtn,
   InputLabel,
 } from './NoticesSearch.styled';
-import { ReactComponent as SearchIcon } from '../../assets/icons/searchIcon.svg';
-import { ReactComponent as ResetForm } from '../../assets/icons/resetForm.svg';
 
 export const NoticesSearch = () => {
-  const [value, setValue] = useState('');
+  const dispatch = useDispatch();
+  const search = useSelector(selectNoticesSearchQuery);
+  const [, setSearchParams] = useSearchParams();
+
   const windowWidth = useRef(window.innerWidth);
   const smallScreen = windowWidth.current < 768;
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(`Відправити запит на бекенд із ${value}`);
-    setValue('');
+    console.log('Request to backend');
+
+    setSearchParams(search.trim() !== '' ? { search } : {});
+    dispatch(setQueryValue(''));
   };
+
+  const handleInput = e => dispatch(setQueryValue(e.target.value));
+  const handleReset = e => dispatch(setQueryValue(''));
+
   return (
     <SearchBarWrap>
       <PageTitle>Find your favorite pet</PageTitle>
       <SearchForm onSubmit={handleSubmit}>
         <InputLabel htmlFor="search">
           <SearchField
-            onInput={e => setValue(e.target.value.trim())}
+            onInput={handleInput}
             type="text"
             placeholder="Search"
             name="search"
             id="search"
-            value={value}
+            value={search}
           />
           <SearchBtn type={smallScreen ? 'submit' : 'button'}>
-            {value && !smallScreen ? (
-              <ResetForm onClick={() => setValue('')} />
+            {search && !smallScreen ? (
+              <ResetForm onClick={handleReset} />
             ) : (
               <SearchIcon />
             )}

@@ -1,5 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchNoticesByCategory } from './operations';
+import {
+  fetchNoticesByCategory,
+  addNoticeToFavorite,
+  removeNoticeFromFavorite,
+} from './operations';
+
+export const pendingReducer = state => {
+  state.isLoading = true;
+};
+export const rejectedReducer = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload;
+};
+export const toggleFavoriteReducer = (state, action) => {
+  const index = state.ads.findIndex(ad => ad._id === action.payload.notice._id);
+  state.ads.splice(index, 1, action.payload.notice);
+};
 
 const noticesSlice = createSlice({
   name: 'notices',
@@ -12,24 +28,23 @@ const noticesSlice = createSlice({
     error: null,
   },
 
-  extraReducers: {
-    [fetchNoticesByCategory.pending](state, action) {},
-    [fetchNoticesByCategory.fulfilled](state, action) {
-      return {
-        ...state,
-        ads: [...action.payload.notices],
-        page: action.payload.page,
-        totalPages: action.payload.totalPages,
-        totalCount: action.payload.totalCount,
-      };
-    },
-    [fetchNoticesByCategory.rejected](state, action) {},
-  },
-
-  //   reducers: {
-  //     addNotice(state, action) {},
-  //     deleteNotice(state, action) {},
-  //   },
+  extraReducers: builder =>
+    builder
+      .addCase(fetchNoticesByCategory.pending, pendingReducer)
+      .addCase(fetchNoticesByCategory.fulfilled, (state, action) => {
+        state.ads = action.payload.notices;
+        state.page = action.payload.page;
+        state.totalPages = action.payload.totalPages;
+        state.totalCount = action.payload.totalCount;
+        state.error = null;
+      })
+      .addCase(fetchNoticesByCategory.rejected, rejectedReducer)
+      .addCase(addNoticeToFavorite.pending, pendingReducer)
+      .addCase(addNoticeToFavorite.fulfilled, toggleFavoriteReducer)
+      .addCase(addNoticeToFavorite.rejected, rejectedReducer)
+      .addCase(removeNoticeFromFavorite.pending, pendingReducer)
+      .addCase(removeNoticeFromFavorite.fulfilled, toggleFavoriteReducer)
+      .addCase(removeNoticeFromFavorite.rejected, rejectedReducer),
 
   //   extraReducers: builder =>
   //     builder

@@ -32,18 +32,22 @@ export const App = () => {
             <Route index element={<Navigate to="sell" />} />
             <Route
               path="lost-found"
-              element={<NoticesList search="lost_found" />}
+              element={<NoticesList askedPage="lost_found" />}
             />
             <Route
               path="for-free"
-              element={<NoticesList search="in_good_hands" />}
+              element={<NoticesList askedPage="in_good_hands" />}
             />
-            <Route path="sell" index element={<NoticesList search="sell" />} />
+            <Route
+              path="sell"
+              index
+              element={<NoticesList askedPage="sell" />}
+            />
             <Route
               path="favorite"
-              element={<NoticesList search="favorite" />}
+              element={<NoticesList askedPage="favorite" />}
             />
-            <Route path="own" element={<NoticesList search="own" />} />
+            <Route path="own" element={<NoticesList askedPage="own" />} />
           </Route>
           <Route path="friends" element={<FriendsPage />} />
           <Route path="registration" element={<RegisterPage />} />
