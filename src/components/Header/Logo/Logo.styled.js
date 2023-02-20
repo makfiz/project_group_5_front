@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
 export const LogoText = styled.h1`
-  font-style: normal;
-  font-weight: 700;
+  font-weight: ${p => p.theme.fontWeight.bold};
   font-size: 28px;
   /* line-height: 42; */
-  color: #111111;
+  color: ${p => p.theme.colors.titleColor};
 `;
 
 export const LogoSpanLetter = styled.span`
-  color: #f59256;
+  color: ${p => p.theme.colors.hoverGoHome};
 `;
