@@ -13,6 +13,9 @@ const LoginPage = lazy(() => import('../pages/LoginPage'));
 const UserPage = lazy(() => import('../pages/UserPage'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
+const RedirectRegistrationPage = lazy(() =>
+  import('pages/RedirectRegistrationPage')
+);
 
 export const App = () => {
   // const isRefreshing = useSelector()
@@ -51,6 +54,10 @@ export const App = () => {
           </Route>
           <Route path="friends" element={<FriendsPage />} />
           <Route path="registration" element={<RegisterPage />} />
+          <Route
+            path="registration-redirect"
+            element={<RedirectRegistrationPage />}
+          />
           <Route path="login" element={<LoginPage />} />
           <Route path="user" element={<UserPage />} />
         </Route>

@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { registration } from './operations';
+import { registration } from './operations';
+
+import { userRegistrationSuccessReducer } from './reducers';
 
 const initialState = {
   user: { name: null, email: null },
@@ -11,7 +13,8 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  extraReducers: {},
+  extraReducers: builder =>
+    builder.addCase(registration.fulfilled, userRegistrationSuccessReducer),
 });
 
 export const authReducer = authSlice.reducer;
