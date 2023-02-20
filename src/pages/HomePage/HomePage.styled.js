@@ -62,8 +62,6 @@ export const PageWrapper = styled.div`
   }
 
   @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
-    /* height: 83vh; */
-
     padding-top: 92px;
 
     background-image: url(${heartImg}), url(${portraitDesk}),
