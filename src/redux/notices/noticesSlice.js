@@ -13,8 +13,8 @@ export const rejectedReducer = (state, action) => {
   state.error = action.payload;
 };
 export const toggleFavoriteReducer = (state, action) => {
-  const index = state.ads.findIndex(ad => ad._id === action.payload.notice._id);
-  state.ads.splice(index, 1, action.payload.notice);
+  const idx = state.ads.findIndex(ad => ad._id === action.payload.notice._id);
+  state.ads.splice(idx, 1, action.payload.notice);
 };
 
 const noticesSlice = createSlice({
