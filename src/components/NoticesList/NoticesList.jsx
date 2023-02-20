@@ -17,8 +17,10 @@ export const NoticesList = ({ askedPage }) => {
 
   const [searchParams] = useSearchParams();
   const search = searchParams.get('search');
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(1000);
+  const page = searchParams.get('page') ?? 1;
+
+  // TODO: Something with page limit
+  const limit = searchParams.get('limit') ?? 5;
 
   useEffect(() => {
     const controller = new AbortController();

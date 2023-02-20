@@ -1,36 +1,45 @@
 import { useSearchParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
+import { selectTotalPages, selectCurrentPage } from 'redux/notices/selectors';
 import { Box } from 'components/Box/Box';
 import { PaginationWrap, Pagination } from './PaginationNotices.styled';
 
 export const PaginationNotices = () => {
-  const totalPages = 10;
-  //   useSelector()
-  const currentPage = 1;
-  //   useSelector()
+  const totalPages = useSelector(selectTotalPages);
+  const currentPage = useSelector(selectCurrentPage);
 
-  const [searchParams, setSearchParams] = useSearchParams();
-  const handlePageClick = e => {
-    setSearchParams({ page: e.selected + 1 });
-  };
+  const [, setSearchParams] = useSearchParams();
 
-  //   Page come from selector
-  // Total pages come from selector
-  // TODO: if ads length <20 return
+  useEffect(() => {
+    const controller = new AbortController();
+    setSearchParams({ page: currentPage ?? 1 });
+    return () => {
+      controller.abort();
+    };
+  }, []);
+
+  const handlePageClick = e => setSearchParams({ page: e.selected + 1 });
+
   return (
-    <Box display="flex" justifyContent="center">
-      <PaginationWrap>
-        <Pagination
-          breakLabel="..."
-          nextLabel=">"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={3}
-          pageCount={10}
-          previousLabel="<"
-          renderOnZeroPageCount={null}
-          forcePage={currentPage}
-        />
-      </PaginationWrap>
-    </Box>
+    <>
+      {totalPages > 1 && (
+        <Box display="flex" justifyContent="center">
+          <PaginationWrap>
+            <Pagination
+              breakLabel="..."
+              nextLabel=">"
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={3}
+              pageCount={totalPages}
+              previousLabel="<"
+              renderOnZeroPageCount={null}
+              forcePage={currentPage - 1}
+            />
+          </PaginationWrap>
+        </Box>
+      )}
+    </>
   );
 };

@@ -17,7 +17,9 @@ export const fetchNoticesByCategory = createAsyncThunk(
   'notices/fetchCategory',
   async ({ path, params }, thunkAPI) => {
     try {
-      const response = await axios.get(path, { params });
+      const response = await axios.get(path, {
+        params,
+      });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
