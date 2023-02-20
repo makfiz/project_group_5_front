@@ -26,8 +26,6 @@ export const NoticesSearch = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('Request to backend');
-
     setSearchParams(search.trim() !== '' ? { search } : {});
     dispatch(setQueryValue(''));
   };
