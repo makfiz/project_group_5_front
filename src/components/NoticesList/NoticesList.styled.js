@@ -17,10 +17,9 @@ export const List = styled.ul`
     display: flex;
     flex-wrap: wrap;
     margin: -16px;
-  }
-  @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
     max-width: 768px;
   }
+
   @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
     max-width: 1280px;
   }
