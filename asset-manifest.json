@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/project_group_5_front/static/css/main.a55c85d9.css",
-    "main.js": "/project_group_5_front/static/js/main.f4b0b3fc.js",
+    "main.js": "/project_group_5_front/static/js/main.ac480377.js",
     "static/js/775.8f113b13.chunk.js": "/project_group_5_front/static/js/775.8f113b13.chunk.js",
-    "static/js/414.d0a2b2b2.chunk.js": "/project_group_5_front/static/js/414.d0a2b2b2.chunk.js",
+    "static/js/616.4851712d.chunk.js": "/project_group_5_front/static/js/616.4851712d.chunk.js",
     "static/js/372.9d29f7c7.chunk.js": "/project_group_5_front/static/js/372.9d29f7c7.chunk.js",
     "static/js/952.a4d2fe4f.chunk.js": "/project_group_5_front/static/js/952.a4d2fe4f.chunk.js",
     "static/js/918.fa2b014e.chunk.js": "/project_group_5_front/static/js/918.fa2b014e.chunk.js",
@@ -33,9 +33,9 @@
     "static/media/open-menu.svg": "/project_group_5_front/static/media/open-menu.d5b0e5383e0ee6ce15fd5ea05cbb6107.svg",
     "static/media/plusIcon.svg": "/project_group_5_front/static/media/plusIcon.40b2205dc2516cb92de4e8f4f8627464.svg",
     "main.a55c85d9.css.map": "/project_group_5_front/static/css/main.a55c85d9.css.map",
-    "main.f4b0b3fc.js.map": "/project_group_5_front/static/js/main.f4b0b3fc.js.map",
+    "main.ac480377.js.map": "/project_group_5_front/static/js/main.ac480377.js.map",
     "775.8f113b13.chunk.js.map": "/project_group_5_front/static/js/775.8f113b13.chunk.js.map",
-    "414.d0a2b2b2.chunk.js.map": "/project_group_5_front/static/js/414.d0a2b2b2.chunk.js.map",
+    "616.4851712d.chunk.js.map": "/project_group_5_front/static/js/616.4851712d.chunk.js.map",
     "372.9d29f7c7.chunk.js.map": "/project_group_5_front/static/js/372.9d29f7c7.chunk.js.map",
     "952.a4d2fe4f.chunk.js.map": "/project_group_5_front/static/js/952.a4d2fe4f.chunk.js.map",
     "918.fa2b014e.chunk.js.map": "/project_group_5_front/static/js/918.fa2b014e.chunk.js.map",
@@ -45,6 +45,6 @@
   },
   "entrypoints": [
     "static/css/main.a55c85d9.css",
-    "static/js/main.f4b0b3fc.js"
+    "static/js/main.ac480377.js"
   ]
 }
