@@ -16,13 +16,16 @@ import heartImg from '../../assets/images/heart-desk.png';
 import heartImg2x from '../../assets/images/heart-desk-2x.png';
 
 export const PageWrapper = styled.div`
-  height: 100vh;
+  height: 83vh;
   width: 100vw;
+
   margin-left: auto;
   margin-right: auto;
+  padding-top: 60px;
+
   background-image: url(${portraitMob}), url(${backgroundImageMob});
   background-repeat: no-repeat, no-repeat;
-  background-size: contain, 100vw 100vh;
+  background-size: contain, 100% 90%;
   background-position-y: bottom, bottom;
   background-position-x: center, left;
 
@@ -36,14 +39,16 @@ export const PageWrapper = styled.div`
     background-image: url(${portraitMob2x}), url(${backgroundImageMob2x});
   }
 
-  @media screen and (min-width: 570px) and (max-width: 767px) {
-    background-size: 570px auto, 100vw 100vh;
+  @media screen and (min-width: 465px) and (max-width: 767px) {
+    background-size: auto 70vh, 100% 90%;
   }
 
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
+    padding-top: 88px;
+
     background-image: url(${portraitTab}), url(${backgroundImageTab});
 
-    background-size: auto 70vh, 100vw 100vh;
+    background-size: auto 55vh, 100% 85%;
 
     @media only screen and (-webkit-min-device-pixel-ratio: 2),
       only screen and (min--moz-device-pixel-ratio: 2),
@@ -57,10 +62,6 @@ export const PageWrapper = styled.div`
   }
 
   @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
-    width: ${p => p.theme.screenSizes.desktop};
-
-    height: 83vh;
-
     padding-top: 92px;
 
     background-image: url(${heartImg}), url(${portraitDesk}),
@@ -72,7 +73,7 @@ export const PageWrapper = styled.div`
 
     background-position-y: 14%, bottom, bottom;
 
-    background-position-x: 60%, 98%, 32px;
+    background-position-x: 58%, 98%, 32px;
 
     @media only screen and (-webkit-min-device-pixel-ratio: 2),
       only screen and (min--moz-device-pixel-ratio: 2),
@@ -112,13 +113,11 @@ export const Container = styled.div`
 `;
 
 export const TitleWrapper = styled.div`
-  margin-top: 60px;
   margin-left: auto;
   margin-right: auto;
   max-width: 280px;
 
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
-    margin-top: 88px;
     margin-left: 0;
     margin-right: 0;
     max-width: 588px;
