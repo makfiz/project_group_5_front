@@ -62,7 +62,6 @@ export const addNoticeToFavorite = createAsyncThunk(
   'notices/addFavorite',
   async ({ path }, thunkAPI) => {
     try {
-      console.log('clack');
       const response = await axios.post(path);
       return response.data;
     } catch (error) {

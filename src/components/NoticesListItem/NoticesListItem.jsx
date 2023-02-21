@@ -56,7 +56,6 @@ export const NoticesListItem = ({ ad, askedPage }) => {
   const own = owner === userId;
 
   const handleFavorite = e => {
-    console.log('click');
     const path = `${endPoints.noticesBase}${_id}${endPoints.noticesFavorite}`;
     if (!inFavorite) {
       dispatch(addNoticeToFavorite({ path }));
