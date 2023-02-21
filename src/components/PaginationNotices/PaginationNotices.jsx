@@ -1,6 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
 
 import { selectTotalPages, selectCurrentPage } from 'redux/notices/selectors';
 import { Box } from 'components/Box/Box';
@@ -11,15 +10,6 @@ export const PaginationNotices = () => {
   const currentPage = useSelector(selectCurrentPage);
 
   const [, setSearchParams] = useSearchParams();
-
-  useEffect(() => {
-    const controller = new AbortController();
-    setSearchParams({ page: currentPage ?? 1 });
-    return () => {
-      controller.abort();
-    };
-  }, []);
-
   const handlePageClick = e => setSearchParams({ page: e.selected + 1 });
 
   return (
