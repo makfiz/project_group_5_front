@@ -1,21 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
+  pendingReducer,
+  rejectedReducer,
+  fetchCategoryReducer,
+  toggleFavoriteReducer,
+  deleteFromFavoritePageReducer,
+  deleteOwnNoticeReducer,
+} from './reducers';
+import {
   fetchNoticesByCategory,
+  fetchFavoriteNotices,
+  fetchOwnNotices,
   addNoticeToFavorite,
   removeNoticeFromFavorite,
+  deleteOnFavoritePage,
+  deleteOwnNotice,
 } from './operations';
-
-export const pendingReducer = state => {
-  state.isLoading = true;
-};
-export const rejectedReducer = (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload;
-};
-export const toggleFavoriteReducer = (state, action) => {
-  const idx = state.ads.findIndex(ad => ad._id === action.payload.notice._id);
-  state.ads.splice(idx, 1, action.payload.notice);
-};
 
 const noticesSlice = createSlice({
   name: 'notices',
@@ -31,20 +31,26 @@ const noticesSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(fetchNoticesByCategory.pending, pendingReducer)
-      .addCase(fetchNoticesByCategory.fulfilled, (state, action) => {
-        state.ads = action.payload.notices;
-        state.page = action.payload.page;
-        state.totalPages = action.payload.totalPages;
-        state.totalCount = action.payload.totalCount;
-        state.error = null;
-      })
+      .addCase(fetchNoticesByCategory.fulfilled, fetchCategoryReducer)
       .addCase(fetchNoticesByCategory.rejected, rejectedReducer)
+      .addCase(fetchFavoriteNotices.pending, pendingReducer)
+      .addCase(fetchFavoriteNotices.fulfilled, fetchCategoryReducer)
+      .addCase(fetchFavoriteNotices.rejected, rejectedReducer)
+      .addCase(fetchOwnNotices.pending, pendingReducer)
+      .addCase(fetchOwnNotices.fulfilled, fetchCategoryReducer)
+      .addCase(fetchOwnNotices.rejected, rejectedReducer)
       .addCase(addNoticeToFavorite.pending, pendingReducer)
       .addCase(addNoticeToFavorite.fulfilled, toggleFavoriteReducer)
       .addCase(addNoticeToFavorite.rejected, rejectedReducer)
       .addCase(removeNoticeFromFavorite.pending, pendingReducer)
       .addCase(removeNoticeFromFavorite.fulfilled, toggleFavoriteReducer)
-      .addCase(removeNoticeFromFavorite.rejected, rejectedReducer),
+      .addCase(removeNoticeFromFavorite.rejected, rejectedReducer)
+      .addCase(deleteOnFavoritePage.pending, pendingReducer)
+      .addCase(deleteOnFavoritePage.fulfilled, deleteFromFavoritePageReducer)
+      .addCase(deleteOnFavoritePage.rejected, rejectedReducer)
+      .addCase(deleteOwnNotice.pending, pendingReducer)
+      .addCase(deleteOwnNotice.fulfilled, deleteOwnNoticeReducer)
+      .addCase(deleteOwnNotice.rejected, rejectedReducer),
 
   //   extraReducers: builder =>
   //     builder
@@ -58,31 +64,5 @@ const noticesSlice = createSlice({
   //         reducers.fulfilledReducer
   //       ),
 });
-
-// export const fetchContactsSuccessReducer = (state, action) => {
-//     state.items = action.payload;
-//   };
-//   export const addContactSuccessReducer = (state, action) => {
-//     state.items.push(action.payload);
-//   };
-//   export const deleteContactSuccessReducer = (state, action) => {
-//     const index = state.items.findIndex(item => item.id === action.payload.id);
-//     state.items.splice(index, 1);
-//   };
-//   export const toggleFavouriteSuccessReducer = (state, action) => {
-//     const index = state.items.findIndex(contact => contact.id === action.payload.id);
-//     state.items.splice(index, 1, action.payload);
-//   };
-//   export const pendingReducer = state => {
-//     state.isLoading = true;
-//   };
-//   export const rejectedReducer = (state, action) => {
-//     state.isLoading = false;
-//     state.error = action.payload;
-//   };
-//   export const fulfilledReducer = state => {
-//     state.isLoading = false;
-//     state.error = null;
-//   };
 
 export const noticesReducer = noticesSlice.reducer;

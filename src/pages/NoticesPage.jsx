@@ -5,8 +5,6 @@ import { NoticesCategories } from 'components/NoticesCategories/NoticesCategorie
 import { PaginationNotices } from 'components/PaginationNotices/PaginationNotices';
 
 const NoticesPage = () => {
-  // const [query, setQuery] = useState('cadabra');
-
   return (
     <section>
       <NoticesSearch />
