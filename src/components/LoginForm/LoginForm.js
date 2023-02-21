@@ -30,27 +30,17 @@ export const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [inputType, setInputType] = useState(true);
   const dispatch = useDispatch();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
-  const handleChange = ({ target: { name, value } }) => {
-    switch (name) {
-      case 'email':
-        return setEmail(value);
-      case 'password':
-        return setPassword(value);
-      default:
-        return;
+
+  const handleSubmit = (values, { resetForm }) => {
+    if (values === '') {
+      return;
     }
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+    const { email, password } = values;
     dispatch(authOperations.login({ email, password }));
-    setEmail('');
-    setPassword('');
 
+    console.log(values);
     resetForm();
   };
 
@@ -75,7 +65,6 @@ export const LoginForm = () => {
           <Form>
             <Input type="email"
               name="email"
-              onChange={handleChange}
               placeholder="Email"
             />
             <ErrorMessage component="span" name="email" />
@@ -84,7 +73,6 @@ export const LoginForm = () => {
               <Input
                 type={inputType ? 'password' : 'text'}
                 name="password"
-                onChange={handleChange}
                 placeholder="Password"
               />
               <IconWraper>
