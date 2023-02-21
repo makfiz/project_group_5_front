@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Title } from "components/Title/Title"; 
 import { NewsList } from "components/News/NewsList/NewsList";
 import { Container } from "../components/Header/Header.styled"
+import { Loader } from "components/Loader/Loader";
 // import { Loader } from "components/Loader/Loader";
 
 // додати лоадер
@@ -13,37 +14,53 @@ import { Container } from "../components/Header/Header.styled"
 
 
 const NewsPage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get('query');
   const [news, setNews] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [filterParams, setFilterParams] = useState("");
+  // const [filterParams, setFilterParams] = useState(search);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const search = searchParams.get('search');
 
   useEffect(() => {
     const BASE_URL = "http://localhost:3000/api";
     // const BASE_URL = "https://petssuport4815162342api.onrender.com/api";
     let searchPath = '/news';
-      if(filterParams) {
-        searchPath = searchPath + "?search=" + filterParams;
+      if(search) {
+        searchPath = searchPath + "?search=" + search;
       };
-      console.log("filterParams", filterParams);
+
+      setIsLoading(true);
+
     fetch(`${BASE_URL}${searchPath}`)
       .then(data => data.json())
       .then(data => setNews(data))
       .catch(error => setError(error))
-  }, [filterParams])
+      .finally(() => setIsLoading(false))
+  }, [search])
 
   function filterNews(e) {
-    console.log("Now i'm going to send a reqest to filter data", e.target.elements.search.value);
-    setFilterParams(e.target.elements.search.value);
-    setSearchParams({ search: e.target.elements.search.value });
+    const userSearch = e.target.elements.search.value;
+    // setFilterParams(userSearch);
+    setSearchParams({ search: userSearch });
+    // e.target.reset();
   }
+
+  function clearFiltration() {
+    // setFilterParams("");
+    setSearchParams({ });
+  }
+
+  const content = isLoading ? 
+  <Loader/> : 
+  <NewsList 
+    news={news} 
+    onSubmit={filterNews} 
+    onClear={clearFiltration} />
 
   return (
     <Container>
       <Title>News</Title>
-      <NewsList news={news} onSubmit={filterNews} />
+      {content}
     </Container>
   );
 };

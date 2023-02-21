@@ -101,14 +101,6 @@ export const ReadMoreLink = styled.a`
 
   color: #f59256;
 
-  /* &::after{
-    content: "";
-    display: block;
-    width: 100%;
-    height: 0.5px;
-    background-color: #f59256;
-  } */
-
   &:hover,
   &:focus,
   &:visited {
