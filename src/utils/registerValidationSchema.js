@@ -5,7 +5,10 @@ yup.addMethod(yup.string, 'numeric', function () {
 });
 
 yup.addMethod(yup.string, 'leters', function () {
-  return this.matches(/^[aA-zZ\s]+$/, 'The name should have  only alphabets');
+  return this.matches(
+    /^([A-Za-z][A-Za-z\-\']{1,50})|([А-ЯЁIЇҐЄа-яёіїґє][А-ЯЁIЇҐЄа-яёіїґє\-\']{1,50})$/,
+    'The name should have  only alphabets'
+  );
 });
 
 yup.addMethod(yup.string, 'mail', function () {

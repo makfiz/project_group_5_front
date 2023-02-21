@@ -14,6 +14,7 @@ import { ourFriendsReducer } from './OurFriends/slice';
 import { authReducer } from './auth/authSlice';
 import { noticesReducer } from './notices/noticesSlice';
 import { noticesSearckQueryReducer } from './notices/searchQuerySlice';
+import { formReducer } from './form/formSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -38,6 +39,7 @@ export const store = configureStore({
     notices: noticesReducer,
     auth: persistReducer(authPersistConfig, authReducer),
     noticesSearchQuery: persistedNoticesSearckQueryReducer,
+    form: formReducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({

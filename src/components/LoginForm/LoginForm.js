@@ -31,7 +31,6 @@ export const LoginForm = () => {
   const [inputType, setInputType] = useState(true);
   const dispatch = useDispatch();
 
-
   const handleSubmit = (values, { resetForm }) => {
     if (values === '') {
       return;
@@ -63,10 +62,7 @@ export const LoginForm = () => {
           validationSchema={schema}
         >
           <Form>
-            <Input type="email"
-              name="email"
-              placeholder="Email"
-            />
+            <Input type="email" name="email" placeholder="Email" />
             <ErrorMessage component="span" name="email" />
 
             <InputPasswordWraper>
@@ -95,7 +91,7 @@ export const LoginForm = () => {
             </ButtonWraper>
             <LinkWraper>
               <LinkText>Don't have an account? </LinkText>
-              <NavLink to="/registration">Register</NavLink>
+              <NavLink to="/registration-redirect">Register</NavLink>
             </LinkWraper>
           </Form>
         </Formik>
