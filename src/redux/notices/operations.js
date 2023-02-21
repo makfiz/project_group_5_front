@@ -15,9 +15,12 @@ setAuthHeader(token);
 
 export const fetchNoticesByCategory = createAsyncThunk(
   'notices/fetchCategory',
-  async ({ path, params }, thunkAPI) => {
+  async ({ path, params, controller }, thunkAPI) => {
     try {
-      const response = await axios.get(path, { params });
+      const response = await axios.get(path, {
+        signal: controller.signal,
+        params,
+      });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -27,9 +30,12 @@ export const fetchNoticesByCategory = createAsyncThunk(
 
 export const fetchFavoriteNotices = createAsyncThunk(
   'notices/fetchFavorites',
-  async ({ path, params }, thunkAPI) => {
+  async ({ path, params, controller }, thunkAPI) => {
     try {
-      const response = await axios.get(path, { params });
+      const response = await axios.get(path, {
+        signal: controller.signal,
+        params,
+      });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -39,9 +45,12 @@ export const fetchFavoriteNotices = createAsyncThunk(
 
 export const fetchOwnNotices = createAsyncThunk(
   'notices/fetchOwn',
-  async ({ path, params }, thunkAPI) => {
+  async ({ path, params, controller }, thunkAPI) => {
     try {
-      const response = await axios.get(path, { params });
+      const response = await axios.get(path, {
+        signal: controller.signal,
+        params,
+      });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -53,6 +62,7 @@ export const addNoticeToFavorite = createAsyncThunk(
   'notices/addFavorite',
   async ({ path }, thunkAPI) => {
     try {
+      console.log('clack');
       const response = await axios.post(path);
       return response.data;
     } catch (error) {

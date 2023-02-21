@@ -4,9 +4,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 axios.defaults.baseURL = 'https://petssuport4815162342api.onrender.com/api';
 
 
+
 // const setAuthHeader = token => {
 //   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 // };
+
 
 // export const registration = createAsyncThunk(
 //   'auth/register',
@@ -23,12 +25,13 @@ axios.defaults.baseURL = 'https://petssuport4815162342api.onrender.com/api';
 // );
 
 const unsetToken = () => {
-    return axios.defaults.headers.common.Authorization = '';
+  return (axios.defaults.headers.common.Authorization = '');
 };
 
 const setToken = token => {
-    return axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  return (axios.defaults.headers.common.Authorization = `Bearer ${token}`);
 };
+
 
 const login = createAsyncThunk('auth/login', async credentials => {
     try {
@@ -66,5 +69,6 @@ const authOperations = {
 };
 
 export default authOperations;
+
 
 

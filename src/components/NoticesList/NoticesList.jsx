@@ -23,11 +23,13 @@ export const NoticesList = ({ askedPage }) => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get('search') ?? '';
-  const page = calculateCurrentPage(searchParams.get('page'), totalPages);
-
+  const page = searchParams.get('page');
   const limit = searchParams.get('limit') ?? endPoints.limit;
-  const nextSearchParams =
-    search !== '' ? { page, limit, search } : { page, limit };
+
+  const currentSearchParams = search !== '' ? { page: 1, search } : { page: 1 };
+  const nextSearchParams = search !== '' ? { page, search } : { page };
+  const lastSearchParams =
+    search !== '' ? { page: totalPages, search } : { page: totalPages };
 
   // TODO: own parametr to render card delete button
   const userId = '63ef3ab7764df6f672fdc7cc';
@@ -41,33 +43,50 @@ export const NoticesList = ({ askedPage }) => {
           fetchNoticesByCategory({
             path: endPoints.pathSell,
             params: { page, limit, search },
+            controller,
           })
         );
-        setSearchParams(nextSearchParams);
+
+        if (!page) return setSearchParams(currentSearchParams);
+        if (totalPages === 0) return;
+        if (page > totalPages) return setSearchParams(lastSearchParams);
+        if (page <= totalPages) return setSearchParams(nextSearchParams);
+
         break;
       case 'lost_found':
         dispatch(
           fetchNoticesByCategory({
             path: endPoints.pathLostFound,
             params: { page, limit, search },
+            controller,
           })
         );
-        setSearchParams(nextSearchParams);
+
+        if (!page) return setSearchParams(currentSearchParams);
+        if (totalPages === 0) return;
+        if (page > totalPages) return setSearchParams(lastSearchParams);
+        if (page <= totalPages) return setSearchParams(nextSearchParams);
         break;
       case 'in_good_hands':
         dispatch(
           fetchNoticesByCategory({
             path: endPoints.pathInGoodHands,
             params: { page, limit, search },
+            controller,
           })
         );
-        setSearchParams(nextSearchParams);
+
+        if (!page) return setSearchParams(currentSearchParams);
+        if (totalPages === 0) return;
+        if (page > totalPages) return setSearchParams(lastSearchParams);
+        if (page <= totalPages) return setSearchParams(nextSearchParams);
         break;
       case 'favorite':
         dispatch(
           fetchFavoriteNotices({
             path: `${endPoints.pathFavorites}${userId}${endPoints.noticesFavorite}`,
             params: { search },
+            controller,
           })
         );
         setSearchParams(search ? { search } : {});
@@ -77,6 +96,7 @@ export const NoticesList = ({ askedPage }) => {
           fetchFavoriteNotices({
             path: `${endPoints.pathOwn}${userId}`,
             params: { search },
+            controller,
           })
         );
         setSearchParams(search ? { search } : {});
@@ -87,9 +107,8 @@ export const NoticesList = ({ askedPage }) => {
 
     return () => {
       controller.abort();
-      console.log('aborter');
     };
-  }, [dispatch, limit, page, askedPage, search, ads.length]);
+  }, [dispatch, limit, page, askedPage, search, ads.length, totalPages]);
 
   return (
     <>

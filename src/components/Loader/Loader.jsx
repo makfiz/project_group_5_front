@@ -1,11 +1,14 @@
-import { RotatingLines } from  'react-loader-spinner'
+import { RotatingLines } from  'react-loader-spinner';
+import { Spiner } from "./Loader.styled.jsx";
 
-export function Loader ({isLoading}) {
-    return <RotatingLines
-    strokeColor="grey"
-    strokeWidth="5"
-    animationDuration="0.75"
-    width="96"
-    visible={isLoading}
-  />
+export function Loader() {
+    return <Spiner>
+            <RotatingLines
+            strokeColor="grey"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="96"
+            visible={true}
+          />
+      </Spiner>
 }
