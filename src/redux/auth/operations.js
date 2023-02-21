@@ -36,7 +36,7 @@ const setToken = token => {
 const login = createAsyncThunk('auth/login', async credentials => {
     try {
         const { data } = await axios.post('/users/login', credentials);
-        token.setToken(data.token);
+        setToken(data.token);
         return data;
     } catch (error) {
         console.log(error);
@@ -46,16 +46,15 @@ const login = createAsyncThunk('auth/login', async credentials => {
 const logout = createAsyncThunk('auth/logout', async () => {
     try {
         await axios.get('/users/logout');
-        token.unsetToken();
+        unsetToken();
     } catch (error) {
         console.log(error);
     }
 });
 
-const googleApi = createAsyncThunk('auth/google', credentials => {
+const googleApi = createAsyncThunk('auth/google', async  (credentials) => {
   try {
-    token.setToken(credentials.token);
-    console.log("credentials= ", credentials);
+    setToken(credentials.token);
     return credentials;
   } catch (error) {
     console.log(error);
