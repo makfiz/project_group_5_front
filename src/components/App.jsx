@@ -32,7 +32,7 @@ export const App = () => {
 
   const token = searchParams.get('token');
   const email = searchParams.get('email');
-  const balance = searchParams.get('id');
+  const id = searchParams.get('id');
 
   useEffect(() => {
     if (token) {

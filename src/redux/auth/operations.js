@@ -52,6 +52,7 @@ const logout = createAsyncThunk('auth/logout', async () => {
 const googleApi = createAsyncThunk('auth/google', credentials => {
   try {
     token.setToken(credentials.token);
+    console.log("credentials= ", credentials);
     return credentials;
   } catch (error) {
     console.log(error);
