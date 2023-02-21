@@ -38,7 +38,7 @@ export const App = () => {
     if (token) {
       dispatch(authOperations.googleApi({ token, email, id }));
     }
-  }, [token, email, dispatch, balance]);
+  }, [token, email, id, dispatch]);
 
   return (
     <div>
