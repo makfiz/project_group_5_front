@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 
 import { ModalTitle } from 'components/ModalTitle/ModalTitle';
 import { Button } from 'components/Button/Button';
+import { Modal } from '../Modal/Modal';
 import { schema } from 'utils/registerValidationSchema';
 // import { registration } from 'redux/auth/operations';
 
@@ -43,6 +44,8 @@ export const RegistrationForm = () => {
   const [inputType, setInputType] = useState(true);
   const [inputConfirmeType, setInputConfirmeType] = useState(true);
 
+  const [isSendEmail, setIsSendEmail] = useState(false);
+
   // const dispatch = useDispatch();
 
   const handleNextClick = () => {
@@ -71,6 +74,10 @@ export const RegistrationForm = () => {
   const onShowConfirmePassword = () => {
     setShowConfirmePassword(prevState => !prevState);
     setInputConfirmeType(prevState => !prevState);
+  };
+
+  const onRegister = () => {
+    setIsSendEmail(true);
   };
 
   return (
@@ -138,22 +145,20 @@ export const RegistrationForm = () => {
               <>
                 <Input type="text" name="name" placeholder="Name" />
                 <ErrorMessage component="span" name="name" />
-
                 <Input type="text" name="city" placeholder="City, region" />
                 <ErrorMessage component="span" name="city" />
-
                 <Input
                   type="number"
                   name="mobilePhone"
                   placeholder="Mobile phone"
                 />
                 <ErrorMessage component="span" name="mobilePhone" />
-
                 <ButtonWraper>
                   <Button
                     style={StyledButton}
                     type="submit"
                     children="Register"
+                    onClick={onRegister}
                   />
                   <Button
                     style={StyledButton}
@@ -161,7 +166,6 @@ export const RegistrationForm = () => {
                     children="Back"
                   />
                 </ButtonWraper>
-
                 <LinkWraper>
                   <LinkText>Already have an account?</LinkText>
                   <NavLink to="/login">Login</NavLink>

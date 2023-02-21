@@ -43,6 +43,7 @@ export const theme = {
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   radii: {
     normal: '5px',
+    standard: '10px',
     medium: '20px',
     large: '40px',
     round: '50%',
