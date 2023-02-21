@@ -4,6 +4,8 @@ import { Formik } from 'formik';
 
 import { ModalTitle } from 'components/ModalTitle/ModalTitle';
 import { Button } from 'components/Button/Button';
+import { useDispatch } from 'react-redux';
+import authOperations from '../../redux/auth/operations';
 
 import {
   Wraper,
@@ -27,11 +29,27 @@ const initialValues = { email: '', password: '' };
 export const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [inputType, setInputType] = useState(true);
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleSubmit = (values, { resetForm }) => {
-    if (values === '') {
-      return;
+  const handleChange = ({ target: { name, value } }) => {
+    switch (name) {
+      case 'email':
+        return setEmail(value);
+      case 'password':
+        return setPassword(value);
+      default:
+        return;
     }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    dispatch(authOperations.login({ email, password }));
+    setEmail('');
+    setPassword('');
 
     resetForm();
   };
@@ -55,13 +73,18 @@ export const LoginForm = () => {
           validationSchema={schema}
         >
           <Form>
-            <Input type="email" name="email" placeholder="Email" />
+            <Input type="email"
+              name="email"
+              onChange={handleChange}
+              placeholder="Email"
+            />
             <ErrorMessage component="span" name="email" />
 
             <InputPasswordWraper>
               <Input
                 type={inputType ? 'password' : 'text'}
                 name="password"
+                onChange={handleChange}
                 placeholder="Password"
               />
               <IconWraper>
