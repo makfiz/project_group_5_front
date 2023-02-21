@@ -1,5 +1,19 @@
-import { Field, ErrorMessage, Form, Formik } from 'formik';
-import { ReactComponent as CloseIcon } from '../../../assets/menu-icons/close-menu.svg';
+import { ErrorMessage, Form, Formik } from 'formik';
+import icons from '../../../assets/icons/icons.svg';
+import { Button } from 'components/Button/Button';
+import {
+  Container,
+  Title,
+  BtnStyle,
+  BtnClose,
+  Wrapper,
+  BtnWrapper,
+  BtnWrapperNext,
+  Input,
+  InputWrapper,
+  PetLabel,
+  CloseCross
+} from './ModalAddPets.styled';
 
 export const ModalAddsPetFirst = (props) => {
   
@@ -8,50 +22,61 @@ export const ModalAddsPetFirst = (props) => {
   };
  
   return (
-    <div>
-      <button type="button" onClick={props.closeModal}>
-        <CloseIcon/>
-      </button>
-      <h3>Add pet</h3>
-      <div>
+    <Container>
+      <BtnClose type="button" onClick={props.closeModal}>
+        <CloseCross>
+        <svg>
+          <use href={icons + '#icon-blackCross'} />
+        </svg>
+        </CloseCross>  
+      </BtnClose>
+      <Wrapper>
+        <Title >Add pet</Title>
         <Formik initialValues={props.data} onSubmit={handleSubmit}>
           {() => (
             <Form>
-              <label htmlFor="namePet">
+              <PetLabel htmlFor="namePet">
                 Name pet
-              </label>
-              <div>
-                <Field name="name" placeholder="Type name pet" type="text" />
+              </PetLabel>
+              <InputWrapper>
+                <Input name="name" placeholder="Type name pet" type="text" />
                 <ErrorMessage name="name" component="p" />
-              </div>
+              </InputWrapper>
 
-              <label htmlFor="dateOfBirth">
+              <PetLabel htmlFor="dateOfBirth">
                 Date of birth
-              </label>
-              <div>
-                <Field name="dateOfBirth" placeholder="Type date of birth" />
+              </PetLabel>
+              <InputWrapper>
+                <Input name="dateOfBirth" placeholder="Type date of birth" />
                 <ErrorMessage name="dateOfBirth" component="p" />
-              </div>
-              <label htmlFor="breed">
+              </InputWrapper>
+              <PetLabel htmlFor="breed">
                 Breed
-              </label>
-              <div>
-                <Field name="breed" placeholder="Type breed" type="text" />
+              </PetLabel>
+              <InputWrapper>
+                <Input name="breed" placeholder="Type breed" type="text" />
                 <ErrorMessage name="breed" component="p" />
-              </div>
-              <div>
-                <button type="submit">
-                  Next
-                </button>
-                <button type="button" onClick={props.closeModal}>
-                  Cancel
-                </button>
-              </div>
+              </InputWrapper>
+              <BtnWrapper>
+                <BtnWrapperNext>
+                <Button
+                  type="submit"
+                  style={BtnStyle}
+                  children="Next"
+                />
+                </BtnWrapperNext>
+                <Button
+                  style={BtnStyle}
+                  onClick={props.closeModal}
+                  children="Cancel"
+                  />  
+                
+                </BtnWrapper>
             </Form>
           )}
         </Formik>
-      </div>
-    </div>
+      </Wrapper>
+    </Container>
   );
 };
 
