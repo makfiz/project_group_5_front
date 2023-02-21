@@ -43,7 +43,7 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
     },
     [authOperations.logout.rejected](state, action) { state.isRefreshing = false; state.error = action.payload; },
-    [authOperations.googleApi.fulfilled](state, { payload }) {
+    [authOperations.googleApi.fulfilled](state, action) {
       state.isRefreshing = false;
       state.error = null;
       state.user.id = action.payload.id;
