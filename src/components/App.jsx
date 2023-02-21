@@ -1,6 +1,7 @@
-import { lazy } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, lazy } from 'react';
+import { Routes, Route, Navigate, useSearchParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import authOperations from '../redux/auth/operations';
 
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import NewsPage from '../pages/NewsPage';
@@ -24,6 +25,20 @@ export const App = () => {
   //     useEffect(() => {
   //         dispatch();
   //     }, [dispatch]);
+
+  const dispatch = useDispatch();
+
+  const [searchParams] = useSearchParams();
+
+  const token = searchParams.get('token');
+  const email = searchParams.get('email');
+  const id = searchParams.get('id');
+
+  useEffect(() => {
+    if (token) {
+      dispatch(authOperations.googleApi({ token, email, id }));
+    }
+  }, [token, email, dispatch, balance]);
 
   return (
     <div>
