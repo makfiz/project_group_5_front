@@ -27,10 +27,16 @@ export const schema = yup.object().shape({
     .label('confirm password')
     .required()
     .oneOf([yup.ref('password'), null], 'Passwords must match'),
-  name: yup.string().min('3').leters().required('Please enter your name!'),
+  name: yup
+    .string()
+    .min('2')
+    .max('16')
+    .leters()
+    .required('Please enter your name!'),
   city: yup
     .string()
     .min('3')
+    .max('40')
     .leters()
     .required('Please enter city and region!'),
 
