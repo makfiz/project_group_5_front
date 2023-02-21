@@ -55,7 +55,8 @@ export const NoticesListItem = ({ ad, askedPage }) => {
   const sellPage = category === 'sell' && askedPage === 'sell';
   const own = owner === userId;
 
-  const handleFavorite = async e => {
+  const handleFavorite = e => {
+    console.log('click');
     const path = `${endPoints.noticesBase}${_id}${endPoints.noticesFavorite}`;
     if (!inFavorite) {
       dispatch(addNoticeToFavorite({ path }));
