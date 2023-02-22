@@ -7,6 +7,7 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import NewsPage from '../pages/NewsPage';
 import { NoticesList } from './NoticesList/NoticesList';
 import { PrivateRoute } from './PrivateRoute';
+import { RestrictedRoute } from './RestrictedRoute';
 
 const FriendsPage = lazy(() => import('../pages/FriendsPage'));
 const NoticesPage = lazy(() => import('../pages/NoticesPage'));
@@ -35,7 +36,6 @@ export const App = () => {
   const email = searchParams.get('email');
   const id = searchParams.get('id');
   console.log(searchParams);
-  
 
   useEffect(() => {
     // localStorage.setItem("userPetly", JSON.stringify({id:"63f60bf214492870854ac04e",email:"voskoboynikov010684@gmail.com"}));
@@ -72,12 +72,27 @@ export const App = () => {
             <Route path="own" element={<NoticesList askedPage="own" />} />
           </Route>
           <Route path="friends" element={<FriendsPage />} />
-          <Route path="registration" element={<RegisterPage />} />
+          <Route
+            path="registration"
+            element={
+              <RestrictedRoute redirectTo="/user" component={RegisterPage} />
+            }
+          />
           <Route
             path="registration-redirect"
-            element={<RedirectRegistrationPage />}
+            element={
+              <RestrictedRoute
+                redirectTo="/user"
+                component={RedirectRegistrationPage}
+              />
+            }
           />
-          <Route path="login" element={<LoginPage />} />
+          <Route
+            path="login"
+            element={
+              <RestrictedRoute redirectTo="/user" component={LoginPage} />
+            }
+          />
           <Route
             path="user"
             element={<PrivateRoute redirectTo="/login" component={UserPage} />}

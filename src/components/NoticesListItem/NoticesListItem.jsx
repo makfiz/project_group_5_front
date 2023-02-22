@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { formatDistanceToNowStrict } from 'date-fns';
+// import { formatDistanceToNowStrict } from 'date-fns';
+import { calculateAndConvertAge } from 'utils/calculateAndConvertAge';
 import { renameNoticesCategory } from 'utils/renameNoticesCategory';
 import { selectUser } from 'redux/auth/selectors';
 
@@ -45,7 +46,8 @@ export const NoticesListItem = ({ ad, askedPage }) => {
   const { id: userId } = useSelector(selectUser);
 
   // TODO: age in text format
-  const age = formatDistanceToNowStrict(Date.parse(birth));
+  // const age = formatDistanceToNowStrict(Date.parse(birth));
+  const age = calculateAndConvertAge(Date.parse(birth));
 
   const dispatch = useDispatch();
   const [inFavorite, setInFavorite] = useState(() =>

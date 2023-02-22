@@ -41,6 +41,7 @@ export const theme = {
     boxShadow: '2px 2px 2px 1px rgb(0 0 0 / 20%)',
     inputShadow: '7px 4px 14px rgba(49, 21, 4, 0.07)',
     regModalShadow: '7px 4px 14px rgba(0, 0, 0, 0.11)',
+    hoursWorkModalShadow: '4px 4px 8px rgba(0, 0, 0, 0.25)',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   radii: {
