@@ -1,31 +1,34 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
 
 import Modal from '../components/Modal/Modal';
-import { RegistrationForm } from 'components/RegistrationForm/RegistrationForm';
 import { SendEmail } from 'components/SendEmail/SendEmail';
+import { RegistrationForm } from 'components/RegistrationForm/RegistrationForm';
+
+import { closeForm, showForm } from 'redux/form/formSlice';
 
 const RegisterPage = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isSendEmail, setIsSendEmail] = useState(false);
+  const dispatch = useDispatch();
+  const { isSending, showRegisterForm } = useSelector(state => state.form);
 
   useEffect(() => {
-    setIsModalOpen(true);
+    dispatch(showForm());
   }, []);
 
   const closeModal = () => {
-    setIsModalOpen(false);
+    dispatch(closeForm());
   };
 
   return (
     <>
-      {isModalOpen && (
+      {showRegisterForm && (
         <Modal onClick={closeModal}>
           <RegistrationForm />
         </Modal>
       )}
 
-      {isSendEmail && (
+      {isSending && (
         <Modal onClick={closeModal}>
           <SendEmail />
         </Modal>
