@@ -1,15 +1,20 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { selectTotalPages } from 'redux/notices/selectors';
 
 import {
-  fetchNoticesByCategory,
-  fetchFavoriteNotices,
-} from 'redux/notices/operations';
-import { selectNotices } from 'redux/notices/selectors';
+  selectNotices,
+  selectNoticesSearchQuery,
+} from 'redux/notices/selectors';
 import { endPoints } from 'constants/EndPoints';
-import { calculateCurrentPage } from 'utils/calculateNoticesPage';
+import { setQueryValue } from 'redux/notices/searchQuerySlice';
+
+import {
+  fetchRoute,
+  fetchFavoriteRoute,
+  fetchOwnRoute,
+} from 'utils/fetchNoticesRoute';
 
 import { Box } from 'components/Box/Box';
 import { NoticesListItem } from 'components/NoticesListItem/NoticesListItem';
@@ -22,84 +27,51 @@ export const NoticesList = ({ askedPage }) => {
   const totalPages = useSelector(selectTotalPages);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const search = searchParams.get('search') ?? '';
+  const limit = endPoints.limit;
+  const search = useSelector(selectNoticesSearchQuery);
   const page = searchParams.get('page');
-  const limit = searchParams.get('limit') ?? endPoints.limit;
-
-  const currentSearchParams = search !== '' ? { page: 1, search } : { page: 1 };
-  const nextSearchParams = search !== '' ? { page, search } : { page };
-  const lastSearchParams =
-    search !== '' ? { page: totalPages, search } : { page: totalPages };
 
   // TODO: own parametr to render card delete button
   const userId = '63ef3ab7764df6f672fdc7cc';
 
   useEffect(() => {
     const controller = new AbortController();
+    const commonParams = {
+      page,
+      search,
+      limit,
+      totalPages,
+      dispatch,
+      setSearchParams,
+    };
 
     switch (askedPage) {
       case 'sell':
-        dispatch(
-          fetchNoticesByCategory({
-            path: endPoints.pathSell,
-            params: { page, limit, search },
-            controller,
-          })
-        );
-
-        if (!page) return setSearchParams(currentSearchParams);
-        if (totalPages === 0) return;
-        if (page > totalPages) return setSearchParams(lastSearchParams);
-        if (page <= totalPages) return setSearchParams(nextSearchParams);
-
+        fetchRoute(commonParams, { path: endPoints.pathSell, controller });
         break;
       case 'lost_found':
-        dispatch(
-          fetchNoticesByCategory({
-            path: endPoints.pathLostFound,
-            params: { page, limit, search },
-            controller,
-          })
-        );
+        fetchRoute(commonParams, { path: endPoints.pathLostFound, controller });
 
-        if (!page) return setSearchParams(currentSearchParams);
-        if (totalPages === 0) return;
-        if (page > totalPages) return setSearchParams(lastSearchParams);
-        if (page <= totalPages) return setSearchParams(nextSearchParams);
         break;
       case 'in_good_hands':
-        dispatch(
-          fetchNoticesByCategory({
-            path: endPoints.pathInGoodHands,
-            params: { page, limit, search },
-            controller,
-          })
-        );
-
-        if (!page) return setSearchParams(currentSearchParams);
-        if (totalPages === 0) return;
-        if (page > totalPages) return setSearchParams(lastSearchParams);
-        if (page <= totalPages) return setSearchParams(nextSearchParams);
+        fetchRoute(commonParams, {
+          path: endPoints.pathInGoodHands,
+          controller,
+        });
         break;
       case 'favorite':
-        dispatch(
-          fetchFavoriteNotices({
-            path: `${endPoints.pathFavorites}${userId}${endPoints.noticesFavorite}`,
-            params: { search },
-            controller,
-          })
-        );
-        setSearchParams(search ? { search } : {});
+        fetchFavoriteRoute(commonParams, {
+          path: `${endPoints.pathFavorites}${userId}${endPoints.noticesFavorite}`,
+          controller,
+        });
+
         break;
       case 'own':
-        dispatch(
-          fetchFavoriteNotices({
-            path: `${endPoints.pathOwn}${userId}`,
-            params: { search },
-            controller,
-          })
-        );
-        setSearchParams(search ? { search } : {});
+        fetchOwnRoute(commonParams, {
+          path: `${endPoints.pathOwn}${userId}`,
+          controller,
+        });
+
         break;
       default:
         return;
@@ -108,7 +80,7 @@ export const NoticesList = ({ askedPage }) => {
     return () => {
       controller.abort();
     };
-  }, [dispatch, limit, page, askedPage, search, ads.length, totalPages]);
+  }, [dispatch, limit, search, page, askedPage, ads.length, totalPages]);
 
   return (
     <>
