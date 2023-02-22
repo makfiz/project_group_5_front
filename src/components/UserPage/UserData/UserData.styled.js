@@ -26,6 +26,11 @@ export const EditPhotoButton = styled.button`
   background-color: white;
 
   cursor: pointer;
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    position: absolute;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
 `;
 
 export const EditPhotoButtonText = styled.span`
@@ -77,9 +82,17 @@ export const UserPageHeader = styled.h2`
   letter-spacing: 0.04em;
 
   margin-bottom: 18px;
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    font-size: 28px;
+    line-height: 38px;
+    margin-bottom: 40px;
+    margin-left: 32px;
+  }
 `;
 
 export const UserInfoCard = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
 
@@ -95,6 +108,16 @@ export const UserInfoCard = styled.div`
   padding-right: 12px;
   padding-bottom: 20px;
   padding-left: 16px;
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    max-width: 736px;
+    padding-left: 32px;
+    padding-bottom: 54px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 20px;
+  }
 `;
 
 export const UserPhotoThumb = styled.div`
@@ -104,4 +127,10 @@ export const UserPhotoThumb = styled.div`
 
   width: 233px;
   height: 233px;
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    position: absolute;
+    top: 24px;
+    right: 40px;
+  }
 `;
