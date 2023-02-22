@@ -38,7 +38,6 @@ export const App = () => {
   console.log(searchParams);
 
   useEffect(() => {
-    // localStorage.setItem("userPetly", JSON.stringify({id:"63f60bf214492870854ac04e",email:"voskoboynikov010684@gmail.com"}));
     if (token) {
       dispatch(authOperations.googleApi({ token, email, id }));
     }
