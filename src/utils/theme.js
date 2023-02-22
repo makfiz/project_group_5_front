@@ -32,6 +32,8 @@ export const theme = {
     error: 'red',
     deleteBtnColor: '#FF6101',
     petModalplaceholder: 'rgba(27, 27, 27, 0.6)',
+    userAddPetBtnBg: '#F59256',
+    userAddPetBtnBgHover: '#ff6101',
   },
   shadows: {
     shadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.75)',
