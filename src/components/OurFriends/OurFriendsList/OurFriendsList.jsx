@@ -1,11 +1,13 @@
-import OurFriendsItem from "./OurFriendsItem";
-import { BoxFriendsList, FriendsList, FriendsItem } from './OurFriends.styled';
-import { Title } from "components/Title/Title";
+import OurFriendsItem from "../OurFriendsItem/OurFriendsItem";
+import {
+  BoxFriendsList,
+  FriendsList,
+  FriendsItem
+} from './OurFriendsList.styled';
 
 const OurFriendsList = ({ourFriends}) => {
 
   return <>
-    <Title>Our friends</Title>
     <BoxFriendsList>
     <FriendsList>
       {ourFriends.map(friend => (

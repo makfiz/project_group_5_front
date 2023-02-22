@@ -1,4 +1,4 @@
-import { BoxModal, ModalContent } from './OurFriends.styled';
+import { BoxModal, ModalContent } from './Modal.styled';
 import  WorkHours from './WorkHours'
 
 function Modal({workDays, onClick}) {

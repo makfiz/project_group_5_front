@@ -8,7 +8,6 @@ export const fetchOurFriends = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('friends/');
-      // console.log('response', response);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

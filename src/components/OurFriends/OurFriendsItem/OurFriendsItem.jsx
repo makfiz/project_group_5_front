@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-import Modal from "./Modal";
-import { FriendTitle, BoxFriendItem, BoxFriendLogo, BoxFriendInfo, FriendInfoItem } from "./OurFriends.styled";
+import Modal from "../Modal/Modal";
+import { FriendTitle, BoxFriendItem, BoxFriendLogo, BoxFriendInfo, FriendInfoItem } from "./OurFriendsItem.styled";
 import WorkDays from "./WorkDays";
-import noPhoto from '../../assets/default-img/defaultLogo.jpg';
+import noPhoto from '../../../assets/default-img/defaultLogo.jpg';
 
 const OurFriendsItem = ({ friend }) => {
   

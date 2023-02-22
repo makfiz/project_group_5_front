@@ -1,4 +1,4 @@
-import { ModalText } from './OurFriends.styled';
+import { ModalText } from './Modal.styled';
 
 const WorkHours = ({ workDays }) => {
   const dayLabels = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
