@@ -10,6 +10,14 @@ export const LogoutButton = styled.button`
 
   background-color: white;
   cursor: pointer;
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    position: absolute;
+    margin-left: 0px;
+    margin-top: 0px;
+    left: 32px;
+    bottom: 24px;
+  }
 `;
 
 export const LogoutIcon = () => (
