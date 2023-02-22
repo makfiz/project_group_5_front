@@ -33,6 +33,8 @@ export const App = () => {
   const token = searchParams.get('token');
   const email = searchParams.get('email');
   const id = searchParams.get('id');
+  console.log(searchParams);
+  
 
   useEffect(() => {
     if (token) {
