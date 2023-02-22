@@ -62,9 +62,10 @@ export const RegistrationForm = () => {
 
     console.log(values);
     // const { email, password } = values;
-    const { email, password, name, city, mobilePhone: phone } = values
+    const { email, password, name, city, mobilePhone } = values
+    const phone = toString(mobilePhone);
     console.log({ email, password, name, city, phone });
-    dispatch(authOperations.registration({ email, password, name, city, phone }));
+    dispatch(authOperations.registration({ email, password, name, city,  phone }));
     dispatch(sendingEmail());
     dispatch(hideForm());
 
