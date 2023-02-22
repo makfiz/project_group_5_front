@@ -3,11 +3,22 @@ import styled from 'styled-components';
 export const Container = styled.div`
   margin-right: auto;
   margin-left: auto;
-  padding-left: 20px;
-  padding-right: 20px;
+
+  padding: 47px 20px 32px 20px;
 
   @media (min-width: ${p => p.theme.screenSizes.mobile}) {
-    width: 320px;
+    width: ${p => p.theme.screenSizes.mobile};
+  }
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    width: ${p => p.theme.screenSizes.tablet};
+
+    padding: 20px 32px 22px 32px;
+  }
+
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    width: 100%;
+    padding: 60px 32px 24px 32px;
   }
 `;
 
@@ -19,6 +30,12 @@ export const Title = styled.h2`
   line-height: 1.35;
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.black};
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    font-size: ${p => p.theme.fontSizes.lm};
+    line-height: 1.36;
+    color: ${p => p.theme.colors.titleColor};
+  }
 `;
 
 export const Text = styled.p`
@@ -28,9 +45,19 @@ export const Text = styled.p`
   font-family: 'Manrope';
   font-style: normal;
   font-weight: ${p => p.theme.fontWeight.medium};
+  font-size: ${p => p.theme.fontSizes.ms};
   line-height: 1.35;
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.titleColor};
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    color: ${p => p.theme.colors.titleColor};
+  }
+
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    margin-right: 12px;
+    color: ${p => p.theme.colors.titleColor};
+  }
 `;
 
 export const AddPetBtn = styled.button`
