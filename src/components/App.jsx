@@ -7,6 +7,8 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import NewsPage from '../pages/NewsPage';
 import { NoticesList } from './NoticesList/NoticesList';
 import { PrivateRoute } from './PrivateRoute';
+import { Loader } from 'components/Loader/Loader';
+import { selectIsRefreshing } from 'redux/auth/selectors';
 import { RestrictedRoute } from './RestrictedRoute';
 
 const FriendsPage = lazy(() => import('../pages/FriendsPage'));
@@ -21,7 +23,7 @@ const RedirectRegistrationPage = lazy(() =>
 );
 
 export const App = () => {
-  // const isRefreshing = useSelector()
+  const isRefreshing = useSelector(selectIsRefreshing);
   // const dispatch = useDispatch();
 
   //     useEffect(() => {
@@ -41,9 +43,12 @@ export const App = () => {
     if (token) {
       dispatch(authOperations.googleApi({ token, email, id }));
     }
+    dispatch(authOperations.refresh());
   }, [token, email, id, dispatch]);
 
-  return (
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <div>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
