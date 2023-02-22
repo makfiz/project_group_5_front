@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Modal from "./Modal";
 import { FriendTitle, BoxFriendItem, BoxFriendLogo, BoxFriendInfo, FriendInfoItem } from "./OurFriends.styled";
 import WorkDays from "./WorkDays";
+import noPhoto from '../../assets/default-img/defaultLogo.jpg';
 
 const OurFriendsItem = ({ friend }) => {
   
@@ -38,14 +39,13 @@ const OurFriendsItem = ({ friend }) => {
 
   const {
     title,
-    imageUrl,
+    imageUrl = noPhoto,
     address,
     email,
     phone,
     workDays,
     addressUrl,
     url } = friend;
-  // console.log("workDays", workDays)
 
   const mailto = 'mailto:' 
   const tel = 'tel:'
@@ -53,15 +53,24 @@ const OurFriendsItem = ({ friend }) => {
   const hreftel = tel.concat(phone)
 
   return <>
-          <FriendTitle> <a href={url} target="_blank" rel="noreferrer">{title}</a></FriendTitle>
+    <FriendTitle>
+      <a href={url} target="_blank" rel="noreferrer">{title}</a>
+    </FriendTitle>
           <BoxFriendItem >
             <BoxFriendLogo>
-              <img src={imageUrl} alt="Logo" className="FriendLogo" width="158" height="112"></img>
+              {imageUrl ?               <img src={imageUrl}
+          alt="Logo"
+          className="FriendLogo"
+          width="110" height="78"
+        ></img> : <img src={noPhoto}
+          alt="Logo"
+          className="FriendLogo"
+          width="110" height="78"/>}
             </BoxFriendLogo>
             <BoxFriendInfo>
               <ul className="FriendInfoList">
           <FriendInfoItem onClick={toggleModal}>Time: {workDays ?
-              (<WorkDays workDays={workDays} name={title} />) :
+              (<WorkDays workDays={workDays} />) :
               (<p>--------------------------</p>)}
           </FriendInfoItem>
                 <FriendInfoItem>Email: {email ? (<a href={hrefMail}>{email}</a>) : (<p>--------------------------</p>) }</FriendInfoItem>

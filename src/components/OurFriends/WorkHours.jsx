@@ -1,11 +1,16 @@
 import { ModalText } from './OurFriends.styled';
 
 const WorkHours = ({ workDays }) => {
-  return <ul>
-    {workDays.map(day => (
-      <ModalText key={day._id} > {day.from} - {day.to}</ModalText>
-    ))}
-  </ul>
+  const dayLabels = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
+
+  return (
+    <ul>
+      {workDays.map((day, index) => (
+        <ModalText key={day._id}>{dayLabels[index]} {day.from} - {day.to}</ModalText>
+      ))}
+    </ul>
+  );
 }
+
 
 export default WorkHours

@@ -1,27 +1,25 @@
-const WorkDays = ({name, workDays}) => {
-  // console.log("name", name)
-// console.log("workDays", workDays)
-  
-  const getTodayIndex = () => {
-    const data = new Date();
-    const day = data.getDay()
+const WorkDays = ({  workDays }) => {
+  const data = new Date('Feb 19 2023 11:31:30');
+  const getTodayIndex = (data) => (data.getDay() + 6) % 7;
+  const day = getTodayIndex(data)
+  const workInfoToday = workDays[day]
 
-    if (day === 0) {
-      return 6
-    }
-    return day - 1
-  }
-  
-  const nomber = getTodayIndex()
-  const workInfoToday = workDays[nomber]
+  function getOpenNow(workInfoToday, date) {
+    const { isOpen, from, to } = workInfoToday;
+    const hour = date.getHours();
+    const openTime = parseInt(from);
+    const closeTime = parseInt(to);
 
+    return `${hour}`.padStart(2, '0').slice(0, 2) >= openTime && `${hour}`.padStart(2, '0').slice(0, 2) < closeTime;
+}
 
-  return <>
-    {/* <p>Hours work</p> */}
-    {workInfoToday.isOpen ?
-      (<p id="workTime">{workInfoToday.from} - {workInfoToday.to}</p>) :
-      (<p>--------------------------</p>)}
-  </>
+  const isOpenNow = getOpenNow( workInfoToday, data)
+
+  return <p>
+    {isOpenNow
+      ? workInfoToday.from + ' - ' + workInfoToday.to
+      : '--------------------------'}
+  </p>
 }
 
 export default WorkDays

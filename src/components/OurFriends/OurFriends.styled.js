@@ -7,10 +7,9 @@ const size = {
 };
 
 export const BoxFriendsList = styled.div`
-  /* border: 1px red solid; */
   display: flex;
   justify-content: space-around;
-  /* margin: 0 auto; */
+
   @media screen and (min-width: 320px) {
     padding: 20px;
   }
@@ -33,43 +32,33 @@ export const FriendsList = styled.ul`
     grid-gap: 12px;
   }
 
-  /* width: 280px; */
-  /* grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr); */
-
   @media screen and (min-width: 768px) {
-    /* width: 768px; */
-    /* width: 704px; */
     grid-gap: 32px;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
   }
 
   @media screen and (min-width: 1280px) {
-    /* width: 1248px; */
     grid-gap: 32px;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
   }
 `;
 
+// OurFriendsItem
 export const FriendsItem = styled.li`
   background-color: #fff;
   border-radius: 40px;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 
-  width: 280px;
+  width: auto;
+  min-width: 280px;
   padding: 12px;
-  /* width: 395px; */
-  /* height: 287px; */
 
   @media (min-width: ${size.tablet}) {
-    width: auto;
-    /* width: calc(90vw / 2); */
   }
 
   @media (min-width: ${size.desktop}) {
-    /* width: 395px; */
     padding: 16px 4px;
   }
 `;
@@ -78,7 +67,7 @@ export const FriendTitle = styled.h2`
   text-align: center;
   margin: 0;
   padding: 0;
-  padding-bottom: 16px;
+  margin-bottom: 16px;
 
   a {
     color: ${props => props.theme.colors.hoverGoHome};
@@ -95,7 +84,7 @@ export const FriendTitle = styled.h2`
       line-height: 22px;
     }
 
-    @media (min-width: ${size.tablet}) {
+    @media (min-width: ${size.desktop}) {
       font-size: 20px;
       line-height: 27px;
     }
@@ -103,21 +92,48 @@ export const FriendTitle = styled.h2`
 `;
 
 export const BoxFriendItem = styled.div`
-  /* border: 1px blue solid; */
   display: flex;
   position: relative;
 `;
 
 export const BoxFriendLogo = styled.div`
+  flex-grow: 1;
+
+  width: 158px;
+
   img {
-    /* ?  */
-    /* max-width: 158px; */
-    /* width: 158px; */
+    max-width: 158px;
+    width: auto;
+    min-width: 110px;
+
+    @media (min-width: ${size.tablet}) {
+      width: 100%;
+      object-fit: cover;
+      /* width: 120px; */
+      /* height: 85px; */
+    }
+
+    @media (min-width: ${size.desktop}) {
+      /* width: 158px; */
+      /* height: 112px; */
+    }
   }
 `;
 
 export const BoxFriendInfo = styled.div`
+  /* flex-grow: 1; */
+
   margin-left: 16px;
+  width: 154px;
+  @media (min-width: ${size.tablet}) {
+    width: auto;
+    /* min-width: 198px; */
+    max-width: 217px;
+  }
+
+  @media (min-width: ${size.desktop}) {
+    width: 217px;
+  }
 `;
 
 //FriendInfoList
@@ -175,7 +191,7 @@ export const ModalContent = styled.div`
   background-color: ${props => props.theme.colors.white};
   margin: 10% auto;
   padding: 12px;
-  width: 120px;
+  width: 100px;
   position: absolute;
   top: 5%;
   left: 50%;
