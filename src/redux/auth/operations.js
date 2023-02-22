@@ -4,8 +4,6 @@ import Notiflix from 'notiflix';
 
 axios.defaults.baseURL = 'https://petssuport4815162342api.onrender.com/api';
 
-
-
 // const setAuthHeader = token => {
 //   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 // };
@@ -78,7 +76,7 @@ const logout = createAsyncThunk('/auth/logout', async () => {
     }
 });
 
-const googleApi = createAsyncThunk('auth/google', async  (credentials) => {
+const googleApi = createAsyncThunk('auth/google', async credentials => {
   try {
     setToken(credentials.token);
     return credentials;
@@ -87,14 +85,29 @@ const googleApi = createAsyncThunk('auth/google', async  (credentials) => {
   }
 });
 
+export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
+  const state = thunkAPI.getState();
+  const persistedToken = state.auth.token;
+  console.log(persistedToken);
+  if (persistedToken === null) {
+    return thunkAPI.rejectWithValue('unauthorized access');
+  }
+  try {
+    setToken(persistedToken);
+    const response = await axios.get('/users/me');
+    return response;
+    console.log(response);
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
 const authOperations = {
   logout,
   login,
   googleApi,
   registration,
+  refresh,
 };
 
 export default authOperations;
-
-
-
