@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { Formik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
 import { ModalTitle } from 'components/ModalTitle/ModalTitle';
 import { Button } from 'components/Button/Button';
 import { schema } from 'utils/registerValidationSchema';
-
-import { sendingEmail, hideForm } from 'redux/form/formSlice';
 
 import {
   Wraper,
@@ -36,8 +34,6 @@ const initialValues = {
 };
 
 export const RegistrationForm = () => {
-  const dispatch = useDispatch();
-
   const [onNext, setOnNext] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
@@ -45,6 +41,7 @@ export const RegistrationForm = () => {
 
   const [inputType, setInputType] = useState(true);
   const [inputConfirmeType, setInputConfirmeType] = useState(true);
+  const [sendEmail, setSendEmail] = useState(false);
 
   const handleNextClick = () => {
     setOnNext(true);
@@ -60,10 +57,9 @@ export const RegistrationForm = () => {
     }
 
     console.log(values);
-    dispatch(sendingEmail());
-    dispatch(hideForm());
 
     resetForm();
+    setSendEmail(true);
   };
 
   const onShowPassword = () => {
@@ -168,6 +164,7 @@ export const RegistrationForm = () => {
                   <LinkText>Already have an account?</LinkText>
                   <NavLink to="/login">Login</NavLink>
                 </LinkWraper>
+                {sendEmail && <Navigate to="/confirm-email" />}
               </>
             )}
           </Form>

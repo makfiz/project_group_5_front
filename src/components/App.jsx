@@ -11,13 +11,16 @@ import { RestrictedRoute } from './RestrictedRoute';
 
 const FriendsPage = lazy(() => import('../pages/FriendsPage'));
 const NoticesPage = lazy(() => import('../pages/NoticesPage'));
-const RegisterPage = lazy(() => import('../pages/RegisterPage'));
-const LoginPage = lazy(() => import('../pages/LoginPage'));
+const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 const UserPage = lazy(() => import('../pages/UserPage'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
-const RedirectRegistrationPage = lazy(() =>
-  import('pages/RedirectRegistrationPage')
+const RegisterMethod = lazy(() =>
+  import('pages/RegisterMethodPage/RegisterMethodPage')
+);
+const ConfirmEmail = lazy(() =>
+  import('../pages/ConfirmEmailPage/ConfirmEmailPage')
 );
 
 export const App = () => {
@@ -80,10 +83,13 @@ export const App = () => {
           <Route
             path="registration-redirect"
             element={
-              <RestrictedRoute
-                redirectTo="/user"
-                component={RedirectRegistrationPage}
-              />
+              <RestrictedRoute redirectTo="/user" component={RegisterMethod} />
+            }
+          />
+          <Route
+            path="confirm-email"
+            element={
+              <RestrictedRoute redirectTo="/user" component={ConfirmEmail} />
             }
           />
           <Route

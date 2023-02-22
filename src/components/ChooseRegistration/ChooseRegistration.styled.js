@@ -1,6 +1,17 @@
 import styled from 'styled-components';
 import { Link as StyledLink } from 'react-router-dom';
 
+export const Wraper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  align-items: center;
+
+  @media screen and (min-width: 768px) {
+    width: 600px;
+  }
+`;
+
 export const LinkRedirect = styled(StyledLink)`
   padding-left: 20px;
   padding-right: 20px;
@@ -10,7 +21,7 @@ export const LinkRedirect = styled(StyledLink)`
   background-color: ${p => p.theme.colors.regModalActiveBtn};
 
   color: ${p => p.theme.colors.white};
-  font-size: ${p => p.theme.fontSizes.ms};
+  font-size: ${p => p.theme.fontSizes.m};
   font-weight: ${p => p.theme.fontWeight.medium};
   text-decoration: none;
 
@@ -20,6 +31,7 @@ export const LinkRedirect = styled(StyledLink)`
   @media screen and (min-width: 768px) {
     padding-left: 40px;
     padding-right: 40px;
+    font-size: ${p => p.theme.fontSizes.ms};
   }
 
   :hover {
