@@ -3,11 +3,15 @@ import axios from 'axios';
 import { endPoints } from 'constants/EndPoints';
 // import toast from 'react-hot-toast';
 
-axios.defaults.baseURL = endPoints.baseUrl;
+// axios.defaults.baseURL = endPoints.baseUrl;
+axios.defaults.baseURL = 'https://petssuport4815162342api.onrender.com/';
 
 // TODO: Clear token and header auth
 const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWYzYWI3NzY0ZGY2ZjY3MmZkYzdjYyIsImlhdCI6MTY3Njk2NzcyMiwiZXhwIjoxNjc3MDU0MTIyfQ.vIxXYvmv-oPKTUQW9732b1q9p2huLnCo8KHtey32ncE';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWYzYWI3NzY0ZGY2ZjY3MmZkYzdjYyIsImlhdCI6MTY3NzA1NDIyOCwiZXhwIjoxNjc3MTQwNjI4fQ.bCfojHPVppZABKzy-wyDyEHXo7Q8yWCaV_GqzyXy7HA';
+// const token =
+//   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjBkNDA2YmRkOWEyMDA1MTY2OGIzNyIsImlhdCI6MTY3NjczMDMwNCwiZXhwIjoxNjc2ODE2NzA0fQ.Pb19eVa9jjBiWkLdC0L3ejeJPDXS53FXxtNZV3h-y-Y';
+
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
