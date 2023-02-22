@@ -22,12 +22,13 @@ import { Navigation } from './Navigation/Nav/Nav';
 import { AuthNav } from './Navigation/AuthNav/AuthNav';
 import { useSelector } from 'react-redux';
 import { UserNav } from './Navigation/UserNav/UserNav';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   //   const handleMenuClick = {};
-  const isLoggedIn = false;
-  // const { isLoggedIn } = useSelector(selectIsLoggedIn);
+  // const isLoggedIn = false;
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
     <Container>
       {isMenuOpen ? (
