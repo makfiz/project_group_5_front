@@ -6,6 +6,7 @@ import authOperations from '../redux/auth/operations';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import NewsPage from '../pages/NewsPage';
 import { NoticesList } from './NoticesList/NoticesList';
+import { PrivateRoute } from './PrivateRoute';
 
 const FriendsPage = lazy(() => import('../pages/FriendsPage'));
 const NoticesPage = lazy(() => import('../pages/NoticesPage'));
@@ -76,7 +77,10 @@ export const App = () => {
             element={<RedirectRegistrationPage />}
           />
           <Route path="login" element={<LoginPage />} />
-          <Route path="user" element={<UserPage />} />
+          <Route
+            path="user"
+            element={<PrivateRoute redirectTo="/login" component={UserPage} />}
+          />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
