@@ -25,7 +25,7 @@ export const ModalContent = styled.div`
   margin-bottom: 4px;
 
   font-weight: ${props => props.theme.fontWeight.medium};
-  font-size: ${props => props.theme.fontSizes.xl};
+  font-size: ${props => props.theme.fontSizes.xs};
   line-height: 16px;
 
   @media (min-width: ${props => props.theme.screenSizes.tablet}) {
@@ -44,6 +44,6 @@ export const ModalText = styled.li`
   margin-bottom: 4px;
 
   font-weight: ${props => props.theme.fontWeight.medium};
-  font-size: ${props => props.theme.fontSizes.xl};
+  font-size: ${props => props.theme.fontSizes.xs};
   line-height: 16px;
 `;
