@@ -7,13 +7,9 @@ import { Container } from "../components/Header/Header.styled"
 import { Loader } from "components/Loader/Loader";
 
 
-// додати обробку помилок
-// сортування новин по даты
-// поправити нижні відступи
-
 const NewsPage = () => {
   const [news, setNews] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get('search');
@@ -25,15 +21,10 @@ const NewsPage = () => {
       if(search) {
         searchPath = searchPath + "?search=" + search;
       };
-
       
       fetch(`${BASE_URL}${searchPath}`)
       .then(data => data.json())
-      .then(data => {
-        setNews(data)
-        setIsLoading(true);
-      
-      })
+      .then(data => setNews(data))
       .catch(error => setError(error))
       .finally(() => setIsLoading(false))
   }, [search])
