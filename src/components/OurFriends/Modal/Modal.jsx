@@ -1,5 +1,4 @@
-// import React, { useState } from "react";
-import { BoxModal, ModalContent } from './OurFriends.styled';
+import { BoxModal, ModalContent } from './Modal.styled';
 import  WorkHours from './WorkHours'
 
 function Modal({workDays, onClick}) {
@@ -8,13 +7,9 @@ function Modal({workDays, onClick}) {
     <div >
       <BoxModal onClick={onClick}>
         <ModalContent>
-            {/* <span className="close" onClick={() => toggleModal(false)}>
-              &times;
-            </span> */}
-          {/* <p>Hours work</p> */}
           {workDays ?
             (<WorkHours workDays={workDays}/>) :
-            (<p>No working hours</p>)}
+            (<p>There are no working hours</p>)}
         </ModalContent>
       </BoxModal>
     </div>

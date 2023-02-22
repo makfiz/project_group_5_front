@@ -1,10 +1,14 @@
-import OurFriendsItem from "./OurFriendsItem";
-import { BoxFriendsList, FriendsList, FriendsItem } from './OurFriends.styled';
+import OurFriendsItem from "../OurFriendsItem/OurFriendsItem";
+import {
+  BoxFriendsList,
+  FriendsList,
+  FriendsItem
+} from './OurFriendsList.styled';
 
 const OurFriendsList = ({ourFriends}) => {
-// console.log("ourFriends", ourFriends)
 
-  return <BoxFriendsList>
+  return <>
+    <BoxFriendsList>
     <FriendsList>
       {ourFriends.map(friend => (
         <FriendsItem key={friend._id}>
@@ -12,7 +16,8 @@ const OurFriendsList = ({ourFriends}) => {
         </FriendsItem>
       ))}
     </FriendsList>
-  </BoxFriendsList>;
+  </BoxFriendsList>
+  </>;
 }
 
 export default OurFriendsList;
