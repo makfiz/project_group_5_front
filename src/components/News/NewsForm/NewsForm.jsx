@@ -1,7 +1,6 @@
 import React from 'react';
 import { useRef, useState } from 'react';
 
-
 import {
   SearchForm,
   SearchField,
@@ -12,7 +11,7 @@ import {
 import { ReactComponent as SearchIcon } from '../../../assets/icons/searchIcon.svg';
 import { ReactComponent as ResetForm } from '../../../assets/icons/resetForm.svg';
 
-export const NewsForm = ({onSubmit}) => {
+export const NewsForm = ({onSubmit, onClear}) => {
   const [value, setValue] = useState('');
   const windowWidth = useRef(window.innerWidth);
   const smallScreen = windowWidth.current < 768;
