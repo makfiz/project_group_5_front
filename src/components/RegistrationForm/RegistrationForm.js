@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
-import authOperations from '../../redux/auth/operations';
 
 import { ModalTitle } from 'components/ModalTitle/ModalTitle';
 import { Button } from 'components/Button/Button';
@@ -61,7 +60,6 @@ export const RegistrationForm = () => {
     }
 
     console.log(values);
-    dispatch(authOperations.register(values));
     dispatch(sendingEmail());
     dispatch(hideForm());
 

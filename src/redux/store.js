@@ -19,7 +19,7 @@ import { formReducer } from './form/formSlice';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  // whitelist: ['token'],
+  whitelist: ['token'],
 };
 
 const noticesPersistConfig = {
