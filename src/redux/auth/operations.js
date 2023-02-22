@@ -35,9 +35,11 @@ const setToken = token => {
 
 const login = createAsyncThunk('auth/login', async credentials => {
     try {
-        const { data } = await axios.post('/users/login', credentials);
-        setToken(data.token);
-        return data;
+      const { data } = await axios.post('/users/login', credentials);
+      setToken(data.token);
+      const locData = { id: data.id, email: data.email };
+      localStorage.setItem("user", JSON.stringify(locData));
+      return data;
     } catch (error) {
         console.log(error);
     }
@@ -45,8 +47,9 @@ const login = createAsyncThunk('auth/login', async credentials => {
 
 const logout = createAsyncThunk('auth/logout', async () => {
     try {
-        await axios.get('/users/logout');
-        unsetToken();
+      await axios.get('/users/logout');
+      unsetToken();
+      localStorage.setItem("user", JSON.stringify(""));
     } catch (error) {
         console.log(error);
     }
@@ -55,6 +58,8 @@ const logout = createAsyncThunk('auth/logout', async () => {
 const googleApi = createAsyncThunk('auth/google', async  (credentials) => {
   try {
     setToken(credentials.token);
+    const locData = { id: credentials.id, email: credentials.email };
+    localStorage.setItem("user", JSON.stringify(locData));
     return credentials;
   } catch (error) {
     console.log(error);
