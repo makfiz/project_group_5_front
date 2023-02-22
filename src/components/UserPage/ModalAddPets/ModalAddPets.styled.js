@@ -51,10 +51,16 @@ export const BtnClose = styled.div`
   background: #FDF7F2;
   border: none;
 
+  &:hover,
+  &:focus {
+    box-shadow: 0px 0px 1px 2px rgba(245, 146, 86, 0.7);
+  }
+
   @media screen and (min-width: 767px) {
     width: 44px;
     height: 44px;
   }
+  
 `
 export const Wrapper = styled.div`
   padding: 40px 20px;
@@ -67,7 +73,6 @@ export const Wrapper = styled.div`
     padding: 40px;
   }
 `
-
 export const BtnStyle = styled.button`
   width: 240px;
   height: 40px;
@@ -131,11 +136,19 @@ export const Input = styled(Field)`
   padding-top: 11px;
   padding-bottom: 11px;
   padding-left: 14px;
+  outline: none;
 
   @media screen and (min-width: 768px) {
     width: 448px;
     padding-left: 16px;
   }
+
+    &:hover,
+    &:active {
+      border: 2px solid #f59256;
+      background-color: transparent;
+      color: ${p => p.theme.colors.black};
+    }
 
     ::placeholder {
     color: ${p => p.theme.colors.petModalplaceholder};
@@ -229,6 +242,7 @@ export const AddPhoto = styled.input`
   opacity: 0;
   width: 100%;
   height: 100%;
+
 `
 
 export const ComentsWrapper = styled.div`
@@ -251,12 +265,20 @@ export const Coments = styled(Field)`
   border-radius: ${p => p.theme.radii.medium};
   margin-top: 8px;
   resize: none;
+  outline: none;
 
 @media screen and (min-width: 767px) {
     width: 394px;
     height: 116px;
     margin-top: 12px;
 }
+
+  &:hover,
+  &:active {
+    border: 2px solid #f59256;
+    background-color: transparent;
+    color: ${p => p.theme.colors.black};
+  }
 
   ::placeholder {
     color: ${p => p.theme.colors.petModalplaceholder};
