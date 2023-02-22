@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { setQueryValue } from 'redux/notices/searchQuerySlice';
 import { selectNoticesSearchQuery } from 'redux/notices/selectors';
+import { searchParamsHandler } from 'utils/fetchNoticesRoute';
 
 import { PageTitle } from 'components/PageTitle/PageTitle';
 import { ReactComponent as SearchIcon } from '../../assets/icons/searchIcon.svg';
@@ -24,30 +25,22 @@ export const NoticesSearch = () => {
   const page = searchParams.get('page');
 
   useEffect(() => {
-    page
-      ? setSearchParams(search !== '' ? { search, page } : { page })
-      : setSearchParams(search !== '' ? { search } : {});
+    searchParamsHandler(page, search, setSearchParams);
     return () => {};
   }, [search]);
 
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(setQueryValue(e.currentTarget.elements.search.value.trim()));
-    page
-      ? setSearchParams(search.trim() !== '' ? { search, page } : { page })
-      : setSearchParams(search.trim() !== '' ? { search } : {});
+    searchParamsHandler(page, search, setSearchParams);
   };
   const handleInput = e => {
     dispatch(setQueryValue(e.target.value));
-    page
-      ? setSearchParams(search.trim() !== '' ? { search, page } : { page })
-      : setSearchParams(search.trim() !== '' ? { search } : {});
+    searchParamsHandler(page, search, setSearchParams);
   };
   const handleReset = e => {
     dispatch(setQueryValue(''));
-    page
-      ? setSearchParams(search.trim() !== '' ? { search, page } : { page })
-      : setSearchParams(search.trim() !== '' ? { search } : {});
+    searchParamsHandler(page, search, setSearchParams);
   };
 
   return (

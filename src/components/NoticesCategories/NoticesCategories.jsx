@@ -1,4 +1,6 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
 import { Box } from 'components/Box/Box';
 import {
   CategoriesWrap,
@@ -11,7 +13,7 @@ import {
 import { ReactComponent as PlusIcon } from '../../assets/icons/plusIcon.svg';
 
 export const NoticesCategories = () => {
-  const isAuthorized = true;
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
     <Box display="flex" justifyContent="center">
@@ -29,7 +31,7 @@ export const NoticesCategories = () => {
             <CategoryLink to="sell">sell</CategoryLink>
           </CategoriesItem>
 
-          {isAuthorized && (
+          {isLoggedIn && (
             <>
               <CategoriesItem>
                 <CategoryLink to="favorite">favorite ads</CategoryLink>

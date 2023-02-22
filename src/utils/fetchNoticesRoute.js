@@ -4,8 +4,6 @@ import {
   fetchOwnNotices,
 } from 'redux/notices/operations';
 
-import { selectNoticesSearchQuery } from 'redux/notices/selectors';
-
 export const fetchRoute = (commonParams, routeParams) => {
   const { page, search, limit, totalPages, dispatch, setSearchParams } =
     commonParams;
@@ -42,7 +40,6 @@ export const fetchFavoriteRoute = (commonParams, routeParams) => {
       controller,
     })
   );
-  //   setSearchParams(search ? { search } : {});
 };
 
 export const fetchOwnRoute = (commonParams, routeParams) => {
@@ -57,5 +54,9 @@ export const fetchOwnRoute = (commonParams, routeParams) => {
       controller,
     })
   );
-  //   setSearchParams(search ? { search } : {});
 };
+
+export const searchParamsHandler = (page, search, setSearchParams) =>
+  page
+    ? setSearchParams(search !== '' ? { search, page } : { page })
+    : setSearchParams(search !== '' ? { search } : {});

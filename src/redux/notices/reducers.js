@@ -2,8 +2,8 @@ export const pendingReducer = state => {
   state.isLoading = true;
 };
 export const rejectedReducer = (state, action) => {
-  state.isLoading = false;
   state.error = action.payload;
+  state.isLoading = false;
 };
 export const toggleFavoriteReducer = (state, action) => {
   const idx = state.ads.findIndex(ad => ad._id === action.payload.notice._id);
