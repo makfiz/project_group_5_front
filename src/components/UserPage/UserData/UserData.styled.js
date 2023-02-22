@@ -19,19 +19,23 @@ export const EditPhotoButton = styled.button`
   margin-left: auto;
   margin-top: 12px;
   margin-bottom: 34px;
-  width: fit-content;
+  display: flex;
+  align-items: center;
+
+  color: #111111;
+  background-color: white;
+
+  cursor: pointer;
+`;
+
+export const EditPhotoButtonText = styled.span`
+  margin-left: 8px;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 1.83;
-  display: flex;
-  align-items: center;
   letter-spacing: 0.04em;
-  color: #111111;
-  background-color: white;
-
-  cursor: pointer;
 
   &:hover {
     color: ${p => p.theme.colors.regModalActiveBtn};

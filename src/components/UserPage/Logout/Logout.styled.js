@@ -5,6 +5,8 @@ export const LogoutButton = styled.button`
   border-style: none;
   margin-left: auto;
   margin-top: 42px;
+  display: flex;
+  align-items: center;
 
   background-color: white;
   cursor: pointer;

@@ -5,6 +5,7 @@ import {
   UserPhotoThumb,
   EditPhotoButton,
   EditPhotoIcon,
+  EditPhotoButtonText,
 } from './UserData.styled';
 import { UserDataItem } from '../UserDataItem/UserDataItem';
 import { Logout } from '../Logout/Logout';
@@ -19,7 +20,7 @@ export const UserData = () => {
         </UserPhotoThumb>
         <EditPhotoButton>
           <EditPhotoIcon />
-          Edit photo
+          <EditPhotoButtonText>Edit photo</EditPhotoButtonText>
         </EditPhotoButton>
         <UserDataItem />
         <Logout />
