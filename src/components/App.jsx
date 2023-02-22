@@ -9,6 +9,8 @@ import { NoticesList } from './NoticesList/NoticesList';
 import { PrivateRoute } from './PrivateRoute';
 import { Loader } from 'components/Loader/Loader';
 import { selectIsRefreshing } from 'redux/auth/selectors';
+import { RestrictedRoute } from './RestrictedRoute';
+
 const FriendsPage = lazy(() => import('../pages/FriendsPage'));
 const NoticesPage = lazy(() => import('../pages/NoticesPage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage'));
@@ -74,12 +76,27 @@ export const App = () => {
             <Route path="own" element={<NoticesList askedPage="own" />} />
           </Route>
           <Route path="friends" element={<FriendsPage />} />
-          <Route path="registration" element={<RegisterPage />} />
+          <Route
+            path="registration"
+            element={
+              <RestrictedRoute redirectTo="/user" component={RegisterPage} />
+            }
+          />
           <Route
             path="registration-redirect"
-            element={<RedirectRegistrationPage />}
+            element={
+              <RestrictedRoute
+                redirectTo="/user"
+                component={RedirectRegistrationPage}
+              />
+            }
           />
-          <Route path="login" element={<LoginPage />} />
+          <Route
+            path="login"
+            element={
+              <RestrictedRoute redirectTo="/user" component={LoginPage} />
+            }
+          />
           <Route
             path="user"
             element={<PrivateRoute redirectTo="/login" component={UserPage} />}
