@@ -21,17 +21,16 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
-const persistConfig = {
+const noticesPersistConfig = {
   key: 'noticesQuery',
   storage,
   whitelist: ['query'],
 };
 
 const persistedNoticesSearckQueryReducer = persistReducer(
-  persistConfig,
+  noticesPersistConfig,
   noticesSearckQueryReducer
 );
-
 
 export const store = configureStore({
   reducer: {

@@ -28,7 +28,7 @@ export const ChooseRegistration = () => {
   };
 
   const onAuth = () => {
-    dispatch(registration());
+    // dispatch(registration());
   };
 
   return (
@@ -42,8 +42,7 @@ export const ChooseRegistration = () => {
           </Box>
 
           <Text> or</Text>
-
-          <Link onClick={onAuth}>
+          <Link to="https://petssuport4815162342api.onrender.com/api/users/google">
             <GoogleIcon src={Icon} alt="Google Icon" />
             <p>Continue with Google</p>
           </Link>
@@ -52,3 +51,5 @@ export const ChooseRegistration = () => {
     </>
   );
 };
+
+// target ="_blank"
