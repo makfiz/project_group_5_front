@@ -9,8 +9,16 @@ export const PaginationNotices = () => {
   const totalPages = useSelector(selectTotalPages);
   const currentPage = useSelector(selectCurrentPage);
 
-  const [, setSearchParams] = useSearchParams();
-  const handlePageClick = e => setSearchParams({ page: e.selected + 1 });
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handlePageClick = e => {
+    const search = searchParams.get('search') ?? '';
+    setSearchParams(
+      search !== ''
+        ? { page: e.selected + 1, search }
+        : { page: e.selected + 1 }
+    );
+  };
 
   return (
     <>

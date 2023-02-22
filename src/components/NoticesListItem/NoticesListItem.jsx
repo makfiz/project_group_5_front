@@ -6,6 +6,7 @@ import { renameNoticesCategory } from 'utils/renameNoticesCategory';
 import {
   addNoticeToFavorite,
   removeNoticeFromFavorite,
+  deleteOnFavoritePage,
 } from 'redux/notices/operations';
 import { endPoints } from 'constants/EndPoints';
 
@@ -26,7 +27,7 @@ import {
 
 import { ReactComponent as Favorite } from '../../assets/icons/Favorite.svg';
 
-export const NoticesListItem = ({ ad }) => {
+export const NoticesListItem = ({ ad, askedPage }) => {
   const {
     _id,
     category,
@@ -40,19 +41,19 @@ export const NoticesListItem = ({ ad }) => {
     owner,
   } = ad;
 
-  const dispatch = useDispatch();
   // TODO: own parametr to render card delete button
   const userId = '63ef3ab7764df6f672fdc7cc';
 
+  // TODO: age in text format
+  const age = formatDistanceToNowStrict(Date.parse(birth));
+
+  const dispatch = useDispatch();
   const [inFavorite, setInFavorite] = useState(() =>
     favoritesIn.includes(userId)
   );
-
-  const own = owner === userId;
-  // const inFavorite = favoritesIn.includes(userId);
   const categoryTitle = renameNoticesCategory(category);
-  // TODO: age in text format
-  const age = formatDistanceToNowStrict(Date.parse(birth));
+  const sellPage = category === 'sell' && askedPage === 'sell';
+  const own = owner === userId;
 
   const handleFavorite = e => {
     const path = `${endPoints.noticesBase}${_id}${endPoints.noticesFavorite}`;
@@ -61,8 +62,16 @@ export const NoticesListItem = ({ ad }) => {
       setInFavorite(true);
       return;
     }
-    dispatch(removeNoticeFromFavorite({ path }));
-    setInFavorite(false);
+    if (askedPage === 'favorite') {
+      dispatch(deleteOnFavoritePage({ path }));
+      setInFavorite(false);
+      return;
+    }
+    if (askedPage !== 'favorite') {
+      dispatch(removeNoticeFromFavorite({ path }));
+      setInFavorite(false);
+      return;
+    }
   };
 
   return (
@@ -82,18 +91,18 @@ export const NoticesListItem = ({ ad }) => {
             <NoticesDescriptionText text="Breed:" />
             <NoticesDescriptionText text="Place:" />
             <NoticesDescriptionText text="Age:" />
-            {category === 'sell' && <NoticesDescriptionText text="Price:" />}
+            {sellPage && <NoticesDescriptionText text="Price:" />}
           </Box>
 
           <DescriptionDefinitions>
             <NoticesDescriptionText text={breed} />
             <NoticesDescriptionText text={location} />
             <NoticesDescriptionText text={age} />
-            {category === 'sell' && <NoticesDescriptionText text={price} />}
+            {sellPage && <NoticesDescriptionText text={price} />}
           </DescriptionDefinitions>
         </Box>
 
-        <NoticesCardButtons own={own} />
+        <NoticesCardButtons own={own} noticeId={_id} />
       </TextWrap>
     </Box>
   );

@@ -4,6 +4,8 @@ import { Formik } from 'formik';
 
 import { ModalTitle } from 'components/ModalTitle/ModalTitle';
 import { Button } from 'components/Button/Button';
+import { useDispatch } from 'react-redux';
+import authOperations from '../../redux/auth/operations';
 
 import {
   Wraper,
@@ -27,12 +29,18 @@ const initialValues = { email: '', password: '' };
 export const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [inputType, setInputType] = useState(true);
+  const dispatch = useDispatch();
 
   const handleSubmit = (values, { resetForm }) => {
     if (values === '') {
       return;
     }
 
+
+    const { email, password } = values;
+    dispatch(authOperations.login({ email, password }));
+
+    console.log(values);
     resetForm();
   };
 
@@ -84,7 +92,7 @@ export const LoginForm = () => {
             </ButtonWraper>
             <LinkWraper>
               <LinkText>Don't have an account? </LinkText>
-              <NavLink to="/registration">Register</NavLink>
+              <NavLink to="/registration-redirect">Register</NavLink>
             </LinkWraper>
           </Form>
         </Formik>

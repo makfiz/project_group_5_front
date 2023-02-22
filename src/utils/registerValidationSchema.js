@@ -5,7 +5,10 @@ yup.addMethod(yup.string, 'numeric', function () {
 });
 
 yup.addMethod(yup.string, 'leters', function () {
-  return this.matches(/^[aA-zZ\s]+$/, 'The name should have  only alphabets');
+  return this.matches(
+    /^([A-Za-z][A-Za-z\-\']{1,50})|([А-ЯЁIЇҐЄа-яёіїґє][А-ЯЁIЇҐЄа-яёіїґє\-\']{1,50})$/,
+    'The name should have  only alphabets'
+  );
 });
 
 yup.addMethod(yup.string, 'mail', function () {
@@ -24,10 +27,16 @@ export const schema = yup.object().shape({
     .label('confirm password')
     .required()
     .oneOf([yup.ref('password'), null], 'Passwords must match'),
-  name: yup.string().min('3').leters().required('Please enter your name!'),
+  name: yup
+    .string()
+    .min('2')
+    .max('16')
+    .leters()
+    .required('Please enter your name!'),
   city: yup
     .string()
     .min('3')
+    .max('40')
     .leters()
     .required('Please enter city and region!'),
 

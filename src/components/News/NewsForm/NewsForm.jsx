@@ -20,8 +20,12 @@ export const NewsForm = ({onSubmit}) => {
   const handleSubmit = e => {
     e.preventDefault();
     onSubmit(e);
-    setValue('');
   };
+  
+  const handleClear = e => {
+    setValue('');
+    onClear();
+  }
   return (
       <SearchForm onSubmit={handleSubmit}>
         <InputLabel htmlFor="search">
@@ -35,7 +39,7 @@ export const NewsForm = ({onSubmit}) => {
           />
           <SearchBtn type={smallScreen ? 'submit' : 'button'}>
             {value && !smallScreen ? (
-              <ResetForm onClick={() => setValue('')} />
+              <ResetForm onClick={handleClear} />
             ) : (
               <SearchIcon />
             )}

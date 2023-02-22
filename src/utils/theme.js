@@ -5,7 +5,7 @@ export const theme = {
     m: '16px',
     ms: '20px',
     l: '24px',
-    ls: '36',
+    ls: '36px',
     lm: '28px',
     xl: '48px',
   },

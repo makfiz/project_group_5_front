@@ -14,6 +14,7 @@ import { ourFriendsReducer } from './OurFriends/slice';
 import { authReducer } from './auth/authSlice';
 import { noticesReducer } from './notices/noticesSlice';
 import { noticesSearckQueryReducer } from './notices/searchQuerySlice';
+import { formReducer } from './form/formSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -21,17 +22,16 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
-const persistConfig = {
+const noticesPersistConfig = {
   key: 'noticesQuery',
   storage,
   whitelist: ['query'],
 };
 
 const persistedNoticesSearckQueryReducer = persistReducer(
-  persistConfig,
+  noticesPersistConfig,
   noticesSearckQueryReducer
 );
-
 
 export const store = configureStore({
   reducer: {
@@ -39,6 +39,7 @@ export const store = configureStore({
     notices: noticesReducer,
     auth: persistReducer(authPersistConfig, authReducer),
     noticesSearchQuery: persistedNoticesSearckQueryReducer,
+    form: formReducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({

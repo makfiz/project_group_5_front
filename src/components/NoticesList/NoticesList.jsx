@@ -1,10 +1,20 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { selectTotalPages } from 'redux/notices/selectors';
 
-import { fetchNoticesByCategory } from 'redux/notices/operations';
-import { selectNotices } from 'redux/notices/selectors';
+import {
+  selectNotices,
+  selectNoticesSearchQuery,
+} from 'redux/notices/selectors';
 import { endPoints } from 'constants/EndPoints';
+import { setQueryValue } from 'redux/notices/searchQuerySlice';
+
+import {
+  fetchRoute,
+  fetchFavoriteRoute,
+  fetchOwnRoute,
+} from 'utils/fetchNoticesRoute';
 
 import { Box } from 'components/Box/Box';
 import { NoticesListItem } from 'components/NoticesListItem/NoticesListItem';
@@ -14,44 +24,54 @@ import { ListWrap, List, ListItem } from './NoticesList.styled';
 export const NoticesList = ({ askedPage }) => {
   const dispatch = useDispatch();
   const ads = useSelector(selectNotices);
+  const totalPages = useSelector(selectTotalPages);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const search = searchParams.get('search') ?? '';
-  const page = searchParams.get('page') ?? 1;
-  const limit = searchParams.get('limit') ?? endPoints.limit;
-  const nextSearchParams =
-    search !== '' ? { page, limit, search } : { page, limit };
+  const limit = endPoints.limit;
+  const search = useSelector(selectNoticesSearchQuery);
+  const page = searchParams.get('page');
+
+  // TODO: own parametr to render card delete button
+  const userId = '63ef3ab7764df6f672fdc7cc';
 
   useEffect(() => {
     const controller = new AbortController();
+    const commonParams = {
+      page,
+      search,
+      limit,
+      totalPages,
+      dispatch,
+      setSearchParams,
+    };
 
     switch (askedPage) {
       case 'sell':
-        dispatch(
-          fetchNoticesByCategory({
-            path: endPoints.pathSell,
-            params: { page, limit, search },
-          })
-        );
-        setSearchParams(nextSearchParams);
+        fetchRoute(commonParams, { path: endPoints.pathSell, controller });
         break;
       case 'lost_found':
-        dispatch(
-          fetchNoticesByCategory({
-            path: endPoints.pathLostFound,
-            params: { page, limit, search },
-          })
-        );
-        setSearchParams(nextSearchParams);
+        fetchRoute(commonParams, { path: endPoints.pathLostFound, controller });
+
         break;
       case 'in_good_hands':
-        dispatch(
-          fetchNoticesByCategory({
-            path: endPoints.pathInGoodHands,
-            params: { page, limit, search },
-          })
-        );
-        setSearchParams(nextSearchParams);
+        fetchRoute(commonParams, {
+          path: endPoints.pathInGoodHands,
+          controller,
+        });
+        break;
+      case 'favorite':
+        fetchFavoriteRoute(commonParams, {
+          path: `${endPoints.pathFavorites}${userId}${endPoints.noticesFavorite}`,
+          controller,
+        });
+
+        break;
+      case 'own':
+        fetchOwnRoute(commonParams, {
+          path: `${endPoints.pathOwn}${userId}`,
+          controller,
+        });
+
         break;
       default:
         return;
@@ -60,21 +80,24 @@ export const NoticesList = ({ askedPage }) => {
     return () => {
       controller.abort();
     };
-  }, [dispatch, limit, page, askedPage, search]);
+  }, [dispatch, limit, search, page, askedPage, ads.length, totalPages]);
 
-  if (ads.length === 0) return;
   return (
-    <Box display="flex" justifyContent="center">
-      <ListWrap>
-        <List>
-          {ads.map(ad => (
-            <ListItem key={ad._id}>
-              <NoticesListItem ad={ad} />
-            </ListItem>
-          ))}
-        </List>
-      </ListWrap>
-      <NoticesAddPetButtonMobile />
-    </Box>
+    <>
+      {ads.length > 0 && (
+        <Box display="flex" justifyContent="center">
+          <ListWrap>
+            <List>
+              {ads.map(ad => (
+                <ListItem key={ad._id}>
+                  <NoticesListItem ad={ad} askedPage={askedPage} />
+                </ListItem>
+              ))}
+            </List>
+          </ListWrap>
+          <NoticesAddPetButtonMobile />
+        </Box>
+      )}
+    </>
   );
 };

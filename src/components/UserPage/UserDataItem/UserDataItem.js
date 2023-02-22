@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import {
-  Container,
+  UserDataItemWrapper,
   EditButton,
   DoneButton,
   EditIcon,
@@ -25,7 +25,7 @@ export const UserDataItem = ({ label, value }) => {
   };
 
   return (
-    <Container>
+    <UserDataItemWrapper>
       <UserInfoLabel>{label}:</UserInfoLabel>
       {isEditing ? (
         <UserInfoWrapper>
@@ -51,6 +51,6 @@ export const UserDataItem = ({ label, value }) => {
           </EditButton>
         </UserInfoWrapper>
       )}
-    </Container>
+    </UserDataItemWrapper>
   );
 };
