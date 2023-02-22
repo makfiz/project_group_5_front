@@ -1,16 +1,19 @@
 import { LogoutButton, LogoutIcon, ButtonText } from './Logout.styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import authOperations from '../../../redux/auth/operations';
 
-const dispatch = useDispatch();
-
-const onClick = async () => {
-  dispatch(authOperations.logout());
-}
-
+// const onClick = async () => {
+//   dispatch(authOperations.logout());
+// };
+// const dispatch = useDispatch();
 export const Logout = ({ onClick }) => {
+  const dispatch = useDispatch();
+  const handleClick = async () => {
+    dispatch(authOperations.logout());
+  };
+
   return (
-    <LogoutButton onClick={onClick}>
+    <LogoutButton onClick={handleClick}>
       <LogoutIcon />
       <ButtonText>Log Out</ButtonText>
     </LogoutButton>
