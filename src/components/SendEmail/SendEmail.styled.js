@@ -2,13 +2,19 @@ import styled from 'styled-components';
 
 export const Wraper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 300px;
   height: 300px;
-  background-color: #fdf7f2;
-  box-shadow: ${p => p.theme.shadows.shadow};
+
+  background-color: ${p => p.theme.colors.transparent};
   border-radius: ${p => p.theme.radii.medium};
+
+  @media screen and (min-width: 768px) {
+    background-color: ${p => p.theme.colors.white};
+    width: 608px;
+  }
 `;
 
 export const StyledButton = styled.button`
@@ -27,4 +33,12 @@ export const StyledButton = styled.button`
     background-color: transparent;
     color: ${p => p.theme.colors.black};
   }
+`;
+
+export const Title = styled.p`
+  margin-bottom: 40px;
+  font-weight: ${p => p.theme.fontWeight.bold};
+  font-size: ${p => p.theme.fontSizes.l};
+  text-align: center;
+  text-transform: uppercase;
 `;

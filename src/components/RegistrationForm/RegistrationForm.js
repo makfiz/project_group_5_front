@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Formik } from 'formik';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { ModalTitle } from 'components/ModalTitle/ModalTitle';
 import { Button } from 'components/Button/Button';
-import { Modal } from '../Modal/Modal';
 import { schema } from 'utils/registerValidationSchema';
-// import { registration } from 'redux/auth/operations';
+
+import { sendingEmail, hideForm } from 'redux/form/formSlice';
 
 import {
   Wraper,
@@ -36,6 +36,8 @@ const initialValues = {
 };
 
 export const RegistrationForm = () => {
+  const dispatch = useDispatch();
+
   const [onNext, setOnNext] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
@@ -43,10 +45,6 @@ export const RegistrationForm = () => {
 
   const [inputType, setInputType] = useState(true);
   const [inputConfirmeType, setInputConfirmeType] = useState(true);
-
-  const [isSendEmail, setIsSendEmail] = useState(false);
-
-  // const dispatch = useDispatch();
 
   const handleNextClick = () => {
     setOnNext(true);
@@ -62,7 +60,9 @@ export const RegistrationForm = () => {
     }
 
     console.log(values);
-    // dispatch(registration(values));
+    dispatch(sendingEmail());
+    dispatch(hideForm());
+
     resetForm();
   };
 
@@ -76,9 +76,7 @@ export const RegistrationForm = () => {
     setInputConfirmeType(prevState => !prevState);
   };
 
-  const onRegister = () => {
-    setIsSendEmail(true);
-  };
+  const onRegister = () => {};
 
   return (
     <>

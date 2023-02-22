@@ -4,13 +4,27 @@ import { createSlice } from '@reduxjs/toolkit';
 // import { userRegistrationSuccessReducer } from './reducers';
 import authOperations from './operations.js';
 
+const getUser = () => {
+  let locUser = { id: null, email: null };
+  const user = localStorage.getItem("user");
+
+  if (!user) {
+    return locUser;
+  }
+  locUser = JSON.parse(user);
+  return locUser;
+}
+
+
 const initialState = {
-  user: { id: null, email: null },
+  user: getUser(),
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
   error: null,
 };
+
+console.log("reduxAuth initialState =", initialState);
 
 const authSlice = createSlice({
   name: 'auth',
@@ -43,7 +57,7 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
     },
     [authOperations.logout.rejected](state, action) { state.isRefreshing = false; state.error = action.payload; },
-    [authOperations.googleApi.fulfilled](state, { payload }) {
+    [authOperations.googleApi.fulfilled](state, action) {
       state.isRefreshing = false;
       state.error = null;
       state.user.id = action.payload.id;

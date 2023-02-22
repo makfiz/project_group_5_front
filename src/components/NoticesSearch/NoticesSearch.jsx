@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 
 import { setQueryValue } from 'redux/notices/searchQuerySlice';
 import { selectNoticesSearchQuery } from 'redux/notices/selectors';
+import { searchParamsHandler } from 'utils/fetchNoticesRoute';
 
 import { PageTitle } from 'components/PageTitle/PageTitle';
 import { ReactComponent as SearchIcon } from '../../assets/icons/searchIcon.svg';
@@ -19,19 +20,28 @@ import {
 export const NoticesSearch = () => {
   const dispatch = useDispatch();
   const search = useSelector(selectNoticesSearchQuery);
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const windowWidth = useRef(window.innerWidth);
-  const smallScreen = windowWidth.current < 768;
+  const page = searchParams.get('page');
+
+  useEffect(() => {
+    searchParamsHandler(page, search, setSearchParams);
+    return () => {};
+  }, [search]);
 
   const handleSubmit = e => {
     e.preventDefault();
-    setSearchParams(search.trim() !== '' ? { search } : {});
-    dispatch(setQueryValue(''));
+    dispatch(setQueryValue(e.currentTarget.elements.search.value.trim()));
+    searchParamsHandler(page, search, setSearchParams);
   };
-
-  const handleInput = e => dispatch(setQueryValue(e.target.value));
-  const handleReset = e => dispatch(setQueryValue(''));
+  const handleInput = e => {
+    dispatch(setQueryValue(e.target.value));
+    searchParamsHandler(page, search, setSearchParams);
+  };
+  const handleReset = e => {
+    dispatch(setQueryValue(''));
+    searchParamsHandler(page, search, setSearchParams);
+  };
 
   return (
     <SearchBarWrap>
@@ -46,12 +56,8 @@ export const NoticesSearch = () => {
             id="search"
             value={search}
           />
-          <SearchBtn type={smallScreen ? 'submit' : 'button'}>
-            {search && !smallScreen ? (
-              <ResetForm onClick={handleReset} />
-            ) : (
-              <SearchIcon />
-            )}
+          <SearchBtn type="submit">
+            {search ? <ResetForm onClick={handleReset} /> : <SearchIcon />}
           </SearchBtn>
         </InputLabel>
       </SearchForm>

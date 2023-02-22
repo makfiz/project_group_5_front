@@ -17,6 +17,7 @@ export const NoticesCardButtons = ({ own, noticeId }) => {
     const path = `${endPoints.pathDeleteOwn}${noticeId}`;
     dispatch(deleteOwnNotice({ path }));
   };
+
   return (
     <CardButtonWrap own={own}>
       <LearnMoreLink>Learn more</LearnMoreLink>

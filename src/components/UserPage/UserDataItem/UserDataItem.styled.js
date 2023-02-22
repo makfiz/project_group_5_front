@@ -2,16 +2,18 @@ import styled from 'styled-components';
 
 import { MdOutlineEdit, MdOutlineDone } from 'react-icons/md';
 
-export const Container = styled.div`
+export const UserDataItemWrapper = styled.div`
   position: relative;
   display: flex;
   width: 280px;
   height: 24px;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 12px;
   padding-top: 0px;
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
     width: 768px;
+    margin-bottom: 15px;
   }
   @media (min-width: ${p => p.theme.screenSizes.desktop}) {
     width: 1280px;
@@ -19,7 +21,11 @@ export const Container = styled.div`
 `;
 
 export const UserInfoWrapper = styled.div`
+  display: block;
   max-width: 280px;
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    max-width: 379px;
+  }
 `;
 
 export const UserInfoLabel = styled.label`
@@ -33,6 +39,11 @@ export const UserInfoLabel = styled.label`
   align-items: center;
   letter-spacing: 0.04em;
   color: #111111;
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    font-size: 18px;
+    line-height: 25px;
+  }
 `;
 
 export const EditInput = styled.input`
@@ -42,6 +53,15 @@ export const EditInput = styled.input`
   background: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    position: absolute;
+    left: 139px;
+    font-size: 18px;
+    line-height: 25px;
+    width: 216px;
+    height: 32px;
+  }
 
   &:focus {
     outline: none;
@@ -54,6 +74,15 @@ export const ShowInput = styled.input`
   height: 24px;
   border-style: none;
   background: #ffffff;
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    position: absolute;
+    left: 139px;
+    font-size: 18px;
+    line-height: 25px;
+    width: 216px;
+    height: 32px;
+  }
 `;
 
 export const EditButton = styled.button`
@@ -67,6 +96,15 @@ export const EditButton = styled.button`
   background: #fdf7f2;
   backdrop-filter: blur(2px);
   cursor: pointer;
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    position: absolute;
+    left: 139px;
+    top: 5px;
+    left: 379px;
+    height: 30px;
+    width: 30px;
+  }
 `;
 
 export const DoneButton = styled.button`
@@ -80,6 +118,15 @@ export const DoneButton = styled.button`
   background: #fdf7f2;
   backdrop-filter: blur(2px);
   cursor: pointer;
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    position: absolute;
+    left: 139px;
+    top: 5px;
+    left: 379px;
+    height: 30px;
+    width: 30px;
+  }
 `;
 
 export const EditIcon = styled(MdOutlineEdit)`
