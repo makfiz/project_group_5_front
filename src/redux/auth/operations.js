@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import Notiflix from 'notiflix';
 
 axios.defaults.baseURL = 'https://petssuport4815162342api.onrender.com/api';
 
@@ -33,15 +34,23 @@ const setToken = token => {
 };
 
 
-const login = createAsyncThunk('auth/login', async credentials => {
+const login = createAsyncThunk('auth/login', async ({ params }, thunkAPI) => {
     try {
-      const { data } = await axios.post('/users/login', credentials);
+      const { data } = await axios.post('/users/login', params);
       setToken(data.token);
-      const locData = { id: data.id, email: data.email };
-      localStorage.setItem("user", JSON.stringify(locData));
+      Notiflix.Notify.success('Welcome ✔', {
+        timeout: 2500,
+      });
+      // const locData = { id: data.id, email: data.email };
+      // localStorage.setItem("userPetly", JSON.stringify(locData));
       return data;
     } catch (error) {
-        console.log(error);
+      // unsetToken();
+      // console.log(error);
+      Notiflix.Notify.failure('Wrong login or password❗  Or email is not confirm, please check your email to confirm', {
+        timeout: 2500,
+      });
+      return thunkAPI.rejectWithValue(error.message);
     }
 });
 
@@ -49,7 +58,7 @@ const logout = createAsyncThunk('auth/logout', async () => {
     try {
       await axios.get('/users/logout');
       unsetToken();
-      localStorage.setItem("user", JSON.stringify(""));
+      // localStorage.setItem("userPetly", JSON.stringify(""));
     } catch (error) {
         console.log(error);
     }
@@ -58,18 +67,39 @@ const logout = createAsyncThunk('auth/logout', async () => {
 const googleApi = createAsyncThunk('auth/google', async  (credentials) => {
   try {
     setToken(credentials.token);
-    const locData = { id: credentials.id, email: credentials.email };
-    localStorage.setItem("user", JSON.stringify(locData));
+    // const locData = { id: credentials.id, email: credentials.email };
+    // localStorage.setItem("userPetly", JSON.stringify(locData));
     return credentials;
   } catch (error) {
     console.log(error);
   }
 });
 
+const register = createAsyncThunk('auth/register', async ({ params }, thunkAPI) => {
+    try {
+      const { data } = await axios.post('/users/signup', params);
+      // setToken(data.token);
+      Notiflix.Notify.success('Please check your email to confirm!', {
+        timeout: 2500,
+      });
+      // const locData = { id: data.id, email: data.email };
+      // localStorage.setItem("userPetly", JSON.stringify(locData));
+      return data;
+    } catch (error) {
+      // unsetToken();
+      // console.log(error);
+      Notiflix.Notify.failure('Email allready in use❗', {
+        timeout: 2500,
+      });
+      return thunkAPI.rejectWithValue(error.message);
+    }
+});
+
 const authOperations = {
   logout,
   login,
   googleApi,
+  register,
 };
 
 export default authOperations;
