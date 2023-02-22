@@ -1,5 +1,5 @@
 const WorkDays = ({  workDays }) => {
-  const data = new Date('Feb 19 2023 11:31:30');
+  const data = new Date();
   const getTodayIndex = (data) => (data.getDay() + 6) % 7;
   const day = getTodayIndex(data)
   const workInfoToday = workDays[day]
@@ -13,7 +13,7 @@ const WorkDays = ({  workDays }) => {
     return `${hour}`.padStart(2, '0').slice(0, 2) >= openTime && `${hour}`.padStart(2, '0').slice(0, 2) < closeTime;
 }
 
-  const isOpenNow = getOpenNow( workInfoToday, data)
+  const isOpenNow = getOpenNow(workInfoToday, data)
 
   return <p>
     {isOpenNow

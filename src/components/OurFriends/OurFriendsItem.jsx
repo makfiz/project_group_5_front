@@ -11,7 +11,6 @@ const OurFriendsItem = ({ friend }) => {
   
   useEffect(() => {
     const handleKeyPress = (event) => {
-      console.log("event", event)
       if (event.keyCode === 27) {
         setIsOpen(false);
       }
@@ -26,15 +25,10 @@ const OurFriendsItem = ({ friend }) => {
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
-    // console.log('toggle modal')
   };
 
   const closeModal = (isOpen) => {
     setIsOpen(false);
-  };
-
-  const handleClose = (event) => {
-    closeModal();
   };
 
   const {
@@ -45,7 +39,8 @@ const OurFriendsItem = ({ friend }) => {
     phone,
     workDays,
     addressUrl,
-    url } = friend;
+    url
+  } = friend;
 
   const mailto = 'mailto:' 
   const tel = 'tel:'
@@ -56,30 +51,55 @@ const OurFriendsItem = ({ friend }) => {
     <FriendTitle>
       <a href={url} target="_blank" rel="noreferrer">{title}</a>
     </FriendTitle>
-          <BoxFriendItem >
-            <BoxFriendLogo>
-              {imageUrl ?               <img src={imageUrl}
+    <BoxFriendItem >
+      <BoxFriendLogo>
+        {imageUrl ?
+          <img src={imageUrl}
           alt="Logo"
           className="FriendLogo"
           width="110" height="78"
         ></img> : <img src={noPhoto}
           alt="Logo"
           className="FriendLogo"
-          width="110" height="78"/>}
-            </BoxFriendLogo>
-            <BoxFriendInfo>
-              <ul className="FriendInfoList">
-          <FriendInfoItem onClick={toggleModal}>Time: {workDays ?
+          width="110" height="78"
+        />}
+      </BoxFriendLogo>
+      <BoxFriendInfo>
+        <ul className="FriendInfoList">
+          <FriendInfoItem onClick={toggleModal}>
+            Time:
+          <br />
+            {workDays ?
               (<WorkDays workDays={workDays} />) :
               (<p>--------------------------</p>)}
           </FriendInfoItem>
-                <FriendInfoItem>Email: {email ? (<a href={hrefMail}>{email}</a>) : (<p>--------------------------</p>) }</FriendInfoItem>
-                <FriendInfoItem>Phone: {phone ? (<a href={hreftel}>{phone}</a>) : (<p>--------------------------</p>) }</FriendInfoItem>
-                <FriendInfoItem>Address: {address ? (<address><a href={addressUrl} target="_blank" rel="noreferrer">{address}</a></address>) : (<p>--------------------------</p>) }</FriendInfoItem>
-              </ul>
+          <FriendInfoItem>
+            Email:
+          <br />
+            {email ?
+              (<a href={hrefMail}>{email}</a>) :
+              (<p>--------------------------</p>)}
+          </FriendInfoItem>
+          <FriendInfoItem>
+            Phone:
+          <br />
+            {phone ? 
+              (<a href={hreftel}>{phone}</a>) :
+              (<p>--------------------------</p>)}
+          </FriendInfoItem>
+          <FriendInfoItem>
+            Address:
+          <br />
+            {address ?
+              (<address>
+                <a href={addressUrl} target="_blank" rel="noreferrer">{address}</a>
+              </address>) :
+              (<p>--------------------------</p>)}
+          </FriendInfoItem>
+        </ul>
       </BoxFriendInfo>
-        {isOpen && (<Modal workDays={workDays} onClick={handleClose} />)}
-      </BoxFriendItem>
+        {isOpen && (<Modal workDays={workDays} onClick={closeModal} />)}
+    </BoxFriendItem>
   </>
 }
 

@@ -51,23 +51,20 @@ export const FriendsItem = styled.li`
   border-radius: 40px;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 
-  width: auto;
-  min-width: 280px;
-  padding: 12px;
+  padding: 12px 4px;
 
   @media (min-width: ${size.tablet}) {
   }
 
   @media (min-width: ${size.desktop}) {
-    padding: 16px 4px;
   }
 `;
 
 export const FriendTitle = styled.h2`
   text-align: center;
   margin: 0;
-  padding: 0;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
+  padding: 0 8px;
 
   a {
     color: ${props => props.theme.colors.hoverGoHome};
@@ -93,46 +90,29 @@ export const FriendTitle = styled.h2`
 
 export const BoxFriendItem = styled.div`
   display: flex;
+  gap: 12px;
   position: relative;
 `;
 
 export const BoxFriendLogo = styled.div`
-  flex-grow: 1;
-
-  width: 158px;
-
   img {
-    max-width: 158px;
-    width: auto;
-    min-width: 110px;
+    max-width: fit-content;
 
     @media (min-width: ${size.tablet}) {
-      width: 100%;
-      object-fit: cover;
-      /* width: 120px; */
-      /* height: 85px; */
+      max-width: 217px;
     }
 
     @media (min-width: ${size.desktop}) {
-      /* width: 158px; */
-      /* height: 112px; */
     }
   }
 `;
 
 export const BoxFriendInfo = styled.div`
-  /* flex-grow: 1; */
-
-  margin-left: 16px;
-  width: 154px;
+  padding: 8px;
   @media (min-width: ${size.tablet}) {
-    width: auto;
-    /* min-width: 198px; */
-    max-width: 217px;
   }
 
   @media (min-width: ${size.desktop}) {
-    width: 217px;
   }
 `;
 
@@ -141,29 +121,22 @@ export const BoxFriendInfo = styled.div`
 export const FriendInfoItem = styled.li`
   margin-bottom: 4px;
 
-  /* font-family: 'Manrope'; */
-  /* font-style: normal; */
   font-weight: ${props => props.theme.fontWeight.medium};
   font-size: 12px;
   line-height: 16px;
 
   @media (min-width: ${size.tablet}) {
-    margin-bottom: 8px;
-
     font-size: ${props => props.theme.fontSizes.s};
     line-height: 19px;
   }
 
   @media (min-width: ${size.desktop}) {
-    margin-bottom: 12px;
-
     font-size: ${props => props.theme.fontSizes.m};
     line-height: 22px;
   }
 
   a {
-    /* скидання стилів */
-    text-decoration: none;
+    /* text-decoration: none; */
     color: ${props => props.theme.colors.black};
   }
   :hover {
@@ -191,10 +164,10 @@ export const ModalContent = styled.div`
   background-color: ${props => props.theme.colors.white};
   margin: 10% auto;
   padding: 12px;
-  width: 100px;
+  /* width: 100px; */
   position: absolute;
   top: 5%;
-  left: 50%;
+  left: 45%;
   border: 1px solid ${props => props.theme.colors.hoverGoHome};
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
   border-radius: 8px;

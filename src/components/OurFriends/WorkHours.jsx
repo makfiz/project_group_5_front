@@ -12,5 +12,4 @@ const WorkHours = ({ workDays }) => {
   );
 }
 
-
 export default WorkHours

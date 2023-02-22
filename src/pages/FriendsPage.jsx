@@ -13,7 +13,6 @@ const FriendsPage = () => {
   }, [dispatch]);
 
   const ourFriends = useSelector(getFriends);
-  // console.log("ourFriends", ourFriends)
 
   return (
     <div>
