@@ -2,13 +2,14 @@ import styled from 'styled-components';
 
 import { MdOutlineEdit, MdOutlineDone } from 'react-icons/md';
 
-export const Container = styled.div`
+export const UserDataItemWrapper = styled.div`
   position: relative;
   display: flex;
   width: 280px;
   height: 24px;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 12px;
   padding-top: 0px;
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
     width: 768px;
