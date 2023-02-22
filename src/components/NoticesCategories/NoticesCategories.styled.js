@@ -61,10 +61,16 @@ export const CategoryLink = styled(NavLink)`
   line-height: 1.36;
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.titleColor};
+  transition: border-color 300ms ease-in-out, color 300ms ease-in-out;
 
   &.active {
     background-color: ${p => p.theme.colors.hoverGoHome};
     color: ${p => p.theme.colors.white};
+  }
+
+  :hover:not(.active) {
+    border-color: ${p => p.theme.colors.deleteBtnColor};
+    color: ${p => p.theme.colors.deleteBtnColor};
   }
 
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {

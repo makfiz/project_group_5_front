@@ -1,7 +1,8 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { formatDistanceToNowStrict } from 'date-fns';
 import { renameNoticesCategory } from 'utils/renameNoticesCategory';
+import { selectUser } from 'redux/auth/selectors';
 
 import {
   addNoticeToFavorite,
@@ -41,8 +42,7 @@ export const NoticesListItem = ({ ad, askedPage }) => {
     owner,
   } = ad;
 
-  // TODO: own parametr to render card delete button
-  const userId = '63ef3ab7764df6f672fdc7cc';
+  const { id: userId } = useSelector(selectUser);
 
   // TODO: age in text format
   const age = formatDistanceToNowStrict(Date.parse(birth));

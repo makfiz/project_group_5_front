@@ -30,6 +30,13 @@ export const LearnMoreLink = styled(Link)`
   line-height: 1.38;
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.hoverGoHome};
+
+  transition: border-color 300ms ease-in-out, color 300ms ease-in-out;
+
+  :hover {
+    color: ${p => p.theme.colors.deleteBtnColor};
+    border-color: ${p => p.theme.colors.deleteBtnColor};
+  }
 `;
 
 export const DeleteButton = styled.button`
@@ -43,8 +50,26 @@ export const DeleteButton = styled.button`
   background-color: transparent;
   cursor: pointer;
 
-  border: 2px solid ${p => p.theme.colors.deleteBtnColor};
+  border: 2px solid ${p => p.theme.colors.hoverGoHome};
   border-radius: ${p => p.theme.radii.large};
+  transition: border-color 300ms ease-in-out;
+
+  svg {
+    fill: rgba(17, 17, 17, 0.6);
+    transition: fill 300ms ease-in-out;
+  }
+
+  :hover {
+    border-color: ${p => p.theme.colors.deleteBtnColor};
+
+    span {
+      color: ${p => p.theme.colors.deleteBtnColor};
+    }
+
+    svg {
+      fill: ${p => p.theme.colors.deleteBtnColor};
+    }
+  }
 `;
 
 export const DeleteButtonText = styled.span`
@@ -53,5 +78,6 @@ export const DeleteButtonText = styled.span`
   font-weight: ${p => p.theme.fontWeight.medium};
   line-height: 1.38;
   letter-spacing: 0.04em;
-  color: ${p => p.theme.colors.deleteBtnColor};
+  color: ${p => p.theme.colors.hoverGoHome};
+  transition: color 300ms ease-in-out;
 `;

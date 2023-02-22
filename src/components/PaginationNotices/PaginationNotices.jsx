@@ -1,7 +1,14 @@
 import { useSearchParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { selectTotalPages, selectCurrentPage } from 'redux/notices/selectors';
+import {
+  selectTotalPages,
+  selectCurrentPage,
+  selectIsLoadingNotices,
+  selectIsNoticesError,
+} from 'redux/notices/selectors';
+import { selectIsRefreshing } from 'redux/auth/selectors';
+
 import { Box } from 'components/Box/Box';
 import { PaginationWrap, Pagination } from './PaginationNotices.styled';
 
@@ -20,9 +27,15 @@ export const PaginationNotices = () => {
     );
   };
 
+  const isRefreshing = useSelector(selectIsRefreshing);
+  const isLoading = useSelector(selectIsLoadingNotices);
+  const error = useSelector(selectIsNoticesError);
+
+  const showPagination =
+    totalPages > 1 && !isLoading && !error && !isRefreshing;
   return (
     <>
-      {totalPages > 1 && (
+      {showPagination && (
         <Box display="flex" justifyContent="center">
           <PaginationWrap>
             <Pagination

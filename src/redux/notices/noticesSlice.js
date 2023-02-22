@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
   pendingReducer,
   rejectedReducer,
@@ -30,27 +30,51 @@ const noticesSlice = createSlice({
 
   extraReducers: builder =>
     builder
-      .addCase(fetchNoticesByCategory.pending, pendingReducer)
+      // .addCase(fetchNoticesByCategory.pending, pendingReducer)
       .addCase(fetchNoticesByCategory.fulfilled, fetchCategoryReducer)
-      .addCase(fetchNoticesByCategory.rejected, rejectedReducer)
-      .addCase(fetchFavoriteNotices.pending, pendingReducer)
+      // .addCase(fetchNoticesByCategory.rejected, rejectedReducer)
+      // .addCase(fetchFavoriteNotices.pending, pendingReducer)
       .addCase(fetchFavoriteNotices.fulfilled, fetchCategoryReducer)
-      .addCase(fetchFavoriteNotices.rejected, rejectedReducer)
-      .addCase(fetchOwnNotices.pending, pendingReducer)
+      // .addCase(fetchFavoriteNotices.rejected, rejectedReducer)
+      // .addCase(fetchOwnNotices.pending, pendingReducer)
       .addCase(fetchOwnNotices.fulfilled, fetchCategoryReducer)
-      .addCase(fetchOwnNotices.rejected, rejectedReducer)
-      .addCase(addNoticeToFavorite.pending, pendingReducer)
+      // .addCase(fetchOwnNotices.rejected, rejectedReducer)
+      // .addCase(addNoticeToFavorite.pending, pendingReducer)
       .addCase(addNoticeToFavorite.fulfilled, toggleFavoriteReducer)
-      .addCase(addNoticeToFavorite.rejected, rejectedReducer)
-      .addCase(removeNoticeFromFavorite.pending, pendingReducer)
+      // .addCase(addNoticeToFavorite.rejected, rejectedReducer)
+      // .addCase(removeNoticeFromFavorite.pending, pendingReducer)
       .addCase(removeNoticeFromFavorite.fulfilled, toggleFavoriteReducer)
-      .addCase(removeNoticeFromFavorite.rejected, rejectedReducer)
-      .addCase(deleteOnFavoritePage.pending, pendingReducer)
+      // .addCase(removeNoticeFromFavorite.rejected, rejectedReducer)
+      // .addCase(deleteOnFavoritePage.pending, pendingReducer)
       .addCase(deleteOnFavoritePage.fulfilled, deleteFromFavoritePageReducer)
-      .addCase(deleteOnFavoritePage.rejected, rejectedReducer)
-      .addCase(deleteOwnNotice.pending, pendingReducer)
+      // .addCase(deleteOnFavoritePage.rejected, rejectedReducer)
+      // .addCase(deleteOwnNotice.pending, pendingReducer)
       .addCase(deleteOwnNotice.fulfilled, deleteOwnNoticeReducer)
-      .addCase(deleteOwnNotice.rejected, rejectedReducer),
+      // .addCase(deleteOwnNotice.rejected, rejectedReducer)
+      .addMatcher(
+        isAnyOf(
+          fetchNoticesByCategory.pending,
+          fetchFavoriteNotices.pending,
+          fetchOwnNotices.pending,
+          addNoticeToFavorite.pending,
+          removeNoticeFromFavorite.pending,
+          deleteOnFavoritePage.pending,
+          deleteOwnNotice.pending
+        ),
+        pendingReducer
+      )
+      .addMatcher(
+        isAnyOf(
+          fetchNoticesByCategory.rejected,
+          fetchFavoriteNotices.rejected,
+          fetchOwnNotices.rejected,
+          addNoticeToFavorite.rejected,
+          removeNoticeFromFavorite.rejected,
+          deleteOnFavoritePage.rejected,
+          deleteOwnNotice.rejected
+        ),
+        rejectedReducer
+      ),
 
   //   extraReducers: builder =>
   //     builder
