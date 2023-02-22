@@ -55,6 +55,8 @@ export const EditInput = styled.input`
   border-radius: 40px;
 
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    position: absolute;
+    left: 139px;
     font-size: 18px;
     line-height: 25px;
     width: 216px;
@@ -72,6 +74,15 @@ export const ShowInput = styled.input`
   height: 24px;
   border-style: none;
   background: #ffffff;
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    position: absolute;
+    left: 139px;
+    font-size: 18px;
+    line-height: 25px;
+    width: 216px;
+    height: 32px;
+  }
 `;
 
 export const EditButton = styled.button`
@@ -85,6 +96,15 @@ export const EditButton = styled.button`
   background: #fdf7f2;
   backdrop-filter: blur(2px);
   cursor: pointer;
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    position: absolute;
+    left: 139px;
+    top: 5px;
+    left: 379px;
+    height: 30px;
+    width: 30px;
+  }
 `;
 
 export const DoneButton = styled.button`
@@ -98,6 +118,15 @@ export const DoneButton = styled.button`
   background: #fdf7f2;
   backdrop-filter: blur(2px);
   cursor: pointer;
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    position: absolute;
+    left: 139px;
+    top: 5px;
+    left: 379px;
+    height: 30px;
+    width: 30px;
+  }
 `;
 
 export const EditIcon = styled(MdOutlineEdit)`

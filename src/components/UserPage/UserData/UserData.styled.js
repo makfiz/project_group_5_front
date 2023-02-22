@@ -26,10 +26,13 @@ export const EditPhotoButton = styled.button`
   background-color: white;
 
   cursor: pointer;
+
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
     position: absolute;
     margin-top: 0px;
     margin-bottom: 0px;
+    right: 40px;
+    bottom: 24px;
   }
 `;
 
@@ -111,8 +114,11 @@ export const UserInfoCard = styled.div`
 
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
     max-width: 736px;
-    padding-left: 32px;
-    padding-bottom: 54px;
+    height: 311px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
     border-top-left-radius: 0;
     border-top-right-radius: 20px;
     border-bottom-left-radius: 0;
@@ -132,5 +138,14 @@ export const UserPhotoThumb = styled.div`
     position: absolute;
     top: 24px;
     right: 40px;
+  }
+`;
+
+export const UserDataWrapper = styled.div`
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    position: absolute;
+    top: 44px;
+    left: 32px;
+    max-width: 380px;
   }
 `;
