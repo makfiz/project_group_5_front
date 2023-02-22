@@ -38,7 +38,7 @@ export const LoginForm = () => {
 
 
     const { email, password } = values;
-    dispatch(authOperations.login({ email, password }));
+    dispatch(authOperations.login(values));
 
     console.log(values);
     resetForm();
