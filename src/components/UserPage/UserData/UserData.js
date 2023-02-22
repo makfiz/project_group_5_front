@@ -3,21 +3,31 @@ import {
   UserInfoCard,
   UserPageHeader,
   UserPhotoThumb,
-  EditPhotoLink,
+  EditPhotoButton,
+  EditPhotoIcon,
+  EditPhotoButtonText,
 } from './UserData.styled';
 import { UserDataItem } from '../UserDataItem/UserDataItem';
 import { Logout } from '../Logout/Logout';
+import { UserPhoto } from './UserPhoto';
 
-export const UserData = () => {
+export const UserData = ({ user }) => {
   return (
     <Container>
       <UserPageHeader>My information:</UserPageHeader>
       <UserInfoCard>
         <UserPhotoThumb>
-          {/* <img src={UserPhoto} alt={username} width="233px" /> */}
+          <UserPhoto />
         </UserPhotoThumb>
-        <EditPhotoLink>Edit photo</EditPhotoLink>
-        <UserDataItem />
+        <EditPhotoButton>
+          <EditPhotoIcon />
+          <EditPhotoButtonText>Edit photo</EditPhotoButtonText>
+        </EditPhotoButton>
+        <UserDataItem label="Name" value="Anton" />
+        <UserDataItem label="Email" value="Anton@email.com" />
+        <UserDataItem label="Birthday" value="30.06.1985" />
+        <UserDataItem label="Phone" value="+380670000000" />
+        <UserDataItem label="City" value="Dnipro" />
         <Logout />
       </UserInfoCard>
     </Container>
