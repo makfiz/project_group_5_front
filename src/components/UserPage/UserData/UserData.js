@@ -3,7 +3,8 @@ import {
   UserInfoCard,
   UserPageHeader,
   UserPhotoThumb,
-  EditPhotoLink,
+  EditPhotoButton,
+  EditPhotoIcon,
 } from './UserData.styled';
 import { UserDataItem } from '../UserDataItem/UserDataItem';
 import { Logout } from '../Logout/Logout';
@@ -16,7 +17,10 @@ export const UserData = () => {
         <UserPhotoThumb>
           {/* <img src={UserPhoto} alt={username} width="233px" /> */}
         </UserPhotoThumb>
-        <EditPhotoLink>Edit photo</EditPhotoLink>
+        <EditPhotoButton>
+          <EditPhotoIcon />
+          Edit photo
+        </EditPhotoButton>
         <UserDataItem />
         <Logout />
       </UserInfoCard>
