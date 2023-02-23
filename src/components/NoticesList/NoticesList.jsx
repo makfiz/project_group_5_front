@@ -91,7 +91,7 @@ export const NoticesList = ({ askedPage }) => {
     }
 
     return () => {
-      // controller.abort();
+      controller.abort();
     };
   }, [dispatch, limit, search, page, askedPage, ads.length, totalPages]);
 
@@ -101,7 +101,7 @@ export const NoticesList = ({ askedPage }) => {
   const isLoading = useSelector(selectIsLoadingNotices);
   const error = useSelector(selectIsNoticesError);
   const isRefreshing = useSelector(selectIsRefreshing);
-  const showNotices = ads.length > 0 && !isLoading && !error && !isRefreshing;
+  const showNotices = ads.length > 0 && !error && !isRefreshing;
   const noNotices = ads.length === 0 && !isLoading && !error && !isRefreshing;
   const showLoader = isLoading || isRefreshing;
   const errorMessage = error && !isLoading && !isRefreshing;
@@ -111,7 +111,7 @@ export const NoticesList = ({ askedPage }) => {
       {showLoader && (
         <Box display="flex" justifyContent="center">
           <LoaderWrap>
-            <BarLoader color="#F59256" height={6} width={'100%'} />
+            <BarLoader color="#F59256" height={3} width={'100%'} />
           </LoaderWrap>
         </Box>
       )}
