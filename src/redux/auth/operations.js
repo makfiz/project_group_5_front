@@ -4,10 +4,6 @@ import Notiflix from 'notiflix';
 
 axios.defaults.baseURL = 'https://petssuport4815162342api.onrender.com/api';
 
-// const setAuthHeader = token => {
-//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-// };
-
 const unsetToken = () => {
   return (axios.defaults.headers.common.Authorization = '');
 };

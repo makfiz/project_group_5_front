@@ -59,8 +59,6 @@ export const RegistrationForm = () => {
       return;
     }
 
-    console.log(values);
-    // const { email, password } = values;
     const { email, password, name, city, mobilePhone } = values
     const phone = toString(mobilePhone);
     console.log({ email, password, name, city, phone });
