@@ -5,7 +5,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import authOperations from './operations.js';
 
 const initialState = {
-  user: { id: null, email: null },
+  user: { id: null, email: null, name: null, avatarURL: null, birthday: null, phone: null, city: null, },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -45,20 +45,17 @@ const authSlice = createSlice({
       state.error = null;
       state.user.id = null;
       state.user.email = null;
+      state.user.name = null;
+      state.user.avatarURL = null;
+      state.user.birthday = null;
+      state.user.phone = null;
+      state.user.city = null;
       state.token = null;
       state.isLoggedIn = false;
     },
     [authOperations.logout.rejected](state, action) {
       state.isRefreshing = false;
       state.error = action.payload;
-    },
-    [authOperations.googleApi.fulfilled](state, action) {
-      state.isRefreshing = false;
-      state.error = null;
-      state.user.id = action.payload.id;
-      state.user.email = action.payload.email;
-      state.token = action.payload.token;
-      state.isLoggedIn = true;
     },
     [authOperations.registration.pending](state) { state.isRefreshing = true; },
     [authOperations.registration.fulfilled](state, action) {
@@ -77,9 +74,18 @@ const authSlice = createSlice({
       state.isRefreshing = false;
       state.error = action.payload;
     },
+    [authOperations.googleApi.fulfilled](state, action) {
+      state.isRefreshing = false;
+      state.error = null;
+      state.user.id = action.payload.id;
+      state.user.email = action.payload.email;
+      state.token = action.payload.token;
+      state.isLoggedIn = true;
+    },
     [authOperations.refresh.fulfilled](state, action) {
       const { id, email } = action.payload.data.user;
-      state.user = { id, email };
+      state.user.id = action.payload.id;
+      state.user.email = action.payload.email;
       state.isLoggedIn = true;
       state.isRefreshing = false;
     },
@@ -88,6 +94,22 @@ const authSlice = createSlice({
     },
     [authOperations.refresh.pending](state) {
       state.isRefreshing = true;
+    },
+    [authOperations.userUpdate.pending](state) { state.isRefreshing = true; },
+    [authOperations.userUpdate.fulfilled](state, action) {
+      state.isRefreshing = false;
+      state.error = null;
+      state.user.id = action.payload.id;
+      state.user.email = action.payload.email;
+      state.user.name = action.payload.name;
+      state.user.avatarURL = action.payload.avatarURL;
+      state.user.birthday = action.payload.birthday;
+      state.user.phone = action.payload.phone;
+      state.user.city = action.payload.city;
+    },
+    [authOperations.userUpdate.rejected](state, action) {
+      state.isRefreshing = false;
+      state.error = action.payload;
     },
   },
 });

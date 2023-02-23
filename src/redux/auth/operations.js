@@ -22,7 +22,7 @@ export const registration = createAsyncThunk(
     try {
       const { data } = await axios.post('/users/signup', credentials);
       Notiflix.Notify.success('Success! Now you can login ✔', {
-        timeout: 2500,
+        timeout: 3000,
       });
 
       return data;
@@ -30,12 +30,12 @@ export const registration = createAsyncThunk(
       console.log(error.message);
       if (error.message === 'Request failed with status code 409') {
         Notiflix.Notify.failure('This user is already registered ⚠', {
-          timeout: 2500,
+          timeout: 3000,
         });
       };
       if (error.message === 'Request failed with status code 400') {
         Notiflix.Notify.failure('Not valid format of email or password ⚠', {
-          timeout: 2500,
+          timeout: 3000,
         });
       };
       return thunkAPI.rejectWithValue(error.message);
@@ -48,19 +48,19 @@ const login = createAsyncThunk('/auth/login', async (credentials, thunkAPI) => {
       const { data } = await axios.post('/users/login', credentials);
       setToken(data.token);
       Notiflix.Notify.success('Success! Now you are logedin ✔', {
-        timeout: 2500,
+        timeout: 3000,
       });
       return data;
     } catch (error) {
       console.log(error.message);
       if (error.message === 'Request failed with status code 401') {
         Notiflix.Notify.failure('Email, or password is wrong, or email is not verified. Please check your e-mail ⚠', {
-          timeout: 2500,
+          timeout: 3000,
         });
       };
       if (error.message === 'Request failed with status code 400') {
         Notiflix.Notify.failure('Not valid format of email or password ⚠', {
-          timeout: 2500,
+          timeout: 3000,
         });
       };
       return thunkAPI.rejectWithValue(error.message);
@@ -102,12 +102,45 @@ export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   }
 });
 
+export const userUpdate = createAsyncThunk(
+  '/auth/userUpdate',
+  async (credentials, thunkAPI) => {
+    try {
+      const { data } = await axios.patch('/users/update', credentials);
+      Notiflix.Notify.success('Success! User updated! ✔', {
+        timeout: 3000,
+      });
+
+      return data;
+    } catch (error) {
+      console.log(error.message);
+      if (error.message === 'Request failed with status code 404') {
+        Notiflix.Notify.failure('User not found. Please register user! ⚠', {
+          timeout: 3000,
+        });
+      };
+      if (error.message === 'Request failed with status code 401') {
+        Notiflix.Notify.failure('jwt token is expired or not valid. Please login user! ⚠', {
+          timeout: 3000,
+        });
+      };
+      if (error.message === 'Request failed with status code 400') {
+        Notiflix.Notify.failure('Not valid format of request body (check types of yuor request data) ⚠', {
+          timeout: 3000,
+        });
+      };
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 const authOperations = {
   logout,
   login,
   googleApi,
   registration,
   refresh,
+  userUpdate,
 };
 
 export default authOperations;
