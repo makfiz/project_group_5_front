@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { RxCross1 } from 'react-icons/rx';
+import { AiTwotoneHeart } from 'react-icons/ai';
 
 export const Wraper = styled.div`
   position: relative;
@@ -48,6 +49,8 @@ export const IconWraper = styled.div`
   background-color: ${p => p.theme.colors.closeIconColor};
   backdrop-filter: blur(2px);
   border-radius: 50%;
+
+  cursor: pointer;
 `;
 
 export const ImageWraper = styled.div`
@@ -62,6 +65,8 @@ export const ImageWraper = styled.div`
 
   @media screen and (min-width: 768px) {
     margin-right: 20px;
+    width: 288px;
+    height: 328px;
   }
 `;
 
@@ -119,6 +124,9 @@ export const CommentsText = styled.p`
 `;
 
 export const StyledButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 240px;
   height: 40px;
 
@@ -169,4 +177,9 @@ export const ButtonWraper = styled.div`
     display: flex;
     justify-content: flex-end;
   }
+`;
+
+export const HeartIcon = styled(AiTwotoneHeart)`
+  color: ${p => p.theme.colors.userAddPetBtnBg};
+  margin-left: 10px;
 `;

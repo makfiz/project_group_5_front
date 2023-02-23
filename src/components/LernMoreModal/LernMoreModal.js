@@ -19,15 +19,17 @@ import {
   ContentWraper,
   Layout,
   ButtonWraper,
+  HeartIcon,
 } from './LernMoreModal.styled';
 import { Button } from 'components/Button/Button';
-import { Box } from 'components/Box/Box';
 
 export function LernMoreModal() {
   const dispatch = useDispatch();
+
+  const items = useSelector(state => state.notices.ads);
   const openModal = useSelector(state => state.form.isModalOpen);
 
-  const onhandleClick = () => {
+  const onHandleClick = () => {
     dispatch(closeModal());
   };
 
@@ -38,12 +40,13 @@ export function LernMoreModal() {
   return (
     <>
       {openModal && (
-        <Modal onClick={onhandleClick} filter="true">
+        <Modal onClick={onHandleClick} filter="true">
           <Wraper>
             <Container>
               <IconWraper>
-                <Icon />
+                <Icon onClick={onHandleClick} />
               </IconWraper>
+
               <ContentWraper>
                 <ImageWraper>
                   <FavoriteWraper>
@@ -64,12 +67,12 @@ export function LernMoreModal() {
               </CommentsText>
 
               <ButtonWraper>
-                <Button
-                  children="Contact"
-                  style={StyledButton}
-                  // onClick={handleClick}
-                />
-                <Button children="Add to" style={StyledButton} />
+                <Button style={StyledButton}>
+                  Add to
+                  <HeartIcon size={16} />
+                </Button>
+
+                <Button children="Contact" style={StyledButton} />
               </ButtonWraper>
             </Container>
           </Wraper>

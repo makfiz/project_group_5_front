@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { endPoints } from 'constants/EndPoints';
 // import toast from 'react-hot-toast';
+const url = `https://petssuport4815162342api.onrender.com/`;
 
 export const fetchNoticesByCategory = createAsyncThunk(
   'notices/fetchCategory',
@@ -89,6 +90,19 @@ export const deleteOwnNotice = createAsyncThunk(
   async ({ path }, thunkAPI) => {
     try {
       const response = await axios.delete(path);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchNoticeById = createAsyncThunk(
+  'noticec/fetchById',
+  async (noticeId, thunkAPI) => {
+    try {
+      const response = await axios.get(`${url}id/${noticeId}`);
+      console.log(response);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

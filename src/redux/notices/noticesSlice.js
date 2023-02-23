@@ -10,6 +10,7 @@ const extraActions = [
   operations.removeNoticeFromFavorite,
   operations.deleteOnFavoritePage,
   operations.deleteOwnNotice,
+  operations.fetchNoticeById,
 ];
 const getActions = type => extraActions.map(action => action[type]);
 
@@ -22,6 +23,7 @@ const noticesSlice = createSlice({
     totalPages: 0,
     totalCount: 0,
     error: null,
+    notice: [],
   },
 
   extraReducers: builder =>
@@ -53,6 +55,10 @@ const noticesSlice = createSlice({
       .addCase(
         operations.deleteOwnNotice.fulfilled,
         reducers.deleteOwnNoticeReducer
+      )
+      .addCase(
+        operations.fetchNoticeById.fulfilled,
+        reducers.fetchNoticeReducer
       )
       .addMatcher(isAnyOf(...getActions('pending')), reducers.pendingReducer)
       .addMatcher(isAnyOf(...getActions('rejected')), reducers.rejectedReducer),

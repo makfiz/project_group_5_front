@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteOwnNotice } from 'redux/notices/operations';
+import { deleteOwnNotice, fetchNoticeById } from 'redux/notices/operations';
 import { endPoints } from 'constants/EndPoints';
 import { openModal } from '../../redux/form/formSlice';
 
@@ -22,6 +22,7 @@ export const NoticesCardButtons = ({ own, noticeId }) => {
 
   const showMore = () => {
     dispatch(openModal());
+    dispatch(fetchNoticeById(noticeId));
   };
 
   return (
