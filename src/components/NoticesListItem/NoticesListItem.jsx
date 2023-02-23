@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-// import { formatDistanceToNowStrict } from 'date-fns';
+import Notiflix from 'notiflix';
 import { calculateAndConvertAge } from 'utils/calculateAndConvertAge';
 import { renameNoticesCategory } from 'utils/renameNoticesCategory';
-import { selectUser } from 'redux/auth/selectors';
+import { selectUser, selectIsLoggedIn } from 'redux/auth/selectors';
 
 import {
   addNoticeToFavorite,
@@ -44,9 +44,6 @@ export const NoticesListItem = ({ ad, askedPage }) => {
   } = ad;
 
   const { id: userId } = useSelector(selectUser);
-
-  // TODO: age in text format
-  // const age = formatDistanceToNowStrict(Date.parse(birth));
   const age = calculateAndConvertAge(Date.parse(birth));
 
   const dispatch = useDispatch();
@@ -56,9 +53,20 @@ export const NoticesListItem = ({ ad, askedPage }) => {
   const categoryTitle = renameNoticesCategory(category);
   const sellPage = category === 'sell' && askedPage === 'sell';
   const own = owner === userId;
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  console.log('logged', isLoggedIn);
 
   const handleFavorite = e => {
     const path = `${endPoints.noticesBase}${_id}${endPoints.noticesFavorite}`;
+
+    if (!isLoggedIn) {
+      return Notiflix.Notify.failure(
+        'Only authorized users can add to favorite',
+        {
+          timeout: 2500,
+        }
+      );
+    }
     if (!inFavorite) {
       dispatch(addNoticeToFavorite({ path }));
       setInFavorite(true);
