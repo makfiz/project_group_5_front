@@ -22,7 +22,7 @@ export const NoticesSearch = () => {
   const search = useSelector(selectNoticesSearchQuery);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const page = searchParams.get('page');
+  const page = searchParams.get('page') ?? 1;
 
   useEffect(() => {
     searchParamsHandler(page, search, setSearchParams);

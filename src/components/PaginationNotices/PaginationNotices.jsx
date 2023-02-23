@@ -22,7 +22,7 @@ export const PaginationNotices = () => {
     const search = searchParams.get('search') ?? '';
     setSearchParams(
       search !== ''
-        ? { page: e.selected + 1, search }
+        ? { search, page: e.selected + 1 }
         : { page: e.selected + 1 }
     );
   };

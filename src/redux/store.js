@@ -44,7 +44,7 @@ export const store = configureStore({
     // [petsApi.reducerPath]: petsApi.reducer,
   },
   middleware: getDefaultMiddleware => [
-      ...getDefaultMiddleware({
+    ...getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },

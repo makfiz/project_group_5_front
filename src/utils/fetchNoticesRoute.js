@@ -10,10 +10,11 @@ export const fetchRoute = (commonParams, routeParams) => {
   const { path, controller } = routeParams;
 
   const currentSearchParams = search !== '' ? { search, page: 1 } : { page: 1 };
-  const nextSearchParams = search !== '' ? { search, page } : { page };
+  // const nextSearchParams = search !== '' ? { search, page } : { page };
   const lastSearchParams =
     search !== '' ? { search, page: totalPages } : { page: totalPages };
 
+  if (!page) return setSearchParams(currentSearchParams);
   dispatch(
     fetchNoticesByCategory({
       path,
@@ -21,11 +22,9 @@ export const fetchRoute = (commonParams, routeParams) => {
       controller,
     })
   );
-
-  if (!page) return setSearchParams(currentSearchParams);
   if (totalPages === 0) return;
   if (page > totalPages) return setSearchParams(lastSearchParams);
-  if (page <= totalPages) return setSearchParams(nextSearchParams);
+  // if (page <= totalPages) return setSearchParams(nextSearchParams);
 };
 
 export const fetchFavoriteRoute = (commonParams, routeParams) => {
