@@ -14,29 +14,37 @@ export const CardButtonWrap = styled.div`
     padding-right: 0;
   }
 `;
-export const LearnMoreLink = styled(Link)`
+
+export const NoticesButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   padding-top: 6px;
   padding-bottom: 6px;
+  background-color: transparent;
+  cursor: pointer;
 
   border: 2px solid ${p => p.theme.colors.hoverGoHome};
   border-radius: ${p => p.theme.radii.large};
-  text-decoration: none;
+  transition: border-color 300ms ease-in-out;
 
+  :hover {
+    border-color: ${p => p.theme.colors.deleteBtnColor};
+
+    span {
+      color: ${p => p.theme.colors.deleteBtnColor};
+    }
+  }
+`;
+
+export const NoticeButtonText = styled.span`
   font-size: ${p => p.theme.fontSizes.m};
   font-weight: ${p => p.theme.fontWeight.medium};
   line-height: 1.38;
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.hoverGoHome};
-
-  transition: border-color 300ms ease-in-out, color 300ms ease-in-out;
-
-  :hover {
-    color: ${p => p.theme.colors.deleteBtnColor};
-    border-color: ${p => p.theme.colors.deleteBtnColor};
-  }
+  transition: color 300ms ease-in-out;
 `;
 
 export const DeleteButton = styled.button`
