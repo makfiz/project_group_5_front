@@ -6,7 +6,6 @@ import WorkDays from "./WorkDays";
 import noPhoto from '../../../assets/default-img/defaultLogo.jpg';
 
 const OurFriendsItem = ({ friend }) => {
-  
   const [isOpen, setIsOpen] = useState(false);
   
   useEffect(() => {
@@ -70,7 +69,7 @@ const OurFriendsItem = ({ friend }) => {
             Time:
           <br />
             {workDays ?
-              (<WorkDays workDays={workDays} />) :
+              (<WorkDays workDays={workDays} onClick={toggleModal} />) :
               (<p>--------------------------</p>)}
           </FriendInfoItem>
           <FriendInfoItem>
@@ -98,7 +97,7 @@ const OurFriendsItem = ({ friend }) => {
           </FriendInfoItem>
         </ul>
       </BoxFriendInfo>
-        {isOpen && (<Modal workDays={workDays} onClick={closeModal} />)}
+        {isOpen && (<Modal workDays={workDays} onClick={closeModal}/>)}
     </BoxFriendItem>
   </>
 }
