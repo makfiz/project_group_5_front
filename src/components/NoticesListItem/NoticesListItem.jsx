@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { BounceLoader } from 'react-spinners';
 import Notiflix from 'notiflix';
 import { calculateAndConvertAge } from 'utils/calculateAndConvertAge';
 import { renameNoticesCategory } from 'utils/renameNoticesCategory';
 import { selectUser, selectIsLoggedIn } from 'redux/auth/selectors';
-// import { formatDistanceToNowStrict } from 'date-fns';
 import { selectIsLoadingNotices } from 'redux/notices/selectors';
 
 import {
@@ -108,7 +108,11 @@ export const NoticesListItem = ({ ad, askedPage }) => {
       <ImgWrap>
         <Img src={photoURL} alt={breed} />
         <ImgBadge category={category}>{categoryTitle}</ImgBadge>
-        <AddInFavoriteBtn onClick={handleFavorite} type="button">
+        <AddInFavoriteBtn
+          disabled={isUpdating}
+          onClick={handleFavorite}
+          type="button"
+        >
           {!isUpdating && (
             <Favorite fill={inFavorite ? '#F59256' : '#FFFFFF'} />
           )}
@@ -143,4 +147,20 @@ export const NoticesListItem = ({ ad, askedPage }) => {
       </TextWrap>
     </Box>
   );
+};
+
+NoticesListItem.propTypes = {
+  askedPage: PropTypes.string.isRequired,
+  ad: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    birth: PropTypes.string.isRequired,
+    breed: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    price: PropTypes.string,
+    photoURL: PropTypes.string,
+    favoritesIn: PropTypes.arrayOf(PropTypes.string),
+    owner: PropTypes.string.isRequired,
+  }),
 };

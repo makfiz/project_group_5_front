@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import { deleteOwnNotice } from 'redux/notices/operations';
 import { endPoints } from 'constants/EndPoints';
 
@@ -29,4 +30,9 @@ export const NoticesCardButtons = ({ own, noticeId }) => {
       )}
     </CardButtonWrap>
   );
+};
+
+NoticesCardButtons.propTypes = {
+  own: PropTypes.bool.isRequired,
+  noticeId: PropTypes.string.isRequired,
 };
