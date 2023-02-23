@@ -54,7 +54,6 @@ export const NoticesListItem = ({ ad, askedPage }) => {
   const sellPage = category === 'sell' && askedPage === 'sell';
   const own = owner === userId;
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  console.log('logged', isLoggedIn);
 
   const handleFavorite = e => {
     const path = `${endPoints.noticesBase}${_id}${endPoints.noticesFavorite}`;
