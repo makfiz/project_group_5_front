@@ -4,19 +4,8 @@ import { createSlice } from '@reduxjs/toolkit';
 // import { userRegistrationSuccessReducer } from './reducers';
 import authOperations from './operations.js';
 
-const getUser = () => {
-  let locUser = { id: null, email: null };
-  const user = localStorage.getItem('user');
-
-  if (!user) {
-    return locUser;
-  }
-  locUser = JSON.parse(user);
-  return locUser;
-};
-
 const initialState = {
-  user: getUser(),
+  user: { id: null, email: null },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -70,6 +59,19 @@ const authSlice = createSlice({
       state.user.email = action.payload.email;
       state.token = action.payload.token;
       state.isLoggedIn = true;
+    },
+    [authOperations.registration.pending](state) { state.isRefreshing = true; },
+    [authOperations.registration.fulfilled](state, action) {
+      state.isRefreshing = false;
+      state.error = null;
+      state.user.id = action.payload.id;
+      state.user.email = action.payload.email;
+      state.token = null;
+      state.isLoggedIn = false;
+    },
+    [authOperations.registration.rejected](state, action) {
+      state.isRefreshing = false;
+      state.error = action.payload;
     },
     [authOperations.googleApi.rejected](state, action) {
       state.isRefreshing = false;
