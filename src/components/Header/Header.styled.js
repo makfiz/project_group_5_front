@@ -29,8 +29,7 @@ export const MenuList = styled.div`
   background-color: #fdf7f2;
   padding-left: 15px;
   padding-right: 15px;
-  margin-right: auto;
-  margin-left: auto;
+
   margin-top: 45px;
   display: flex;
   flex-direction: column;
