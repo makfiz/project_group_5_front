@@ -18,7 +18,7 @@ export const ModalContent = styled.div`
   position: absolute;
   top: 5%;
   left: 45%;
-  border: 1px solid ${props => props.theme.colors.hoverGoHome};
+  border: 1px solid ${props => props.theme.colors.userAddPetBtnBg};
   box-shadow: ${props => props.theme.shadows.hoursWorkModalShadow};
   border-radius: 8px;
 

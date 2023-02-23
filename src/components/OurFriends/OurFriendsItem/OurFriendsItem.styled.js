@@ -12,8 +12,10 @@ export const FriendTitle = styled.h2`
     font-size: ${props => props.theme.fontSizes.xs};
     line-height: 16px;
 
+    transition: color ${props => props.theme.transition.onHover};
+
     :hover {
-      color: ${props => props.theme.colors.navAccent};
+      color: ${props => props.theme.colors.userAddPetBtnBgHover};
     }
 
     @media (min-width: ${props => props.theme.screenSizes.tablet}) {
@@ -63,6 +65,8 @@ export const FriendInfoItem = styled.li`
   font-size: ${props => props.theme.fontSizes.xs};
   line-height: 16px;
 
+  transition: color ${props => props.theme.transition.onHover};
+
   @media (min-width: ${props => props.theme.screenSizes.tablet}) {
     font-size: ${props => props.theme.fontSizes.s};
     line-height: 19px;
@@ -76,12 +80,14 @@ export const FriendInfoItem = styled.li`
   a {
     /* text-decoration: none; */
     color: ${props => props.theme.colors.black};
+
+    transition: color ${props => props.theme.transition.onHover};
   }
   :hover {
     cursor: pointer;
-    color: ${props => props.theme.colors.hoverGoHome};
+    color: ${props => props.theme.colors.userAddPetBtnBgHover};
     a {
-      color: ${props => props.theme.colors.hoverGoHome};
+      color: ${props => props.theme.colors.userAddPetBtnBgHover};
     }
   }
 `;

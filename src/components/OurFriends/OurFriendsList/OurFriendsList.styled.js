@@ -5,6 +5,16 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  margin: 0 auto;
+  width: 320px;
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    width: 768px;
+  }
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    width: 1280px;
+  }
 `;
 
 export const BoxFriendsList = styled.div`
@@ -45,8 +55,18 @@ export const FriendsItem = styled.li`
   box-shadow: ${props => props.theme.shadows.inputShadow};
 
   padding: 12px 4px;
+  width: 272px;
 
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+
+  @media (min-width: ${props => props.theme.screenSizes.tablet}) {
+    width: 328px;
+    padding: 16px 4px;
+  }
+
+  @media (min-width: ${props => props.theme.screenSizes.desktop}) {
+    width: 387px;
+  }
 `;
