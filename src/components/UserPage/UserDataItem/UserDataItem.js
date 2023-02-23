@@ -24,19 +24,29 @@ export const UserDataItem = ({ label, value }) => {
     setIsEditing(!isEditing);
   };
 
+  const handleSubmit = event => {
+    event.preventDefault();
+    const form = event.target;
+    // dispatch(addTask(form.elements.text.value));
+    form.reset();
+  };
+
   return (
     <UserDataItemWrapper>
       <UserInfoLabel>{label}:</UserInfoLabel>
       {isEditing ? (
         <UserInfoWrapper>
-          <EditInput
-            type="text"
-            value={currentValue}
-            onChange={handleInputChange}
-          />
-          <DoneButton onClick={handleEditClick}>
-            <DoneIcon />
-          </DoneButton>
+          <form onSubmit={handleSubmit}>
+            {' '}
+            <EditInput
+              type="text"
+              value={currentValue}
+              onChange={handleInputChange}
+            />
+            <DoneButton onSubmit={handleSubmit} onClick={handleEditClick}>
+              <DoneIcon />
+            </DoneButton>
+          </form>
         </UserInfoWrapper>
       ) : (
         <UserInfoWrapper>

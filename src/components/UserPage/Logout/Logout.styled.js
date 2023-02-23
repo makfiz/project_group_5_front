@@ -18,6 +18,11 @@ export const LogoutButton = styled.button`
     left: 32px;
     bottom: 24px;
   }
+
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    left: 17px;
+    bottom: 20px;
+  }
 `;
 
 export const LogoutIcon = () => (

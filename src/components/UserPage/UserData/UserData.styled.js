@@ -34,6 +34,11 @@ export const EditPhotoButton = styled.button`
     right: 40px;
     bottom: 24px;
   }
+
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    right: 16px;
+    bottom: 288px;
+  }
 `;
 
 export const EditPhotoButtonText = styled.span`
@@ -124,6 +129,13 @@ export const UserInfoCard = styled.div`
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 20px;
   }
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    margin-left: 0px;
+    max-width: 411px;
+    height: 541px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+  }
 `;
 
 export const UserPhotoThumb = styled.div`
@@ -139,6 +151,11 @@ export const UserPhotoThumb = styled.div`
     top: 24px;
     right: 40px;
   }
+
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    top: 20px;
+    right: 89px;
+  }
 `;
 
 export const UserDataWrapper = styled.div`
@@ -146,6 +163,11 @@ export const UserDataWrapper = styled.div`
     position: absolute;
     top: 44px;
     left: 32px;
+    max-width: 380px;
+  }
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    top: 289px;
+    left: 16px;
     max-width: 380px;
   }
 `;

@@ -56,7 +56,17 @@ export const EditInput = styled.input`
 
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
     position: absolute;
+    top: -4px;
     left: 139px;
+    font-size: 18px;
+    line-height: 25px;
+    width: 216px;
+    height: 32px;
+  }
+
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    top: -4px;
+    left: 100px;
     font-size: 18px;
     line-height: 25px;
     width: 216px;
@@ -77,7 +87,16 @@ export const ShowInput = styled.input`
 
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
     position: absolute;
+    top: -4px;
     left: 139px;
+    font-size: 18px;
+    line-height: 25px;
+    width: 216px;
+    height: 32px;
+  }
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    top: -4px;
+    left: 100px;
     font-size: 18px;
     line-height: 25px;
     width: 216px;
@@ -87,7 +106,7 @@ export const ShowInput = styled.input`
 
 export const EditButton = styled.button`
   position: absolute;
-  top: 5px;
+  top: 4px;
   left: 253px;
   height: 20px;
   width: 20px;
@@ -99,17 +118,23 @@ export const EditButton = styled.button`
 
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
     position: absolute;
-    left: 139px;
-    top: 5px;
+    top: -3px;
     left: 379px;
-    height: 30px;
-    width: 30px;
+    height: 32px;
+    width: 32px;
+  }
+
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    top: -4px;
+    left: 345px;
+    height: 32px;
+    width: 32px;
   }
 `;
 
 export const DoneButton = styled.button`
   position: absolute;
-  top: 5px;
+  top: 4px;
   left: 253px;
   height: 20px;
   width: 20px;
@@ -121,11 +146,17 @@ export const DoneButton = styled.button`
 
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
     position: absolute;
-    left: 139px;
-    top: 5px;
+    top: -3px;
     left: 379px;
-    height: 30px;
-    width: 30px;
+    height: 32px;
+    width: 32px;
+  }
+
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    top: -4px;
+    left: 345px;
+    height: 32px;
+    width: 32px;
   }
 `;
 
