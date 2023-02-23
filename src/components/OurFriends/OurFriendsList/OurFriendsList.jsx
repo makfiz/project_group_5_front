@@ -5,11 +5,11 @@ import {
   FriendsItem
 } from './OurFriendsList.styled';
 
-const OurFriendsList = ({ourFriends}) => {
+const OurFriendsList = ({ ourFriends }) => {
 
   return <>
     <BoxFriendsList>
-    <FriendsList>
+    <FriendsList >
       {ourFriends.map(friend => (
         <FriendsItem key={friend._id}>
           <OurFriendsItem friend={friend} />

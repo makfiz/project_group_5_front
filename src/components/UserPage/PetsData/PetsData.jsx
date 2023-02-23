@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Box } from 'components/Box/Box';
-import Modal from '../../Modal/Modal';
+import Modal from '../../ModalForAdd/Modal';
 import { ModalAddsPet } from '../ModalAddPets/ModalAddPets';
 
 import { ReactComponent as PlusIcon } from '../../../assets/icons/plusIcon.svg';

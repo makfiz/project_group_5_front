@@ -28,48 +28,51 @@ export const registration = createAsyncThunk(
         Notiflix.Notify.failure('This user is already registered ⚠', {
           timeout: 3000,
         });
-      };
+      }
       if (error.message === 'Request failed with status code 400') {
         Notiflix.Notify.failure('Not valid format of email or password ⚠', {
           timeout: 3000,
         });
-      };
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
 const login = createAsyncThunk('/auth/login', async (credentials, thunkAPI) => {
-    try {
-      const { data } = await axios.post('/users/login', credentials);
-      setToken(data.token);
-      Notiflix.Notify.success('Success! Now you are logedin ✔', {
+  try {
+    const { data } = await axios.post('/users/login', credentials);
+    setToken(data.token);
+    Notiflix.Notify.success('Success! Now you are logedin ✔', {
+      timeout: 3000,
+    });
+    return data;
+  } catch (error) {
+    console.log(error.message);
+    if (error.message === 'Request failed with status code 401') {
+      Notiflix.Notify.failure(
+        'Email, or password is wrong, or email is not verified. Please check your e-mail ⚠',
+        {
+          timeout: 3000,
+        }
+      );
+    }
+    if (error.message === 'Request failed with status code 400') {
+      Notiflix.Notify.failure('Not valid format of email or password ⚠', {
         timeout: 3000,
       });
-      return data;
-    } catch (error) {
-      console.log(error.message);
-      if (error.message === 'Request failed with status code 401') {
-        Notiflix.Notify.failure('Email, or password is wrong, or email is not verified. Please check your e-mail ⚠', {
-          timeout: 3000,
-        });
-      };
-      if (error.message === 'Request failed with status code 400') {
-        Notiflix.Notify.failure('Not valid format of email or password ⚠', {
-          timeout: 3000,
-        });
-      };
-      return thunkAPI.rejectWithValue(error.message);
     }
+    return thunkAPI.rejectWithValue(error.message);
+  }
 });
 
 const logout = createAsyncThunk('/auth/logout', async () => {
-    try {
-      await axios.get('/users/logout');
-      unsetToken();
-    } catch (error) {
-        console.log(error);
-    }
+  try {
+    await axios.get('/users/logout');
+    unsetToken();
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 const googleApi = createAsyncThunk('auth/google', async credentials => {
@@ -84,15 +87,13 @@ const googleApi = createAsyncThunk('auth/google', async credentials => {
 export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   const state = thunkAPI.getState();
   const persistedToken = state.auth.token;
-  console.log(persistedToken);
-  if (persistedToken === null) {
+  if (persistedToken === null || '') {
     return thunkAPI.rejectWithValue('unauthorized access');
   }
   try {
     setToken(persistedToken);
     const response = await axios.get('/users/me');
-    return response;
-    console.log(response);
+    return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -114,17 +115,23 @@ export const userUpdate = createAsyncThunk(
         Notiflix.Notify.failure('User not found. Please register user! ⚠', {
           timeout: 3000,
         });
-      };
+      }
       if (error.message === 'Request failed with status code 401') {
-        Notiflix.Notify.failure('jwt token is expired or not valid. Please login user! ⚠', {
-          timeout: 3000,
-        });
-      };
+        Notiflix.Notify.failure(
+          'jwt token is expired or not valid. Please login user! ⚠',
+          {
+            timeout: 3000,
+          }
+        );
+      }
       if (error.message === 'Request failed with status code 400') {
-        Notiflix.Notify.failure('Not valid format of request body (check types of yuor request data) ⚠', {
-          timeout: 3000,
-        });
-      };
+        Notiflix.Notify.failure(
+          'Not valid format of request body (check types of yuor request data) ⚠',
+          {
+            timeout: 3000,
+          }
+        );
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }

@@ -2,7 +2,16 @@ import { createSlice } from '@reduxjs/toolkit';
 import authOperations from './operations.js';
 
 const initialState = {
-  user: { id: null, email: null, name: null, avatarURL: null, birthday: null, phone: null, city: null, petList: null },
+  user: {
+    id: null,
+    email: null,
+    name: null,
+    avatarURL: null,
+    birthday: null,
+    phone: null,
+    city: null,
+    petList: null,
+  },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -57,7 +66,9 @@ const authSlice = createSlice({
       state.isRefreshing = false;
       state.error = action.payload;
     },
-    [authOperations.registration.pending](state) { state.isRefreshing = true; },
+    [authOperations.registration.pending](state) {
+      state.isRefreshing = true;
+    },
     [authOperations.registration.fulfilled](state, action) {
       state.isRefreshing = false;
       state.error = null;
@@ -95,9 +106,12 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
     },
     [authOperations.refresh.fulfilled](state, action) {
-      const { id, email, name, avatarURL, birthday, phone, city } = action.payload.data.user;
-      state.user = { id, email, name, avatarURL, birthday, phone, city };
-      state.user.petList = action.payload.data.petList;
+      state.user = action.payload.user;
+      state.user.petList = action.payload.petList;
+      // const { id, email, name, avatarURL, birthday, phone, city } =
+      //   action.payload.data.user;
+      // state.user = { id, email, name, avatarURL, birthday, phone, city };
+      // state.user.petList = action.payload.data.petList;
       state.isLoggedIn = true;
       state.isRefreshing = false;
     },
@@ -107,7 +121,9 @@ const authSlice = createSlice({
     [authOperations.refresh.pending](state) {
       state.isRefreshing = true;
     },
-    [authOperations.userUpdate.pending](state) { state.isRefreshing = true; },
+    [authOperations.userUpdate.pending](state) {
+      state.isRefreshing = true;
+    },
     [authOperations.userUpdate.fulfilled](state, action) {
       state.isRefreshing = false;
       state.error = null;

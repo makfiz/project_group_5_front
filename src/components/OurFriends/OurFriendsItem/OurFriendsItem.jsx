@@ -6,7 +6,6 @@ import WorkDays from "./WorkDays";
 import noPhoto from '../../../assets/default-img/defaultLogo.jpg';
 
 const OurFriendsItem = ({ friend }) => {
-  
   const [isOpen, setIsOpen] = useState(false);
   
   useEffect(() => {
@@ -27,7 +26,7 @@ const OurFriendsItem = ({ friend }) => {
     setIsOpen(!isOpen);
   };
 
-  const closeModal = (isOpen) => {
+  const closeModal = () => {
     setIsOpen(false);
   };
 
@@ -71,21 +70,21 @@ const OurFriendsItem = ({ friend }) => {
           <br />
             {workDays ?
               (<WorkDays workDays={workDays} />) :
-              (<p>--------------------------</p>)}
+              (<p>Closed now</p>)}
           </FriendInfoItem>
           <FriendInfoItem>
             Email:
           <br />
             {email ?
               (<a href={hrefMail}>{email}</a>) :
-              (<p>--------------------------</p>)}
+              (<p>Don't have an email</p>)}
           </FriendInfoItem>
           <FriendInfoItem>
             Phone:
           <br />
             {phone ? 
               (<a href={hreftel}>{phone}</a>) :
-              (<p>--------------------------</p>)}
+              (<p>Don't have a phone number</p>)}
           </FriendInfoItem>
           <FriendInfoItem>
             Address:
@@ -94,11 +93,11 @@ const OurFriendsItem = ({ friend }) => {
               (<address>
                 <a href={addressUrl} target="_blank" rel="noreferrer">{address}</a>
               </address>) :
-              (<p>--------------------------</p>)}
+              (<p>Don't have an address</p>)}
           </FriendInfoItem>
         </ul>
       </BoxFriendInfo>
-        {isOpen && (<Modal workDays={workDays} onClick={closeModal} />)}
+        {isOpen && (<Modal workDays={workDays} onClick={closeModal}/>)}
     </BoxFriendItem>
   </>
 }
