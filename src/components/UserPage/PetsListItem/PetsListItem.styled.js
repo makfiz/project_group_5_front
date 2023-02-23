@@ -17,16 +17,41 @@ export const PetCard = styled.li`
     width: 240px;
     height: 540px;
   }
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    display: flex;
+
+    width: 728px;
+    height: 210px;
+  }
 `;
 
 export const ImgWrapper = styled.div`
+  flex-shrink: 0;
+
   width: 240px;
   height: 240px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
+  margin-right: 35px;
 
   border-radius: ${p => p.theme.radii.medium};
 
   overflow: hidden;
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    width: 161px;
+    height: 161px;
+  }
+`;
+
+export const PetImage = styled.img`
+  width: '240px';
+  height: '240px';
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    width: 161px;
+    height: 161px;
+  }
 `;
 
 export const InfoWrapper = styled.div`
@@ -43,6 +68,12 @@ export const InfoTitle = styled.p`
   line-height: 1.36;
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.black};
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    font-size: ${p => p.theme.fontSizes.m};
+    line-height: 1.38;
+    color: ${p => p.theme.colors.titleColor};
+  }
 `;
 
 export const InfoText = styled.span`
@@ -57,6 +88,12 @@ export const CommentsTitle = styled.p`
   line-height: 1.57;
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.black};
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    font-size: ${p => p.theme.fontSizes.m};
+    line-height: 1.38;
+    color: ${p => p.theme.colors.titleColor};
+  }
 `;
 
 export const DeleteBtn = styled.button`
@@ -75,6 +112,17 @@ export const DeleteBtn = styled.button`
   background-color: transparent;
 
   cursor: pointer;
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    top: 20px;
+    right: 20px;
+
+    width: 44px;
+    height: 44px;
+
+    background-color: #fdf7f2;
+    border-radius: ${p => p.theme.radii.round};
+  }
 `;
 
 export const DeleteIcon = styled(Delete)`

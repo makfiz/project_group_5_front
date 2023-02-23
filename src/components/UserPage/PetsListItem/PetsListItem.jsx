@@ -9,6 +9,7 @@ import {
   CommentsTitle,
   DeleteBtn,
   DeleteIcon,
+  PetImage,
 } from './PetsListItem.styled';
 
 export const PetsListItem = ({
@@ -23,17 +24,9 @@ export const PetsListItem = ({
     <PetCard>
       <ImgWrapper>
         {petImage ? (
-          <img
-            src={petImage}
-            alt={breed}
-            style={{ width: '240px', height: '240px' }}
-          />
+          <PetImage src={petImage} alt={breed} />
         ) : (
-          <img
-            src={defaultImage}
-            alt={breed}
-            style={{ width: '240px', height: '240px' }}
-          />
+          <PetImage src={defaultImage} alt={breed} />
         )}
       </ImgWrapper>
       <InfoWrapper>
