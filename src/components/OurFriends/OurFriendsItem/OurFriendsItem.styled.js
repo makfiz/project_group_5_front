@@ -13,7 +13,7 @@ export const FriendTitle = styled.h2`
     line-height: 16px;
 
     :hover {
-      color: ${props => props.theme.colors.navAccent};
+      color: ${props => props.theme.colors.userAddPetBtnBgHover};
     }
 
     @media (min-width: ${props => props.theme.screenSizes.tablet}) {
@@ -79,9 +79,9 @@ export const FriendInfoItem = styled.li`
   }
   :hover {
     cursor: pointer;
-    color: ${props => props.theme.colors.hoverGoHome};
+    color: ${props => props.theme.colors.userAddPetBtnBgHover};
     a {
-      color: ${props => props.theme.colors.hoverGoHome};
+      color: ${props => props.theme.colors.userAddPetBtnBgHover};
     }
   }
 `;
