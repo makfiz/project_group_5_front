@@ -26,7 +26,7 @@ const OurFriendsItem = ({ friend }) => {
     setIsOpen(!isOpen);
   };
 
-  const closeModal = (isOpen) => {
+  const closeModal = () => {
     setIsOpen(false);
   };
 
@@ -50,7 +50,7 @@ const OurFriendsItem = ({ friend }) => {
     <FriendTitle>
       <a href={url} target="_blank" rel="noreferrer">{title}</a>
     </FriendTitle>
-    <BoxFriendItem >
+    <BoxFriendItem onClick={toggleModal}>
       <BoxFriendLogo>
         {imageUrl ?
           <img src={imageUrl}
@@ -69,7 +69,7 @@ const OurFriendsItem = ({ friend }) => {
             Time:
           <br />
             {workDays ?
-              (<WorkDays workDays={workDays} onClick={toggleModal} />) :
+              (<WorkDays workDays={workDays} />) :
               (<p>Closed now</p>)}
           </FriendInfoItem>
           <FriendInfoItem>
