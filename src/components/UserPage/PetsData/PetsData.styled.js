@@ -1,24 +1,19 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin-right: auto;
-  margin-left: auto;
+  width: 100%;
 
-  padding: 40px 20px 25px 20px;
-
-  @media (min-width: ${p => p.theme.screenSizes.mobile}) {
-    width: ${p => p.theme.screenSizes.mobile};
-  }
+  padding-top: 40px;
+  padding-bottom: 25px;
 
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
-    width: ${p => p.theme.screenSizes.tablet};
-
-    padding: 20px 32px 22px 32px;
+    padding-top: 20px;
+    padding-bottom: 22px;
   }
 
   @media (min-width: ${p => p.theme.screenSizes.desktop}) {
-    width: 100%;
-    padding: 60px 32px 24px 32px;
+    padding-top: 60px;
+    padding-bottom: 24px;
   }
 `;
 

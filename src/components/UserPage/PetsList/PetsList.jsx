@@ -1,6 +1,6 @@
 import { PetsListItem } from '../PetsListItem/PetsListItem';
 
-import { Container, List } from './PetsList.styled';
+import { List } from './PetsList.styled';
 
 export const PetsList = () => {
   const pets = [
@@ -47,21 +47,19 @@ export const PetsList = () => {
   }
 
   return (
-    <Container>
-      <List>
-        {pets.map(({ _id, name, dateOfBirth, breed, comments, petImage }) => {
-          return (
-            <PetsListItem
-              key={_id}
-              name={name}
-              dateOfBirth={dateOfBirth}
-              breed={breed}
-              comments={comments}
-              petImage={petImage}
-            />
-          );
-        })}
-      </List>
-    </Container>
+    <List>
+      {pets.map(({ _id, name, dateOfBirth, breed, comments, petImage }) => {
+        return (
+          <PetsListItem
+            key={_id}
+            name={name}
+            dateOfBirth={dateOfBirth}
+            breed={breed}
+            comments={comments}
+            petImage={petImage}
+          />
+        );
+      })}
+    </List>
   );
 };

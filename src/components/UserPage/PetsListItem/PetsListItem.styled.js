@@ -7,6 +7,8 @@ export const PetCard = styled.li`
 
   padding: 20px;
 
+  height: 540px;
+
   background-color: ${p => p.theme.colors.white};
 
   border-radius: ${p => p.theme.radii.medium};
@@ -14,7 +16,7 @@ export const PetCard = styled.li`
   box-shadow: ${p => p.theme.shadows.regModalShadow};
 
   @media (min-width: ${p => p.theme.screenSizes.mobile}) {
-    width: 240px;
+    width: 280px;
     height: 540px;
   }
 
@@ -22,31 +24,43 @@ export const PetCard = styled.li`
     display: flex;
 
     width: 728px;
+
     height: 210px;
+  }
+
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    width: 821px;
+
+    height: 100%;
   }
 `;
 
 export const ImgWrapper = styled.div`
-  flex-shrink: 0;
-
   width: 240px;
   height: 240px;
-  margin-bottom: 0px;
-  margin-right: 35px;
+
+  margin-bottom: 20px;
+  margin-right: auto;
+  margin-left: auto;
 
   border-radius: ${p => p.theme.radii.medium};
 
   overflow: hidden;
 
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    flex-shrink: 0;
     width: 161px;
     height: 161px;
+
+    margin-bottom: 0px;
+    margin-right: 35px;
+    margin-left: 0;
   }
 `;
 
 export const PetImage = styled.img`
-  width: '240px';
-  height: '240px';
+  width: 240px;
+  height: 240px;
 
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
     width: 161px;
@@ -55,7 +69,7 @@ export const PetImage = styled.img`
 `;
 
 export const InfoWrapper = styled.div`
-  overflow-y: auto;
+  overflow: auto;
 `;
 
 export const InfoTitle = styled.p`
