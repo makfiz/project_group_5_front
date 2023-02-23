@@ -32,6 +32,7 @@ import {
   ListWrap,
   List,
   ListItem,
+  LoaderContainer,
   LoaderWrap,
   InformationText,
 } from './NoticesList.styled';
@@ -109,11 +110,11 @@ export const NoticesList = ({ askedPage }) => {
   return (
     <>
       {showLoader && (
-        <Box display="flex" justifyContent="center">
+        <LoaderContainer>
           <LoaderWrap>
-            <BarLoader color="#F59256" height={3} width={'100%'} />
+            <BarLoader color="#F59256" height={4} width={'100%'} />
           </LoaderWrap>
-        </Box>
+        </LoaderContainer>
       )}
       {showNotices && (
         <Box display="flex" justifyContent="center">

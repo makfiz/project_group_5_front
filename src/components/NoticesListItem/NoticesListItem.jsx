@@ -4,6 +4,10 @@ import Notiflix from 'notiflix';
 import { calculateAndConvertAge } from 'utils/calculateAndConvertAge';
 import { renameNoticesCategory } from 'utils/renameNoticesCategory';
 import { selectUser, selectIsLoggedIn } from 'redux/auth/selectors';
+import { useEffect, useState } from 'react';
+import { BounceLoader } from 'react-spinners';
+// import { formatDistanceToNowStrict } from 'date-fns';
+import { selectIsLoadingNotices } from 'redux/notices/selectors';
 
 import {
   addNoticeToFavorite,
@@ -43,9 +47,20 @@ export const NoticesListItem = ({ ad, askedPage }) => {
     owner,
   } = ad;
 
+  const loadingNotices = useSelector(selectIsLoadingNotices);
+  const [isUpdating, setIsUpdating] = useState(false);
+
+  useEffect(() => {
+    if (loadingNotices) return;
+    if (!loadingNotices) {
+      setIsUpdating(false);
+    }
+
+    return () => {};
+  }, [loadingNotices]);
+
   const { id: userId } = useSelector(selectUser);
   const age = calculateAndConvertAge(Date.parse(birth));
-
   const dispatch = useDispatch();
   const [inFavorite, setInFavorite] = useState(() =>
     favoritesIn.includes(userId)
@@ -66,6 +81,11 @@ export const NoticesListItem = ({ ad, askedPage }) => {
         }
       );
     }
+
+    if (!loadingNotices) {
+      setIsUpdating(true);
+    }
+
     if (!inFavorite) {
       dispatch(addNoticeToFavorite({ path }));
       setInFavorite(true);
@@ -74,22 +94,31 @@ export const NoticesListItem = ({ ad, askedPage }) => {
     if (askedPage === 'favorite') {
       dispatch(deleteOnFavoritePage({ path }));
       setInFavorite(false);
+
       return;
     }
     if (askedPage !== 'favorite') {
       dispatch(removeNoticeFromFavorite({ path }));
       setInFavorite(false);
+
       return;
     }
   };
-
   return (
     <Box>
       <ImgWrap>
         <Img src={photoURL} alt={breed} />
         <ImgBadge category={category}>{categoryTitle}</ImgBadge>
         <AddInFavoriteBtn onClick={handleFavorite} type="button">
-          <Favorite fill={inFavorite ? '#F59256' : '#FFFFFF'} />
+          {!isUpdating && (
+            <Favorite fill={inFavorite ? '#F59256' : '#FFFFFF'} />
+          )}
+          <BounceLoader
+            size={44}
+            color={'#FF6101'}
+            loading={isUpdating}
+            speedMultiplier={2}
+          />
         </AddInFavoriteBtn>
       </ImgWrap>
 
