@@ -1,22 +1,30 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { ModalAddsPetFirst } from './ModaAddPetsFist';
 import { ModalAddsPetSecond } from './ModalAddPetsSecond';
-// import { useAddPetMutation } from '../../../redux/Pet/PetsApi'
-
+import petsOperations from 'redux/Pets/petsOperations';
 
 export const ModalAddsPet = props => {
-  const [addPet] = useAddPetMutation();
+  const dispatch = useDispatch();
+  // const [addPet] = useAddPetMutation();
   const [page, setPage] = useState(0);
   const [data, setData] = useState({
     name: '',
     dateOfBirth: '',
     breed: '',
-    petImage: '',
-    comments: '',
+    petImage: null,
+    comments: 'test test test',
   });
 
-  const handleRequest = formData => {
-    addPet(formData);
+  const handleRequest = (petObj, formData) => {
+    dispatch(petsOperations.addPet(petObj)).then(data =>
+      dispatch(
+        petsOperations.updatePetImage({
+          petId: data.payload.myNewPet._id,
+          formData,
+        })
+      )
+    );
   };
 
   const handleNextStep = newData => {
@@ -24,16 +32,12 @@ export const ModalAddsPet = props => {
     setPage(prev => prev + 1);
 
     if (page === 1) {
-      const { name, dateOfBirth, breed, petImage, comments } = newData;
-      console.log(newData);
+      const { name, dateOfBirth, breed, comments, petImage } = newData;
+      const petObj = { name, dateOfBirth, breed, comments };
       const formData = new FormData();
-      formData.append('name', name);
-      formData.append('dateOfBirth', dateOfBirth);
-      formData.append('breed', breed);
       formData.append('petImage', petImage);
-      formData.append('comments', comments);
-      console.log(formData);
-      handleRequest(formData);
+
+      handleRequest(petObj, formData);
       return;
     }
   };

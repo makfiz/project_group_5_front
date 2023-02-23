@@ -15,6 +15,7 @@ import { authReducer } from './auth/authSlice';
 import { noticesReducer } from './notices/noticesSlice';
 import { noticesSearckQueryReducer } from './notices/searchQuerySlice';
 import { formReducer } from './form/formSlice';
+
 // import  {petsApi}  from './Pet/PetsApi';
 
 const authPersistConfig = {
@@ -41,7 +42,6 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     noticesSearchQuery: persistedNoticesSearckQueryReducer,
     form: formReducer,
-    // [petsApi.reducerPath]: petsApi.reducer,
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
@@ -49,7 +49,6 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
-    // petsApi.middleware,
   ],
 });
 

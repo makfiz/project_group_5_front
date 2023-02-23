@@ -19,13 +19,13 @@ import {
   AddImg,
   AddPhoto,
   Coments,
-  FormWrapper
+  FormWrapper,
 } from './ModalAddPets.styled';
 
-export const ModalAddsPetSecond = (props) => {
+export const ModalAddsPetSecond = props => {
   const [img, setImg] = useState(null);
- 
-  const handleSubmit = (values) => {
+
+  const handleSubmit = values => {
     props.next(values, true);
     props.closeModal();
   };
@@ -33,60 +33,54 @@ export const ModalAddsPetSecond = (props) => {
     <Container>
       <BtnClose type="button" onClick={props.closeModal}>
         <CloseCross>
-        <svg>
-          <use href={icons + '#icon-blackCross'} />
-        </svg>
-        </CloseCross>  
+          <svg>
+            <use href={icons + '#icon-blackCross'} />
+          </svg>
+        </CloseCross>
       </BtnClose>
-    <Wrapper>
-      <Title >Add pet</Title>
+      <Wrapper>
+        <Title>Add pet</Title>
         <Formik initialValues={props.data} onSubmit={handleSubmit}>
           {({ setFieldValue }) => (
             <Form encType="multipart/form-data">
               <AddImgTitle>Add photo and some comments</AddImgTitle>
-     <FormWrapper>
-              <AddImgBtn type="button">
-                {!img ? (
-                  <AddCross>
-                  <svg>
-                    <use href={icons + '#icon-bigPlus'} />
-                  </svg>
-                  </AddCross>  
-                ) : (
-                  <AddImg src={img} alt="avatar" />
-                )}
-                <AddPhoto
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => {
-                    const fileUploaded = e.target.files[0];
-                    setFieldValue('petImage', e.target.files[0]);
-                    setImg(URL.createObjectURL(fileUploaded));
-                    
-                  }}
-                />
-                
+              <FormWrapper>
+                <AddImgBtn type="button">
+                  {!img ? (
+                    <AddCross>
+                      <svg>
+                        <use href={icons + '#icon-bigPlus'} />
+                      </svg>
+                    </AddCross>
+                  ) : (
+                    <AddImg src={img} alt="avatar" />
+                  )}
+                  <AddPhoto
+                    type="file"
+                    accept="image/*"
+                    onChange={e => {
+                      const fileUploaded = e.target.files[0];
+                      setFieldValue('petImage', e.target.files[0]);
+                      setImg(URL.createObjectURL(fileUploaded));
+                    }}
+                  />
                 </AddImgBtn>
-               </FormWrapper> 
+              </FormWrapper>
               <ComentsWrapper>
                 <PetLabel> Comments</PetLabel>
-                  <Coments name="comments" as="textarea" placeholder="Type comments" />
-                  <ErrorMessage name="comments" component="p" />            
+                <Coments
+                  name="comments"
+                  as="textarea"
+                  placeholder="Type comments"
+                />
+                <ErrorMessage name="comments" component="p" />
               </ComentsWrapper>
 
               <BtnWrapper>
                 <BtnWrapperNext>
-                <Button
-                  type="submit"
-                  style={BtnStyle}
-                  children="Done"
-                  />
-                </BtnWrapperNext> 
-                <Button
-                  style={BtnStyle}
-                  onClick={props.prev}
-                  children="Back"
-                />
+                  <Button type="submit" style={BtnStyle} children="Done" />
+                </BtnWrapperNext>
+                <Button style={BtnStyle} onClick={props.prev} children="Back" />
               </BtnWrapper>
             </Form>
           )}

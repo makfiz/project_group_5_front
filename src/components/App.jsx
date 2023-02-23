@@ -1,6 +1,6 @@
 import { useEffect, lazy } from 'react';
 import { Routes, Route, Navigate, useSearchParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import authOperations from '../redux/auth/operations';
 
 import { SharedLayout } from './SharedLayout/SharedLayout';
