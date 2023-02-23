@@ -13,7 +13,7 @@ import {
   OpenMenuIcon,
   HeaderDescNav,
 } from './Header.styled';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import openMenuSvg from '../../assets/menu-icons/open-menu.svg';
 import closeMenuSvg from '../../assets/menu-icons/close-menu.svg';
@@ -28,6 +28,19 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   //   const handleMenuClick = {};
   // const isLoggedIn = false;
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
+  }, [isMenuOpen]);
+  const handleCloseMenu = () => {
+    setIsMenuOpen(false);
+  };
+  const handleOpenMenu = () => {
+    setIsMenuOpen(true);
+  };
   const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
     <Container>
@@ -42,25 +55,15 @@ export const Header = () => {
                     <OpenMenuIcon
                       src={closeMenuSvg}
                       alt=""
-                      onClick={() => {
-                        setIsMenuOpen(false);
-                      }}
+                      onClick={handleCloseMenu}
                     />
                   </BurgerMenu>
                 </Appbar>
                 <MenuList>
                   <MenuAuthBtnWrap>
-                    <UserNav
-                      onClick={() => {
-                        setIsMenuOpen(false);
-                      }}
-                    />
+                    <UserNav onClick={handleCloseMenu} />
                   </MenuAuthBtnWrap>
-                  <Navigation
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                    }}
-                  />
+                  <Navigation onClick={handleCloseMenu} />
                 </MenuList>
               </>
             ) : (
@@ -71,25 +74,15 @@ export const Header = () => {
                     <OpenMenuIcon
                       src={closeMenuSvg}
                       alt=""
-                      onClick={() => {
-                        setIsMenuOpen(false);
-                      }}
+                      onClick={handleCloseMenu}
                     />
                   </BurgerMenu>
                 </Appbar>
                 <MenuList>
                   <MenuAuthBtnWrap>
-                    <AuthNav
-                      onClick={() => {
-                        setIsMenuOpen(false);
-                      }}
-                    />
+                    <AuthNav onClick={handleCloseMenu} />
                   </MenuAuthBtnWrap>
-                  <Navigation
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                    }}
-                  />
+                  <Navigation onClick={handleCloseMenu} />
                 </MenuList>
               </>
             )}
@@ -103,27 +96,17 @@ export const Header = () => {
                 <HeaderDescLeft>
                   <Logo />
                   <HeaderDescNav>
-                    <Navigation
-                      onClick={() => {
-                        setIsMenuOpen(false);
-                      }}
-                    />
+                    <Navigation onClick={handleCloseMenu} />
                   </HeaderDescNav>
                 </HeaderDescLeft>
                 <HeaderTabRight>
                   <TabAuthWrap>
-                    <UserNav
-                      onClick={() => {
-                        setIsMenuOpen(false);
-                      }}
-                    />
+                    <UserNav onClick={handleCloseMenu} />
                   </TabAuthWrap>
                   <OpenMenuIcon
                     src={openMenuSvg}
                     alt=""
-                    onClick={() => {
-                      setIsMenuOpen(true);
-                    }}
+                    onClick={handleOpenMenu}
                   />
                 </HeaderTabRight>
               </>
@@ -132,27 +115,17 @@ export const Header = () => {
                 <HeaderDescLeft>
                   <Logo />
                   <HeaderDescNav>
-                    <Navigation
-                      onClick={() => {
-                        setIsMenuOpen(false);
-                      }}
-                    />
+                    <Navigation onClick={handleCloseMenu} />
                   </HeaderDescNav>
                 </HeaderDescLeft>
                 <HeaderTabRight>
                   <TabAuthWrap>
-                    <AuthNav
-                      onClick={() => {
-                        setIsMenuOpen(false);
-                      }}
-                    />
+                    <AuthNav onClick={handleCloseMenu} />
                   </TabAuthWrap>
                   <OpenMenuIcon
                     src={openMenuSvg}
                     alt=""
-                    onClick={() => {
-                      setIsMenuOpen(true);
-                    }}
+                    onClick={handleOpenMenu}
                   />
                 </HeaderTabRight>
               </>

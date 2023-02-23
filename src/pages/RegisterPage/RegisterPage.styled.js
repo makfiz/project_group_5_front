@@ -9,7 +9,7 @@ import bgDescX from '../../assets/images/authBg/desctop.png';
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
