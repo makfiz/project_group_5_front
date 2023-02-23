@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { BarLoader } from 'react-spinners';
+import PropTypes from 'prop-types';
 import {
   selectTotalPages,
   selectIsLoadingNotices,
@@ -142,4 +143,8 @@ export const NoticesList = ({ askedPage }) => {
       )}
     </>
   );
+};
+
+NoticesList.propTypes = {
+  askedPage: PropTypes.string.isRequired,
 };
