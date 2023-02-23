@@ -71,6 +71,8 @@ export const AddPetBtn = styled.button`
 
   background-color: ${p => p.theme.colors.userAddPetBtnBg};
 
+  transition: background-color 250ms linear;
+
   cursor: pointer;
 
   &:hover,

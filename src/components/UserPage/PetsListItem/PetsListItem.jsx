@@ -7,6 +7,8 @@ import {
   InfoTitle,
   InfoText,
   CommentsTitle,
+  DeleteBtn,
+  DeleteIcon,
 } from './PetsListItem.styled';
 
 export const PetsListItem = ({
@@ -48,6 +50,9 @@ export const PetsListItem = ({
           Comments: <InfoText>{comments}</InfoText>
         </CommentsTitle>
       </InfoWrapper>
+      <DeleteBtn type="button">
+        <DeleteIcon />
+      </DeleteBtn>
     </PetCard>
   );
 };

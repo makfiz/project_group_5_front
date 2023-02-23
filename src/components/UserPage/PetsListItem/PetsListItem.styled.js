@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
+import { ReactComponent as Delete } from '../../../assets/icons/delete_pet.svg';
+
 export const PetCard = styled.li`
+  position: relative;
+
   padding: 20px;
 
   background-color: ${p => p.theme.colors.white};
@@ -30,9 +34,6 @@ export const InfoWrapper = styled.div`
 `;
 
 export const InfoTitle = styled.p`
-  /* display: flex;
-  align-items: center; */
-
   margin-bottom: 12px;
 
   font-family: 'Manrope';
@@ -56,4 +57,33 @@ export const CommentsTitle = styled.p`
   line-height: 1.57;
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.black};
+`;
+
+export const DeleteBtn = styled.button`
+  position: absolute;
+  top: 272px;
+  right: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 20px;
+  height: 20px;
+
+  border: none;
+  background-color: transparent;
+
+  cursor: pointer;
+`;
+
+export const DeleteIcon = styled(Delete)`
+  fill: ${p => p.theme.colors.titleColor};
+
+  transition: fill 250ms linear;
+
+  &:hover,
+  &:focus {
+    fill: ${p => p.theme.colors.userAddPetBtnBgHover};
+  }
 `;
