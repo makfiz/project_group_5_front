@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/project_group_5_front/static/css/main.a55c85d9.css",
-    "main.js": "/project_group_5_front/static/js/main.7b7db193.js",
+    "main.js": "/project_group_5_front/static/js/main.75be4c9b.js",
     "static/js/820.3908c882.chunk.js": "/project_group_5_front/static/js/820.3908c882.chunk.js",
-    "static/js/411.5697caf6.chunk.js": "/project_group_5_front/static/js/411.5697caf6.chunk.js",
+    "static/js/411.7baab7a0.chunk.js": "/project_group_5_front/static/js/411.7baab7a0.chunk.js",
     "static/js/47.92cf2622.chunk.js": "/project_group_5_front/static/js/47.92cf2622.chunk.js",
     "static/js/952.3015ecde.chunk.js": "/project_group_5_front/static/js/952.3015ecde.chunk.js",
     "static/js/902.67b1923d.chunk.js": "/project_group_5_front/static/js/902.67b1923d.chunk.js",
@@ -41,9 +41,9 @@
     "static/media/open-menu.svg": "/project_group_5_front/static/media/open-menu.d5b0e5383e0ee6ce15fd5ea05cbb6107.svg",
     "static/media/plusIcon.svg": "/project_group_5_front/static/media/plusIcon.40b2205dc2516cb92de4e8f4f8627464.svg",
     "main.a55c85d9.css.map": "/project_group_5_front/static/css/main.a55c85d9.css.map",
-    "main.7b7db193.js.map": "/project_group_5_front/static/js/main.7b7db193.js.map",
+    "main.75be4c9b.js.map": "/project_group_5_front/static/js/main.75be4c9b.js.map",
     "820.3908c882.chunk.js.map": "/project_group_5_front/static/js/820.3908c882.chunk.js.map",
-    "411.5697caf6.chunk.js.map": "/project_group_5_front/static/js/411.5697caf6.chunk.js.map",
+    "411.7baab7a0.chunk.js.map": "/project_group_5_front/static/js/411.7baab7a0.chunk.js.map",
     "47.92cf2622.chunk.js.map": "/project_group_5_front/static/js/47.92cf2622.chunk.js.map",
     "952.3015ecde.chunk.js.map": "/project_group_5_front/static/js/952.3015ecde.chunk.js.map",
     "902.67b1923d.chunk.js.map": "/project_group_5_front/static/js/902.67b1923d.chunk.js.map",
@@ -56,6 +56,6 @@
   },
   "entrypoints": [
     "static/css/main.a55c85d9.css",
-    "static/js/main.7b7db193.js"
+    "static/js/main.75be4c9b.js"
   ]
 }
