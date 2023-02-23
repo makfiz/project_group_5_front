@@ -10,11 +10,11 @@ export const fetchRoute = (commonParams, routeParams) => {
   const { path, controller } = routeParams;
 
   const currentSearchParams = search !== '' ? { search, page: 1 } : { page: 1 };
-  const nextSearchParams = search !== '' ? { search, page } : { page };
+  // const nextSearchParams = search !== '' ? { search, page } : { page };
   const lastSearchParams =
     search !== '' ? { search, page: totalPages } : { page: totalPages };
 
-  // if (!page) return setSearchParams(currentSearchParams);
+  if (!page) return setSearchParams(currentSearchParams);
   dispatch(
     fetchNoticesByCategory({
       path,
