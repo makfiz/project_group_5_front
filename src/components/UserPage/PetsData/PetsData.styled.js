@@ -4,7 +4,7 @@ export const Container = styled.div`
   margin-right: auto;
   margin-left: auto;
 
-  padding: 47px 20px 32px 20px;
+  padding: 40px 20px 25px 20px;
 
   @media (min-width: ${p => p.theme.screenSizes.mobile}) {
     width: ${p => p.theme.screenSizes.mobile};
