@@ -36,22 +36,6 @@ export const ListItem = styled.li`
   }
 `;
 
-export const LoaderWrap = styled.div`
-  padding-top: 10px;
-  width: 100%;
-
-  @media screen and (min-width: ${p => p.theme.screenSizes.mobile}) {
-    width: 280px;
-  }
-
-  @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
-    width: 728px;
-  }
-  @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
-    width: 1240px;
-  }
-`;
-
 export const InformationText = styled.p`
   padding: 10px 20px;
   text-align: center;
@@ -66,6 +50,31 @@ export const InformationText = styled.p`
   }
 
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
+    width: 728px;
+  }
+  @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
+    width: 1240px;
+  }
+`;
+
+export const LoaderContainer = styled.div`
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+`;
+
+export const LoaderWrap = styled.div`
+  padding-top: 13px;
+  width: 100%;
+
+  @media screen and (min-width: ${p => p.theme.screenSizes.mobile}) {
+    width: 280px;
+  }
+
+  @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
+    padding-top: 28px;
     width: 728px;
   }
   @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
