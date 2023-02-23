@@ -1,12 +1,5 @@
 import styled from 'styled-components';
-
-
-const size = {
-    mobile: '320px',
-    tablet: '768px',
-    desktop: '1280px',
-  };
-  
+import { theme } from '../../../utils/theme';
 
 export const SearchForm = styled.form`
   display: flex;
@@ -15,11 +8,11 @@ export const SearchForm = styled.form`
 
   margin-bottom: 40px;
 
-@media screen and (min-width: ${size.tablet}) {
-  margin-bottom: 60px;
-}
-
+  @media screen and (min-width: ${theme.screenSizes.tablet}) {
+    margin-bottom: 60px;
+  }
 `;
+
 export const InputLabel = styled.label`
   position: relative;
   box-sizing: border-box;

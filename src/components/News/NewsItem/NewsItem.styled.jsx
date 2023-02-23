@@ -1,18 +1,8 @@
 import styled from 'styled-components';
-
-const size = {
-  mobile: '320px',
-  tablet: '768px',
-  desktop: '1280px',
-};
+import { theme } from '../../../utils/theme';
 
 export const Article = styled.article`
   min-width: 280px;
-  margin-bottom: 40px;
-
-  @media (min-width: ${size.tablet}) {
-    margin-bottom: 60px;
-  }
 `;
 
 export const Divider = styled.div`
@@ -23,11 +13,11 @@ export const Divider = styled.div`
   border-radius: 40px;
   margin-bottom: 4px;
 
-  @media (min-width: ${size.tablet}) {
+  @media (min-width: ${theme.screenSizes.tablet}) {
     width: 280px;
   }
 
-  @media (min-width: ${size.desktop}) {
+  @media (min-width: ${theme.screenSizes.desktop}) {
     width: 340px;
   }
 `;
@@ -46,38 +36,22 @@ export const ArticleTitle = styled.h2`
   margin-bottom: 16px;
 `;
 
-export const TextPreview = styled.div`
-  /* overflow: hidden;
-  text-overflow: ellipsis;
-  max-height: 154px; */
-  /* overflow: hidden;
-  white-space: pre-wrap;
-    text-overflow: ellipsis;
-  max-height: 154px; */
-
-`
-
 export const ArticleText = styled.p`
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
-  overflow: hidden;
-  white-space: wrap;
-  text-overflow: ellipsis;
-  max-height: 154px;
-
+  max-height: 176px;
 
   color: #111321;
 
   margin-bottom: 20px;
 
-  @media (min-width: ${size.tablet}) {
+  @media (min-width: ${theme.screenSizes.tablet}) {
     margin-bottom: 40px;
     max-height: 132px;
-
   }
 
-  @media (min-width: ${size.desktop}) {
+  @media (min-width: ${theme.screenSizes.desktop}) {
     max-height: 110px;
   }
 `;
@@ -108,26 +82,3 @@ export const ReadMoreLink = styled.a`
   }
 `;
 
-// export const SectionTitle = styled.h2`
-//   margin-top: 42px;
-//   margin-bottom: 28px;
-//   text-align: center;
-
-//   font-weight: 700;
-//   font-size: 24px;
-//   line-height: 33px;
-
-//   @media (min-width: ${size.tablet}) {
-//     font-size: 48px;
-//     line-height: 66px;
-
-//     margin-top: 88px;
-//     margin-bottom: 40px;
-//   }
-
-//   @media (min-width: ${size.desktop}) {
-//     margin-top: 60px;
-//   }
-
-//   color: #111111;
-// `;
