@@ -99,7 +99,7 @@ const authSlice = createSlice({
     [authOperations.userUpdate.fulfilled](state, action) {
       state.isRefreshing = false;
       state.error = null;
-      state.user.id = action.payload.id;
+      state.user.id = action.payload._id;
       state.user.email = action.payload.email;
       state.user.name = action.payload.name;
       state.user.avatarURL = action.payload.avatarURL;
