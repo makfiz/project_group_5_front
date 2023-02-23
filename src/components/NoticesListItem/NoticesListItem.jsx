@@ -1,11 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { BounceLoader } from 'react-spinners';
 import Notiflix from 'notiflix';
 import { calculateAndConvertAge } from 'utils/calculateAndConvertAge';
 import { renameNoticesCategory } from 'utils/renameNoticesCategory';
 import { selectUser, selectIsLoggedIn } from 'redux/auth/selectors';
-import { useEffect, useState } from 'react';
-import { BounceLoader } from 'react-spinners';
 // import { formatDistanceToNowStrict } from 'date-fns';
 import { selectIsLoadingNotices } from 'redux/notices/selectors';
 
