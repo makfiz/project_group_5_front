@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import Notiflix from 'notiflix';
+import { calculateAndConvertAge } from 'utils/calculateAndConvertAge';
+import { renameNoticesCategory } from 'utils/renameNoticesCategory';
+import { selectUser, selectIsLoggedIn } from 'redux/auth/selectors';
 import { useEffect, useState } from 'react';
 import { BounceLoader } from 'react-spinners';
 // import { formatDistanceToNowStrict } from 'date-fns';
-import { calculateAndConvertAge } from 'utils/calculateAndConvertAge';
-import { renameNoticesCategory } from 'utils/renameNoticesCategory';
-import { selectUser } from 'redux/auth/selectors';
 import { selectIsLoadingNotices } from 'redux/notices/selectors';
 
 import {
@@ -66,9 +68,20 @@ export const NoticesListItem = ({ ad, askedPage }) => {
   const categoryTitle = renameNoticesCategory(category);
   const sellPage = category === 'sell' && askedPage === 'sell';
   const own = owner === userId;
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const handleFavorite = e => {
     const path = `${endPoints.noticesBase}${_id}${endPoints.noticesFavorite}`;
+
+    if (!isLoggedIn) {
+      return Notiflix.Notify.failure(
+        'Only authorized users can add to favorite',
+        {
+          timeout: 2500,
+        }
+      );
+    }
+
     if (!loadingNotices) {
       setIsUpdating(true);
     }
