@@ -36,6 +36,7 @@ const initialValues = {
 };
 
 export const RegistrationForm = () => {
+  const dispatch = useDispatch();
   const [onNext, setOnNext] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
