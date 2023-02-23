@@ -15,7 +15,7 @@ import { authReducer } from './auth/authSlice';
 import { noticesReducer } from './notices/noticesSlice';
 import { noticesSearckQueryReducer } from './notices/searchQuerySlice';
 import { formReducer } from './form/formSlice';
-import { petsApi } from './Pet/petsApi';
+import  petsApi  from './Pet/petsApi';
 
 const authPersistConfig = {
   key: 'auth',
