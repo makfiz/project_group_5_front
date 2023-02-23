@@ -5,7 +5,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import authOperations from './operations.js';
 
 const initialState = {
-  user: { id: null, email: null, name: null, avatarURL: null, birthday: null, phone: null, city: null, },
+  user: { id: null, email: null, name: null, avatarURL: null, birthday: null, phone: null, city: null, petList: null },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -30,6 +30,12 @@ const authSlice = createSlice({
       state.error = null;
       state.user.id = action.payload.id;
       state.user.email = action.payload.email;
+      state.user.name = null;
+      state.user.avatarURL = null;
+      state.user.birthday = null;
+      state.user.phone = null;
+      state.user.city = null;
+      state.user.petList = null;
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
@@ -50,6 +56,7 @@ const authSlice = createSlice({
       state.user.birthday = null;
       state.user.phone = null;
       state.user.city = null;
+      state.user.petList = null;
       state.token = null;
       state.isLoggedIn = false;
     },
@@ -63,6 +70,12 @@ const authSlice = createSlice({
       state.error = null;
       state.user.id = action.payload.id;
       state.user.email = action.payload.email;
+      state.user.name = null;
+      state.user.avatarURL = null;
+      state.user.birthday = null;
+      state.user.phone = null;
+      state.user.city = null;
+      state.user.petList = null;
       state.token = null;
       state.isLoggedIn = false;
     },
@@ -79,13 +92,19 @@ const authSlice = createSlice({
       state.error = null;
       state.user.id = action.payload.id;
       state.user.email = action.payload.email;
+      state.user.name = null;
+      state.user.avatarURL = null;
+      state.user.birthday = null;
+      state.user.phone = null;
+      state.user.city = null;
+      state.user.petList = null;
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
     [authOperations.refresh.fulfilled](state, action) {
-      const { id, email } = action.payload.data.user;
-      state.user.id = action.payload.id;
-      state.user.email = action.payload.email;
+      const { id, email, name, avatarURL, birthday, phone, city } = action.payload.data.user;
+      state.user = { id, email, name, avatarURL, birthday, phone, city };
+      state.user.petList = action.payload.data.petList;
       state.isLoggedIn = true;
       state.isRefreshing = false;
     },
