@@ -46,4 +46,8 @@ export const ModalText = styled.li`
   font-weight: ${props => props.theme.fontWeight.medium};
   font-size: ${props => props.theme.fontSizes.xs};
   line-height: 16px;
+
+  &.highlight {
+    color: ${props => props.theme.colors.userAddPetBtnBg};
+  }
 `;

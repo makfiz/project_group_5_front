@@ -9,7 +9,7 @@ function Modal({workDays, onClick}) {
         <ModalContent>
           {workDays ?
             (<WorkHours workDays={workDays}/>) :
-            (<p>There are no working hours</p>)}
+            (<p>Don`t have working hours</p>)}
         </ModalContent>
       </BoxModal>
     </div>
