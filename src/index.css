@@ -9,6 +9,7 @@ body {
     'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
     'Droid Sans', 'Helvetica Neue', sans-serif;
   background: #fdf7f2;
+  
 }
 
 code {
@@ -47,4 +48,7 @@ img {
 
 button {
   padding: 0;
+}
+.no-scroll {
+  overflow: hidden;
 }

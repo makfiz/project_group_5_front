@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import {
   selectTotalPages,
   selectCurrentPage,
-  selectIsLoadingNotices,
   selectIsNoticesError,
 } from 'redux/notices/selectors';
 import { selectIsRefreshing } from 'redux/auth/selectors';
@@ -28,11 +27,9 @@ export const PaginationNotices = () => {
   };
 
   const isRefreshing = useSelector(selectIsRefreshing);
-  const isLoading = useSelector(selectIsLoadingNotices);
   const error = useSelector(selectIsNoticesError);
 
-  const showPagination =
-    totalPages > 1 && !isLoading && !error && !isRefreshing;
+  const showPagination = totalPages > 1 && !error && !isRefreshing;
   return (
     <>
       {showPagination && (

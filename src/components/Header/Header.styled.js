@@ -4,6 +4,7 @@ export const Container = styled.div`
   width: 320px;
   margin-right: auto;
   margin-left: auto;
+  background-color: #fdf7f2;
   padding-top: 16px;
 
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
@@ -16,9 +17,16 @@ export const Container = styled.div`
 
 export const BurgerMenu = styled.div`
   display: flex;
+
+  z-index: 999;
+  background-color: #fdf7f2;
   flex-wrap: wrap;
 `;
 export const MenuList = styled.div`
+  height: 100vh;
+
+  z-index: 999;
+  background-color: #fdf7f2;
   padding-left: 15px;
   padding-right: 15px;
   margin-right: auto;
@@ -37,6 +45,8 @@ export const Appbar = styled.div`
 `;
 export const MenuActive = styled.div`
   display: flex;
+  z-index: 999;
+  background-color: #fdf7f2;
   flex-direction: column;
   margin-right: auto;
   margin-left: auto;
@@ -58,8 +68,8 @@ export const MenuAuthBtnWrap = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 60px;
-  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
-    display: none;
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    /* display: none; */
   }
 `;
 
