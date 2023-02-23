@@ -50,7 +50,7 @@ const OurFriendsItem = ({ friend }) => {
     <FriendTitle>
       <a href={url} target="_blank" rel="noreferrer">{title}</a>
     </FriendTitle>
-    <BoxFriendItem onClick={toggleModal}>
+    <BoxFriendItem >
       <BoxFriendLogo>
         {imageUrl ?
           <img src={imageUrl}
