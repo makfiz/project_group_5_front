@@ -7,6 +7,9 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import NewsPage from '../pages/NewsPage';
 import { NoticesList } from './NoticesList/NoticesList';
 import { PrivateRoute } from './PrivateRoute';
+import { Loader } from 'components/Loader/Loader';
+import { selectIsRefreshing } from 'redux/auth/selectors';
+import { RestrictedRoute } from './RestrictedRoute';
 
 const FriendsPage = lazy(() => import('../pages/FriendsPage'));
 const NoticesPage = lazy(() => import('../pages/NoticesPage'));
@@ -20,7 +23,7 @@ const RedirectRegistrationPage = lazy(() =>
 );
 
 export const App = () => {
-  // const isRefreshing = useSelector()
+  const isRefreshing = useSelector(selectIsRefreshing);
   // const dispatch = useDispatch();
 
   //     useEffect(() => {
@@ -35,15 +38,17 @@ export const App = () => {
   const email = searchParams.get('email');
   const id = searchParams.get('id');
   console.log(searchParams);
-  
 
   useEffect(() => {
     if (token) {
       dispatch(authOperations.googleApi({ token, email, id }));
     }
+    dispatch(authOperations.refresh());
   }, [token, email, id, dispatch]);
 
-  return (
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <div>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
@@ -71,12 +76,27 @@ export const App = () => {
             <Route path="own" element={<NoticesList askedPage="own" />} />
           </Route>
           <Route path="friends" element={<FriendsPage />} />
-          <Route path="registration" element={<RegisterPage />} />
+          <Route
+            path="registration"
+            element={
+              <RestrictedRoute redirectTo="/user" component={RegisterPage} />
+            }
+          />
           <Route
             path="registration-redirect"
-            element={<RedirectRegistrationPage />}
+            element={
+              <RestrictedRoute
+                redirectTo="/user"
+                component={RedirectRegistrationPage}
+              />
+            }
           />
-          <Route path="login" element={<LoginPage />} />
+          <Route
+            path="login"
+            element={
+              <RestrictedRoute redirectTo="/user" component={LoginPage} />
+            }
+          />
           <Route
             path="user"
             element={<PrivateRoute redirectTo="/login" component={UserPage} />}
