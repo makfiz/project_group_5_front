@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ModalAddsPetFirst } from './ModaAddPetsFist';
 import { ModalAddsPetSecond } from './ModalAddPetsSecond';
-import { useAddPetMutation } from '../../../redux/Pet/petsApi'
+// import { useAddPetMutation } from '../../../redux/Pet/PetsApi'
 
 
 export const ModalAddsPet = (props) => {
