@@ -1,19 +1,22 @@
-import { NewsItem } from "../NewsItem/NewsItem";
-import { ArticleList } from "./NewsList.styled";
-import { NewsForm } from "../NewsForm/NewsForm";
+import { NewsItem } from '../NewsItem/NewsItem';
+import { ArticleList, ArticleItem } from './NewsList.styled';
+import { NewsForm } from '../NewsForm/NewsForm';
 
+export function NewsList({ news, onSubmit, onClear }) {
+  if (!news) {
+    return null;
+  }
 
-export function NewsList({news, onSubmit, onClear}) {
-  
-  if (!news) {return null};
-
-  return (<>
-      <NewsForm onSubmit={onSubmit} onClear={onClear}/>
+  return (
+    <>
+      <NewsForm onSubmit={onSubmit} onClear={onClear} />
       <ArticleList>
-          {news.map(article => <li key={article._id}> 
-            <NewsItem article={article}/> 
-          </li>)}
+        {news.map(article => (
+          <ArticleItem key={article._id}>
+            <NewsItem article={article} />
+          </ArticleItem>
+        ))}
       </ArticleList>
     </>
-  )
+  );
 }

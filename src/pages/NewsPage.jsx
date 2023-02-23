@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { Title } from "components/Title/Title"; 
 import { NewsList } from "components/News/NewsList/NewsList";
-import { Container } from "../components/Header/Header.styled"
+import { Container } from "../components/Container/Container"
 import { Loader } from "components/Loader/Loader";
 
 
