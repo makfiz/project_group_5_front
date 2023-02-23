@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Field, ErrorMessage, Form, Formik } from 'formik';
+import { ErrorMessage, Form, Formik } from 'formik';
 import icons from '../../../assets/icons/icons.svg';
 import { Button } from 'components/Button/Button';
 import {
