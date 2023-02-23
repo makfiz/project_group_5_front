@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { deleteOwnNotice } from 'redux/notices/operations';
 import { endPoints } from 'constants/EndPoints';
+import { openModal } from '../../redux/form/formSlice';
 
 import {
   CardButtonWrap,
@@ -19,9 +20,13 @@ export const NoticesCardButtons = ({ own, noticeId }) => {
     dispatch(deleteOwnNotice({ path }));
   };
 
+  const showMore = () => {
+    dispatch(openModal());
+  };
+
   return (
     <CardButtonWrap own={own}>
-      <LearnMoreLink>Learn more</LearnMoreLink>
+      <LearnMoreLink onClick={showMore}>Learn more</LearnMoreLink>
       {own && (
         <DeleteButton onClick={deleteHandler} type="button">
           <DeleteButtonText>Delete</DeleteButtonText>

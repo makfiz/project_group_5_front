@@ -10,7 +10,7 @@ export const Backdrop = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${({ color = 'rgba(17, 17, 17, 0.6)' }) => color};
-  backdrop-filter: ${({ filter }) => (filter ? 'blur(0)' : 'blur(10px)')};
+  backdrop-filter: ${({ filter }) => (filter ? 'blur(10px)' : 'blur(0)')};
 `;
 
 export const StyledModal = styled.div`
