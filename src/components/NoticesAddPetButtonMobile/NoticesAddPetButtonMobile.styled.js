@@ -13,6 +13,11 @@ export const AddPetMobileButton = styled.div`
   border-radius: ${p => p.theme.radii.round};
   border: 0;
   background-color: ${p => p.theme.colors.hoverGoHome};
+  transition: background-color 300ms ease-in-out;
+
+  :hover {
+    background-color: ${p => p.theme.colors.deleteBtnColor};
+  }
 
   @media screen and (min-width: 400px) {
     transform: translateX(-20%);
