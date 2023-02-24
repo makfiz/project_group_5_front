@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/project_group_5_front/static/css/main.2c9dd069.css",
-    "main.js": "/project_group_5_front/static/js/main.5fe3c381.js",
+    "main.js": "/project_group_5_front/static/js/main.dbbb16e4.js",
     "static/js/820.b973a32f.chunk.js": "/project_group_5_front/static/js/820.b973a32f.chunk.js",
-    "static/js/411.b8c555fa.chunk.js": "/project_group_5_front/static/js/411.b8c555fa.chunk.js",
+    "static/js/411.eca0e562.chunk.js": "/project_group_5_front/static/js/411.eca0e562.chunk.js",
     "static/js/781.889dda42.chunk.js": "/project_group_5_front/static/js/781.889dda42.chunk.js",
     "static/js/743.519d86c5.chunk.js": "/project_group_5_front/static/js/743.519d86c5.chunk.js",
     "static/js/783.50b23652.chunk.js": "/project_group_5_front/static/js/783.50b23652.chunk.js",
@@ -48,9 +48,9 @@
     "static/media/open-menu.svg": "/project_group_5_front/static/media/open-menu.d5b0e5383e0ee6ce15fd5ea05cbb6107.svg",
     "static/media/plusIcon.svg": "/project_group_5_front/static/media/plusIcon.40b2205dc2516cb92de4e8f4f8627464.svg",
     "main.2c9dd069.css.map": "/project_group_5_front/static/css/main.2c9dd069.css.map",
-    "main.5fe3c381.js.map": "/project_group_5_front/static/js/main.5fe3c381.js.map",
+    "main.dbbb16e4.js.map": "/project_group_5_front/static/js/main.dbbb16e4.js.map",
     "820.b973a32f.chunk.js.map": "/project_group_5_front/static/js/820.b973a32f.chunk.js.map",
-    "411.b8c555fa.chunk.js.map": "/project_group_5_front/static/js/411.b8c555fa.chunk.js.map",
+    "411.eca0e562.chunk.js.map": "/project_group_5_front/static/js/411.eca0e562.chunk.js.map",
     "781.889dda42.chunk.js.map": "/project_group_5_front/static/js/781.889dda42.chunk.js.map",
     "743.519d86c5.chunk.js.map": "/project_group_5_front/static/js/743.519d86c5.chunk.js.map",
     "783.50b23652.chunk.js.map": "/project_group_5_front/static/js/783.50b23652.chunk.js.map",
@@ -64,6 +64,6 @@
   },
   "entrypoints": [
     "static/css/main.2c9dd069.css",
-    "static/js/main.5fe3c381.js"
+    "static/js/main.dbbb16e4.js"
   ]
 }
