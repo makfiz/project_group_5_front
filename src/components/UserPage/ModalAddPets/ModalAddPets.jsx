@@ -13,7 +13,7 @@ export const ModalAddsPet = props => {
     dateOfBirth: '',
     breed: '',
     petImage: null,
-    comments: 'test test test',
+    comments: '',
   });
 
   const handleRequest = (petObj, formData) => {
