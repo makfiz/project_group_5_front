@@ -1,7 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import Modal from 'components/Modal/Modal';
+import { Button } from 'components/Button/Button';
+
 import { closeModal } from '../../redux/form/formSlice';
+import { cleanNotice } from '../../redux/notices/operations';
 
 import {
   Wraper,
@@ -20,16 +23,21 @@ import {
   Layout,
   ButtonWraper,
   HeartIcon,
+  LeftPartWraper,
+  RightPartWraper,
+  List,
+  ListItem,
+  ListItemTitle,
 } from './LernMoreModal.styled';
-import { Button } from 'components/Button/Button';
 
 export function LernMoreModal() {
   const dispatch = useDispatch();
 
-  const items = useSelector(state => state.notices.ads);
+  const itemNotice = useSelector(state => state.notices.notice);
   const openModal = useSelector(state => state.form.isModalOpen);
 
   const onHandleClick = () => {
+    dispatch(cleanNotice());
     dispatch(closeModal());
   };
 
@@ -37,6 +45,13 @@ export function LernMoreModal() {
     console.log('click');
   };
 
+  if (itemNotice.length === 0) {
+    return;
+  }
+
+  const { title, comments, category, name, birth, breed, location, sex } =
+    itemNotice.notice;
+  console.log(itemNotice);
   return (
     <>
       {openModal && (
@@ -50,20 +65,41 @@ export function LernMoreModal() {
               <ContentWraper>
                 <ImageWraper>
                   <FavoriteWraper>
-                    <FavotiteType>text</FavotiteType>
+                    <FavotiteType>{category}</FavotiteType>
                   </FavoriteWraper>
                 </ImageWraper>
 
                 <Layout>
-                  <Title>text</Title>
-                  <MoreInfoWraper></MoreInfoWraper>
+                  <Title>{title}</Title>
+                  <MoreInfoWraper>
+                    <LeftPartWraper>
+                      <List>
+                        <ListItemTitle>Name:</ListItemTitle>
+                        <ListItemTitle>Birthday:</ListItemTitle>
+                        <ListItemTitle>Breed:</ListItemTitle>
+                        <ListItemTitle>Lovation:</ListItemTitle>
+                        <ListItemTitle>The sex:</ListItemTitle>
+                        <ListItemTitle>Email:</ListItemTitle>
+                        <ListItemTitle>Phone:</ListItemTitle>
+                      </List>
+                    </LeftPartWraper>
+                    <RightPartWraper>
+                      <List>
+                        <ListItem>{name}</ListItem>
+                        <ListItem>{birth}</ListItem>
+                        <ListItem>{breed}</ListItem>
+                        <ListItem>{location}</ListItem>
+                        <ListItem>{sex}</ListItem>
+                        <ListItem>mail</ListItem>
+                        <ListItem>phone</ListItem>
+                      </List>
+                    </RightPartWraper>
+                  </MoreInfoWraper>
                 </Layout>
               </ContentWraper>
 
               <CommentsText>
-                <CommentsTitle>Comments:</CommentsTitle> Lorem ipsum dolor sit
-                amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem
-                ipsum dolor sit amet, consectetur Lorem
+                <CommentsTitle>Comments:</CommentsTitle> {comments}
               </CommentsText>
 
               <ButtonWraper>

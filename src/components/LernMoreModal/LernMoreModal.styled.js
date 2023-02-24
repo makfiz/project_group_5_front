@@ -97,6 +97,10 @@ export const Title = styled.h1`
   font-size: ${p => p.theme.fontSizes.l};
 
   color: ${p => p.theme.colors.black};
+
+  @media screen and(min-width: 768px) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const CommentsTitle = styled.p`
@@ -162,7 +166,11 @@ export const StyledButton = styled.button`
   }
 `;
 
-export const MoreInfoWraper = styled.div``;
+export const MoreInfoWraper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 28px;
+`;
 
 export const ContentWraper = styled.div`
   @media screen and (min-width: 768px) {
@@ -182,4 +190,26 @@ export const ButtonWraper = styled.div`
 export const HeartIcon = styled(AiTwotoneHeart)`
   color: ${p => p.theme.colors.userAddPetBtnBg};
   margin-left: 10px;
+`;
+
+export const LeftPartWraper = styled.div`
+  margin-right: 50px;
+`;
+export const RightPartWraper = styled.div``;
+
+export const List = styled.ul``;
+
+export const ListItemTitle = styled.li`
+  font-weight: 600;
+  font-size: ${p => p.theme.fontSizes.s};
+  :not(:last-child) {
+    margin-bottom: 8px;
+  }
+`;
+
+export const ListItem = styled.li`
+  font-size: ${p => p.theme.fontSizes.s};
+  :not(:last-child) {
+    margin-bottom: 8px;
+  }
 `;

@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { endPoints } from 'constants/EndPoints';
 // import toast from 'react-hot-toast';
-const url = `https://petssuport4815162342api.onrender.com/`;
+const url = `https://petssuport4815162342api.onrender.com/api/`;
 
 export const fetchNoticesByCategory = createAsyncThunk(
   'notices/fetchCategory',
@@ -101,9 +101,19 @@ export const fetchNoticeById = createAsyncThunk(
   'noticec/fetchById',
   async (noticeId, thunkAPI) => {
     try {
-      const response = await axios.get(`${url}id/${noticeId}`);
-      console.log(response);
+      const response = await axios.get(`${url}notices/id/${noticeId}`);
+
       return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const cleanNotice = createAsyncThunk(
+  'noticec/cleanNotice',
+  async (_, thunkAPI) => {
+    try {
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

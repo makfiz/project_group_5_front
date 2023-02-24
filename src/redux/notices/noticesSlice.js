@@ -60,6 +60,8 @@ const noticesSlice = createSlice({
         operations.fetchNoticeById.fulfilled,
         reducers.fetchNoticeReducer
       )
+      .addCase(operations.cleanNotice.fulfilled, reducers.cleanNoticeReducer)
+
       .addMatcher(isAnyOf(...getActions('pending')), reducers.pendingReducer)
       .addMatcher(isAnyOf(...getActions('rejected')), reducers.rejectedReducer),
 });

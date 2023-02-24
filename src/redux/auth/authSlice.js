@@ -19,6 +19,7 @@ const initialState = {
   isLoggedIn: false,
   isRefreshing: false,
   error: null,
+  currentUser: [],
 };
 
 console.log('reduxAuth initialState =', initialState);
