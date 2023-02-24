@@ -18,8 +18,9 @@ import {
   AddCross,
   AddImg,
   AddPhoto,
-  Coments,
-  FormWrapper,
+  Wrap,
+  TextArea,
+  BtnStyleEmpt,
 } from './ModalAddPets.styled';
 
 export const ModalAddsPetSecond = props => {
@@ -44,7 +45,7 @@ export const ModalAddsPetSecond = props => {
           {({ setFieldValue }) => (
             <Form encType="multipart/form-data">
               <AddImgTitle>Add photo and some comments</AddImgTitle>
-              <FormWrapper>
+              <Wrap>
                 <AddImgBtn type="button">
                   {!img ? (
                     <AddCross>
@@ -65,12 +66,12 @@ export const ModalAddsPetSecond = props => {
                     }}
                   />
                 </AddImgBtn>
-              </FormWrapper>
+              </Wrap>
               <ComentsWrapper>
-                <PetLabel> Comments</PetLabel>
-                <Coments
+                <PetLabel htmlFor="comments"> Comments</PetLabel>
+                <TextArea
+                  component="textarea"
                   name="comments"
-                  as="textarea"
                   placeholder="Type comments"
                 />
                 <ErrorMessage name="comments" component="p" />
@@ -80,7 +81,11 @@ export const ModalAddsPetSecond = props => {
                 <BtnWrapperNext>
                   <Button type="submit" style={BtnStyle} children="Done" />
                 </BtnWrapperNext>
-                <Button style={BtnStyle} onClick={props.prev} children="Back" />
+                <Button
+                  style={BtnStyleEmpt}
+                  onClick={props.prev}
+                  children="Back"
+                />
               </BtnWrapper>
             </Form>
           )}
