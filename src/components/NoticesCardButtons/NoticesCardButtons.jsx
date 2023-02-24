@@ -1,7 +1,7 @@
-import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteOwnNotice } from 'redux/notices/operations';
-import { endPoints } from 'constants/EndPoints';
+import { useDispatch } from 'react-redux';
+import { fetchNoticeById } from 'redux/notices/operations';
+import { openModal } from '../../redux/form/formSlice';
 
 import {
   CardButtonWrap,
@@ -12,21 +12,21 @@ import {
 } from './NoticesCardButtons.styled';
 import { ReactComponent as DeleteIcon } from '../../assets/icons/deleteIcon.svg';
 
-export const NoticesCardButtons = ({ own, noticeId }) => {
+export const NoticesCardButtons = ({ own, noticeId, setDeleteModalIsOpen }) => {
   const dispatch = useDispatch();
 
-  const deleteHandler = () => {
-    const path = `${endPoints.pathDeleteOwn}${noticeId}`;
-    dispatch(deleteOwnNotice({ path }));
+  const showMore = () => {
+    dispatch(openModal());
+    dispatch(fetchNoticeById(noticeId));
   };
 
   return (
     <CardButtonWrap own={own}>
-      <NoticesButton type="button">
+      <NoticesButton onClick={showMore} type="button">
         <NoticeButtonText>Learn more</NoticeButtonText>
       </NoticesButton>
       {own && (
-        <DeleteButton onClick={deleteHandler} type="button">
+        <DeleteButton onClick={() => setDeleteModalIsOpen(true)} type="button">
           <DeleteButtonText>Delete</DeleteButtonText>
           <DeleteIcon />
         </DeleteButton>
@@ -37,5 +37,5 @@ export const NoticesCardButtons = ({ own, noticeId }) => {
 
 NoticesCardButtons.propTypes = {
   own: PropTypes.bool.isRequired,
-  noticeId: PropTypes.string.isRequired,
+  setDeleteModalIsOpen: PropTypes.func.isRequired,
 };

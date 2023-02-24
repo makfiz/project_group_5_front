@@ -6,6 +6,7 @@ const formSlice = createSlice({
     isSending: false,
     showRegisterForm: true,
     showRegisterMethod: true,
+    isModalOpen: false,
   },
   reducers: {
     sendingEmail(state, _) {
@@ -24,6 +25,12 @@ const formSlice = createSlice({
     closeRegisterMethod(state, _) {
       state.showRegisterForm = false;
     },
+    closeModal(state, _) {
+      state.isModalOpen = false;
+    },
+    openModal(state, _) {
+      state.isModalOpen = true;
+    },
   },
 });
 
@@ -33,5 +40,7 @@ export const {
   closeForm,
   showForm,
   closeRegisterMethod,
+  closeModal,
+  openModal,
 } = formSlice.actions;
 export const formReducer = formSlice.reducer;

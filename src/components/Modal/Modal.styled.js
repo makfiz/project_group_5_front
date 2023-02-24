@@ -4,13 +4,14 @@ export const Backdrop = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: ${({ color = 'rgba(17, 17, 17, 0.6)' }) => color};
-  backdrop-filter: ${({ filter }) => (filter ? 'blur(0)' : 'blur(10px)')};
+
+  backdrop-filter: ${({ filter }) => (filter ? 'blur(10px)' : 'blur(0)')};
 `;
 
 export const StyledModal = styled.div`

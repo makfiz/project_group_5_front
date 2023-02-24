@@ -33,6 +33,15 @@ export const Title = styled.h2`
   }
 `;
 
+export const AddPetBoxWrapper = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    margin-right: 16px;
+  }
+`;
+
 export const Text = styled.p`
   margin-right: 15px;
   align-items: center;

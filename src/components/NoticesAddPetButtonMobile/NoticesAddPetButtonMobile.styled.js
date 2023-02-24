@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const AddPetMobileButton = styled.div`
   position: fixed;
   top: 73%;
-  left: 65%;
+  left: 69%;
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
@@ -13,6 +13,13 @@ export const AddPetMobileButton = styled.div`
   border-radius: ${p => p.theme.radii.round};
   border: 0;
   background-color: ${p => p.theme.colors.hoverGoHome};
+  transition: background-color 300ms ease-in-out;
+  cursor: pointer;
+  font-family: inherit;
+
+  :hover {
+    background-color: ${p => p.theme.colors.deleteBtnColor};
+  }
 
   @media screen and (min-width: 400px) {
     transform: translateX(-20%);

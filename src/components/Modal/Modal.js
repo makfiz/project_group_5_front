@@ -5,7 +5,7 @@ import { Backdrop, StyledModal } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
-const Modal = ({ children, onClick }) => {
+const Modal = ({ children, onClick, color, filter }) => {
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
 
@@ -27,7 +27,7 @@ const Modal = ({ children, onClick }) => {
   }
 
   return createPortal(
-    <Backdrop onClick={handleBackDropClick} color="transparen" filter="true">
+    <Backdrop onClick={handleBackDropClick} color={color} filter={filter}>
       <StyledModal>{children}</StyledModal>
     </Backdrop>,
     modalRoot

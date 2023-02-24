@@ -1,35 +1,43 @@
 import React, { useState } from 'react';
 
 import { Box } from 'components/Box/Box';
-import Modal from '../../ModalForAdd/Modal';
+import { ModalWindow } from 'components/ModalWindow/ModalWindow';
+import ModalAddPet from 'components/ModalAddPet/ModalAddPet';
+import Modal from 'components/ModalForAdd/Modal';
 import { ModalAddsPet } from '../ModalAddPets/ModalAddPets';
 
 import { ReactComponent as PlusIcon } from '../../../assets/icons/plusIcon.svg';
 
-import { Container, AddPetBtn, Title, Text } from './PetsData.styled';
+import {
+  Container,
+  AddPetBtn,
+  Title,
+  Text,
+  AddPetBoxWrapper,
+} from './PetsData.styled';
 
 export const PetsData = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const closeModal = () => {
-    setIsModalOpen(false);
+    !setIsModalOpen(false);
   };
 
   return (
     <Container>
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Title>My pets:</Title>
-        <Box display="flex" alignItems="center">
+        <AddPetBoxWrapper>
           <Text>Add pet</Text>
           <AddPetBtn type="button" onClick={() => setIsModalOpen(true)}>
             <PlusIcon />
           </AddPetBtn>
-        </Box>
+        </AddPetBoxWrapper>
       </Box>
       {isModalOpen && (
-        <Modal onClick={closeModal}>
-          <ModalAddsPet onCloseModal={closeModal} />
-        </Modal>
+        <ModalWindow onClick={closeModal}>
+          <ModalAddPet onCloseModal={closeModal} />
+        </ModalWindow>
       )}
     </Container>
   );
