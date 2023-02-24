@@ -45,8 +45,7 @@ export const deletePet = createAsyncThunk(
   '/deletePet',
   async (petId, thunkAPI) => {
     try {
-      console.log('credentials', credentials);
-      const { data } = await axios.delete(`pets/${petId}`, credentials);
+      const { data } = await axios.delete(`pets/${petId}`);
 
       console.log(data);
       return data;
