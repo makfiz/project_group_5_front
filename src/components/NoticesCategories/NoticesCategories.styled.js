@@ -82,6 +82,12 @@ export const CategoryLink = styled(NavLink)`
 
 export const AddPetBtn = styled.button`
   display: none;
+
+  :hover {
+    span {
+      background-color: ${p => p.theme.colors.deleteBtnColor};
+    }
+  }
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
     display: inline-flex;
     align-self: flex-start;
@@ -102,6 +108,7 @@ export const AddPetBtn = styled.button`
 
 export const AddPetBtnIconWrap = styled.span`
   display: none;
+  transition: background-color 300ms ease-in-out;
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
     display: inline-flex;
     justify-content: center;
