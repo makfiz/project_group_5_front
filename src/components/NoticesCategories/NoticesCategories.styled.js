@@ -1,6 +1,24 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
+export const BoxMessage = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-left: 45px;
+  padding-right: 45px;
+`;
+
+export const Message = styled.h3`
+  padding-top: 10px;
+  display: inline-flex;
+  font-weight: ${p => p.theme.fontWeight.fw500};
+  font-size: ${p => p.theme.fontSize.fs16};
+  @media (min-width: 768px) {
+    padding-top: 50px;
+    font-size: ${p => p.theme.fontSize.fs24};
+  }
+`;
+
 export const CategoriesWrap = styled.div`
   padding: 0 20px;
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {

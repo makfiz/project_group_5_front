@@ -16,4 +16,30 @@ export const Backdrop = styled.div`
 export const StyledModal = styled.div`
   max-width: calc(100vw - 20px);
   max-height: calc(100vh - 20px);
+  position: absolute;
+  left: 50%;
+  z-index: 5;
+  background-color: #fff;
+  width: 280px;
+  border-radius: 20px;
+  padding: ${p => {
+    if (p.modalType === 'addPet') {
+      return '40px 20px';
+    }
+    return '60px 20px 40px';
+  }};
+  @media (min-width: 768px) {
+    padding: ${p => {
+      if (p.modalType === 'addPet') {
+        return '40px 80px';
+      }
+      return '32px 20px';
+    }};
+    width: ${p => {
+      if (p.modalType === 'addPet') {
+        return '608px';
+      }
+      return '704px';
+    }};
+  }
 `;
