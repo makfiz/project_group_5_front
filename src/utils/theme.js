@@ -60,4 +60,7 @@ export const theme = {
     tablet: '768px',
     desktop: '1280px',
   },
+  transition: {
+    onHover: '250ms cubic-bezier(0.4, 0, 0.2, 1)',
+  },
 };

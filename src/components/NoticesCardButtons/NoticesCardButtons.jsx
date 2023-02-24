@@ -5,7 +5,8 @@ import { endPoints } from 'constants/EndPoints';
 
 import {
   CardButtonWrap,
-  LearnMoreLink,
+  NoticesButton,
+  NoticeButtonText,
   DeleteButton,
   DeleteButtonText,
 } from './NoticesCardButtons.styled';
@@ -21,7 +22,9 @@ export const NoticesCardButtons = ({ own, noticeId }) => {
 
   return (
     <CardButtonWrap own={own}>
-      <LearnMoreLink>Learn more</LearnMoreLink>
+      <NoticesButton type="button">
+        <NoticeButtonText>Learn more</NoticeButtonText>
+      </NoticesButton>
       {own && (
         <DeleteButton onClick={deleteHandler} type="button">
           <DeleteButtonText>Delete</DeleteButtonText>

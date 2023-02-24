@@ -1,7 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-// import { registration } from './operations';
-// import { userRegistrationSuccessReducer } from './reducers';
 import authOperations from './operations.js';
 import petsOperations from '../Pets/petsOperations.js';
 
@@ -27,10 +24,6 @@ console.log('reduxAuth initialState =', initialState);
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-
-  // extraReducers: builder =>
-  //   builder.addCase(registration.fulfilled, userRegistrationSuccessReducer),
-
   extraReducers: {
     [authOperations.login.pending](state) {
       state.isRefreshing = true;

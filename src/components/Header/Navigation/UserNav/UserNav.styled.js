@@ -14,7 +14,6 @@ export const AccountBtn = styled(NavLink)`
   background-color: ${p => p.theme.colors.hoverGoHome};
   color: ${p => p.theme.colors.white};
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
-    margin-right: 25px;
   }
   @media (min-width: ${p => p.theme.screenSizes.desktop}) {
     margin-right: 0;

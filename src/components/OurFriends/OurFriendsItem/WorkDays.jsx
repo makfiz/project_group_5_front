@@ -18,7 +18,7 @@ const WorkDays = ({  workDays }) => {
   return <p>
     {isOpenNow
       ? workInfoToday.from + ' - ' + workInfoToday.to
-      : '--------------------------'}
+      : 'Closed now'}
   </p>
 }
 

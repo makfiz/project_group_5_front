@@ -90,15 +90,37 @@ export const BtnStyle = styled.button`
     width: 180px;
   }
 
-  &:hover {
-    border: 2px solid #f59256;
-    background-color: transparent;
-    color: ${p => p.theme.colors.black};
-  }
+  &:hover,    
   &:active {
-    border: 2px solid #f59256;
-    background-color: transparent;
-    color: ${p => p.theme.colors.black};
+    transition: box-shadow 250ms ease-out;
+    box-shadow: 0px 0px 2px 2px rgba(245, 146, 86, 0.6);
+  }
+  :not(:last-child) {
+    margin-bottom: 12px;
+  }
+`;
+
+export const BtnStyleEmpt = styled.button`
+  width: 240px;
+  height: 40px;
+
+  background-color: ${p => p.theme.colors.transparent};
+  color: ${p => p.theme.colors.black};
+  border-radius: ${p => p.theme.radii.large};
+  border: 2px solid #f59256;
+  cursor: pointer;
+
+  font-weight: ${p => p.theme.fontWeight.medium};
+  font-size: ${p => p.theme.fontSizes.m};
+
+  @media screen and (min-width: 768px) {
+    width: 180px;
+  }
+
+  &:hover,
+  &:active {
+    transition: box-shadow 250ms ease-out;
+    box-shadow: 0px 0px 2px 2px rgba(245, 146, 86, 0.6);
   }
   :not(:last-child) {
     margin-bottom: 12px;
@@ -255,7 +277,7 @@ export const ComentsWrapper = styled.div`
   margin-top: 40px;
   }
 `
-export const Coments = styled(Field)`
+export const TextArea = styled(Field)`
   padding-top: 12px;
   padding-left: 14px;
   width: 240px;
@@ -286,7 +308,7 @@ export const Coments = styled(Field)`
   }
 `
   
-export const FormWrapper = styled.div`
+export const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;

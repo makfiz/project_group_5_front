@@ -12,7 +12,8 @@ import {
   Input,
   InputWrapper,
   PetLabel,
-  CloseCross
+  CloseCross,
+  BtnStyleEmpt
 } from './ModalAddPets.styled';
 
 export const ModalAddsPetFirst = (props) => {
@@ -35,7 +36,7 @@ export const ModalAddsPetFirst = (props) => {
         <Formik initialValues={props.data} onSubmit={handleSubmit}>
           {() => (
             <Form>
-              <PetLabel htmlFor="namePet">
+              <PetLabel htmlFor="name">
                 Name pet
               </PetLabel>
               <InputWrapper>
@@ -66,7 +67,7 @@ export const ModalAddsPetFirst = (props) => {
                 />
                 </BtnWrapperNext>
                 <Button
-                  style={BtnStyle}
+                  style={BtnStyleEmpt}
                   onClick={props.closeModal}
                   children="Cancel"
                   />  

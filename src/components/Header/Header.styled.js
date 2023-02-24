@@ -27,10 +27,7 @@ export const MenuList = styled.div`
 
   z-index: 999;
   background-color: #fdf7f2;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-right: auto;
-  margin-left: auto;
+
   margin-top: 45px;
   display: flex;
   flex-direction: column;
@@ -50,16 +47,17 @@ export const MenuActive = styled.div`
   flex-direction: column;
   margin-right: auto;
   margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
+  margin-right: 25px;
+  margin-left: 20px;
 `;
 export const MenuNonActive = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: baseline;
-  padding-left: 15px;
-  padding-right: 15px;
+  margin-right: 25px;
+  margin-left: 20px;
+
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
     /* margin-bottom: 60px; */
   }
@@ -104,6 +102,9 @@ export const HeaderDescNav = styled.div`
 
 export const OpenMenuIcon = styled.img`
   cursor: pointer;
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    margin-left: 25px;
+  }
   @media (min-width: ${p => p.theme.screenSizes.desktop}) {
     display: none;
   }

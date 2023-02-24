@@ -6,7 +6,6 @@ import petsOperations from 'redux/Pets/petsOperations';
 
 export const ModalAddsPet = props => {
   const dispatch = useDispatch();
-  // const [addPet] = useAddPetMutation();
   const [page, setPage] = useState(0);
   const [data, setData] = useState({
     name: '',
@@ -38,6 +37,8 @@ export const ModalAddsPet = props => {
       formData.append('petImage', petImage);
 
       handleRequest(petObj, formData);
+      console.log(newData);
+
       return;
     }
   };
