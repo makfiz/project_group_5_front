@@ -35,9 +35,9 @@ export const PetsData = () => {
         </AddPetBoxWrapper>
       </Box>
       {isModalOpen && (
-        <Modal onClick={closeModal}>
-          <ModalAddsPet onCloseModal={closeModal} />
-        </Modal>
+        <ModalWindow onClick={closeModal}>
+          <ModalAddPet onCloseModal={closeModal} />
+        </ModalWindow>
       )}
     </Container>
   );
