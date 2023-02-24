@@ -61,7 +61,7 @@ export function LernMoreModal() {
     location,
     sex,
     price,
-    creator = { email: 'unknown', phone: 'unknown' },
+    contacts = { email: 'unknown', phone: 'unknown' },
   } = itemNotice.notice;
 
   return (
@@ -105,8 +105,8 @@ export function LernMoreModal() {
                         <ListItem>{breed}</ListItem>
                         <ListItem>{location}</ListItem>
                         <ListItem>{sex}</ListItem>
-                        <ListItem>{creator.email}</ListItem>
-                        <ListItem>{creator.phone}</ListItem>
+                        <ListItem>{contacts.email}</ListItem>
+                        <ListItem>{contacts.phone}</ListItem>
                         {category === 'sell' && <ListItem>{price}</ListItem>}
                       </List>
                     </RightPartWraper>
