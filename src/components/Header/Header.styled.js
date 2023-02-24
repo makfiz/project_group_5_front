@@ -47,16 +47,12 @@ export const MenuActive = styled.div`
   flex-direction: column;
   margin-right: auto;
   margin-left: auto;
-  margin-right: 25px;
-  margin-left: 20px;
 `;
 export const MenuNonActive = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: baseline;
-  margin-right: 25px;
-  margin-left: 20px;
 
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
     /* margin-bottom: 60px; */
