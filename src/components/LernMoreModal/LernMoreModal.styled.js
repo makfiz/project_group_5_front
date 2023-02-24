@@ -107,6 +107,7 @@ export const CommentsTitle = styled.p`
   display: inline-block;
   font-weight: 600;
   font-size: ${p => p.theme.fontSizes.s};
+  margin-right: 8px;
 
   @media screen and (min-width: 768px) {
     font-size: ${p => p.theme.fontSizes.m};

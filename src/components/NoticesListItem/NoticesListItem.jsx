@@ -148,6 +148,7 @@ export const NoticesListItem = ({ ad, askedPage }) => {
 
         <NoticesCardButtons
           own={own}
+          noticeId={_id}
           setDeleteModalIsOpen={setDeleteModalIsOpen}
         />
 
