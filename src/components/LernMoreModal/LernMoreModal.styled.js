@@ -65,7 +65,7 @@ export const ImageWraper = styled.div`
 
   @media screen and (min-width: 768px) {
     margin-right: 20px;
-    margin-bottom: 28px;
+    margin-bottom: 0;
     width: 288px;
     height: 328px;
   }
@@ -101,6 +101,7 @@ export const Title = styled.h1`
 
   @media screen and (min-width: 768px) {
     margin-bottom: 20px;
+    font-size: ${p => p.theme.fontSizes.lm};
   }
 `;
 
@@ -209,12 +210,12 @@ export const StyledButton = styled.button`
 export const MoreInfoWraper = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 28px;
 `;
 
 export const ContentWraper = styled.div`
   @media screen and (min-width: 768px) {
     display: flex;
+    margin-bottom: 28px;
   }
 `;
 
@@ -246,11 +247,20 @@ export const ListItemTitle = styled.li`
   :not(:last-child) {
     margin-bottom: 8px;
   }
+
+  @media screen and (min-width: 768px) {
+    font-size: ${p => p.theme.fontSizes.m};
+  }
 `;
 
 export const ListItem = styled.li`
   font-size: ${p => p.theme.fontSizes.s};
+  font-weight: ${p => p.theme.fontWeight.medium};
   :not(:last-child) {
     margin-bottom: 8px;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: ${p => p.theme.fontSizes.m};
   }
 `;
