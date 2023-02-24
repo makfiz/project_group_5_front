@@ -1,3 +1,6 @@
+import { useDispatch } from 'react-redux';
+import { deletePet } from '../../../redux/Pets/petsOperations';
+
 import defaultImage from '../../../assets/default-img/default.jpg';
 
 import {
@@ -20,6 +23,9 @@ export const PetsListItem = ({
   comments,
   petImage,
 }) => {
+  const dispatch = useDispatch();
+
+  const handleDelete = () => dispatch(deletePet(id));
   return (
     <PetCard>
       <ImgWrapper>
@@ -43,7 +49,7 @@ export const PetsListItem = ({
           Comments: <InfoText>{comments}</InfoText>
         </CommentsTitle>
       </InfoWrapper>
-      <DeleteBtn type="button">
+      <DeleteBtn type="button" onClick={handleDelete}>
         <DeleteIcon />
       </DeleteBtn>
     </PetCard>
