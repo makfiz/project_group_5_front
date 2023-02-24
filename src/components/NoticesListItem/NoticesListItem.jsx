@@ -32,6 +32,7 @@ import {
 } from './NoticesListItem.styled';
 
 import { ReactComponent as Favorite } from '../../assets/icons/Favorite.svg';
+import { LernMoreModal } from 'components/LernMoreModal/LernMoreModal';
 
 export const NoticesListItem = ({ ad, askedPage }) => {
   const {

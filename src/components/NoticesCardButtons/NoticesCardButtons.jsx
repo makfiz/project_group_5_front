@@ -1,4 +1,9 @@
 import PropTypes from 'prop-types';
+import { useDispatch, } from 'react-redux';
+import { deleteOwnNotice, fetchNoticeById } from 'redux/notices/operations';
+import { endPoints } from 'constants/EndPoints';
+import { openModal } from '../../redux/form/formSlice';
+
 
 import {
   CardButtonWrap,
@@ -9,10 +14,20 @@ import {
 } from './NoticesCardButtons.styled';
 import { ReactComponent as DeleteIcon } from '../../assets/icons/deleteIcon.svg';
 
-export const NoticesCardButtons = ({ own, setDeleteModalIsOpen }) => {
+
+
+
+export const NoticesCardButtons = ({ own, noticeID, setDeleteModalIsOpen }) => {
+  const dispatch = useDispatch();
+
+  const showMore = () => {
+    dispatch(openModal());
+    dispatch(fetchNoticeById(noticeId));
+  };
+
   return (
     <CardButtonWrap own={own}>
-      <NoticesButton type="button">
+      <NoticesButton onClick={showMore} type="button">
         <NoticeButtonText>Learn more</NoticeButtonText>
       </NoticesButton>
       {own && (
@@ -24,6 +39,11 @@ export const NoticesCardButtons = ({ own, setDeleteModalIsOpen }) => {
     </CardButtonWrap>
   );
 };
+
+
+
+
+
 
 NoticesCardButtons.propTypes = {
   own: PropTypes.bool.isRequired,

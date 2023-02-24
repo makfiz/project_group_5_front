@@ -31,3 +31,11 @@ export const deleteOwnNoticeReducer = (state, action) => {
   state.ads.splice(idx, 1);
   state.isLoading = false;
 };
+
+export const fetchNoticeReducer = (state, action) => {
+  state.notice = action.payload;
+};
+
+export const cleanNoticeReducer = (state, _) => {
+  state.notice = [];
+};
