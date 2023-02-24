@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import authOperations from './operations.js';
+import petsOperations from '../Pets/petsOperations.js';
 
 const initialState = {
   user: {
@@ -108,10 +109,6 @@ const authSlice = createSlice({
     [authOperations.refresh.fulfilled](state, action) {
       state.user = action.payload.user;
       state.user.petList = action.payload.petList;
-      // const { id, email, name, avatarURL, birthday, phone, city } =
-      //   action.payload.data.user;
-      // state.user = { id, email, name, avatarURL, birthday, phone, city };
-      // state.user.petList = action.payload.data.petList;
       state.isLoggedIn = true;
       state.isRefreshing = false;
     },
@@ -138,6 +135,19 @@ const authSlice = createSlice({
     [authOperations.userUpdate.rejected](state, action) {
       state.isRefreshing = false;
       state.error = action.payload;
+    },
+    [petsOperations.addPet.fulfilled](state, action) {
+      state.user.petList = [...state.user.petList, action.payload.myNewPet];
+    },
+    [petsOperations.updatePetImage.fulfilled](state, action) {
+      console.log(state.user.petList);
+      console.log(action.payload);
+      const index = state.user.petList.findIndex(
+        pet => pet._id === action.payload.id
+      );
+      state.user.petList[index].petImage = action.payload.petImage;
+      // state.user.petList.find(action.id).petImage = action.petImage;
+      // petImage
     },
   },
 });
