@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 
 import { Box } from 'components/Box/Box';
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
-import ModalAddPet from '../../ModalAddPet/ModalAddPet';
+import ModalAddPet from 'components/ModalAddPet/ModalAddPet';
+import Modal from 'components/ModalForAdd/Modal';
+import { ModalAddsPet } from '../ModalAddPets/ModalAddPets';
 
 import { ReactComponent as PlusIcon } from '../../../assets/icons/plusIcon.svg';
 
@@ -13,7 +15,6 @@ import {
   Text,
   AddPetBoxWrapper,
 } from './PetsData.styled';
-import Modal from 'components/ModalForAdd/Modal';
 
 export const PetsData = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,9 +35,9 @@ export const PetsData = () => {
         </AddPetBoxWrapper>
       </Box>
       {isModalOpen && (
-        <ModalWindow onClick={closeModal}>
-          <ModalAddPet onCloseModal={() => closeModal(false)} />
-        </ModalWindow>
+        <Modal onClick={closeModal}>
+          <ModalAddsPet onCloseModal={closeModal} />
+        </Modal>
       )}
     </Container>
   );
