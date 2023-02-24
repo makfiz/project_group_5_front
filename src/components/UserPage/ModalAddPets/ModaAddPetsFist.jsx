@@ -1,4 +1,6 @@
-import { ErrorMessage, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
+import { stepOneValidSchema } from 'utils/validationPet';
+
 import icons from '../../../assets/icons/icons.svg';
 import { Button } from 'components/Button/Button';
 import {
@@ -13,7 +15,8 @@ import {
   InputWrapper,
   PetLabel,
   CloseCross,
-  BtnStyleEmpt
+  BtnStyleEmpt,
+  Error
 } from './ModalAddPets.styled';
 
 export const ModalAddsPetFirst = (props) => {
@@ -33,7 +36,7 @@ export const ModalAddsPetFirst = (props) => {
       </BtnClose>
       <Wrapper>
         <Title >Add pet</Title>
-        <Formik initialValues={props.data} onSubmit={handleSubmit}>
+        <Formik initialValues={props.data} validationSchema={stepOneValidSchema} onSubmit={handleSubmit}>
           {() => (
             <Form>
               <PetLabel htmlFor="name">
@@ -41,7 +44,7 @@ export const ModalAddsPetFirst = (props) => {
               </PetLabel>
               <InputWrapper>
                 <Input name="name" placeholder="Type name pet" type="text" />
-                <ErrorMessage name="name" component="p" />
+                <Error name="name" component="p" />
               </InputWrapper>
 
               <PetLabel htmlFor="dateOfBirth">
@@ -49,14 +52,14 @@ export const ModalAddsPetFirst = (props) => {
               </PetLabel>
               <InputWrapper>
                 <Input name="dateOfBirth" placeholder="Type date of birth" />
-                <ErrorMessage name="dateOfBirth" component="p" />
+                <Error name="dateOfBirth" component="p" />
               </InputWrapper>
               <PetLabel htmlFor="breed">
                 Breed
               </PetLabel>
               <InputWrapper>
                 <Input name="breed" placeholder="Type breed" type="text" />
-                <ErrorMessage name="breed" component="p" />
+                <Error name="breed" component="p" />
               </InputWrapper>
               <BtnWrapper>
                 <BtnWrapperNext>
