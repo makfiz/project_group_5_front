@@ -19,9 +19,11 @@ export const AccountBtn = styled(NavLink)`
     margin-right: 0;
   }
   &:hover {
+    transition: ${p => p.theme.transition.onHover};
     background-color: ${p => p.theme.colors.white};
     color: ${p => p.theme.colors.titleColor};
     ${AccountBtnIconComp} path {
+      transition: ${p => p.theme.transition.onHover};
       fill: ${p => p.theme.colors.hoverGoHome};
     }
     border-color: ${p => p.theme.colors.hoverGoHome};
