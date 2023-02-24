@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { selectUser } from '../../redux/auth/selectors';
 
@@ -11,6 +11,7 @@ import { PetsList } from '../../components/UserPage/PetsList/PetsList';
 import { MainWrapper, SecondaryWrapper } from './UserPage.styled';
 
 const UserPage = () => {
+  
   const CurrentUser = useSelector(selectUser);
 
   return (
