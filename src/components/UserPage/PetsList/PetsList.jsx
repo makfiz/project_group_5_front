@@ -23,6 +23,7 @@ export const PetsList = () => {
             breed={breed}
             comments={comments}
             petImage={petImage}
+            id={_id}
           />
         );
       })}
