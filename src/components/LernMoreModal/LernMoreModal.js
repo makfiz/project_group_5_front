@@ -49,9 +49,18 @@ export function LernMoreModal() {
     return;
   }
 
-  const { title, comments, category, name, birth, breed, location, sex } =
-    itemNotice.notice;
-  console.log(itemNotice);
+  const {
+    title,
+    comments,
+    category,
+    name,
+    birth,
+    breed,
+    location,
+    sex,
+    price,
+  } = itemNotice.notice;
+
   return (
     <>
       {openModal && (
@@ -81,6 +90,9 @@ export function LernMoreModal() {
                         <ListItemTitle>The sex:</ListItemTitle>
                         <ListItemTitle>Email:</ListItemTitle>
                         <ListItemTitle>Phone:</ListItemTitle>
+                        {category === 'sell' && (
+                          <ListItemTitle>Price:</ListItemTitle>
+                        )}
                       </List>
                     </LeftPartWraper>
                     <RightPartWraper>
@@ -92,15 +104,17 @@ export function LernMoreModal() {
                         <ListItem>{sex}</ListItem>
                         <ListItem>mail</ListItem>
                         <ListItem>phone</ListItem>
+                        {category === 'sell' && <ListItem>{price}</ListItem>}
                       </List>
                     </RightPartWraper>
                   </MoreInfoWraper>
                 </Layout>
               </ContentWraper>
 
-              <CommentsText>
-                <CommentsTitle>Comments:</CommentsTitle> {comments}
-              </CommentsText>
+              <div>
+                <CommentsTitle>Comments:</CommentsTitle>
+                <CommentsText>{comments}</CommentsText>
+              </div>
 
               <ButtonWraper>
                 <Button style={StyledButton}>
