@@ -14,6 +14,8 @@ export const AddPetMobileButton = styled.div`
   border: 0;
   background-color: ${p => p.theme.colors.hoverGoHome};
   transition: background-color 300ms ease-in-out;
+  cursor: pointer;
+  font-family: inherit;
 
   :hover {
     background-color: ${p => p.theme.colors.deleteBtnColor};

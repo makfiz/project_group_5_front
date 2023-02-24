@@ -40,6 +40,7 @@ export const DeleteModalButton = styled.button`
   padding-bottom: 6px;
   background-color: transparent;
   cursor: pointer;
+  font-family: inherit;
 
   border: 2px solid ${p => p.theme.colors.hoverGoHome};
   border-radius: ${p => p.theme.radii.large};

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { RxCross1 } from 'react-icons/rx';
-import { AiTwotoneHeart } from 'react-icons/ai';
+// import { AiTwotoneHeart } from 'react-icons/ai';
 
 export const Wraper = styled.div`
   position: relative;
@@ -65,6 +65,7 @@ export const ImageWraper = styled.div`
 
   @media screen and (min-width: 768px) {
     margin-right: 20px;
+    margin-bottom: 28px;
     width: 288px;
     height: 328px;
   }
@@ -98,7 +99,7 @@ export const Title = styled.h1`
 
   color: ${p => p.theme.colors.black};
 
-  @media screen and(min-width: 768px) {
+  @media screen and (min-width: 768px) {
     margin-bottom: 20px;
   }
 `;
@@ -134,37 +135,75 @@ export const StyledButton = styled.button`
   justify-content: center;
   width: 240px;
   height: 40px;
+  font-family: inherit;
 
   background-color: ${p => p.theme.colors.regModalActiveBtn};
-  color: ${p => p.theme.colors.white};
+  border: 2px solid transparent;
   border-radius: ${p => p.theme.radii.large};
-  border: none;
   cursor: pointer;
+  transition: border-color 300ms ease-in-out, box-shadow 300ms ease-in-out;
 
-  font-weight: ${p => p.theme.fontWeight.medium};
-  font-size: ${p => p.theme.fontSizes.m};
+  :hover {
+    border-color: ${p => p.theme.colors.deleteBtnColor};
+    box-shadow: 0px 0px 2px 2px rgba(245, 146, 86, 0.6);
+  }
 
-  @media screen and (min-width: 768px) {
-    width: 160px;
+  span {
+    font-weight: ${p => p.theme.fontWeight.medium};
+    font-size: ${p => p.theme.fontSizes.m};
+    color: ${p => p.theme.colors.white};
+  }
 
-    :not(:last-child) {
-      margin-right: 12px;
+  svg {
+    fill: ${p => p.theme.colors.regModalActiveBtn};
+    transition: fill 300ms ease-in-out;
+  }
+
+  :last-child {
+    border: 2px solid ${p => p.theme.colors.regModalActiveBtn};
+    background-color: ${p => p.theme.colors.white};
+
+    span {
+      margin-right: 8px;
+      color: ${p => p.theme.colors.titleColor};
+    }
+
+    :hover {
+      border-color: ${p => p.theme.colors.deleteBtnColor};
+      box-shadow: 0px 0px 2px 2px rgba(245, 146, 86, 0.6);
+
+      svg {
+        fill: ${p => p.theme.colors.deleteBtnColor};
+      }
     }
   }
 
-  &:hover {
+  @media screen and (max-width: 767px) {
+    :not(:last-child) {
+      margin-bottom: 12px;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 160px;
+    margin-right: 12px;
+
+    :not(:last-child) {
+      order: 1;
+      margin-right: 0;
+    }
+  }
+
+  /* &:hover {
     border: 2px solid #f59256;
     background-color: transparent;
     color: ${p => p.theme.colors.black};
-  }
-  &:active {
+  } */
+  /* &:active {
     border: 2px solid #f59256;
     background-color: transparent;
     color: ${p => p.theme.colors.black};
-  }
-  :not(:last-child) {
-    margin-bottom: 12px;
-  }
+  } */
 `;
 
 export const MoreInfoWraper = styled.div`
@@ -185,13 +224,14 @@ export const ButtonWraper = styled.div`
   @media screen and (min-width: 768px) {
     display: flex;
     justify-content: flex-end;
+    padding-right: 20px;
   }
 `;
 
-export const HeartIcon = styled(AiTwotoneHeart)`
-  color: ${p => p.theme.colors.userAddPetBtnBg};
-  margin-left: 10px;
-`;
+// export const HeartIcon = styled(AiTwotoneHeart)`
+//   color: ${p => p.theme.colors.userAddPetBtnBg};
+//   margin-left: 10px;
+// `;
 
 export const LeftPartWraper = styled.div`
   margin-right: 50px;

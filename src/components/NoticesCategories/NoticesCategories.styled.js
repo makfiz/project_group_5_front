@@ -82,6 +82,7 @@ export const CategoryLink = styled(NavLink)`
 
 export const AddPetBtn = styled.button`
   display: none;
+  font-family: inherit;
 
   :hover {
     span {
