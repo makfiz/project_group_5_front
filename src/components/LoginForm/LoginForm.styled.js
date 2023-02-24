@@ -98,6 +98,7 @@ export const Input = styled(Field)`
   padding-top: 11px;
   padding-bottom: 11px;
   padding-left: 14px;
+  outline: none;
 
   @media screen and (min-width: 768px) {
     width: 448px;
