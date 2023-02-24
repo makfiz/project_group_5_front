@@ -1,4 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { ReactComponent as HeartIcon } from '../../assets/icons/akarIconsHeart.svg';
 
 import Modal from 'components/Modal/Modal';
 import { Button } from 'components/Button/Button';
@@ -22,7 +24,7 @@ import {
   ContentWraper,
   Layout,
   ButtonWraper,
-  HeartIcon,
+  // HeartIcon,
   LeftPartWraper,
   RightPartWraper,
   List,
@@ -117,12 +119,11 @@ export function LernMoreModal() {
               </div>
 
               <ButtonWraper>
+                <Button children={<span>Contact</span>} style={StyledButton} />
                 <Button style={StyledButton}>
-                  Add to
-                  <HeartIcon size={16} />
+                  <span>Add to</span>
+                  <HeartIcon />
                 </Button>
-
-                <Button children="Contact" style={StyledButton} />
               </ButtonWraper>
             </Container>
           </Wraper>
