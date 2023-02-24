@@ -149,6 +149,34 @@ const authSlice = createSlice({
       // state.user.petList.find(action.id).petImage = action.petImage;
       // petImage
     },
+    [authOperations.userUpload.pending](state) {
+      state.isRefreshing = true;
+    },
+    [authOperations.userUpload.fulfilled](state, action) {
+      state.isRefreshing = false;
+      state.error = null;
+      state.user.id = action.payload._id;
+      state.user.email = action.payload.email;
+      state.user.name = action.payload.name;
+      state.user.avatarURL = action.payload.avatarURL;
+      state.user.birthday = action.payload.birthday;
+      state.user.phone = action.payload.phone;
+      state.user.city = action.payload.city;
+    },
+    [authOperations.userUpload.rejected](state, action) {
+      state.isRefreshing = false;
+      state.error = action.payload;
+    },
+    [authOperations.againVerifyMail.pending](state) {
+      state.isRefreshing = true;
+    },
+    [authOperations.againVerifyMail.fulfilled](state, action) {
+      state.isRefreshing = false;
+    },
+    [authOperations.againVerifyMail.rejected](state, action) {
+      state.isRefreshing = false;
+      state.error = action.payload;
+    },
   },
 });
 
