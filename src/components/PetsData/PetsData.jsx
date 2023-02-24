@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
-import { NoticesCategories } from 'components/NoticesCategories/NoticesCategories';
 import { PetsList } from 'components/PestList/PestList';
 import Modal from 'components/Modal/Modal';
 import { useState } from 'react';
 import { ModalAddPet } from 'components/ModalAddPet/ModalAddPet';
+import { ReactComponent as PlusIcon } from '../../assets/icons/plusIcon.svg';
 
 import {
+  AddPetBtn,
   AddTitle,
   BtnBox,
   BoxTitlePet,
@@ -27,11 +27,12 @@ export const PetsData = ({ pets }) => {
         <ModalTitle>My pets:</ModalTitle>
         <BtnBox>
           <AddTitle>Add pet</AddTitle>
-          <NoticesCategories closeModal={closeModal} />
+          <AddPetBtn type="button" onClick={() => setIsModalOpen(true)} />
+          <PlusIcon />
         </BtnBox>
       </BoxTitlePet>
       {isModalOpen && (
-        <Modal onClose={closeModal} modalType={'addPet'}>
+        <Modal onClick={closeModal} modalType={'addPet'}>
           <ModalAddPet onClose={closeModal} />
         </Modal>
       )}
@@ -46,8 +47,4 @@ export const PetsData = ({ pets }) => {
       )}
     </>
   );
-};
-
-PetsList.propTypes = {
-  pets: PropTypes.array.isRequired,
 };

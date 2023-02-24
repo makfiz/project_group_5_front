@@ -61,3 +61,19 @@ export const BoxImage = styled.div`
   display: flex;
   justify-content: center;
 `;
+
+export const AddPetBtn = styled.button`
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: ${p => p.theme.radii.round};
+  border: none;
+  background-color: ${p => p.theme.colors.userAddPetBtnBg};
+  transition: background-color 250ms linear;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    background-color: ${p => p.theme.colors.userAddPetBtnBgHover};
+  }
+`;
