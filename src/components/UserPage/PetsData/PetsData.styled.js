@@ -14,7 +14,6 @@ export const Container = styled.div`
   @media (min-width: ${p => p.theme.screenSizes.desktop}) {
     padding-top: 60px;
     padding-bottom: 24px;
-    padding-right: 16px;
   }
 `;
 
@@ -31,6 +30,15 @@ export const Title = styled.h2`
     font-size: ${p => p.theme.fontSizes.lm};
     line-height: 1.36;
     color: ${p => p.theme.colors.titleColor};
+  }
+`;
+
+export const AddPetBoxWrapper = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    margin-right: 16px;
   }
 `;
 

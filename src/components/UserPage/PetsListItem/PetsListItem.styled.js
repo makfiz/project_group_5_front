@@ -29,7 +29,7 @@ export const PetCard = styled.li`
   }
 
   @media (min-width: ${p => p.theme.screenSizes.desktop}) {
-    width: 821px;
+    width: 781px;
 
     height: 100%;
   }

@@ -15,7 +15,7 @@ const FriendsPage = lazy(() => import('../pages/FriendsPage'));
 const NoticesPage = lazy(() => import('../pages/NoticesPage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
-const UserPage = lazy(() => import('../pages/UserPage'));
+const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const RegisterMethod = lazy(() =>
