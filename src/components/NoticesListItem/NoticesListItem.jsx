@@ -18,6 +18,7 @@ import { endPoints } from 'constants/EndPoints';
 import { Box } from 'components/Box/Box';
 import { NoticesDescriptionText } from 'components/NoticesDescriptionText/NoticesDescriptionText';
 import { NoticesCardButtons } from 'components/NoticesCardButtons/NoticesCardButtons';
+import { NoticesConfirmDeletingModal } from 'components/NoticesConfirmDeletingModal/NoticesConfirmDeletingModal';
 import noPhoto from '../../assets/default-img/default.jpg';
 
 import {
@@ -48,6 +49,7 @@ export const NoticesListItem = ({ ad, askedPage }) => {
 
   const loadingNotices = useSelector(selectIsLoadingNotices);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
 
   useEffect(() => {
     if (loadingNotices) return;
@@ -106,7 +108,7 @@ export const NoticesListItem = ({ ad, askedPage }) => {
   return (
     <Box>
       <ImgWrap>
-        <Img src={photoURL} alt={breed} />
+        <Img height="288" width="280" src={photoURL} alt={breed} />
         <ImgBadge category={category}>{categoryTitle}</ImgBadge>
         <AddInFavoriteBtn
           disabled={isUpdating}
@@ -126,7 +128,7 @@ export const NoticesListItem = ({ ad, askedPage }) => {
       </ImgWrap>
 
       <TextWrap>
-        <Title>{title}</Title>
+        <Title text={title} length={15} />
         <Box display="flex">
           <Box>
             <NoticesDescriptionText text="Breed:" />
@@ -143,7 +145,17 @@ export const NoticesListItem = ({ ad, askedPage }) => {
           </DescriptionDefinitions>
         </Box>
 
-        <NoticesCardButtons own={own} noticeId={_id} />
+        <NoticesCardButtons
+          own={own}
+          setDeleteModalIsOpen={setDeleteModalIsOpen}
+        />
+
+        {deleteModalIsOpen && (
+          <NoticesConfirmDeletingModal
+            noticeId={_id}
+            setDeleteModalIsOpen={setDeleteModalIsOpen}
+          />
+        )}
       </TextWrap>
     </Box>
   );

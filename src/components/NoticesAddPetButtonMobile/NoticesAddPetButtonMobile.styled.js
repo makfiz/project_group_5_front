@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const AddPetMobileButton = styled.div`
   position: fixed;
   top: 73%;
-  left: 65%;
+  left: 69%;
   display: flex;
   flex-direction: column-reverse;
   align-items: center;

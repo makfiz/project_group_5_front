@@ -1,7 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { endPoints } from 'constants/EndPoints';
-// import toast from 'react-hot-toast';
 
 export const fetchNoticesByCategory = createAsyncThunk(
   'notices/fetchCategory',
