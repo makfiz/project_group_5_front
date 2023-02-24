@@ -141,14 +141,16 @@ const authSlice = createSlice({
       state.user.petList = [...state.user.petList, action.payload.myNewPet];
     },
     [petsOperations.updatePetImage.fulfilled](state, action) {
-      console.log(state.user.petList);
-      console.log(action.payload);
       const index = state.user.petList.findIndex(
         pet => pet._id === action.payload.id
       );
       state.user.petList[index].petImage = action.payload.petImage;
-      // state.user.petList.find(action.id).petImage = action.petImage;
-      // petImage
+    },
+    [petsOperations.deletePet.fulfilled](state, action) {
+      const index = state.user.petList.findIndex(
+        pet => pet._id === action.payload._id
+      );
+      state.user.petList.splice(index, 1);
     },
     [authOperations.userUpload.pending](state) {
       state.isRefreshing = true;
