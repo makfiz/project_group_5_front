@@ -27,11 +27,23 @@ export const UserData = ({ user }) => {
           <EditPhotoButtonText>Edit photo</EditPhotoButtonText>
         </EditPhotoButton>
         <UserDataWrapper>
-          <UserDataItem label="Name" value={name} />
-          <UserDataItem label="Email" value={email} />
-          <UserDataItem label="Birthday" value={birthday} />
-          <UserDataItem label="Phone" value={phone} />
-          <UserDataItem label="City" value={city} />
+          <UserDataItem name="name" label="Name" value={!name ? '' : name} />
+          <UserDataItem
+            name="email"
+            label="Email"
+            value={!email ? '' : email}
+          />
+          <UserDataItem
+            name="birthday"
+            label="Birthday"
+            value={!birthday ? '' : birthday}
+          />
+          <UserDataItem
+            name="phone"
+            label="Phone"
+            value={!phone ? '' : phone}
+          />
+          <UserDataItem name="city" label="City" value={!city ? '' : city} />
         </UserDataWrapper>
         <Logout />
       </UserInfoCard>
