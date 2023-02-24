@@ -4,10 +4,6 @@ import Notiflix from 'notiflix';
 
 axios.defaults.baseURL = 'https://petssuport4815162342api.onrender.com/api';
 
-// const setAuthHeader = token => {
-//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-// };
-
 const unsetToken = () => {
   return (axios.defaults.headers.common.Authorization = '');
 };
@@ -141,6 +137,74 @@ export const userUpdate = createAsyncThunk(
   }
 );
 
+export const userUpload = createAsyncThunk(
+  '/auth/userUpload',
+  async (credentials, thunkAPI) => {
+    try {
+      const { data } = await axios.patch('/users/upload', credentials);
+      Notiflix.Notify.success('Success! User updated! ✔', {
+        timeout: 3000,
+      });
+
+      return data;
+    } catch (error) {
+      console.log(error.message);
+      if (error.message === 'Request failed with status code 404') {
+        Notiflix.Notify.failure('User not found. Please register user! ⚠', {
+          timeout: 3000,
+        });
+      }
+      if (error.message === 'Request failed with status code 401') {
+        Notiflix.Notify.failure(
+          'jwt token is expired or not valid. Please login user! ⚠',
+          {
+            timeout: 3000,
+          }
+        );
+      }
+      if (error.message === 'Request failed with status code 400') {
+        Notiflix.Notify.failure(
+          'Not valid format of request body (check types of yuor request data) ⚠',
+          {
+            timeout: 3000,
+          }
+        );
+      }
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const againVerifyMail = createAsyncThunk(
+  '/auth/againVerifyMail',
+  async (credentials, thunkAPI) => {
+    try {
+      const { data } = await axios.post('/users/verify', credentials);
+      Notiflix.Notify.success('Verification email sent! ✔', {
+        timeout: 3000,
+      });
+
+      return data;
+    } catch (error) {
+      console.log(error.message);
+      if (error.message === 'Request failed with status code 404') {
+        Notiflix.Notify.failure('User not found. Please register user! ⚠', {
+          timeout: 3000,
+        });
+      }
+      if (error.message === 'Request failed with status code 400') {
+        Notiflix.Notify.failure(
+          'Verification has already been passed, or request body missing required field email! ⚠',
+          {
+            timeout: 3000,
+          }
+        );
+      }
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 const authOperations = {
   logout,
   login,
@@ -148,6 +212,8 @@ const authOperations = {
   registration,
   refresh,
   userUpdate,
+  userUpload,
+  againVerifyMail,
 };
 
 export default authOperations;

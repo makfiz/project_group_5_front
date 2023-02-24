@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import EllipsisText from 'react-ellipsis-text';
 
 export const ImgWrap = styled.div`
   position: relative;
@@ -63,9 +64,12 @@ export const Img = styled.img`
   display: block;
   width: 100%;
   background-size: cover;
+  height: 288px;
 `;
 
 export const TextWrap = styled.div`
+  position: relative;
+  overflow: hidden;
   width: 240px;
   padding: 20px 20px 0px;
 
@@ -84,7 +88,7 @@ export const TextWrap = styled.div`
   }
 `;
 
-export const Title = styled.h2`
+export const Title = styled(EllipsisText)`
   margin-bottom: 20px;
   font-size: ${p => p.theme.fontSizes.lm};
   font-weight: ${p => p.theme.fontWeight.bold};

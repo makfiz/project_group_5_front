@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-// import { registration } from './operations';
-// import { userRegistrationSuccessReducer } from './reducers';
 import authOperations from './operations.js';
+import petsOperations from '../Pets/petsOperations.js';
 
 const initialState = {
   user: {
@@ -27,10 +25,6 @@ console.log('reduxAuth initialState =', initialState);
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-
-  // extraReducers: builder =>
-  //   builder.addCase(registration.fulfilled, userRegistrationSuccessReducer),
-
   extraReducers: {
     [authOperations.login.pending](state) {
       state.isRefreshing = true;
@@ -116,10 +110,6 @@ const authSlice = createSlice({
     [authOperations.refresh.fulfilled](state, action) {
       state.user = action.payload.user;
       state.user.petList = action.payload.petList;
-      // const { id, email, name, avatarURL, birthday, phone, city } =
-      //   action.payload.data.user;
-      // state.user = { id, email, name, avatarURL, birthday, phone, city };
-      // state.user.petList = action.payload.data.petList;
       state.isLoggedIn = true;
       state.isRefreshing = false;
     },
@@ -144,6 +134,47 @@ const authSlice = createSlice({
       state.user.city = action.payload.city;
     },
     [authOperations.userUpdate.rejected](state, action) {
+      state.isRefreshing = false;
+      state.error = action.payload;
+    },
+    [petsOperations.addPet.fulfilled](state, action) {
+      state.user.petList = [...state.user.petList, action.payload.myNewPet];
+    },
+    [petsOperations.updatePetImage.fulfilled](state, action) {
+      console.log(state.user.petList);
+      console.log(action.payload);
+      const index = state.user.petList.findIndex(
+        pet => pet._id === action.payload.id
+      );
+      state.user.petList[index].petImage = action.payload.petImage;
+      // state.user.petList.find(action.id).petImage = action.petImage;
+      // petImage
+    },
+    [authOperations.userUpload.pending](state) {
+      state.isRefreshing = true;
+    },
+    [authOperations.userUpload.fulfilled](state, action) {
+      state.isRefreshing = false;
+      state.error = null;
+      state.user.id = action.payload._id;
+      state.user.email = action.payload.email;
+      state.user.name = action.payload.name;
+      state.user.avatarURL = action.payload.avatarURL;
+      state.user.birthday = action.payload.birthday;
+      state.user.phone = action.payload.phone;
+      state.user.city = action.payload.city;
+    },
+    [authOperations.userUpload.rejected](state, action) {
+      state.isRefreshing = false;
+      state.error = action.payload;
+    },
+    [authOperations.againVerifyMail.pending](state) {
+      state.isRefreshing = true;
+    },
+    [authOperations.againVerifyMail.fulfilled](state, action) {
+      state.isRefreshing = false;
+    },
+    [authOperations.againVerifyMail.rejected](state, action) {
       state.isRefreshing = false;
       state.error = action.payload;
     },

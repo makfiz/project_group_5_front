@@ -1,24 +1,19 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin-right: auto;
-  margin-left: auto;
+  width: 100%;
 
-  padding: 47px 20px 32px 20px;
-
-  @media (min-width: ${p => p.theme.screenSizes.mobile}) {
-    width: ${p => p.theme.screenSizes.mobile};
-  }
+  padding-top: 40px;
+  padding-bottom: 25px;
 
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
-    width: ${p => p.theme.screenSizes.tablet};
-
-    padding: 20px 32px 22px 32px;
+    padding-top: 20px;
+    padding-bottom: 22px;
   }
 
   @media (min-width: ${p => p.theme.screenSizes.desktop}) {
-    width: 100%;
-    padding: 60px 32px 24px 32px;
+    padding-top: 60px;
+    padding-bottom: 24px;
   }
 `;
 
@@ -35,6 +30,15 @@ export const Title = styled.h2`
     font-size: ${p => p.theme.fontSizes.lm};
     line-height: 1.36;
     color: ${p => p.theme.colors.titleColor};
+  }
+`;
+
+export const AddPetBoxWrapper = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    margin-right: 16px;
   }
 `;
 
@@ -70,6 +74,8 @@ export const AddPetBtn = styled.button`
   border: none;
 
   background-color: ${p => p.theme.colors.userAddPetBtnBg};
+
+  transition: background-color 250ms linear;
 
   cursor: pointer;
 

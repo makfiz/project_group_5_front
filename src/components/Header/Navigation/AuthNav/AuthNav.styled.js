@@ -12,13 +12,20 @@ export const LoginBtn = styled(NavLink)`
   border-radius: 40px;
   border: 2px solid ${p => p.theme.colors.hoverGoHome};
   background-color: ${p => p.theme.colors.hoverGoHome};
-  color: ${p => p.theme.colors.white};
+
+  background-color: ${p => p.theme.colors.white};
+  color: ${p => p.theme.colors.titleColor};
+
+  border-color: ${p => p.theme.colors.hoverGoHome};
   margin-right: 12px;
   &.active {
-    background-color: ${p => p.theme.colors.white};
-    color: ${p => p.theme.colors.titleColor};
-
-    border-color: ${p => p.theme.colors.hoverGoHome};
+    background-color: ${p => p.theme.colors.hoverGoHome};
+    color: ${p => p.theme.colors.white};
+  }
+  &:hover {
+    transition: ${p => p.theme.transition.onHover};
+    background-color: ${p => p.theme.colors.hoverGoHome};
+    color: ${p => p.theme.colors.white};
   }
 `;
 export const RegisterBtn = styled(NavLink)`
@@ -30,17 +37,19 @@ export const RegisterBtn = styled(NavLink)`
   align-content: center;
   text-decoration: none;
   border-radius: 40px;
+  background-color: ${p => p.theme.colors.white};
+  color: ${p => p.theme.colors.titleColor};
   border: 2px solid ${p => p.theme.colors.hoverGoHome};
-  background-color: ${p => p.theme.colors.hoverGoHome};
-  color: ${p => p.theme.colors.white};
-
+  border-color: ${p => p.theme.colors.hoverGoHome};
+  &:hover {
+    transition: ${p => p.theme.transition.onHover};
+    background-color: ${p => p.theme.colors.hoverGoHome};
+    color: ${p => p.theme.colors.white};
+  }
   &.active {
-    background-color: ${p => p.theme.colors.white};
-    color: ${p => p.theme.colors.titleColor};
-
-    border-color: ${p => p.theme.colors.hoverGoHome};
+    background-color: ${p => p.theme.colors.hoverGoHome};
+    color: ${p => p.theme.colors.white};
   }
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
-    margin-right: 25px;
   }
 `;

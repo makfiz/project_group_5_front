@@ -1,8 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { endPoints } from 'constants/EndPoints';
-// import toast from 'react-hot-toast';
-const url = `https://petssuport4815162342api.onrender.com/api/`;
+
 
 export const fetchNoticesByCategory = createAsyncThunk(
   'notices/fetchCategory',

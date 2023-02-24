@@ -14,6 +14,11 @@ export const Link = styled(NavLink)`
       margin-bottom: 0;
     }
   }
+  &:hover {
+    color: ${p => p.theme.colors.hoverGoHome};
+    transition: ${p => p.theme.transition.onHover};
+    text-decoration: underline;
+  }
   &.active {
     color: ${p => p.theme.colors.hoverGoHome};
 
