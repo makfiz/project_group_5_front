@@ -60,7 +60,7 @@ export const RegistrationForm = () => {
     }
 
     const { email, password, name, city, mobilePhone } = values
-    const phone = toString(mobilePhone);
+    const phone = mobilePhone.toString();
     console.log({ email, password, name, city, phone });
     dispatch(authOperations.registration({ email, password, name, city,  phone }));
     dispatch(sendingEmail());

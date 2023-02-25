@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import authOperations from 'redux/auth/operations';
 import { selectUser, selectIsRefreshing } from 'redux/auth/selectors';
