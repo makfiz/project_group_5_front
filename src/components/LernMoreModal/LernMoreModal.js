@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Notiflix from 'notiflix';
 
 import Modal from 'components/Modal/Modal';
@@ -78,6 +78,12 @@ export function LernMoreModal() {
 
   const notice = notices.filter(notice => notice.favoritesIn.includes(userId));
   const chechNotice = notice.find(item => item._id === _id);
+
+  useEffect(() => {
+    if (chechNotice) {
+      setHeartColor(true);
+    }
+  }, []);
   // console.log('notice', notice);
   // console.log('id', _id);
 
