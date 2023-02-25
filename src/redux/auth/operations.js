@@ -17,7 +17,7 @@ const setToken = token => {
 };
 
 export const registration = createAsyncThunk(
-  '/auth/registration',
+  'auth/registration',
   async (credentials, thunkAPI) => {
     try {
       const { data } = await axios.post('/users/signup', credentials);
@@ -43,7 +43,7 @@ export const registration = createAsyncThunk(
   }
 );
 
-const login = createAsyncThunk('/auth/login', async (credentials, thunkAPI) => {
+const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
     const { data } = await axios.post('/users/login', credentials);
     setToken(data.token);
@@ -70,7 +70,7 @@ const login = createAsyncThunk('/auth/login', async (credentials, thunkAPI) => {
   }
 });
 
-const logout = createAsyncThunk('/auth/logout', async () => {
+const logout = createAsyncThunk('auth/logout', async () => {
   try {
     await axios.get('/users/logout');
     unsetToken();
@@ -110,7 +110,7 @@ export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
 });
 
 export const userUpdate = createAsyncThunk(
-  '/auth/userUpdate',
+  'auth/userUpdate',
   async (credentials, thunkAPI) => {
     try {
       const { data } = await axios.patch('/users/update', credentials);
@@ -148,7 +148,7 @@ export const userUpdate = createAsyncThunk(
 );
 
 export const userUpload = createAsyncThunk(
-  '/auth/userUpload',
+  'auth/userUpload',
   async (credentials, thunkAPI) => {
     try {
       const { data } = await axios.patch('/users/upload', credentials);
@@ -186,7 +186,7 @@ export const userUpload = createAsyncThunk(
 );
 
 export const againVerifyMail = createAsyncThunk(
-  '/auth/againVerifyMail',
+  'auth/againVerifyMail',
   async (credentials, thunkAPI) => {
     try {
       const { data } = await axios.post('/users/verify', credentials);
