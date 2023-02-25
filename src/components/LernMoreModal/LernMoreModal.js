@@ -89,7 +89,7 @@ export function LernMoreModal() {
                         <ListItemTitle>Name:</ListItemTitle>
                         <ListItemTitle>Birthday:</ListItemTitle>
                         <ListItemTitle>Breed:</ListItemTitle>
-                        <ListItemTitle>Lovation:</ListItemTitle>
+                        <ListItemTitle>Location:</ListItemTitle>
                         <ListItemTitle>The sex:</ListItemTitle>
                         <ListItemTitle>Email:</ListItemTitle>
                         <ListItemTitle>Phone:</ListItemTitle>

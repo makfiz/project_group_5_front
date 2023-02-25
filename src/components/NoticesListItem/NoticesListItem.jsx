@@ -109,7 +109,12 @@ export const NoticesListItem = ({ ad, askedPage }) => {
   return (
     <Box>
       <ImgWrap>
-        <Img height="288" width="280" src={photoURL} alt={breed} />
+        <Img
+          height="288"
+          width="280"
+          src={photoURL ? photoURL : noPhoto}
+          alt={breed}
+        />
         <ImgBadge category={category}>{categoryTitle}</ImgBadge>
         <AddInFavoriteBtn
           disabled={isUpdating}

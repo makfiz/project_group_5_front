@@ -8,6 +8,7 @@ export const Wraper = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 280px;
+  overflow: hidden;
 
   background-color: ${p => p.theme.colors.white};
   border-radius: ${p => p.theme.radii.medium};
@@ -18,9 +19,9 @@ export const Wraper = styled.div`
     box-shadow: ${p => p.theme.shadows.regModalShadow};
     border-radius: ${p => p.theme.radii.large};
   }
-  @media screen and (min-width: 1280px) {
+  /* @media screen and (min-width: 1280px) {
     width: 618px;
-  }
+  } */
 `;
 
 export const Container = styled.div`
@@ -55,6 +56,9 @@ export const IconWraper = styled.div`
 
 export const ImageWraper = styled.div`
   position: relative;
+  display: block;
+  background-size: cover;
+
   width: 240px;
   height: 240px;
   margin-bottom: 16px;
@@ -78,7 +82,7 @@ export const FavoriteWraper = styled.div`
   align-items: center;
   width: 158px;
   height: 28px;
-  margin-bottom: 16px;
+  /* margin-bottom: 16px; */
 
   background-color: ${p => p.theme.colors.favoriteBg};
   backdrop-filter: blur(50px);
@@ -87,46 +91,58 @@ export const FavoriteWraper = styled.div`
 `;
 
 export const FavotiteType = styled.p`
-  margin-left: 20px;
+  padding-left: 20px;
   font-size: ${p => p.theme.fontSizes.xs};
   font-weight: ${p => p.theme.fontWeight.medium};
+  font-size: 12px;
+  line-height: 1.34;
+  letter-spacing: 0.04em;
+  color: ${p => p.theme.colors.titleColor};
 `;
 
 export const Title = styled.h1`
   margin-bottom: 16px;
   font-weight: ${p => p.theme.fontWeight.bold};
   font-size: ${p => p.theme.fontSizes.l};
+  line-height: 1.38;
+  letter-spacing: -0.01em;
 
   color: ${p => p.theme.colors.black};
 
   @media screen and (min-width: 768px) {
     margin-bottom: 20px;
+    max-width: 320px;
     font-size: ${p => p.theme.fontSizes.lm};
+    line-height: 1.36;
   }
 `;
 
 export const CommentsTitle = styled.p`
   display: inline-block;
   font-weight: 600;
+  line-height: 1.36;
   font-size: ${p => p.theme.fontSizes.s};
   margin-right: 8px;
 
   @media screen and (min-width: 768px) {
     font-size: ${p => p.theme.fontSizes.m};
+    line-height: 1.5;
+    letter-spacing: 0.04em;
   }
 `;
 
 export const CommentsText = styled.p`
   display: inline-block;
-  margin-bottom: 40px;
 
   font-weight: ${p => p.theme.fontWeight.normal};
   font-size: ${p => p.theme.fontSizes.s};
+  line-height: 1.36;
   text-align: justify;
 
   @media screen and (min-width: 768px) {
-    margin-bottom: 32px;
     font-size: ${p => p.theme.fontSizes.m};
+    line-height: 1.5;
+    letter-spacing: 0.04em;
   }
 `;
 
@@ -153,6 +169,8 @@ export const StyledButton = styled.button`
     font-weight: ${p => p.theme.fontWeight.medium};
     font-size: ${p => p.theme.fontSizes.m};
     color: ${p => p.theme.colors.white};
+    line-height: 1.38;
+    letter-spacing: 0.04em;
   }
 
   svg {
@@ -209,10 +227,11 @@ export const StyledButton = styled.button`
 
 export const MoreInfoWraper = styled.div`
   display: flex;
-  justify-content: space-between;
 `;
 
 export const ContentWraper = styled.div`
+  margin-bottom: 28px;
+
   @media screen and (min-width: 768px) {
     display: flex;
     margin-bottom: 28px;
@@ -222,7 +241,10 @@ export const ContentWraper = styled.div`
 export const Layout = styled.div``;
 
 export const ButtonWraper = styled.div`
+  margin-top: 40px;
+
   @media screen and (min-width: 768px) {
+    margin-top: 32px;
     display: flex;
     justify-content: flex-end;
     padding-right: 20px;
@@ -244,6 +266,9 @@ export const List = styled.ul``;
 export const ListItemTitle = styled.li`
   font-weight: 600;
   font-size: ${p => p.theme.fontSizes.s};
+  line-height: 1.36;
+  color: ${p => p.theme.colors.black};
+
   :not(:last-child) {
     margin-bottom: 8px;
   }
@@ -256,6 +281,9 @@ export const ListItemTitle = styled.li`
 export const ListItem = styled.li`
   font-size: ${p => p.theme.fontSizes.s};
   font-weight: ${p => p.theme.fontWeight.medium};
+  line-height: 1.36;
+  color: ${p => p.theme.colors.black};
+
   :not(:last-child) {
     margin-bottom: 8px;
   }

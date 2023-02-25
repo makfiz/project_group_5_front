@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 
 export const CategoriesWrap = styled.div`
   padding: 0 20px;
+  box-sizing: border-box;
+
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
     padding: 0 32px;
     display: flex;
