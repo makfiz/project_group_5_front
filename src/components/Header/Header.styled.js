@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 320px;
+  width: 280px;
   margin-right: auto;
   margin-left: auto;
   background-color: #fdf7f2;
@@ -45,17 +45,30 @@ export const MenuActive = styled.div`
   z-index: 999;
   background-color: #fdf7f2;
   flex-direction: column;
-  margin-right: auto;
-  margin-left: auto;
+
+  padding-top: 16px;
+  max-width: 280px;
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    width: 768px;
+  }
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    width: 1280px;
+  }
 `;
 export const MenuNonActive = styled.div`
+  max-width: 280px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: baseline;
+  padding-top: 20px;
 
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    width: 1280px;
+  }
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
     /* margin-bottom: 60px; */
+    width: 768px;
   }
 `;
 export const MenuAuthBtnWrap = styled.div`
