@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   UserDataItemWrapper,
@@ -11,8 +12,10 @@ import {
   UserInfoLabel,
   UserInfoWrapper,
 } from './UserDataItem.styled';
+import authOperations from 'redux/auth/operations';
 
-export const UserDataItem = ({ label, value }) => {
+export const UserDataItem = ({ label, value, name }) => {
+  const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
   const [currentValue, setCurrentValue] = useState(value);
 
@@ -27,8 +30,13 @@ export const UserDataItem = ({ label, value }) => {
   const handleSubmit = event => {
     event.preventDefault();
     const form = event.target;
-    // dispatch(addTask(form.elements.text.value));
-    form.reset();
+    console.log(form.elements[0].value);
+    console.log(form.name);
+    dispatch(
+      authOperations.userUpdate({ [form.name]: form.elements[0].value })
+    );
+    // form.reset();
+    handleEditClick();
   };
 
   return (
@@ -36,14 +44,18 @@ export const UserDataItem = ({ label, value }) => {
       <UserInfoLabel>{label}:</UserInfoLabel>
       {isEditing ? (
         <UserInfoWrapper>
-          <form onSubmit={handleSubmit}>
+          <form name={name} onSubmit={handleSubmit}>
             {' '}
             <EditInput
               type="text"
               value={currentValue}
               onChange={handleInputChange}
             />
-            <DoneButton onSubmit={handleSubmit} onClick={handleEditClick}>
+            <DoneButton
+              type="submit"
+              // onSubmit={handleSubmit}
+              // onClick={handleEditClick}
+            >
               <DoneIcon />
             </DoneButton>
           </form>
@@ -56,7 +68,7 @@ export const UserDataItem = ({ label, value }) => {
             onChange={handleInputChange}
             disabled
           />
-          <EditButton onClick={handleEditClick}>
+          <EditButton type="button" onClick={handleEditClick}>
             <EditIcon />
           </EditButton>
         </UserInfoWrapper>

@@ -119,11 +119,7 @@ const authSlice = createSlice({
     [authOperations.refresh.pending](state) {
       state.isRefreshing = true;
     },
-    [authOperations.userUpdate.pending](state) {
-      state.isRefreshing = true;
-    },
     [authOperations.userUpdate.fulfilled](state, action) {
-      state.isRefreshing = false;
       state.error = null;
       state.user.id = action.payload._id;
       state.user.email = action.payload.email;
@@ -134,7 +130,6 @@ const authSlice = createSlice({
       state.user.city = action.payload.city;
     },
     [authOperations.userUpdate.rejected](state, action) {
-      state.isRefreshing = false;
       state.error = action.payload;
     },
     [petsOperations.addPet.fulfilled](state, action) {
@@ -152,11 +147,7 @@ const authSlice = createSlice({
       );
       state.user.petList.splice(index, 1);
     },
-    [authOperations.userUpload.pending](state) {
-      state.isRefreshing = true;
-    },
     [authOperations.userUpload.fulfilled](state, action) {
-      state.isRefreshing = false;
       state.error = null;
       state.user.id = action.payload._id;
       state.user.email = action.payload.email;
@@ -167,7 +158,6 @@ const authSlice = createSlice({
       state.user.city = action.payload.city;
     },
     [authOperations.userUpload.rejected](state, action) {
-      state.isRefreshing = false;
       state.error = action.payload;
     },
     [authOperations.againVerifyMail.pending](state) {
