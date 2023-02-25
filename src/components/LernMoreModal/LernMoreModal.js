@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Notiflix from 'notiflix';
 
 import Modal from 'components/Modal/Modal';
 import { Button } from 'components/Button/Button';
@@ -51,6 +52,7 @@ export function LernMoreModal() {
   const dispatch = useDispatch();
   const itemNotice = useSelector(state => state.notices.notice);
   const openModal = useSelector(state => state.form.isModalOpen);
+  const notices = useSelector(state => state.notices.ads);
 
   const { id: userId } = useSelector(selectUser);
 
@@ -74,6 +76,15 @@ export function LernMoreModal() {
   const place = convertLocationStringToCityName(location);
   const [isFav, setIsFav] = useState(() => favoritesIn.includes(userId));
 
+  const notice = notices.filter(notice => notice.favoritesIn.includes(userId));
+  const chechNotice = notice.find(item => item._id === _id);
+
+  useEffect(() => {
+    if (chechNotice) {
+      setHeartColor(true);
+    }
+  }, []);
+
   const onHandleClick = () => {
     dispatch(cleanNotice());
     dispatch(closeModal());
@@ -87,7 +98,13 @@ export function LernMoreModal() {
     setHeartColor(true);
     const path = `${endPoints.noticesBase}${_id}${endPoints.noticesFavorite}`;
 
-    dispatch(addNoticeToFavorite({ path }));
+    if (chechNotice) {
+      return Notiflix.Notify.failure('notice already in favorite', {
+        timeout: 2500,
+      });
+    } else {
+      dispatch(addNoticeToFavorite({ path }));
+    }
   };
 
   return (
