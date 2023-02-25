@@ -33,7 +33,7 @@ export const deleteOwnNoticeReducer = (state, action) => {
 };
 
 export const fetchNoticeReducer = (state, action) => {
-  state.notice = action.payload;
+  state.notice = [{ ...action.payload.notice, ...action.payload.contacts }];
   state.isLoading = false;
 };
 

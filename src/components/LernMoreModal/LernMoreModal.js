@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import React from 'react';
+import React, { useState } from 'react';
 
 import Modal from 'components/Modal/Modal';
 import { Button } from 'components/Button/Button';
@@ -35,25 +35,13 @@ import {
   ListItemTitle,
   Img,
 } from './LernMoreModal.styled';
+import { selectUser } from 'redux/auth/selectors';
 
 export function LernMoreModal() {
   const dispatch = useDispatch();
-
   const itemNotice = useSelector(state => state.notices.notice);
   const openModal = useSelector(state => state.form.isModalOpen);
-
-  const onHandleClick = () => {
-    dispatch(cleanNotice());
-    dispatch(closeModal());
-  };
-
-  const handleClick = () => {
-    console.log('click');
-  };
-
-  if (itemNotice.length === 0) {
-    return;
-  }
+  const { id: userId } = useSelector(selectUser);
 
   const {
     title,
@@ -67,10 +55,17 @@ export function LernMoreModal() {
     price,
     photoURL,
     favoritesIn,
-    contacts = { email: 'unknown', phone: 'unknown' },
-  } = itemNotice.notice;
+    email,
+    phone,
+  } = itemNotice[0];
 
   const place = convertLocationStringToCityName(location);
+  const [isFav, setIsFav] = useState(() => favoritesIn.includes(userId));
+
+  const onHandleClick = () => {
+    dispatch(cleanNotice());
+    dispatch(closeModal());
+  };
 
   return (
     <>
@@ -116,8 +111,8 @@ export function LernMoreModal() {
                         <ListItem>{breed}</ListItem>
                         <ListItem>{place}</ListItem>
                         <ListItem>{sex}</ListItem>
-                        <ListItem>{contacts.email}</ListItem>
-                        <ListItem>{contacts.phone}</ListItem>
+                        <ListItem>{email}</ListItem>
+                        <ListItem>{phone}</ListItem>
                         {category === 'sell' && <ListItem>{price}</ListItem>}
                       </List>
                     </RightPartWraper>
@@ -136,7 +131,7 @@ export function LernMoreModal() {
                   style={StyledButton}
                   type="button"
                 />
-                <Button style={StyledButton} type="button">
+                <Button isFav={isFav} style={StyledButton} type="button">
                   <span>Add to</span>
                   <HeartIcon />
                 </Button>
