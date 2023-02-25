@@ -59,15 +59,17 @@ export const RegistrationForm = () => {
       return;
     }
 
-    const { email, password, name, city, mobilePhone } = values
+    const { email, password, name, city, mobilePhone } = values;
     const phone = mobilePhone.toString();
-    console.log({ email, password, name, city, phone });
-    dispatch(authOperations.registration({ email, password, name, city,  phone }));
+
+    dispatch(
+      authOperations.registration({ email, password, name, city, phone })
+    );
     dispatch(sendingEmail());
     dispatch(hideForm());
 
-    resetForm();
     setSendEmail(true);
+    resetForm();
   };
 
   const onShowPassword = () => {

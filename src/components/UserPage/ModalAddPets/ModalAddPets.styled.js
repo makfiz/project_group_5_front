@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Field } from 'formik';
+import { Field, ErrorMessage } from 'formik';
 
 export const Container = styled.div`
   background-color: ${p => p.theme.colors.white}; 
@@ -8,6 +8,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  box-shadow: ${p => p.theme.shadows.hoursWorkModalShadow};
 
   @media screen and (min-width: 767px) {
     width: 608px;
@@ -19,7 +20,7 @@ export const Title = styled.p`
 
   font-weight: ${p => p.theme.fontWeight.medium};
   font-size: ${p => p.theme.fontSizes.l};
-  letter-spacing: 0.04em;
+  line-height: 33px;
   color: ${p => p.theme.colors.titleColor};
   text-align: center;
 
@@ -32,6 +33,13 @@ export const Title = styled.p`
 export const CloseCross = styled.svg`
   width: 16px;
   height: 16px;
+  fill: ${p => p.theme.colors.titleColor};
+  transition: fill 250ms linear;
+
+  &:hover,
+  &:focus {
+    fill: ${p => p.theme.colors.userAddPetBtnBgHover};
+  }
 
   @media screen and (min-width: 767px) {
     width: 20px;
@@ -50,11 +58,6 @@ export const BtnClose = styled.div`
   justify-content: center;
   background: #FDF7F2;
   border: none;
-
-  &:hover,
-  &:focus {
-    box-shadow: 0px 0px 1px 2px rgba(245, 146, 86, 0.7);
-  }
 
   @media screen and (min-width: 767px) {
     width: 44px;
@@ -93,7 +96,7 @@ export const BtnStyle = styled.button`
   &:hover,    
   &:active {
     transition: box-shadow 250ms ease-out;
-    box-shadow: 0px 0px 2px 2px rgba(245, 146, 86, 0.6);
+    box-shadow: 0px 0px 2px 3px rgba(245, 146, 86, 0.6);
   }
   :not(:last-child) {
     margin-bottom: 12px;
@@ -120,7 +123,7 @@ export const BtnStyleEmpt = styled.button`
   &:hover,
   &:active {
     transition: box-shadow 250ms ease-out;
-    box-shadow: 0px 0px 2px 2px rgba(245, 146, 86, 0.6);
+    box-shadow: 0px 0px 2px 3px rgba(245, 146, 86, 0.6);
   }
   :not(:last-child) {
     margin-bottom: 12px;
@@ -158,6 +161,8 @@ export const Input = styled(Field)`
   padding-top: 11px;
   padding-bottom: 11px;
   padding-left: 14px;
+  font-size: ${p => p.theme.fontSizes.s};
+  line-height: 26px;
   outline: none;
 
   @media screen and (min-width: 768px) {
@@ -314,3 +319,20 @@ export const Wrap = styled.div`
   justify-content: center;
   align-items: flex-start;
 ` 
+export const Error = styled(ErrorMessage)`
+  color: ${p => p.theme.colors.error};
+  margin-bottom: ${p => p.theme.space[4]}px;
+  margin-left: ${p => p.theme.space[4]}px;
+  font-size: ${p => p.theme.fontSizes.s};
+
+  @media screen and (min-width: 768px) {
+    margin-left: ${p => p.theme.space[5]}px;
+  }
+`;
+
+export const ErrorImg = styled.p`
+  color: ${p => p.theme.colors.error};
+  font-size: ${p => p.theme.fontSizes.s};
+  text-align: center;
+  padding-top: 7px;
+`;

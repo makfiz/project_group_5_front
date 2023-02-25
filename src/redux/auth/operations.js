@@ -1,7 +1,10 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import Notiflix from 'notiflix';
-import { notiflixOptions, notiflixReportOptions } from "../../utils/notiflixOptions";
+import {
+  notiflixOptions,
+  notiflixReportOptions,
+} from '../../utils/notiflixOptions';
 
 axios.defaults.baseURL = 'https://petssuport4815162342api.onrender.com/api';
 
@@ -79,9 +82,12 @@ const logout = createAsyncThunk('/auth/logout', async () => {
 const googleApi = createAsyncThunk('auth/google', async credentials => {
   try {
     setToken(credentials.token);
-    Notiflix.Notify.success('Success! Login and password have been sent to your email ✔', {
+    Notiflix.Notify.success(
+      'Success! Login and password have been sent to your email ✔',
+      {
         timeout: 3000,
-      });
+      }
+    );
     return credentials;
   } catch (error) {
     console.log(error);

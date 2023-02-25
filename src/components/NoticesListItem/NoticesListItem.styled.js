@@ -58,12 +58,26 @@ export const AddInFavoriteBtn = styled.button`
 
   background-color: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(2px);
+
+  svg {
+    transition: fill 300ms ease-in-out, stroke 300ms ease-in-out,
+      transform 300ms ease-in-out;
+    stroke: ${p => p.theme.colors.hoverGoHome};
+  }
+
+  :hover {
+    svg {
+      stroke: ${p => p.theme.colors.deleteBtnColor};
+      fill: ${p => p.theme.colors.deleteBtnColor};
+      transform: scale(1.1);
+    }
+  }
 `;
 
 export const Img = styled.img`
   display: block;
   width: 100%;
-  background-size: cover;
+  object-fit: cover;
   height: 288px;
 `;
 

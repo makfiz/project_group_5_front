@@ -5,6 +5,7 @@ import { BounceLoader } from 'react-spinners';
 import Notiflix from 'notiflix';
 import { calculateAndConvertAge } from 'utils/calculateAndConvertAge';
 import { renameNoticesCategory } from 'utils/renameNoticesCategory';
+import { convertLocationStringToCityName } from 'utils/convertLocationStringToCityName';
 import { selectUser, selectIsLoggedIn } from 'redux/auth/selectors';
 import { selectIsLoadingNotices } from 'redux/notices/selectors';
 
@@ -32,7 +33,6 @@ import {
 } from './NoticesListItem.styled';
 
 import { ReactComponent as Favorite } from '../../assets/icons/Favorite.svg';
-import { LernMoreModal } from 'components/LernMoreModal/LernMoreModal';
 
 export const NoticesListItem = ({ ad, askedPage }) => {
   const {
@@ -68,6 +68,7 @@ export const NoticesListItem = ({ ad, askedPage }) => {
     favoritesIn.includes(userId)
   );
   const categoryTitle = renameNoticesCategory(category);
+  const place = convertLocationStringToCityName(location);
   const sellPage = category === 'sell' && askedPage === 'sell';
   const own = owner === userId;
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -109,7 +110,12 @@ export const NoticesListItem = ({ ad, askedPage }) => {
   return (
     <Box>
       <ImgWrap>
-        <Img height="288" width="280" src={photoURL} alt={breed} />
+        <Img
+          height="288"
+          width="280"
+          src={photoURL ? photoURL : noPhoto}
+          alt={breed}
+        />
         <ImgBadge category={category}>{categoryTitle}</ImgBadge>
         <AddInFavoriteBtn
           disabled={isUpdating}
@@ -140,7 +146,7 @@ export const NoticesListItem = ({ ad, askedPage }) => {
 
           <DescriptionDefinitions>
             <NoticesDescriptionText text={breed} />
-            <NoticesDescriptionText text={location} />
+            <NoticesDescriptionText text={place} />
             <NoticesDescriptionText text={age} />
             {sellPage && <NoticesDescriptionText text={price} />}
           </DescriptionDefinitions>
