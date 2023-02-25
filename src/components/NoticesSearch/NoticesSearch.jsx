@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
+import debounce from 'lodash.debounce';
 
 import { setQueryValue } from 'redux/notices/searchQuerySlice';
 import { selectNoticesSearchQuery } from 'redux/notices/selectors';
@@ -20,13 +21,16 @@ import {
 export const NoticesSearch = () => {
   const dispatch = useDispatch();
   const search = useSelector(selectNoticesSearchQuery);
+  const [value, setValue] = useState(search);
   const [searchParams, setSearchParams] = useSearchParams();
-
   const page = searchParams.get('page') ?? 1;
 
   useEffect(() => {
     searchParamsHandler(page, search, setSearchParams);
-    return () => {};
+
+    return () => {
+      debouncedHandleInput.cancel();
+    };
   }, [search]);
 
   const handleSubmit = e => {
@@ -34,14 +38,21 @@ export const NoticesSearch = () => {
     dispatch(setQueryValue(e.currentTarget.elements.search.value.trim()));
     searchParamsHandler(page, search, setSearchParams);
   };
+
   const handleInput = e => {
-    dispatch(setQueryValue(e.target.value));
+    dispatch(setQueryValue(e.target.value.trim()));
     searchParamsHandler(page, search, setSearchParams);
   };
   const handleReset = e => {
+    setValue('');
     dispatch(setQueryValue(''));
     searchParamsHandler(page, search, setSearchParams);
   };
+
+  const debouncedHandleInput = useMemo(
+    () => debounce(handleInput, 500),
+    [search]
+  );
 
   return (
     <SearchBarWrap>
@@ -49,15 +60,20 @@ export const NoticesSearch = () => {
       <SearchForm onSubmit={handleSubmit}>
         <InputLabel htmlFor="search">
           <SearchField
-            onInput={handleInput}
+            onInput={debouncedHandleInput}
+            onChange={e => setValue(e.target.value)}
             type="text"
             placeholder="Search"
             name="search"
             id="search"
-            value={search}
+            value={value}
           />
           <SearchBtn type="submit">
-            {search ? <ResetForm onClick={handleReset} /> : <SearchIcon />}
+            {value.trim() ? (
+              <ResetForm onClick={handleReset} />
+            ) : (
+              <SearchIcon />
+            )}
           </SearchBtn>
         </InputLabel>
       </SearchForm>
