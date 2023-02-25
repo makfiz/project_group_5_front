@@ -15,10 +15,12 @@ import {
   Wrap,
 } from 'components/UserPage/UserData/UserPhoto.styled';
 
-export function UserPhoto() {
+export function UserPhoto({ user }) {
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
   const [img, setImg] = useState(null);
+
+  const { avatarURL } = user;
 
   const handleEditClick = e => {
     e.preventDefault();
@@ -38,14 +40,14 @@ export function UserPhoto() {
     <form encType="multipart/form-data" onSubmit={handleSubmit}>
       <Wrap>
         <AvatarHolder>
-          {!img ? (
+          {!avatarURL ? (
             <AddCross>
               <svg>
                 <use href={icons + '#icon-bigPlus'} />
               </svg>
             </AddCross>
           ) : (
-            <Avatar src={img} alt="avatar" />
+            <Avatar src={avatarURL} alt="avatar" />
           )}
           <AddPhoto
             id="addPhotoField"

@@ -18,7 +18,7 @@ export const UserData = ({ user }) => {
       <UserPageHeader>My information:</UserPageHeader>
       <UserInfoCard>
         <UserPhotoThumb>
-          <UserPhoto />
+          <UserPhoto user={user} />
         </UserPhotoThumb>
         <UserDataWrapper>
           <UserDataItem name="name" label="Name" value={!name ? '' : name} />
