@@ -6,8 +6,7 @@ import {
   notiflixReportOptions,
 } from '../../utils/notiflixOptions';
 
-// axios.defaults.baseURL = 'https://petssuport4815162342api.onrender.com/api';
-axios.defaults.baseURL = 'http://localhost:3000/api';
+axios.defaults.baseURL = 'https://petssuport4815162342api.onrender.com/api';
 
 const unsetToken = () => {
   return (axios.defaults.headers.common.Authorization = '');
