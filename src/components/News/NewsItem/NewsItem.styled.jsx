@@ -7,11 +7,11 @@ export const Article = styled.article`
 
 export const Divider = styled.div`
   width: 200px;
-  height: 4px;
+  height: ${props => props.theme.space[2]}px;
 
-  background: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
-  border-radius: 40px;
-  margin-bottom: 4px;
+  background: linear-gradient(${theme.gradient.newsDecoration});
+  border-radius: ${props => props.theme.radii.large};
+  margin-bottom: ${props => props.theme.space[2]}px;
 
   @media (min-width: ${theme.screenSizes.tablet}) {
     width: 280px;
@@ -23,26 +23,27 @@ export const Divider = styled.div`
 `;
 
 export const ArticleTitle = styled.h2`
-  font-weight: 700;
-  font-size: 24px;
+  font-weight: ${props => props.theme.fontWeight.bold};
+  font-size: ${props => props.theme.fontSizes.l};
   line-height: 33px;
   letter-spacing: -0.01em;
-
+  
   overflow: hidden;
   white-space: wrap;
   text-overflow: ellipsis;
   max-height: 66px;
 
-  margin-bottom: 16px;
+  margin-bottom: ${props => props.theme.space[4]}px;
 `;
 
 export const ArticleText = styled.p`
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: ${props => props.theme.fontWeight.normal};
+  font-size: ${props => props.theme.fontSizes.m};
   line-height: 22px;
   max-height: 176px;
-
-  color: #111321;
+  text-align: justify;
+  
+  color: ${props => props.theme.colors.articleText};
 
   margin-bottom: 20px;
 
@@ -62,23 +63,25 @@ export const Details = styled.p`
 `;
 
 export const ArticleDate = styled.span`
-  font-size: 16px;
+  font-size: ${props => props.theme.fontSizes.m};
   line-height: 22px;
-  color: rgba(17, 17, 17, 0.6);
+  color: ${props => props.theme.colors.regModalLinkText};
+
 `;
 
 export const ReadMoreLink = styled.a`
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: ${props => props.theme.fontWeight.medium};
+  font-size: ${props => props.theme.fontSizes.m};
   line-height: 22px;
   text-decoration: underline;
 
-  color: #f59256;
+  color: ${props => props.theme.colors.hoverGoHome};
+  transition: color ${props => props.theme.transition.onHover};
 
   &:hover,
   &:focus,
   &:visited {
-    color: #ff6101;
+    color: ${props => props.theme.colors.userAddPetBtnBgHover};
   }
 `;
 
