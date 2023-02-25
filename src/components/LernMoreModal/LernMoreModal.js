@@ -1,16 +1,23 @@
 import { useDispatch, useSelector } from 'react-redux';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import Modal from 'components/Modal/Modal';
 import { Button } from 'components/Button/Button';
 import { closeModal } from '../../redux/form/formSlice';
 import { cleanNotice } from '../../redux/notices/operations';
+import { endPoints } from 'constants/EndPoints';
 
 import { renameNoticesCategory } from 'utils/renameNoticesCategory';
 import { convertLocationStringToCityName } from 'utils/convertLocationStringToCityName';
 
-import { ReactComponent as HeartIcon } from '../../assets/icons/akarIconsHeart.svg';
+// import { ReactComponent as HeartIcon } from '../../assets/icons/akarIconsHeart.svg';
 import noPhoto from '../../assets/default-img/default.jpg';
+import { selectUser } from 'redux/auth/selectors';
+import {
+  addNoticeToFavorite,
+  removeNoticeFromFavorite,
+  deleteOnFavoritePage,
+} from '../../redux/notices/operations';
 
 import {
   Wraper,
@@ -34,16 +41,21 @@ import {
   ListItem,
   ListItemTitle,
   Img,
+  IconHeart,
+  IconHeartBg,
 } from './LernMoreModal.styled';
-import { selectUser } from 'redux/auth/selectors';
 
 export function LernMoreModal() {
+  const [heartColor, setHeartColor] = useState(false);
+
   const dispatch = useDispatch();
   const itemNotice = useSelector(state => state.notices.notice);
   const openModal = useSelector(state => state.form.isModalOpen);
+
   const { id: userId } = useSelector(selectUser);
 
   const {
+    _id,
     title,
     comments,
     category,
@@ -65,6 +77,17 @@ export function LernMoreModal() {
   const onHandleClick = () => {
     dispatch(cleanNotice());
     dispatch(closeModal());
+  };
+
+  const phoneCall = () => {
+    window.location.href = `tel:${phone}`;
+  };
+
+  const onFavorite = () => {
+    setHeartColor(true);
+    const path = `${endPoints.noticesBase}${_id}${endPoints.noticesFavorite}`;
+
+    dispatch(addNoticeToFavorite({ path }));
   };
 
   return (
@@ -130,10 +153,21 @@ export function LernMoreModal() {
                   children={<span>Contact</span>}
                   style={StyledButton}
                   type="button"
+                  onClick={phoneCall}
                 />
-                <Button isFav={isFav} style={StyledButton} type="button">
+
+                <Button
+                  isFav={isFav}
+                  style={StyledButton}
+                  type="button"
+                  onClick={onFavorite}
+                >
                   <span>Add to</span>
-                  <HeartIcon />
+                  {heartColor ? (
+                    <IconHeartBg size={16} />
+                  ) : (
+                    <IconHeart size={16} />
+                  )}
                 </Button>
               </ButtonWraper>
             </Container>
