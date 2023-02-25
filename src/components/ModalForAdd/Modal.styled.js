@@ -9,7 +9,8 @@ export const Backdrop = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.30);
+  background-color: ${p => p.theme.colors.backdropModal};
+  backdrop-filter: blur(10px);
   overflow-y: scroll;
   z-index: 11;
 `;
