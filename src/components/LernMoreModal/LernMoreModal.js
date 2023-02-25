@@ -1,12 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React from 'react';
-import { ReactComponent as HeartIcon } from '../../assets/icons/akarIconsHeart.svg';
 
 import Modal from 'components/Modal/Modal';
 import { Button } from 'components/Button/Button';
-
 import { closeModal } from '../../redux/form/formSlice';
 import { cleanNotice } from '../../redux/notices/operations';
+
+import { renameNoticesCategory } from 'utils/renameNoticesCategory';
+import { convertLocationStringToCityName } from 'utils/convertLocationStringToCityName';
+
+import { ReactComponent as HeartIcon } from '../../assets/icons/akarIconsHeart.svg';
+import noPhoto from '../../assets/default-img/default.jpg';
 
 import {
   Wraper,
@@ -24,12 +28,12 @@ import {
   ContentWraper,
   Layout,
   ButtonWraper,
-  // HeartIcon,
   LeftPartWraper,
   RightPartWraper,
   List,
   ListItem,
   ListItemTitle,
+  Img,
 } from './LernMoreModal.styled';
 
 export function LernMoreModal() {
@@ -61,8 +65,12 @@ export function LernMoreModal() {
     location,
     sex,
     price,
+    photoURL,
+    favoritesIn,
     contacts = { email: 'unknown', phone: 'unknown' },
   } = itemNotice.notice;
+
+  const place = convertLocationStringToCityName(location);
 
   return (
     <>
@@ -76,8 +84,11 @@ export function LernMoreModal() {
 
               <ContentWraper>
                 <ImageWraper>
+                  <Img src={photoURL ? photoURL : noPhoto} alt={breed} />
                   <FavoriteWraper>
-                    <FavotiteType>{category}</FavotiteType>
+                    <FavotiteType>
+                      {renameNoticesCategory(category)}
+                    </FavotiteType>
                   </FavoriteWraper>
                 </ImageWraper>
 
@@ -89,7 +100,7 @@ export function LernMoreModal() {
                         <ListItemTitle>Name:</ListItemTitle>
                         <ListItemTitle>Birthday:</ListItemTitle>
                         <ListItemTitle>Breed:</ListItemTitle>
-                        <ListItemTitle>Lovation:</ListItemTitle>
+                        <ListItemTitle>Location:</ListItemTitle>
                         <ListItemTitle>The sex:</ListItemTitle>
                         <ListItemTitle>Email:</ListItemTitle>
                         <ListItemTitle>Phone:</ListItemTitle>
@@ -103,7 +114,7 @@ export function LernMoreModal() {
                         <ListItem>{name}</ListItem>
                         <ListItem>{birth}</ListItem>
                         <ListItem>{breed}</ListItem>
-                        <ListItem>{location}</ListItem>
+                        <ListItem>{place}</ListItem>
                         <ListItem>{sex}</ListItem>
                         <ListItem>{contacts.email}</ListItem>
                         <ListItem>{contacts.phone}</ListItem>
@@ -120,8 +131,12 @@ export function LernMoreModal() {
               </div>
 
               <ButtonWraper>
-                <Button children={<span>Contact</span>} style={StyledButton} />
-                <Button style={StyledButton}>
+                <Button
+                  children={<span>Contact</span>}
+                  style={StyledButton}
+                  type="button"
+                />
+                <Button style={StyledButton} type="button">
                   <span>Add to</span>
                   <HeartIcon />
                 </Button>
