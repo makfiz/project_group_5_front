@@ -93,15 +93,19 @@ export const UserPhotoThumb = styled.div`
 `;
 
 export const UserDataWrapper = styled.div`
+  margin-top: 70px;
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
-    position: absolute;
-    top: 44px;
-    left: 32px;
+    margin-top: 44px;
+    margin-left: 32px;
     max-width: 380px;
   }
   @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    position: absolute;
     top: 289px;
     left: 16px;
+
+    margin-top: 0px;
+    margin-left: 0px;
     max-width: 380px;
   }
 `;

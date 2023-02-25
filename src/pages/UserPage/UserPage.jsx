@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import authOperations from 'redux/auth/operations';
 import { selectUser, selectIsRefreshing } from 'redux/auth/selectors';
@@ -17,10 +17,10 @@ const UserPage = () => {
   const user = useSelector(selectUser);
 
   useEffect(() => {
-    if (user.name === null) dispatch(authOperations.refresh());
+    if (user.email === null) dispatch(authOperations.refresh());
   }, [dispatch]);
 
-  if (user.name === null) {
+  if (user.email === null) {
     return (
       <LoaderWrapper>
         <Loader Width={240} />
