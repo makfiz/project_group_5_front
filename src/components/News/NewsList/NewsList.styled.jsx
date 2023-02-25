@@ -3,8 +3,6 @@ import { theme } from '../../../utils/theme';
 
 export const ArticleList = styled.ul`
   margin-bottom: -40px;
-  padding-left: ${props => props.theme.space[4]}px;
-  padding-right: ${props => props.theme.space[4]}px;
   padding-bottom: 100px;
 
   position: relative;
