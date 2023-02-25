@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { RxCross1 } from 'react-icons/rx';
-// import { AiTwotoneHeart } from 'react-icons/ai';
+import { AiOutlineHeart, AiTwotoneHeart } from 'react-icons/ai';
 
 export const Wraper = styled.div`
   position: relative;
@@ -293,3 +293,6 @@ export const Img = styled.img`
     height: 328px;
   }
 `;
+
+export const IconHeart = styled(AiOutlineHeart)``;
+export const IconHeartBg = styled(AiTwotoneHeart)``;
