@@ -63,7 +63,7 @@ export const AddInFavoriteBtn = styled.button`
 export const Img = styled.img`
   display: block;
   width: 100%;
-  background-size: cover;
+  object-fit: cover;
   height: 288px;
 `;
 

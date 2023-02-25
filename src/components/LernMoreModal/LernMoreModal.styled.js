@@ -55,15 +55,13 @@ export const IconWraper = styled.div`
   :hover {
     svg {
       color: ${p => p.theme.colors.deleteBtnColor};
-      transform: scale(1.2);
+      transform: scale(1.1);
     }
   }
 `;
 
 export const ImageWraper = styled.div`
   position: relative;
-  display: block;
-  background-size: cover;
 
   width: 240px;
   height: 240px;
@@ -180,7 +178,8 @@ export const StyledButton = styled.button`
 
   svg {
     fill: ${p => p.theme.colors.regModalActiveBtn};
-    transition: fill 300ms ease-in-out;
+    stroke: ${p => p.theme.colors.regModalActiveBtn};
+    transition: fill 300ms ease-in-out, stroke 300ms ease-in-out;
   }
 
   :last-child {
@@ -198,6 +197,7 @@ export const StyledButton = styled.button`
 
       svg {
         fill: ${p => p.theme.colors.deleteBtnColor};
+        stroke: ${p => p.theme.colors.deleteBtnColor};
       }
     }
   }
@@ -279,5 +279,17 @@ export const ListItem = styled.li`
 
   @media screen and (min-width: 768px) {
     font-size: ${p => p.theme.fontSizes.m};
+  }
+`;
+
+export const Img = styled.img`
+  display: block;
+  width: 240px;
+  height: 240px;
+  object-fit: cover;
+
+  @media screen and (min-width: 768px) {
+    width: 288px;
+    height: 328px;
   }
 `;
