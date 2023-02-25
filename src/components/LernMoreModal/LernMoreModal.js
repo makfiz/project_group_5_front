@@ -84,8 +84,6 @@ export function LernMoreModal() {
       setHeartColor(true);
     }
   }, []);
-  // console.log('notice', notice);
-  // console.log('id', _id);
 
   const onHandleClick = () => {
     dispatch(cleanNotice());
