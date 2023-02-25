@@ -37,12 +37,6 @@ export const AddPhoto = styled.input`
   width: 0px;
   height: 0px;
 `;
-export const Wrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-`;
 
 export const EditPhotoButton = styled.button`
   /* position: absolute; */
