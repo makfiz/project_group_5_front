@@ -1,9 +1,13 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import Notiflix from 'notiflix';
-import { notiflixOptions, notiflixReportOptions } from "../../utils/notiflixOptions";
+import {
+  notiflixOptions,
+  notiflixReportOptions,
+} from '../../utils/notiflixOptions';
 
-axios.defaults.baseURL = 'https://petssuport4815162342api.onrender.com/api';
+// axios.defaults.baseURL = 'https://petssuport4815162342api.onrender.com/api';
+axios.defaults.baseURL = 'http://localhost:3000/api';
 
 const unsetToken = () => {
   return (axios.defaults.headers.common.Authorization = '');
