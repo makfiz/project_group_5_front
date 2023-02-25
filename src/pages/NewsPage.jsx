@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import axios from 'axios';
 
 import { Title } from 'components/Title/Title';
 import { NewsList } from 'components/News/NewsList/NewsList';
@@ -14,18 +15,23 @@ const NewsPage = () => {
   const search = searchParams.get('search');
 
   useEffect(() => {
-    // const BASE_URL = "http://localhost:3000/api";
     const BASE_URL = 'https://petssuport4815162342api.onrender.com/api';
     let searchPath = '/news';
     if (search) {
       searchPath = searchPath + '?search=' + search;
     }
 
-    fetch(`${BASE_URL}${searchPath}`)
-      .then(data => data.json())
-      .then(data => setNews(data))
-      .catch(error => setError(error))
-      .finally(() => setIsLoading(false));
+    axios
+      .get(`${BASE_URL}${searchPath}`)
+      .then(response => {
+        setNews(response.data);
+      })
+      .catch(error => {
+        setError(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, [search]);
 
   function filterNews(e) {
