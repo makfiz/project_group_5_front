@@ -56,19 +56,21 @@ export function LernMoreModal() {
   }
 
   const {
-    title,
-    comments,
-    category,
-    name,
-    birth,
-    breed,
-    location,
-    sex,
-    price,
-    photoURL,
-    favoritesIn,
+    notice: {
+      title,
+      comments,
+      category,
+      name,
+      birth,
+      breed,
+      location,
+      sex,
+      price,
+      photoURL,
+      favoritesIn,
+    },
     contacts = { email: 'unknown', phone: 'unknown' },
-  } = itemNotice.notice;
+  } = itemNotice;
 
   const place = convertLocationStringToCityName(location);
 
