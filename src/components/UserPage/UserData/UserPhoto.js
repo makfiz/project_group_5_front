@@ -12,7 +12,6 @@ import {
   AddCross,
   Avatar,
   AddPhoto,
-  Wrap,
 } from 'components/UserPage/UserData/UserPhoto.styled';
 
 export function UserPhoto({ user }) {
@@ -24,8 +23,7 @@ export function UserPhoto({ user }) {
 
   const handleEditClick = e => {
     e.preventDefault();
-    setIsEditing(!isEditing);
-    document.getElementById('addPhotoField').click();
+    e.currentTarget.form[0].click();
   };
 
   const handleSubmit = e => {
@@ -39,32 +37,29 @@ export function UserPhoto({ user }) {
 
   return (
     <form encType="multipart/form-data" onSubmit={handleSubmit}>
-      <Wrap>
-        <AvatarHolder>
-          {!avatarURL ? (
-            <AddCross>
-              <svg>
-                <use href={icons + '#icon-bigPlus'} />
-              </svg>
-            </AddCross>
-          ) : (
-            <Avatar src={avatarURL} alt="avatar" />
-          )}
-          <AddPhoto
-            id="addPhotoField"
-            type="file"
-            accept="image/*"
-            // disabled={!isEditing}
-            onChange={e => {
-              setImg(URL.createObjectURL(e.target.files[0]));
-            }}
-          />
-        </AvatarHolder>
-      </Wrap>
+      <AvatarHolder>
+        {!avatarURL ? (
+          <AddCross>
+            <svg>
+              <use href={icons + '#icon-bigPlus'} />
+            </svg>
+          </AddCross>
+        ) : (
+          <Avatar src={!img ? avatarURL : img} alt="avatar" />
+        )}
+        <AddPhoto
+          type="file"
+          accept="image/*"
+          onChange={e => {
+            setImg(URL.createObjectURL(e.target.files[0]));
+            setIsEditing(true);
+          }}
+        />
+      </AvatarHolder>
       {isEditing ? (
         <EditPhotoButton type="submit">
           <EditPhotoIcon />
-          <EditPhotoButtonText>Send photo</EditPhotoButtonText>
+          <EditPhotoButtonText>Save photo</EditPhotoButtonText>
         </EditPhotoButton>
       ) : (
         <EditPhotoButton type="button" onClick={handleEditClick}>
