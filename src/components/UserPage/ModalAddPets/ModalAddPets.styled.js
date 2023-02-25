@@ -162,6 +162,7 @@ export const Input = styled(Field)`
   padding-bottom: 11px;
   padding-left: 14px;
   font-size: ${p => p.theme.fontSizes.s};
+  line-height: 26px;
   outline: none;
 
   @media screen and (min-width: 768px) {
@@ -327,4 +328,11 @@ export const Error = styled(ErrorMessage)`
   @media screen and (min-width: 768px) {
     margin-left: ${p => p.theme.space[5]}px;
   }
+`;
+
+export const ErrorImg = styled.p`
+  color: ${p => p.theme.colors.error};
+  font-size: ${p => p.theme.fontSizes.s};
+  text-align: center;
+  padding-top: 7px;
 `;

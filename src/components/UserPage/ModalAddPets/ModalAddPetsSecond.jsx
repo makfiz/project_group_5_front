@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Form, Formik } from 'formik';
 import { stepTwoValidSchema } from 'utils/validationPet';
-import icons from '../../../assets/icons/icons.svg';
+import icons from 'assets/icons/icons.svg';
 import { Button } from 'components/Button/Button';
+import { string } from 'yup';
 import {
   Container,
   Title,
@@ -22,12 +23,14 @@ import {
   Wrap,
   TextArea,
   BtnStyleEmpt,
-  Error
+  Error,
+  ErrorImg
 } from './ModalAddPets.styled';
 
 
 export const ModalAddsPetSecond = props => {
   const [img, setImg] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = values => {
     props.next(values, true);
@@ -61,15 +64,19 @@ export const ModalAddsPetSecond = props => {
                   )}
                   <AddPhoto
                     type="file"
+                    name="image"
                     accept="image/*"
                     onChange={e => {
                       const fileUploaded = e.target.files[0];
                       setFieldValue('petImage', e.target.files[0]);
                       setImg(URL.createObjectURL(fileUploaded));
+                      setLoading(string().required().isValidSync(e.target.files[0]));
                     }}
                   />
-                </AddImgBtn>
+              </AddImgBtn>
+              
               </Wrap>
+              <ErrorImg>{!loading && "Image is required"}</ErrorImg>
               <ComentsWrapper>
                 <PetLabel htmlFor="comments"> Comments</PetLabel>
                 <TextArea

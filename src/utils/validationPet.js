@@ -9,21 +9,10 @@ export const stepOneValidSchema = Yup.object({
     .matches(/^[a-zA-Z\s]+?$/iu, 'Only Latin letters'),
   dateOfBirth: Yup.string()
     .matches(
-      /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,
+      /^(0[1-9]|[1-2][0-9]|3[0-1])\.(0[1-9]|1[0-2])\.[0-9]{4}$/,
       'Correct format: dd.mm.yyyy'
     )
-    .test(
-      'is-date-valid',
-      () => `Future date not allowed`,
-      (value) => {
-        if (value) {
-          let date = value.split('.');
-          const corectFormat = new Date(`${date[2]}/${date[1]}/${date[0]}`);
-          return corectFormat.getTime() < Date.now();
-        }
-        return true;
-      }
-    )
+    .max(new Date(), "Date of birth must be before today's date")
     .label('Date of birth')
     .required('Date of birth is required'),
   breed: Yup.string()
@@ -41,5 +30,8 @@ export const stepTwoValidSchema = Yup.object({
     .required('Comment is required'),
   petImage: Yup.mixed()
     .label('Pet image')
+    .test("fileSize", "File too large", (value) =>
+      value ? value.size <= 5000000 : true
+    )
     .required('Pet image is required')
 });
