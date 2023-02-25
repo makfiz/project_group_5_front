@@ -177,7 +177,8 @@ export const StyledButton = styled.button`
   }
 
   svg {
-    fill: ${p => p.theme.colors.regModalActiveBtn};
+    /* fill: ${p => p.theme.colors.regModalActiveBtn}; */
+    fill: ${p => p.theme.colors.white};
     stroke: ${p => p.theme.colors.regModalActiveBtn};
     transition: fill 300ms ease-in-out, stroke 300ms ease-in-out;
   }

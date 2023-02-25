@@ -66,6 +66,7 @@ export function LernMoreModal() {
     sex,
     price,
     photoURL,
+    favoritesIn,
     contacts = { email: 'unknown', phone: 'unknown' },
   } = itemNotice.notice;
 
