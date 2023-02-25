@@ -45,6 +45,7 @@ export const Wrap = styled.div`
 `;
 
 export const EditPhotoButton = styled.button`
+  /* position: absolute; */
   display: block;
   border-style: none;
   margin-left: auto;
@@ -62,13 +63,13 @@ export const EditPhotoButton = styled.button`
     position: absolute;
     margin-top: 0px;
     margin-bottom: 0px;
-    right: 40px;
-    bottom: 24px;
+    right: 0px;
+    buttom: -120px;
   }
 
   @media (min-width: ${p => p.theme.screenSizes.desktop}) {
-    right: 16px;
-    bottom: 288px;
+    right: -65px;
+    bottom: 0px;
   }
 `;
 
