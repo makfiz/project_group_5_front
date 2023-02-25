@@ -47,29 +47,13 @@ export const MenuActive = styled.div`
   flex-direction: column;
 
   padding-top: 16px;
-  max-width: 280px;
-  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
-    width: 768px;
-  }
-  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
-    width: 1280px;
-  }
 `;
 export const MenuNonActive = styled.div`
-  max-width: 280px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: baseline;
   padding-top: 20px;
-
-  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
-    width: 1280px;
-  }
-  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
-    /* margin-bottom: 60px; */
-    width: 768px;
-  }
 `;
 export const MenuAuthBtnWrap = styled.div`
   display: flex;
