@@ -17,10 +17,10 @@ const UserPage = () => {
   const user = useSelector(selectUser);
 
   useEffect(() => {
-    if (user.email === null) dispatch(authOperations.refresh());
+    if (user.name === null) dispatch(authOperations.refresh());
   }, [dispatch]);
 
-  if (user.email === null) {
+  if (user.name === null) {
     return (
       <LoaderWrapper>
         <Loader Width={240} />
