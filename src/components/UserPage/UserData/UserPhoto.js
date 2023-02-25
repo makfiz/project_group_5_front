@@ -32,6 +32,7 @@ export function UserPhoto() {
     const formData = new FormData();
     formData.append('avatar', form.elements[0].files[0]);
     dispatch(authOperations.userUpload(formData));
+    setIsEditing(!isEditing);
   };
 
   return (
