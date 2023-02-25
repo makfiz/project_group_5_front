@@ -19,9 +19,6 @@ export const Wraper = styled.div`
     box-shadow: ${p => p.theme.shadows.regModalShadow};
     border-radius: ${p => p.theme.radii.large};
   }
-  /* @media screen and (min-width: 1280px) {
-    width: 618px;
-  } */
 `;
 
 export const Container = styled.div`
@@ -36,7 +33,9 @@ export const Container = styled.div`
   }
 `;
 
-export const Icon = styled(RxCross1)``;
+export const Icon = styled(RxCross1)`
+  transition: color 300ms ease-in-out, transform 300ms ease-in-out;
+`;
 
 export const IconWraper = styled.div`
   position: absolute;
@@ -52,6 +51,13 @@ export const IconWraper = styled.div`
   border-radius: 50%;
 
   cursor: pointer;
+
+  :hover {
+    svg {
+      color: ${p => p.theme.colors.deleteBtnColor};
+      transform: scale(1.2);
+    }
+  }
 `;
 
 export const ImageWraper = styled.div`
@@ -82,7 +88,6 @@ export const FavoriteWraper = styled.div`
   align-items: center;
   width: 158px;
   height: 28px;
-  /* margin-bottom: 16px; */
 
   background-color: ${p => p.theme.colors.favoriteBg};
   backdrop-filter: blur(50px);
@@ -212,17 +217,6 @@ export const StyledButton = styled.button`
       margin-right: 0;
     }
   }
-
-  /* &:hover {
-    border: 2px solid #f59256;
-    background-color: transparent;
-    color: ${p => p.theme.colors.black};
-  } */
-  /* &:active {
-    border: 2px solid #f59256;
-    background-color: transparent;
-    color: ${p => p.theme.colors.black};
-  } */
 `;
 
 export const MoreInfoWraper = styled.div`
@@ -250,11 +244,6 @@ export const ButtonWraper = styled.div`
     padding-right: 20px;
   }
 `;
-
-// export const HeartIcon = styled(AiTwotoneHeart)`
-//   color: ${p => p.theme.colors.userAddPetBtnBg};
-//   margin-left: 10px;
-// `;
 
 export const LeftPartWraper = styled.div`
   margin-right: 50px;
