@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/project_group_5_front/static/css/main.2c9dd069.css",
-    "main.js": "/project_group_5_front/static/js/main.d79d760b.js",
+    "main.js": "/project_group_5_front/static/js/main.d282ae7f.js",
     "static/js/820.ad0c5a0f.chunk.js": "/project_group_5_front/static/js/820.ad0c5a0f.chunk.js",
-    "static/js/411.82cebcff.chunk.js": "/project_group_5_front/static/js/411.82cebcff.chunk.js",
+    "static/js/411.71511959.chunk.js": "/project_group_5_front/static/js/411.71511959.chunk.js",
     "static/js/781.977ce630.chunk.js": "/project_group_5_front/static/js/781.977ce630.chunk.js",
     "static/js/743.072bf276.chunk.js": "/project_group_5_front/static/js/743.072bf276.chunk.js",
     "static/js/443.7a1c26f1.chunk.js": "/project_group_5_front/static/js/443.7a1c26f1.chunk.js",
@@ -48,9 +48,9 @@
     "static/media/open-menu.svg": "/project_group_5_front/static/media/open-menu.d5b0e5383e0ee6ce15fd5ea05cbb6107.svg",
     "static/media/plusIcon.svg": "/project_group_5_front/static/media/plusIcon.40b2205dc2516cb92de4e8f4f8627464.svg",
     "main.2c9dd069.css.map": "/project_group_5_front/static/css/main.2c9dd069.css.map",
-    "main.d79d760b.js.map": "/project_group_5_front/static/js/main.d79d760b.js.map",
+    "main.d282ae7f.js.map": "/project_group_5_front/static/js/main.d282ae7f.js.map",
     "820.ad0c5a0f.chunk.js.map": "/project_group_5_front/static/js/820.ad0c5a0f.chunk.js.map",
-    "411.82cebcff.chunk.js.map": "/project_group_5_front/static/js/411.82cebcff.chunk.js.map",
+    "411.71511959.chunk.js.map": "/project_group_5_front/static/js/411.71511959.chunk.js.map",
     "781.977ce630.chunk.js.map": "/project_group_5_front/static/js/781.977ce630.chunk.js.map",
     "743.072bf276.chunk.js.map": "/project_group_5_front/static/js/743.072bf276.chunk.js.map",
     "443.7a1c26f1.chunk.js.map": "/project_group_5_front/static/js/443.7a1c26f1.chunk.js.map",
@@ -64,6 +64,6 @@
   },
   "entrypoints": [
     "static/css/main.2c9dd069.css",
-    "static/js/main.d79d760b.js"
+    "static/js/main.d282ae7f.js"
   ]
 }
