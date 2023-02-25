@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { ErrorMessage, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
+import { stepTwoValidSchema } from 'utils/validationPet';
 import icons from '../../../assets/icons/icons.svg';
 import { Button } from 'components/Button/Button';
 import {
@@ -21,7 +22,9 @@ import {
   Wrap,
   TextArea,
   BtnStyleEmpt,
+  Error
 } from './ModalAddPets.styled';
+
 
 export const ModalAddsPetSecond = props => {
   const [img, setImg] = useState(null);
@@ -41,7 +44,7 @@ export const ModalAddsPetSecond = props => {
       </BtnClose>
       <Wrapper>
         <Title>Add pet</Title>
-        <Formik initialValues={props.data} onSubmit={handleSubmit}>
+        <Formik initialValues={props.data} validationSchema={stepTwoValidSchema} onSubmit={handleSubmit}>
           {({ setFieldValue }) => (
             <Form encType="multipart/form-data">
               <AddImgTitle>Add photo and some comments</AddImgTitle>
@@ -74,7 +77,7 @@ export const ModalAddsPetSecond = props => {
                   name="comments"
                   placeholder="Type comments"
                 />
-                <ErrorMessage name="comments" component="p" />
+                <Error name="comments" component="p" />
               </ComentsWrapper>
 
               <BtnWrapper>
