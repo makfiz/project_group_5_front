@@ -16,6 +16,8 @@ import heartImg from '../../assets/images/heart-desk.png';
 import heartImg2x from '../../assets/images/heart-desk-2x.png';
 import backgroundImageDeskRP from 'assets/images/background-desk-rp.png';
 import backgroundImageDeskRP2x from 'assets/images/background-desk-rp-2x.png';
+import bgDesk from 'assets/images/bg-desk.png';
+import bgDesk2x from 'assets/images/bg-desk-2x.png';
 
 export const PageWrapper = styled.div`
   height: 93vh;
@@ -63,7 +65,7 @@ export const PageWrapper = styled.div`
     }
   }
 
-  @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
+  /* @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
     width: ${p => p.theme.screenSizes.desktop};
 
     padding-top: 92px;
@@ -88,6 +90,32 @@ export const PageWrapper = styled.div`
       only screen and (min-resolution: 2dppx) {
       background-image: url(${heartImg2x}), url(${portraitDesk2x}),
         url(${backgroundImageDesk2x}), url(${backgroundImageDeskRP2x});
+    }
+  } */
+
+  @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
+    /* width: ${p => p.theme.screenSizes.desktop}; */
+
+    padding-top: 92px;
+
+    background-image: url(${bgDesk});
+
+    background-repeat: no-repeat;
+
+    background-size: cover;
+
+    background-position-y: center;
+
+    background-position-x: center;
+
+    @media only screen and (-webkit-min-device-pixel-ratio: 2),
+      only screen and (min--moz-device-pixel-ratio: 2),
+      only screen and (-moz-min-device-pixel-ratio: 2),
+      only screen and (-o-min-device-pixel-ratio: 2/1),
+      only screen and (min-device-pixel-ratio: 2),
+      only screen and (min-resolution: 192dpi),
+      only screen and (min-resolution: 2dppx) {
+      background-image: url(${bgDesk2x});
     }
   }
 `;
