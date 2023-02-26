@@ -27,5 +27,5 @@ export const SectionTitle = styled.h1`
     margin-top: 60px;
   }
 
-  color: #111111;
+  color: ${props => props.theme.colors.titleColor};
 `;

@@ -24,8 +24,9 @@ import { AuthNav } from './Navigation/AuthNav/AuthNav';
 import { useSelector } from 'react-redux';
 import { UserNav } from './Navigation/UserNav/UserNav';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
+import ThemeToggle from 'components/ThemeToggle/ThemeToggle';
 
-export const Header = () => {
+export const Header = ({ toggleTheme, theme }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   //   const handleMenuClick = {};
   // const isLoggedIn = false;
@@ -45,6 +46,7 @@ export const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
     <Container>
+      <ThemeToggle theme={theme} toggleTheme={toggleTheme}></ThemeToggle>
       {isMenuOpen ? (
         <>
           <MenuActive>

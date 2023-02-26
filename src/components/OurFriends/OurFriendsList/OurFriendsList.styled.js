@@ -22,7 +22,7 @@ export const BoxFriendsList = styled.div`
   justify-content: space-around;
   padding: 20px;
 
-  @media (min-width: ${props => props.theme.screenSizes.tablet}) {
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
     padding: 32px;
     display: block;
   }
@@ -50,7 +50,7 @@ export const FriendsList = styled.ul`
 `;
 
 export const FriendsItem = styled.li`
-  background-color: ${props => props.theme.colors.white};
+  background-color: ${props => props.theme.colors.bgcContent};
   border-radius: ${props => props.theme.radii.large};
   box-shadow: ${props => props.theme.shadows.inputShadow};
 

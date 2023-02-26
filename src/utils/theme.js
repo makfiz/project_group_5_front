@@ -69,6 +69,9 @@ export const theme = {
   transition: {
     onHover: '250ms cubic-bezier(0.4, 0, 0.2, 1)',
   },
+  gradient: {
+    newsDecoration: '90deg, #ff634e 0%, #ffdf48 105.44%',
+  },
 };
 
 export const themeDark = {
@@ -96,7 +99,7 @@ export const themeDark = {
     black: '#ffffff',
     grey: '#a1abb6',
     navAccent: '#2196f3',
-    hoverGoHome: '#56B9F5',
+    hoverGoHome: '#F59256',
     titleColor: '#E2E2E2',
     //^
     placeholderColor: '#E2E2E2',
@@ -108,15 +111,15 @@ export const themeDark = {
     regModalLinkText: 'rgba(226, 226, 226, 0.6)',
     //
     regModalLink: '#3091EB',
-    regModalActiveBtn: '#56B9F5',
+    regModalActiveBtn: '#F59256',
     //
     regModalplaceholderColor: 'rgba(226, 226, 226, 0.6)',
     error: 'red',
-    deleteBtnColor: '#019FFF',
+    deleteBtnColor: '#FF6101',
     //
     petModalplaceholder: 'rgba(27, 27, 27, 0.6)',
-    userAddPetBtnBg: '#56B9F5',
-    userAddPetBtnBgHover: '#019FFF',
+    userAddPetBtnBg: '#F59256',
+    userAddPetBtnBgHover: '#FF6101',
   },
   shadows: {
     shadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.75)',
@@ -145,6 +148,9 @@ export const themeDark = {
   },
   transition: {
     onHover: '250ms cubic-bezier(0.4, 0, 0.2, 1)',
+  },
+  gradient: {
+    newsDecoration: '90deg, #ff634e 0%, #ffdf48 105.44%',
   },
 };
 
@@ -216,5 +222,8 @@ export const themeLight = {
   },
   transition: {
     onHover: '250ms cubic-bezier(0.4, 0, 0.2, 1)',
+  },
+  gradient: {
+    newsDecoration: '90deg, #ff634e 0%, #ffdf48 105.44%',
   },
 };

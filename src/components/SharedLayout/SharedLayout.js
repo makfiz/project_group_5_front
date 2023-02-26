@@ -6,11 +6,11 @@ import { Header } from '../Header/Header';
 import { Loader } from 'components/Loader/Loader';
 import { LoaderWrapper } from 'components/Loader/Loader.styled.jsx';
 
-export const SharedLayout = () => {
+export const SharedLayout = ({ toggleTheme, theme }) => {
   const isRefreshing = useSelector(selectIsRefreshing);
   return (
     <>
-      <Header />
+      <Header toggleTheme={toggleTheme} theme={theme} />
       <Suspense
         fallback={
           <LoaderWrapper>
