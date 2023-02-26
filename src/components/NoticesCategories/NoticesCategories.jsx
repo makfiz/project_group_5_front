@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 import { Box } from 'components/Box/Box';
@@ -11,9 +11,19 @@ import {
   AddPetBtnIconWrap,
 } from './NoticesCategories.styled';
 import { ReactComponent as PlusIcon } from '../../assets/icons/plusIcon.svg';
+import { AddModalNotice } from 'components/AddModalNotice/AddModalNotice';
+import { useNavigate } from 'react-router';
 
 export const NoticesCategories = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const navigate = useNavigate();
+  const { token } = useSelector(state => state.auth);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleModalToggle = () => {
+    setIsModalOpen(prev => {
+      return !prev;
+    });
+  };
 
   return (
     <Box display="flex" justifyContent="center">
@@ -43,12 +53,21 @@ export const NoticesCategories = () => {
             </>
           )}
         </CategoriesList>
-        <AddPetBtn type="button">
+        <AddPetBtn
+          type="button"
+          onClick={e => {
+            e.preventDefault();
+            token ? handleModalToggle() : navigate('/login');
+          }}
+        >
           Add pet
           <AddPetBtnIconWrap>
             <PlusIcon />
           </AddPetBtnIconWrap>
         </AddPetBtn>
+        {isModalOpen && (
+          <AddModalNotice handleModalToggle={handleModalToggle} />
+        )}
       </CategoriesWrap>
     </Box>
   );
