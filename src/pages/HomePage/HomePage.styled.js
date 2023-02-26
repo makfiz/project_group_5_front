@@ -14,6 +14,8 @@ import backgroundImageDesk2x from '../../assets/images/background-desk-2x.png';
 import portraitDesk2x from '../../assets/images/portrait-desk-2x.png';
 import heartImg from '../../assets/images/heart-desk.png';
 import heartImg2x from '../../assets/images/heart-desk-2x.png';
+import backgroundImageDeskRP from 'assets/images/background-desk-rp.png';
+import backgroundImageDeskRP2x from 'assets/images/background-desk-rp-2x.png';
 
 export const PageWrapper = styled.div`
   height: 93vh;
@@ -67,15 +69,15 @@ export const PageWrapper = styled.div`
     padding-top: 92px;
 
     background-image: url(${heartImg}), url(${portraitDesk}),
-      url(${backgroundImageDesk});
+      url(${backgroundImageDesk}), url(${backgroundImageDeskRP});
 
-    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
 
-    background-size: 8% auto, 50% auto, 100% 60%;
+    background-size: 8% auto, 50% auto, 1069px 393px, 495px 393px;
 
-    background-position-y: 14%, bottom, bottom;
+    background-position-y: 14%, bottom, bottom, bottom;
 
-    background-position-x: 58%, 98%, 32px;
+    background-position-x: 58%, 98%, 32px, right;
 
     @media only screen and (-webkit-min-device-pixel-ratio: 2),
       only screen and (min--moz-device-pixel-ratio: 2),
@@ -85,7 +87,7 @@ export const PageWrapper = styled.div`
       only screen and (min-resolution: 192dpi),
       only screen and (min-resolution: 2dppx) {
       background-image: url(${heartImg2x}), url(${portraitDesk2x}),
-        url(${backgroundImageDesk2x});
+        url(${backgroundImageDesk2x}), url(${backgroundImageDeskRP2x});
     }
   }
 `;
