@@ -16,7 +16,7 @@ import heartImg from '../../assets/images/heart-desk.png';
 import heartImg2x from '../../assets/images/heart-desk-2x.png';
 
 export const PageWrapper = styled.div`
-  height: 83vh;
+  height: 93vh;
   width: 100vw;
 
   margin-left: auto;
@@ -87,30 +87,6 @@ export const PageWrapper = styled.div`
       background-image: url(${heartImg2x}), url(${portraitDesk2x}),
         url(${backgroundImageDesk2x});
     }
-  }
-`;
-
-export const Container = styled.div`
-  max-width: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-left: auto;
-  margin-right: auto;
-
-  @media screen and (min-width: ${p => p.theme.screenSizes.mobile}) {
-    max-width: ${p => p.theme.screenSizes.mobile};
-  }
-
-  @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
-    max-width: ${p => p.theme.screenSizes.tablet};
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-
-  @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
-    max-width: ${p => p.theme.screenSizes.desktop};
-    padding-left: 16px;
-    padding-right: 16px;
   }
 `;
 
