@@ -13,9 +13,7 @@ export const ChooseRegistration = () => {
   return (
     <Wraper>
       <Box mb={5}>
-        <LinkRedirect to="/registration">
-          Sign up with phone or email
-        </LinkRedirect>
+        <LinkRedirect to="/registration">Sign up with email</LinkRedirect>
       </Box>
 
       <Text>or</Text>

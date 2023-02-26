@@ -152,7 +152,7 @@ export const RegistrationForm = () => {
                 <Input type="text" name="city" placeholder="City, region" />
                 <ErrorMessage component="span" name="city" />
                 <Input
-                  type="number"
+                  type="tel"
                   name="mobilePhone"
                   placeholder="Mobile phone"
                 />
