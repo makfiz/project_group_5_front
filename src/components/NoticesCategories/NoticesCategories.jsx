@@ -63,7 +63,6 @@ export const NoticesCategories = () => {
             token ? handleModalToggle() : navigate('/login');
           }}
         >
-          Add pet
           <AddPetBtnIconWrap>
             <PlusIcon />
           </AddPetBtnIconWrap>
