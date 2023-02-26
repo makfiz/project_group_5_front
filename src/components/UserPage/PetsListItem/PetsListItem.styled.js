@@ -58,16 +58,6 @@ export const ImgWrapper = styled.div`
   }
 `;
 
-export const PetImage = styled.img`
-  width: 240px;
-  height: 240px;
-
-  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
-    width: 161px;
-    height: 161px;
-  }
-`;
-
 export const InfoWrapper = styled.div`
   overflow: auto;
 `;

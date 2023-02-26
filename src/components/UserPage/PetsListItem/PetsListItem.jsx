@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { deletePet } from '../../../redux/Pets/petsOperations';
 import { FieldPetImg } from './FieldPetImage';
-
+import { Modal } from 'components/Modal/Modal';
 
 import {
   PetCard,
@@ -28,9 +28,9 @@ export const PetsListItem = ({
   return (
     <PetCard>
       <ImgWrapper>
-        <FieldPetImg petImage={petImage} _id={id} /> 
+        <FieldPetImg petImage={petImage} _id={id} />
       </ImgWrapper>
- 
+
       <InfoWrapper>
         <InfoTitle>
           Name: <InfoText>{name}</InfoText>
