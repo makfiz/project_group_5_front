@@ -70,6 +70,10 @@ const noticesSlice = createSlice({
       )
       .addCase(operations.cleanNotice.fulfilled, reducers.cleanNoticeReducer)
       .addCase(operations.addNotice.fulfilled, reducers.addNotice)
+      .addCase(
+        operations.NoticePetImageUpload.fulfilled,
+        reducers.NoticePetImageUpload
+      )
 
       .addMatcher(isAnyOf(...getActions('pending')), reducers.pendingReducer)
       .addMatcher(isAnyOf(...getActions('rejected')), reducers.rejectedReducer),

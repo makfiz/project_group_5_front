@@ -457,7 +457,7 @@ export const AddModalNotice = ({ handleModalToggle }) => {
                     setIsFirstRegisterStep(!isFirstRegisterStep);
                   }}
                 >
-                  Next
+                  Back
                 </Button>
 
                 <Button type="submit">Done</Button>
