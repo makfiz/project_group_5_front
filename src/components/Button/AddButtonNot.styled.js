@@ -16,6 +16,7 @@ export const ButtonStyles = `display: flex;
 
 export const ButtonBasic = styled.button`
   ${ButtonStyles};
+
   @media screen and (min-width: 768px) {
     margin-right: 20px;
     width: 180px;
@@ -26,14 +27,15 @@ export const ButtonBasic = styled.button`
   background-color: ${p => p.theme.colors.white};
   :hover:not(.active),
   :focus-visible:not(.active) {
-    background-color: ${p => p.theme.colors.accent};
+    background-color: ${p => p.theme.colors.userAddPetBtnBg};
     color: ${p => p.theme.colors.white};
     transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
   &.active {
-    background-color: ${p => p.theme.colors.accent};
+    background-color: ${p => p.theme.colors.userAddPetBtnBg};
     color: ${p => p.theme.colors.white};
+    border-color: ${p => p.theme.colors.userAddPetBtnBg};
   }
 `;
 
