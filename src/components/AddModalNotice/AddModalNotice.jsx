@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import { AiOutlineClose } from 'react-icons/ai';
 
-import { addNoticeToFavorite } from 'redux/notices/operations';
+import { addNotice, NoticePetImageUpload } from 'redux/notices/operations';
 import { handleBackdropClick, handleEscClick } from 'utils/modalHelpers';
 
 import { ModalNotice } from 'components/Modal/ModalNotic/ModalNotice';
@@ -94,16 +94,16 @@ const validationSchemaStepTwo = Yup.object().shape({
 export const AddModalNotice = ({ handleModalToggle }) => {
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
   const [image, setImage] = useState(null);
-  const { addNotices } = addNoticeToFavorite();
+  // const { addNotices } = addNoticeToFavorite();
 
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const moveNextRegistration = () => {
-    isFirstRegisterStep
-      ? setIsFirstRegisterStep(false)
-      : setIsFirstRegisterStep(true);
-  };
+  // const moveNextRegistration = () => {
+  //   isFirstRegisterStep
+  //     ? setIsFirstRegisterStep(false)
+  //     : setIsFirstRegisterStep(true);
+  // };
 
   const categorySetByDefault = () => {
     const enterPoint = pathname.split('/').pop();
@@ -112,34 +112,34 @@ export const AddModalNotice = ({ handleModalToggle }) => {
   const formik = useFormik({
     initialValues: {
       category: categorySetByDefault(),
-      title: '',
-      name: '',
-      birthday: '',
-      breed: '',
-      sex: '',
-      location: '',
+      title: 'titletest',
+      name: 'nametest',
+      birthday: '01.01.2022',
+      breed: 'breedtest',
+      sex: 'male',
+      location: 'test',
       price: 1,
       petImage: null,
-      comments: '',
+      comments: 'testtesttest',
     },
     validationSchema: validationSchemaStepOne,
-    onSubmit: values => {
-      const data = new FormData();
-      data.append('category', values.category);
-      data.append('title', values.title);
-      data.append('name', values.name);
-      data.append('birthday', values.birthday);
-      data.append('breed', values.breed);
-      data.append('sex', values.sex);
-      data.append('location', values.location);
-      data.append('price', values.price);
-      data.append('comments', values.comments);
-      data.append('petImage', values.petImage);
-      addNotices(data);
-      handleModalToggle();
-      navigate('/notices/own');
-      toast.success(`Your pet ${values.name} has been added to notices`);
-    },
+    // onSubmit: values => {
+    //   const data = new FormData();
+    //   data.append('category', values.category);
+    //   data.append('title', values.title);
+    //   data.append('name', values.name);
+    //   data.append('birthday', values.birthday);
+    //   data.append('breed', values.breed);
+    //   data.append('sex', values.sex);
+    //   data.append('location', values.location);
+    //   data.append('price', values.price);
+    //   data.append('comments', values.comments);
+    //   data.append('petImage', values.petImage);
+    //   addNotices(data);
+    //   handleModalToggle();
+    //   navigate('/notices/own');
+    //   toast.success(`Your pet ${values.name} has been added to notices`);
+    // },
   });
 
   const onImageChange = e => {
@@ -168,7 +168,7 @@ export const AddModalNotice = ({ handleModalToggle }) => {
           encType="multipart/form-data"
           onSubmit={e => {
             e.preventDefault();
-            formik.handleSubmit();
+            e.currentTarget.submit();
           }}
         >
           {isFirstRegisterStep && (
@@ -247,7 +247,7 @@ export const AddModalNotice = ({ handleModalToggle }) => {
                 <TextLabel>
                   Date of birth
                   <DateInput
-                    value={formik.values.dateOfBirth}
+                    value={formik.values.birthday}
                     onChange={formik.handleChange}
                     name="birthday"
                     placeholder="Type date of birth"
@@ -271,6 +271,29 @@ export const AddModalNotice = ({ handleModalToggle }) => {
                   />
                 </TextLabel>
               </InputCont>
+              <ActionButtons>
+                <Button type="button" onClick={handleModalToggle}>
+                  Cancel
+                </Button>
+
+                {/* <Button
+                  type="button"
+                  onClick={() => {
+                    setIsFirstRegisterStep(!isFirstRegisterStep);
+                  }}
+                >
+                  Back
+                </Button> */}
+
+                <Button
+                  type="button"
+                  onClick={() => {
+                    setIsFirstRegisterStep(!isFirstRegisterStep);
+                  }}
+                >
+                  Next
+                </Button>
+              </ActionButtons>
             </FirstForm>
           )}
           {!isFirstRegisterStep && (
@@ -301,7 +324,7 @@ export const AddModalNotice = ({ handleModalToggle }) => {
                 />
                 <SexLabel htmlFor="femalePet">
                   <FeMaleIcon></FeMaleIcon>
-                  <span class="checkmark"></span>
+                  <span className="checkmark"></span>
                   Female
                 </SexLabel>
               </SexFormBox>
@@ -392,21 +415,20 @@ export const AddModalNotice = ({ handleModalToggle }) => {
                   value={formik.values.comments}
                 />
               </InputContTextArea>
+              <ActionButtons>
+                <Button
+                  type="button"
+                  onClick={() => {
+                    setIsFirstRegisterStep(!isFirstRegisterStep);
+                  }}
+                >
+                  Next
+                </Button>
+
+                <Button type="submit">Done</Button>
+              </ActionButtons>
             </>
           )}
-
-          <ActionButtons>
-            {isFirstRegisterStep ? (
-              <Button onClick={handleModalToggle}>Cancel</Button>
-            ) : (
-              <Button onClick={moveNextRegistration}>Back</Button>
-            )}
-            {isFirstRegisterStep ? (
-              <Button onClick={moveNextRegistration}> Next</Button>
-            ) : (
-              <Button>Done</Button>
-            )}
-          </ActionButtons>
         </form>
       </Container>
     </ModalNotice>
