@@ -182,6 +182,7 @@ export const TextInput = styled.input`
   padding: 0;
   padding-left: 14px;
   border-radius: 40px;
+  background-color: #fdf7f2;
   ::placeholder {
     font-family: 'Manrope, sans-serif';
     font-style: normal;
@@ -282,9 +283,10 @@ export const BoxQuestion = styled.legend`
 
 export const Asterisk = styled.span`
   font-size: ${p => p.theme.fontSizes[3]}px;
-  font-weight: ${p => p.theme.fontWeight.medium};
+  font-weight: 400px;
   line-height: 1.44;
   color: #f59256';
+
   @media screen and (min-width: 768px) {
     font-size: ${p => p.theme.fontSizes[5]}px;
     line-height: 1.04;
@@ -382,7 +384,7 @@ export const ImageInputWrapper = styled.fieldset`
 
 export const ImageTitle = styled.label`
   margin-bottom: 8px;
-  font-weight: ${p => p.theme.fontWeight.medium};
+  font-weight: 500px;
   font-size: ${p => p.theme.fontSizes[3]}px;
   line-height: 1.2;
   letter-spacing: -0.01em;

@@ -42,48 +42,53 @@ import {
   AddedIamge,
 } from './AddModalNotice.styled';
 
-const validationSchema = Yup.object({
-  category: Yup.string().required('Choose category'),
+const validationSchemaStepOne = Yup.object().shape({
   title: Yup.string()
     .required('Title is required')
-    .min(2, 'Min 2 characters')
-    .matches(
-      /^([А-Яа-яЁёЇїІіЄєҐґ'\s]+|[a-zA-Z\s]+){2,}$/,
-      'Must contain only cahracters and spaces'
-    )
-    .trim()
-    .max(48, '48 characters max'),
+    .min(2, 'Title should be at least 2 characters long')
+    .max(48, 'Title should be up to 48 characters long'),
   name: Yup.string()
-    .trim()
-    .min(2, 'Min 2 characters')
     .required('Name is required')
     .matches(
-      /^([А-Яа-яЁёЇїІіЄєҐґ'\s]+|[a-zA-Z\s]+){2,}$/,
-      'Must contain only cahracters and spaces'
+      /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
+      'Only letters can be accepted'
     )
-    .max(16, '16 characters max'),
-  birthday: Yup.date()
-    .required('Choose date of birth')
-    .max(new Date(), 'Date must be in the past'),
+    .min(2, 'Name should be at least 2 characters long')
+    .max(16, 'Name should be up to 16 characters long'),
+  birthDate: Yup.date().required('Birth date is required'),
   breed: Yup.string()
     .required('Breed is required')
-    .min(2, 'Min 2 characters')
-    .matches(/^([А-Яа-яЁёЇїІіЄєҐґ'\s]+|[a-zA-Z\s]+){2,}$/, 'only letters')
-    .trim()
-    .max(24, '24 characters max'),
-  location: Yup.string().required('Type the location'),
-  sex: Yup.string().required('Choose sex'),
-  price: Yup.string().when('category', {
-    is: category => category === 'sell',
-    then: Yup.string()
-      .required('Set price')
-      .matches(/^[0-9][0-9]*$/, 'Numbers only'),
-  }),
+    .matches(
+      /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
+      'Only letters can be accepted'
+    )
+    .min(2, 'Breed should be at least 2 characters long')
+    .max(24, 'Breed should be up to 24 characters long'),
+});
+
+const validationSchemaStepTwo = Yup.object().shape({
+  sex: Yup.string().required(),
+  location: Yup.string()
+    .matches(
+      /^[a-zA-Zа-яА-ЯіІїЇ]+(?:[-\s]?[a-zA-Zа-яА-ЯіІїЇ]+)*,\s*[a-zA-Zа-яА-ЯіІїЇ'’\s-]+$/,
+      'Should be at least two words separated by coma'
+    )
+    .required('City is required'),
+  price: Yup.number()
+    .typeError('Price must be a number')
+    .min(1, 'Price can not be 0')
+    .when('category', (category, schema) => {
+      if (category === 'sell') {
+        return schema.required('Price is required');
+      }
+      return schema;
+    }),
+
+  petImage: Yup.mixed().required('Please add the picture'),
   comments: Yup.string()
-    .trim()
-    .required('Type comments')
-    .min(8, 'Min 8 characters')
-    .max(120, '120 characters max'),
+    .required('Comment is required')
+    .min(8, 'Title should be at least 8 characters long')
+    .max(200, 'Title should be up to 200 characters long'),
 });
 
 export const AddModalNotice = ({ handleModalToggle }) => {
@@ -117,7 +122,7 @@ export const AddModalNotice = ({ handleModalToggle }) => {
       petImage: null,
       comments: '',
     },
-    validationSchema: validationSchema,
+    validationSchema: validationSchemaStepOne,
     onSubmit: values => {
       const data = new FormData();
       data.append('category', values.category);
@@ -214,14 +219,12 @@ export const AddModalNotice = ({ handleModalToggle }) => {
                 <TextLabel>
                   Title of ad<Asterisk>*</Asterisk>
                   <TextInput
+                    type="text"
                     value={formik.values.title}
                     onChange={formik.handleChange}
                     name="title"
                     placeholder="Type name"
                     required
-                    minLength="2"
-                    maxLength="48"
-                    title="Length of title should be 2-16 letters"
                   />
                 </TextLabel>
               </InputCont>
@@ -304,7 +307,7 @@ export const AddModalNotice = ({ handleModalToggle }) => {
               </SexFormBox>
               <InputCont>
                 <TextLabel htmlFor="locationPet">
-                  City, Region<span>*</span>:
+                  City, Region<Asterisk>*</Asterisk>:
                   {formik.values.location !== '' && formik.errors.location ? (
                     <p>{formik.errors.location}</p>
                   ) : null}
