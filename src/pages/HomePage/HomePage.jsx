@@ -1,4 +1,6 @@
-import { Title, TitleWrapper, PageWrapper, Container } from './HomePage.styled';
+import { Container } from 'components/Container/Container';
+
+import { Title, TitleWrapper, PageWrapper } from './HomePage.styled';
 
 const Home = () => {
   return (
