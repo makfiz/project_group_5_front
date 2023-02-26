@@ -125,7 +125,7 @@ export const NoticesListItem = ({ ad, askedPage }) => {
         />
         <ImgBadge category={category}>{categoryTitle}</ImgBadge>
         <AddInFavoriteBtn
-          disabled={isUpdating}
+          disabled={loadingNotices}
           onClick={handleFavorite}
           type="button"
         >
