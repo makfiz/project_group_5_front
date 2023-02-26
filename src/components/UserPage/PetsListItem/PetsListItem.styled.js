@@ -23,13 +23,13 @@ export const PetCard = styled.li`
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
     display: flex;
 
-    width: 728px;
+    width: 704px;
 
-    height: 210px;
+    height: 230px;
   }
 
   @media (min-width: ${p => p.theme.screenSizes.desktop}) {
-    width: 781px;
+    width: 821px;
 
     height: 100%;
   }
@@ -142,7 +142,7 @@ export const DeleteBtn = styled.button`
 export const DeleteIcon = styled(Delete)`
   fill: ${p => p.theme.colors.titleColor};
 
-  transition: fill 250ms linear;
+  transition: fill ${p => p.theme.transition.onHover};
 
   &:hover,
   &:focus {
