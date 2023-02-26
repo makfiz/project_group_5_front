@@ -3,19 +3,20 @@ import { useEffect, useState } from 'react';
 
 import Modal from 'components/Modal/Modal';
 import { Button } from 'components/Button/Button';
-import { closeModal } from '../../redux/form/formSlice';
-import { cleanNotice } from '../../redux/notices/operations';
+import { closeModal } from 'redux/form/formSlice';
 import { endPoints } from 'constants/EndPoints';
+import {
+  renameNoticesCategory,
+  convertLocationStringToCityName,
+  showWarningNotification,
+} from 'utils';
 
-import { renameNoticesCategory } from 'utils/renameNoticesCategory';
-import { convertLocationStringToCityName } from 'utils/convertLocationStringToCityName';
-import { showWarningNotification } from 'utils/showWarningNotification';
-
-// import { ReactComponent as HeartIcon } from '../../assets/icons/akarIconsHeart.svg';
-import noPhoto from '../../assets/default-img/default.jpg';
 import { selectUser } from 'redux/auth/selectors';
 import { addNoticeToFavorite } from 'redux/notices/operations';
+import { cleanNotice } from 'redux/notices/operations';
 import { addToFavoriteInModal } from 'redux/notices/noticesSlice';
+
+import noPhoto from 'assets/default-img/default.jpg';
 
 import {
   Wraper,
@@ -71,10 +72,6 @@ export function LernMoreModal() {
   } = itemNotice[0];
 
   const place = convertLocationStringToCityName(location);
-
-  // const notice = notices.filter(notice => notice.favoritesIn.includes(userId));
-  // const chechNotice = notice.find(item => item._id === _id);
-
   const chechNotice = favoritesIn.includes(userId);
 
   useEffect(() => {
