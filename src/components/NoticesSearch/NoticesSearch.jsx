@@ -5,11 +5,11 @@ import debounce from 'lodash.debounce';
 
 import { setQueryValue } from 'redux/notices/searchQuerySlice';
 import { selectNoticesSearchQuery } from 'redux/notices/selectors';
-import { searchParamsHandler } from 'utils/fetchNoticesRoute';
+import { searchParamsHandler } from 'utils';
 
 import { PageTitle } from 'components/PageTitle/PageTitle';
-import { ReactComponent as SearchIcon } from '../../assets/icons/searchIcon.svg';
-import { ReactComponent as ResetForm } from '../../assets/icons/resetForm.svg';
+import { ReactComponent as SearchIcon } from 'assets/icons/searchIcon.svg';
+import { ReactComponent as ResetForm } from 'assets/icons/resetForm.svg';
 import {
   SearchBarWrap,
   SearchForm,

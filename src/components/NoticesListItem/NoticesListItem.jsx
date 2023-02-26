@@ -3,25 +3,29 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { BounceLoader } from 'react-spinners';
 
-import { showWarningNotification } from 'utils/showWarningNotification';
-import { calculateAndConvertAge } from 'utils/calculateAndConvertAge';
-import { renameNoticesCategory } from 'utils/renameNoticesCategory';
-import { convertLocationStringToCityName } from 'utils/convertLocationStringToCityName';
+import {
+  showWarningNotification,
+  calculateAndConvertAge,
+  renameNoticesCategory,
+  convertLocationStringToCityName,
+} from 'utils';
+
 import { selectUser, selectIsLoggedIn } from 'redux/auth/selectors';
-import { selectIsLoadingNotices, selectNotices } from 'redux/notices/selectors';
+import { selectIsLoadingNotices } from 'redux/notices/selectors';
 
 import {
   addNoticeToFavorite,
   removeNoticeFromFavorite,
   deleteOnFavoritePage,
 } from 'redux/notices/operations';
+
 import { endPoints } from 'constants/EndPoints';
 
 import { Box } from 'components/Box/Box';
 import { NoticesDescriptionText } from 'components/NoticesDescriptionText/NoticesDescriptionText';
 import { NoticesCardButtons } from 'components/NoticesCardButtons/NoticesCardButtons';
 import { NoticesConfirmDeletingModal } from 'components/NoticesConfirmDeletingModal/NoticesConfirmDeletingModal';
-import noPhoto from '../../assets/default-img/default.jpg';
+import noPhoto from 'assets/default-img/default.jpg';
 
 import {
   ImgWrap,
@@ -71,11 +75,6 @@ export const NoticesListItem = ({ ad, askedPage }) => {
 
     return () => {};
   }, [loadingNotices, favoritesIn, userId]);
-
-  // if (_id === '63f888fdb1338da14c3f49f2') {
-  //   console.log('favoritesIn', favoritesIn);
-  //   console.log('inFavorite', inFavorite);
-  // }
 
   const age = calculateAndConvertAge(Date.parse(birth));
   const categoryTitle = renameNoticesCategory(category);
