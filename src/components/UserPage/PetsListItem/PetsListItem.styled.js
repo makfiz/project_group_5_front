@@ -23,13 +23,13 @@ export const PetCard = styled.li`
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
     display: flex;
 
-    width: 728px;
+    width: 704px;
 
-    height: 210px;
+    height: 230px;
   }
 
   @media (min-width: ${p => p.theme.screenSizes.desktop}) {
-    width: 781px;
+    width: 821px;
 
     height: 100%;
   }

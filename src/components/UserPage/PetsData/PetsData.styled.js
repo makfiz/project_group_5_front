@@ -13,7 +13,7 @@ export const Container = styled.div`
 
   @media (min-width: ${p => p.theme.screenSizes.desktop}) {
     padding-top: 60px;
-    padding-bottom: 24px;
+    padding-bottom: 25px;
   }
 `;
 
