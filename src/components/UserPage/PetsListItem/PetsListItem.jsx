@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deletePet } from '../../../redux/Pets/petsOperations';
 import { FieldPetImg } from './FieldPetImage';
-import { Modal } from 'components/Modal/Modal';
+import noPhoto from 'assets/default-img/default.jpg';
 
 import {
   PetCard,
@@ -12,6 +13,9 @@ import {
   CommentsTitle,
   DeleteBtn,
   DeleteIcon,
+  ModalDelWrapper,
+  DeleteModalButton,
+  DelBtnWrapper,
 } from './PetsListItem.styled';
 
 export const PetsListItem = ({
@@ -24,28 +28,57 @@ export const PetsListItem = ({
 }) => {
   const dispatch = useDispatch();
 
+  const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
+
   const handleDelete = () => dispatch(deletePet(id));
   return (
     <PetCard>
       <ImgWrapper>
-        <FieldPetImg petImage={petImage} _id={id} />
+        {petImage ? (
+          <FieldPetImg petImage={petImage} _id={id} />
+        ) : (
+          <FieldPetImg petImage={noPhoto} _id={id} />
+        )}
       </ImgWrapper>
 
-      <InfoWrapper>
-        <InfoTitle>
-          Name: <InfoText>{name}</InfoText>
-        </InfoTitle>
-        <InfoTitle>
-          Date of birth: <InfoText>{dateOfBirth}</InfoText>
-        </InfoTitle>
-        <InfoTitle>
-          Breed: <InfoText>{breed}</InfoText>
-        </InfoTitle>
-        <CommentsTitle>
-          Comments: <InfoText>{comments}</InfoText>
-        </CommentsTitle>
-      </InfoWrapper>
-      <DeleteBtn type="button" onClick={handleDelete}>
+      {!isModalDeleteOpen ? (
+        <InfoWrapper>
+          <InfoTitle>
+            Name: <InfoText>{name}</InfoText>
+          </InfoTitle>
+          <InfoTitle>
+            Date of birth: <InfoText>{dateOfBirth}</InfoText>
+          </InfoTitle>
+          <InfoTitle>
+            Breed: <InfoText>{breed}</InfoText>
+          </InfoTitle>
+          <CommentsTitle>
+            Comments: <InfoText>{comments}</InfoText>
+          </CommentsTitle>
+        </InfoWrapper>
+      ) : (
+        <ModalDelWrapper>
+          <InfoTitle style={{ marginBottom: '30px', textAlign: 'center' }}>
+            Are you sure want to delete this pet permanently?
+          </InfoTitle>
+          <DelBtnWrapper>
+            <DeleteModalButton
+              type="button"
+              onClick={() => setIsModalDeleteOpen(false)}
+            >
+              Cancel
+            </DeleteModalButton>
+            <DeleteModalButton type="button" onClick={handleDelete}>
+              Confirm
+            </DeleteModalButton>
+          </DelBtnWrapper>
+        </ModalDelWrapper>
+      )}
+      <DeleteBtn
+        type="button"
+        disabled={isModalDeleteOpen}
+        onClick={() => setIsModalDeleteOpen(true)}
+      >
         <DeleteIcon />
       </DeleteBtn>
     </PetCard>
