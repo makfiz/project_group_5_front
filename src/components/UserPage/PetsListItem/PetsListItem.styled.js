@@ -142,7 +142,7 @@ export const DeleteBtn = styled.button`
 export const DeleteIcon = styled(Delete)`
   fill: ${p => p.theme.colors.titleColor};
 
-  transition: fill 250ms linear;
+  transition: fill ${p => p.theme.transition.onHover};
 
   &:hover,
   &:focus {
