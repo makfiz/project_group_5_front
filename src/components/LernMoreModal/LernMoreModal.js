@@ -15,6 +15,7 @@ import { showWarningNotification } from 'utils/showWarningNotification';
 import noPhoto from '../../assets/default-img/default.jpg';
 import { selectUser } from 'redux/auth/selectors';
 import { addNoticeToFavorite } from 'redux/notices/operations';
+import { addToFavoriteInModal } from 'redux/notices/noticesSlice';
 
 import {
   Wraper,
@@ -48,7 +49,7 @@ export function LernMoreModal() {
   const dispatch = useDispatch();
   const itemNotice = useSelector(state => state.notices.notice);
   const openModal = useSelector(state => state.form.isModalOpen);
-  const notices = useSelector(state => state.notices.ads);
+  // const notices = useSelector(state => state.notices.ads);
 
   const { id: userId } = useSelector(selectUser);
 
@@ -106,6 +107,7 @@ export function LernMoreModal() {
     if (!chechNotice && !heartColor) {
       const path = `${endPoints.noticesBase}${_id}${endPoints.noticesFavorite}`;
       dispatch(addNoticeToFavorite({ path }));
+      dispatch(addToFavoriteInModal({ noticeId: _id, userId }));
       setHeartColor(true);
     }
   };

@@ -8,7 +8,7 @@ import { calculateAndConvertAge } from 'utils/calculateAndConvertAge';
 import { renameNoticesCategory } from 'utils/renameNoticesCategory';
 import { convertLocationStringToCityName } from 'utils/convertLocationStringToCityName';
 import { selectUser, selectIsLoggedIn } from 'redux/auth/selectors';
-import { selectIsLoadingNotices } from 'redux/notices/selectors';
+import { selectIsLoadingNotices, selectNotices } from 'redux/notices/selectors';
 
 import {
   addNoticeToFavorite,
@@ -50,29 +50,38 @@ export const NoticesListItem = ({ ad, askedPage }) => {
   } = ad;
 
   const loadingNotices = useSelector(selectIsLoadingNotices);
+
+  const dispatch = useDispatch();
+  const { id: userId } = useSelector(selectUser);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const [isUpdating, setIsUpdating] = useState(false);
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
+  const [inFavorite, setInFavorite] = useState(false);
 
   useEffect(() => {
     if (loadingNotices) return;
+
     if (!loadingNotices) {
       setIsUpdating(false);
+      if (favoritesIn.includes(userId)) {
+        setInFavorite(true);
+      }
     }
 
     return () => {};
-  }, [loadingNotices]);
+  }, [loadingNotices, favoritesIn, userId]);
 
-  const { id: userId } = useSelector(selectUser);
+  // if (_id === '63f888fdb1338da14c3f49f2') {
+  //   console.log('favoritesIn', favoritesIn);
+  //   console.log('inFavorite', inFavorite);
+  // }
+
   const age = calculateAndConvertAge(Date.parse(birth));
-  const dispatch = useDispatch();
-  const [inFavorite, setInFavorite] = useState(() =>
-    favoritesIn.includes(userId)
-  );
   const categoryTitle = renameNoticesCategory(category);
   const place = convertLocationStringToCityName(location);
   const sellPage = category === 'sell' && askedPage === 'sell';
   const own = owner === userId;
-  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const handleFavorite = e => {
     const path = `${endPoints.noticesBase}${_id}${endPoints.noticesFavorite}`;
