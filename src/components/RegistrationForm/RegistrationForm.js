@@ -65,8 +65,6 @@ export const RegistrationForm = () => {
     dispatch(
       authOperations.registration({ email, password, name, city, phone })
     );
-    dispatch(sendingEmail());
-    dispatch(hideForm());
 
     setSendEmail(true);
     resetForm();
