@@ -20,16 +20,17 @@ const initialState = {
   currentUser: [],
 };
 
-console.log('reduxAuth initialState =', initialState);
+// console.log('reduxAuth initialState =', initialState);
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  extraReducers: {
-    [authOperations.login.pending](state) {
+  reducers: {},
+  extraReducers: builder => { builder
+    .addCase(authOperations.login.pending,state => {
       state.isRefreshing = true;
-    },
-    [authOperations.login.fulfilled](state, action) {
+    })
+    .addCase(authOperations.login.fulfilled,(state, action) => {
       state.isRefreshing = false;
       state.error = null;
       state.user.id = action.payload.id;
@@ -42,15 +43,15 @@ const authSlice = createSlice({
       state.user.petList = null;
       state.token = action.payload.token;
       state.isLoggedIn = true;
-    },
-    [authOperations.login.rejected](state, action) {
+    })
+    .addCase(authOperations.login.rejected,(state, action) => {
       state.isRefreshing = false;
       state.error = action.payload;
-    },
-    [authOperations.logout.pending](state) {
+    })
+    .addCase(authOperations.logout.pending,(state) => {
       state.isRefreshing = true;
-    },
-    [authOperations.logout.fulfilled](state, action) {
+    })
+    .addCase(authOperations.logout.fulfilled, (state) => {
       state.isRefreshing = false;
       state.error = null;
       state.user.id = null;
@@ -63,15 +64,15 @@ const authSlice = createSlice({
       state.user.petList = null;
       state.token = null;
       state.isLoggedIn = false;
-    },
-    [authOperations.logout.rejected](state, action) {
+    })
+    .addCase(authOperations.logout.rejected, (state, action) => {
       state.isRefreshing = false;
       state.error = action.payload;
-    },
-    [authOperations.registration.pending](state) {
+    })
+    .addCase(authOperations.registration.pending, (state) => {
       state.isRefreshing = true;
-    },
-    [authOperations.registration.fulfilled](state, action) {
+    })
+    .addCase(authOperations.registration.fulfilled, (state, action) => {
       state.isRefreshing = false;
       state.error = null;
       state.user.id = action.payload.id;
@@ -84,16 +85,16 @@ const authSlice = createSlice({
       state.user.petList = null;
       state.token = null;
       state.isLoggedIn = false;
-    },
-    [authOperations.registration.rejected](state, action) {
+    })
+    .addCase(authOperations.registration.rejected, (state, action) => {
       state.isRefreshing = false;
       state.error = action.payload;
-    },
-    [authOperations.googleApi.rejected](state, action) {
+    })
+    .addCase(authOperations.googleApi.rejected, (state, action) => {
       state.isRefreshing = false;
       state.error = action.payload;
-    },
-    [authOperations.googleApi.fulfilled](state, action) {
+    })
+    .addCase(authOperations.googleApi.fulfilled, (state, action) => {
       state.isRefreshing = false;
       state.error = null;
       state.user.id = action.payload.id;
@@ -106,20 +107,20 @@ const authSlice = createSlice({
       state.user.petList = null;
       state.token = action.payload.token;
       state.isLoggedIn = true;
-    },
-    [authOperations.refresh.fulfilled](state, action) {
+    })
+    .addCase(authOperations.refresh.fulfilled, (state, action) => {
       state.user = action.payload.user;
       state.user.petList = action.payload.petList;
       state.isLoggedIn = true;
       state.isRefreshing = false;
-    },
-    [authOperations.refresh.rejected](state) {
+    })
+    .addCase(authOperations.refresh.rejected, (state) => {
       state.isRefreshing = false;
-    },
-    [authOperations.refresh.pending](state) {
+    })
+    .addCase(authOperations.refresh.pending,(state) => {
       state.isRefreshing = true;
-    },
-    [authOperations.userUpdate.fulfilled](state, action) {
+    })
+    .addCase(authOperations.userUpdate.fulfilled, (state, action) => {
       state.error = null;
       state.user.id = action.payload._id;
       state.user.email = action.payload.email;
@@ -128,26 +129,26 @@ const authSlice = createSlice({
       state.user.birthday = action.payload.birthday;
       state.user.phone = action.payload.phone;
       state.user.city = action.payload.city;
-    },
-    [authOperations.userUpdate.rejected](state, action) {
+    })
+    .addCase(authOperations.userUpdate.rejected, (state, action) => {
       state.error = action.payload;
-    },
-    [petsOperations.addPet.fulfilled](state, action) {
+    })
+    .addCase(petsOperations.addPet.fulfilled, (state, action) => {
       state.user.petList = [...state.user.petList, action.payload.myNewPet];
-    },
-    [petsOperations.updatePetImage.fulfilled](state, action) {
+    })
+    .addCase(petsOperations.updatePetImage.fulfilled, (state, action) => {
       const index = state.user.petList.findIndex(
         pet => pet._id === action.payload.id
       );
       state.user.petList[index].petImage = action.payload.petImage;
-    },
-    [petsOperations.deletePet.fulfilled](state, action) {
+    })
+    .addCase(petsOperations.deletePet.fulfilled, (state, action) => {
       const index = state.user.petList.findIndex(
         pet => pet._id === action.payload._id
       );
       state.user.petList.splice(index, 1);
-    },
-    [authOperations.userUpload.fulfilled](state, action) {
+    })
+    .addCase(authOperations.userUpload.fulfilled, (state, action) => {
       state.error = null;
       state.user.id = action.payload._id;
       state.user.email = action.payload.email;
@@ -156,20 +157,20 @@ const authSlice = createSlice({
       state.user.birthday = action.payload.birthday;
       state.user.phone = action.payload.phone;
       state.user.city = action.payload.city;
-    },
-    [authOperations.userUpload.rejected](state, action) {
+    })
+    .addCase(authOperations.userUpload.rejected, (state, action) => {
       state.error = action.payload;
-    },
-    [authOperations.againVerifyMail.pending](state) {
+    })
+    .addCase(authOperations.againVerifyMail.pending, (state) => {
       state.isRefreshing = true;
-    },
-    [authOperations.againVerifyMail.fulfilled](state, action) {
+    })
+    .addCase(authOperations.againVerifyMail.fulfilled, (state, action) => {
       state.isRefreshing = false;
-    },
-    [authOperations.againVerifyMail.rejected](state, action) {
+    })
+    .addCase(authOperations.againVerifyMail.rejected, (state, action) => {
       state.isRefreshing = false;
       state.error = action.payload;
-    },
+    })
   },
 });
 

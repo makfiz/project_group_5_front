@@ -3,20 +3,18 @@ import { theme } from '../../../utils/theme';
 
 export const ArticleList = styled.ul`
   margin-bottom: -40px;
-  padding-left: 16px;
-  padding-right: 16px;
   padding-bottom: 100px;
 
   position: relative;
 
   @media (min-width: ${theme.screenSizes.tablet}) {
-    margin: 0;
+    margin: ${props => props.theme.space[0]}px;
+    margin-bottom: -60px;
 
     display: grid;
     grid-template-columns: 335px 335px;
     column-gap: 32px;
     row-gap: 60px;
-    margin-bottom: -60px;
   }
 
   @media (min-width: ${theme.screenSizes.desktop}) {
@@ -43,6 +41,6 @@ export const ArticleItem = styled.li`
   margin-bottom: 40px;
 
   @media (min-width: ${theme.screenSizes.tablet}) {
-    margin-bottom: 0;
+    margin-bottom: ${props => props.theme.space[0]}px;
   }
 `;
