@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
 import { useFormik } from 'formik';
+
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -96,6 +98,7 @@ export const AddModalNotice = ({ handleModalToggle }) => {
   const [image, setImage] = useState(null);
   // const { addNotices } = addNoticeToFavorite();
 
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -155,6 +158,45 @@ export const AddModalNotice = ({ handleModalToggle }) => {
     return () => escClose();
   }, [handleModalToggle]);
 
+  const onSumbit = e => {
+    e.preventDefault();
+    console.log(formik.values);
+
+    const {
+      birthday,
+      breed,
+      category,
+      comments,
+      location,
+      name,
+      petImage,
+      price,
+      sex,
+      title,
+    } = formik.values;
+
+    const img = new FormData();
+    img.append('petImage', petImage);
+    console.log(img);
+    dispatch(
+      addNotice({
+        birth: birthday,
+        breed,
+        category,
+        comments,
+        location,
+        name,
+        price: price.toString(),
+        sex,
+        title,
+      })
+    ).then(data => {
+      dispatch(NoticePetImageUpload(data.payload.notice._id, img));
+    });
+
+    handleModalToggle();
+  };
+
   return (
     <ModalNotice onClick={e => handleBackdropClick(e, handleModalToggle)}>
       <Container>
@@ -164,13 +206,7 @@ export const AddModalNotice = ({ handleModalToggle }) => {
           </CloseCross>
         </BtnClose>
         <Title>Add pet</Title>
-        <form
-          encType="multipart/form-data"
-          onSubmit={e => {
-            e.preventDefault();
-            e.currentTarget.submit();
-          }}
-        >
+        <form encType="multipart/form-data" onSubmit={onSumbit}>
           {isFirstRegisterStep && (
             <FirstForm>
               <UserComment>

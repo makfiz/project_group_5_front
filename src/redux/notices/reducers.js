@@ -41,3 +41,8 @@ export const cleanNoticeReducer = (state, _) => {
   state.notice = [];
   state.isLoading = false;
 };
+
+export const addNotice = (state, action) => {
+  state.ads = [...state.ads, action.payload.notice];
+  state.isLoading = false;
+};

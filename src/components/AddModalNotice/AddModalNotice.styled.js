@@ -285,7 +285,7 @@ export const Asterisk = styled.span`
   font-size: ${p => p.theme.fontSizes[3]}px;
   font-weight: 400px;
   line-height: 1.44;
-  color: #f59256';
+  color: #f59256;
 
   @media screen and (min-width: 768px) {
     font-size: ${p => p.theme.fontSizes[5]}px;
@@ -343,7 +343,7 @@ export const InputRadio = styled.input`
   width: 0;
   height: 0;
   &:checked + label {
-    color: #f59256';
+    color: #f59256;
   }
 `;
 

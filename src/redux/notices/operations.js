@@ -1,7 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const url = `https://petssuport4815162342api.onrender.com/api/`;
+// const url = `https://petssuport4815162342api.onrender.com/api/`;
+
+const url = `http://localhost:3000/api/`;
 
 export const fetchNoticesByCategory = createAsyncThunk(
   'notices/fetchCategory',
@@ -121,10 +123,14 @@ export const cleanNotice = createAsyncThunk(
 
 export const addNotice = createAsyncThunk(
   'noticec/addNoticeByCategoryName',
-  async ({ formData }, thunkAPI) => {
+  async (formData, thunkAPI) => {
     const categoryName = formData.category;
     try {
-      const response = await axios.post(`${url}notices/${categoryName}`);
+      const response = await axios.post(
+        `${url}notices/${categoryName}`,
+        formData
+      );
+      console.log(response);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -136,7 +142,10 @@ export const NoticePetImageUpload = createAsyncThunk(
   'noticec/NoticePetImageUpload',
   async ({ noticeId, img }, thunkAPI) => {
     try {
-      const response = await axios.post(`${url}notices/${noticeId}/upload`);
+      const response = await axios.patch(
+        `${url}notices/${noticeId}/upload`,
+        img
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
