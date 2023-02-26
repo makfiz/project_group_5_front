@@ -18,13 +18,13 @@ export const ImgBadge = styled.p`
   position: absolute;
   top: 20px;
   left: 0;
-  width: 118px;
+  width: 158px;
   padding: 6px 20px 7px;
   display: flex;
   justify-content: ${({ category }) =>
     category === 'sell' ? 'center' : 'flex-start'};
 
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: ${p => p.theme.colors.favoriteBg};
   backdrop-filter: blur(2px);
   border-top-right-radius: ${p => p.theme.radii.large};
   border-bottom-right-radius: ${p => p.theme.radii.large};
@@ -60,8 +60,10 @@ export const AddInFavoriteBtn = styled.button`
   backdrop-filter: blur(2px);
 
   svg {
-    transition: fill 300ms ease-in-out, stroke 300ms ease-in-out,
-      transform 300ms ease-in-out;
+    transition: fill ${p => p.theme.transition.onHover},
+      stroke ${p => p.theme.transition.onHover},
+      transform ${p => p.theme.transition.onHover};
+
     stroke: ${p => p.theme.colors.hoverGoHome};
   }
 
@@ -84,7 +86,7 @@ export const Img = styled.img`
 export const TextWrap = styled.div`
   position: relative;
   overflow: hidden;
-  width: 240px;
+  width: 280px;
   padding: 20px 20px 0px;
 
   background-color: ${p => p.theme.colors.white};
@@ -93,12 +95,12 @@ export const TextWrap = styled.div`
   border-bottom-right-radius: ${p => p.theme.radii.medium};
 
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
-    width: 296px;
+    width: 336px;
     border-bottom-left-radius: ${p => p.theme.radii.large};
     border-bottom-right-radius: ${p => p.theme.radii.large};
   }
   @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
-    width: 248px;
+    width: 288px;
   }
 `;
 

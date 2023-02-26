@@ -1,14 +1,12 @@
 import styled from 'styled-components';
 
 export const ListWrap = styled.div`
-  padding: 30px 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
-    padding: 60px 32px;
-  }
-
-  @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
-    padding: 60px 16px;
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 `;
 
@@ -48,13 +46,6 @@ export const InformationText = styled.p`
   @media screen and (min-width: ${p => p.theme.screenSizes.mobile}) {
     width: 100%;
   }
-
-  @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
-    width: 728px;
-  }
-  @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
-    width: 1240px;
-  }
 `;
 
 export const LoaderContainer = styled.div`
@@ -75,7 +66,7 @@ export const LoaderWrap = styled.div`
 
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
     padding-top: 28px;
-    width: 728px;
+    width: 704px;
   }
   @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
     width: 1240px;
