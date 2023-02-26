@@ -118,3 +118,28 @@ export const cleanNotice = createAsyncThunk(
     }
   }
 );
+
+export const addNotice = createAsyncThunk(
+  'noticec/addNoticeByCategoryName',
+  async ({ formData }, thunkAPI) => {
+    const categoryName = formData.category;
+    try {
+      const response = await axios.post(`${url}notices/${categoryName}`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const NoticePetImageUpload = createAsyncThunk(
+  'noticec/NoticePetImageUpload',
+  async ({ noticeId, img }, thunkAPI) => {
+    try {
+      const response = await axios.post(`${url}notices/${noticeId}/upload`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
