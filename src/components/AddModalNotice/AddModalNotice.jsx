@@ -169,15 +169,14 @@ export const AddModalNotice = ({ handleModalToggle }) => {
       comments,
       location,
       name,
-      petImage,
+      photoURL,
       price,
       sex,
       title,
     } = formik.values;
 
     const img = new FormData();
-    img.append('petImage', petImage);
-    console.log(img);
+    img.append('img', photoURL);
     dispatch(
       addNotice({
         birth: birthday,
@@ -191,7 +190,9 @@ export const AddModalNotice = ({ handleModalToggle }) => {
         title,
       })
     ).then(data => {
-      dispatch(NoticePetImageUpload(data.payload.notice._id, img));
+      dispatch(
+        NoticePetImageUpload({ noticeId: data.payload.notice._id, img })
+      );
     });
 
     handleModalToggle();

@@ -18,7 +18,6 @@ export const NoticesAddPetButtonMobile = () => {
       return !prev;
     });
   };
-
   return (
     <>
       <AddPetMobileButton
