@@ -43,7 +43,7 @@ export const Pagination = styled(ReactPaginate)`
     font-size: ${p => p.theme.fontSizes.m};
     font-weight: ${p => p.theme.fontWeight.medium};
     color: ${p => p.theme.colors.titleColor};
-    transition: background-color 300ms ease-in;
+    transition: background-color ${p => p.theme.transition.onHover};
 
     @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
       padding: 8px;

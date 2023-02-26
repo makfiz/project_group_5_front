@@ -25,6 +25,12 @@ const noticesSlice = createSlice({
     error: null,
     notice: [],
   },
+  reducers: {
+    addToFavoriteInModal(state, action) {
+      const idx = state.ads.findIndex(ad => ad._id === action.payload.noticeId);
+      state.ads[idx].favoritesIn.push(action.payload.userId);
+    },
+  },
 
   extraReducers: builder =>
     builder
@@ -66,4 +72,5 @@ const noticesSlice = createSlice({
       .addMatcher(isAnyOf(...getActions('rejected')), reducers.rejectedReducer),
 });
 
+export const { addToFavoriteInModal } = noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;

@@ -1,24 +1,22 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import Notiflix from 'notiflix';
 
 import Modal from 'components/Modal/Modal';
 import { Button } from 'components/Button/Button';
-import { closeModal } from '../../redux/form/formSlice';
-import { cleanNotice } from '../../redux/notices/operations';
+import { closeModal } from 'redux/form/formSlice';
 import { endPoints } from 'constants/EndPoints';
-
-import { renameNoticesCategory } from 'utils/renameNoticesCategory';
-import { convertLocationStringToCityName } from 'utils/convertLocationStringToCityName';
-
-// import { ReactComponent as HeartIcon } from '../../assets/icons/akarIconsHeart.svg';
-import noPhoto from '../../assets/default-img/default.jpg';
-import { selectUser } from 'redux/auth/selectors';
 import {
-  addNoticeToFavorite,
-  removeNoticeFromFavorite,
-  deleteOnFavoritePage,
-} from '../../redux/notices/operations';
+  renameNoticesCategory,
+  convertLocationStringToCityName,
+  showWarningNotification,
+} from 'utils';
+
+import { selectUser } from 'redux/auth/selectors';
+import { addNoticeToFavorite } from 'redux/notices/operations';
+import { cleanNotice } from 'redux/notices/operations';
+import { addToFavoriteInModal } from 'redux/notices/noticesSlice';
+
+import noPhoto from 'assets/default-img/default.jpg';
 
 import {
   Wraper,
@@ -52,7 +50,7 @@ export function LernMoreModal() {
   const dispatch = useDispatch();
   const itemNotice = useSelector(state => state.notices.notice);
   const openModal = useSelector(state => state.form.isModalOpen);
-  const notices = useSelector(state => state.notices.ads);
+  // const notices = useSelector(state => state.notices.ads);
 
   const { id: userId } = useSelector(selectUser);
 
@@ -74,16 +72,13 @@ export function LernMoreModal() {
   } = itemNotice[0];
 
   const place = convertLocationStringToCityName(location);
-  const [isFav, setIsFav] = useState(() => favoritesIn.includes(userId));
-
-  const notice = notices.filter(notice => notice.favoritesIn.includes(userId));
-  const chechNotice = notice.find(item => item._id === _id);
+  const chechNotice = favoritesIn.includes(userId);
 
   useEffect(() => {
     if (chechNotice) {
       setHeartColor(true);
     }
-  }, []);
+  }, [chechNotice, heartColor]);
 
   const onHandleClick = () => {
     dispatch(cleanNotice());
@@ -95,15 +90,22 @@ export function LernMoreModal() {
   };
 
   const onFavorite = () => {
-    setHeartColor(true);
-    const path = `${endPoints.noticesBase}${_id}${endPoints.noticesFavorite}`;
+    if (!userId) {
+      return showWarningNotification(
+        'Only authorized users can add to favorite',
+        2500
+      );
+    }
 
-    if (chechNotice) {
-      return Notiflix.Notify.failure('notice already in favorite', {
-        timeout: 2500,
-      });
-    } else {
+    if (chechNotice || heartColor) {
+      return showWarningNotification('Notice already in favorite', 2500);
+    }
+
+    if (!chechNotice && !heartColor) {
+      const path = `${endPoints.noticesBase}${_id}${endPoints.noticesFavorite}`;
       dispatch(addNoticeToFavorite({ path }));
+      dispatch(addToFavoriteInModal({ noticeId: _id, userId }));
+      setHeartColor(true);
     }
   };
 
@@ -173,12 +175,7 @@ export function LernMoreModal() {
                   onClick={phoneCall}
                 />
 
-                <Button
-                  isFav={isFav}
-                  style={StyledButton}
-                  type="button"
-                  onClick={onFavorite}
-                >
+                <Button style={StyledButton} type="button" onClick={onFavorite}>
                   <span>Add to</span>
                   {heartColor ? (
                     <IconHeartBg size={16} />
