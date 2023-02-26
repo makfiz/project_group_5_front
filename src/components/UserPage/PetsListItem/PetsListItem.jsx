@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { deletePet } from '../../../redux/Pets/petsOperations';
+import { FieldPetImg } from './FieldPetImage';
 
-import defaultImage from '../../../assets/default-img/default.jpg';
 
 import {
   PetCard,
@@ -12,7 +12,6 @@ import {
   CommentsTitle,
   DeleteBtn,
   DeleteIcon,
-  PetImage,
 } from './PetsListItem.styled';
 
 export const PetsListItem = ({
@@ -29,12 +28,9 @@ export const PetsListItem = ({
   return (
     <PetCard>
       <ImgWrapper>
-        {petImage ? (
-          <PetImage src={petImage} alt={breed} />
-        ) : (
-          <PetImage src={defaultImage} alt={breed} />
-        )}
+        <FieldPetImg petImage={petImage} _id={id} /> 
       </ImgWrapper>
+ 
       <InfoWrapper>
         <InfoTitle>
           Name: <InfoText>{name}</InfoText>
