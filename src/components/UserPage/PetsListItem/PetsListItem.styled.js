@@ -125,7 +125,7 @@ export const DelBtnWrapper = styled.div`
 export const DeleteModalButton = styled.button`
   display: flex;
   justify-content: center;
-  width: 70px;
+  width: 100px;
   padding: 6px;
   background-color: ${p => p.theme.colors.transparent};
   cursor: pointer;

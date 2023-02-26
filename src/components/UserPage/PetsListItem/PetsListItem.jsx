@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { deletePet } from '../../../redux/Pets/petsOperations';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLoading } from 'redux/auth/selectors';
+import { deletePet } from 'redux/Pets/petsOperations';
+
 import { FieldPetImg } from './FieldPetImage';
 import noPhoto from 'assets/default-img/default.jpg';
 
@@ -26,6 +28,8 @@ export const PetsListItem = ({
   comments,
   petImage,
 }) => {
+  const isLoading = useSelector(selectIsLoading);
+
   const dispatch = useDispatch();
 
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
@@ -65,11 +69,16 @@ export const PetsListItem = ({
             <DeleteModalButton
               type="button"
               onClick={() => setIsModalDeleteOpen(false)}
+              disabled={isLoading}
             >
               Cancel
             </DeleteModalButton>
-            <DeleteModalButton type="button" onClick={handleDelete}>
-              Confirm
+            <DeleteModalButton
+              type="button"
+              onClick={handleDelete}
+              disabled={isLoading}
+            >
+              {isLoading ? 'Deleting...' : 'Confirm'}
             </DeleteModalButton>
           </DelBtnWrapper>
         </ModalDelWrapper>
