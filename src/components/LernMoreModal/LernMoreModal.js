@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { Heart } from 'react-spinners-css';
+// import { Heart } from 'react-spinners-css';
 
 import Modal from 'components/Modal/Modal';
 import { Button } from 'components/Button/Button';
@@ -181,17 +181,17 @@ export function LernMoreModal() {
 
                 <Button style={StyledButton} type="button" onClick={onFavorite}>
                   <span>Add to</span>
-                  {!isUpdating && (
-                    <>
-                      {heartColor ? (
-                        <IconHeartBg size={16} />
-                      ) : (
-                        <IconHeart size={16} />
-                      )}
-                    </>
-                  )}
+                  {/* {!isUpdating && ( */}
+                  <>
+                    {heartColor ? (
+                      <IconHeartBg size={16} />
+                    ) : (
+                      <IconHeart size={16} />
+                    )}
+                  </>
+                  {/* )} */}
 
-                  {isUpdating && (
+                  {/* {isUpdating && (
                     <Heart
                       style={{
                         transformOrigin: 'center',
@@ -201,7 +201,7 @@ export function LernMoreModal() {
                       color={'#FF6101'}
                       size={18}
                     />
-                  )}
+                  )} */}
                 </Button>
               </ButtonWraper>
             </Container>
