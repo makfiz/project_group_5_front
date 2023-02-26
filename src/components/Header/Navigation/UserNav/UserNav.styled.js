@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { ReactComponent as AccountBtnIconComp } from '../../../../assets/icons/accountBtnIcon.svg';
 export const AccountBtn = styled(NavLink)`
   width: 165px;
   height: 35px;
@@ -10,6 +9,7 @@ export const AccountBtn = styled(NavLink)`
   align-content: center;
   text-decoration: none;
   border-radius: 40px;
+  transition: ${p => p.theme.transition.onHover};
   border: 2px solid ${p => p.theme.colors.hoverGoHome};
   background-color: ${p => p.theme.colors.hoverGoHome};
   color: ${p => p.theme.colors.white};
@@ -18,15 +18,22 @@ export const AccountBtn = styled(NavLink)`
   @media (min-width: ${p => p.theme.screenSizes.desktop}) {
     margin-right: 0;
   }
+  svg path {
+    fill: ${p => p.theme.colors.white};
+    transition: ${p => p.theme.transition.onHover};
+  }
   &:hover {
     transition: ${p => p.theme.transition.onHover};
     background-color: ${p => p.theme.colors.white};
     color: ${p => p.theme.colors.titleColor};
-    ${AccountBtnIconComp} path {
+    svg path {
       transition: ${p => p.theme.transition.onHover};
       fill: ${p => p.theme.colors.hoverGoHome};
     }
     border-color: ${p => p.theme.colors.hoverGoHome};
+  }
+  svg {
+    fill: ${p => p.theme.colors.white};
   }
 `;
 
@@ -36,12 +43,4 @@ export const AccountBtnWrapper = styled.div`
 `;
 export const AccountBtnText = styled.p`
   margin-left: 14px;
-`;
-export const AccountBtnIcon = styled(AccountBtnIconComp)`
-  ${props =>
-    css`
-      path {
-        fill: ${p => p.theme.colors.white};
-      }
-    `}
 `;
