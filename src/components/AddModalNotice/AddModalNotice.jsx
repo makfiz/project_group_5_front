@@ -160,8 +160,6 @@ export const AddModalNotice = ({ handleModalToggle }) => {
 
   const onSumbit = e => {
     e.preventDefault();
-    console.log(formik.values);
-
     const {
       birthday,
       breed,

@@ -1,9 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// const url = `https://petssuport4815162342api.onrender.com/api/`;
-
-const url = `http://localhost:3000/api/`;
+const url = `https://petssuport4815162342api.onrender.com/api/`;
 
 export const fetchNoticesByCategory = createAsyncThunk(
   'notices/fetchCategory',

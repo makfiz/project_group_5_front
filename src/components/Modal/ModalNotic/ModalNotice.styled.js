@@ -9,9 +9,9 @@ export const Backdrop = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ color = 'rgba(17, 17, 17, 0.6)' }) => color};
+  background-color: rgba(17, 17, 17, 0.6);
 
-  backdrop-filter: ${({ filter }) => (filter ? 'blur(10px)' : 'blur(0)')};
+  backdrop-filter: blur(10px);
 `;
 
 export const StyledModal = styled.div`
