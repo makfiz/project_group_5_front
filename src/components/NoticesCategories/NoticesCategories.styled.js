@@ -2,17 +2,12 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const CategoriesWrap = styled.div`
-  padding: 0 20px;
-  box-sizing: border-box;
-
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
-    padding: 0 32px;
     display: flex;
     justify-content: space-between;
   }
   @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
-    padding: 0 16px;
-    width: 1280px;
+    width: 100%;
   }
 `;
 
@@ -63,7 +58,8 @@ export const CategoryLink = styled(NavLink)`
   line-height: 1.36;
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.titleColor};
-  transition: border-color 300ms ease-in-out, color 300ms ease-in-out;
+  transition: border-color ${p => p.theme.transition.onHover},
+    color ${p => p.theme.transition.onHover};
 
   &.active {
     background-color: ${p => p.theme.colors.hoverGoHome};
@@ -105,13 +101,13 @@ export const AddPetBtn = styled.button`
     line-height: 1.35;
     letter-spacing: 0.04em;
     color: ${p => p.theme.colors.titleColor};
-    background-color: transparent;
+    background-color: ${p => p.theme.colors.transparent};
   }
 `;
 
 export const AddPetBtnIconWrap = styled.span`
   display: none;
-  transition: background-color 300ms ease-in-out;
+  transition: background-color ${p => p.theme.transition.onHover};
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
     display: inline-flex;
     justify-content: center;

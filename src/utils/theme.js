@@ -36,7 +36,7 @@ export const theme = {
     userAddPetBtnBgHover: '#ff6101',
     closeIconColor: '#FDF7F2',
     favoriteBg: 'rgba(255, 255, 255, 0.6)',
-    articleText: "#111321",
+    articleText: '#111321',
   },
   shadows: {
     shadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.75)',
@@ -67,6 +67,6 @@ export const theme = {
     onHover: '250ms cubic-bezier(0.4, 0, 0.2, 1)',
   },
   gradient: {
-    newsDecoration: "90deg, #ff634e 0%, #ffdf48 105.44%",
+    newsDecoration: '90deg, #ff634e 0%, #ffdf48 105.44%',
   },
 };
