@@ -15,6 +15,7 @@ const initialState = {
   },
   token: null,
   isLoggedIn: false,
+  isLoading: false,
   isRefreshing: false,
   error: null,
   currentUser: [],
@@ -134,18 +135,21 @@ const authSlice = createSlice({
       })
       .addCase(petsOperations.addPet.fulfilled, (state, action) => {
         state.user.petList = [...state.user.petList, action.payload.myNewPet];
+        state.isLoading = false;
       })
       .addCase(petsOperations.updatePetImage.fulfilled, (state, action) => {
         const index = state.user.petList.findIndex(
           pet => pet._id === action.payload.id
         );
         state.user.petList[index].petImage = action.payload.petImage;
+        state.isLoading = false;
       })
       .addCase(petsOperations.deletePet.fulfilled, (state, action) => {
         const index = state.user.petList.findIndex(
           pet => pet._id === action.payload._id
         );
         state.user.petList.splice(index, 1);
+        state.isLoading = false;
       })
       .addCase(authOperations.userUpload.fulfilled, (state, action) => {
         state.error = null;
@@ -169,6 +173,9 @@ const authSlice = createSlice({
       .addCase(authOperations.againVerifyMail.rejected, (state, action) => {
         state.isRefreshing = false;
         state.error = action.payload;
+      })
+      .addCase(petsOperations.deletePet.pending, (state, action) => {
+        state.isLoading = true;
       });
   },
 });
