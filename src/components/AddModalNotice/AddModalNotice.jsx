@@ -9,7 +9,7 @@ import { addNoticeToFavorite } from 'redux/notices/operations';
 import { handleBackdropClick, handleEscClick } from 'utils/modalHelpers';
 
 import { ModalNotice } from 'components/Modal/ModalNotic/ModalNotice';
-import AddButtonNot from '../Button/AddButtonNot';
+import { Button } from '../Button/AddButtonNot';
 import {
   Container,
   BtnClose,
@@ -394,14 +394,14 @@ export const AddModalNotice = ({ handleModalToggle }) => {
 
           <ActionButtons>
             {isFirstRegisterStep ? (
-              <AddButtonNot onClick={handleModalToggle}>Cancel</AddButtonNot>
+              <Button onClick={handleModalToggle}>Cancel</Button>
             ) : (
-              <AddButtonNot onClick={moveNextRegistration}>Back</AddButtonNot>
+              <Button onClick={moveNextRegistration}>Back</Button>
             )}
             {isFirstRegisterStep ? (
-              <AddButtonNot onClick={moveNextRegistration}> Next</AddButtonNot>
+              <Button onClick={moveNextRegistration}> Next</Button>
             ) : (
-              <AddButtonNot>Done</AddButtonNot>
+              <Button>Done</Button>
             )}
           </ActionButtons>
         </form>

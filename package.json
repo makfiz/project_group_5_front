@@ -4,6 +4,9 @@
   "private": true,
   "homepage": "https://makfiz.github.io/project_group_5_front/",
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.9",
     "@redux-devtools/extension": "^3.2.3",
     "@reduxjs/toolkit": "^1.9.0",
     "axios": "^1.2.0",
