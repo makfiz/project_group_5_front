@@ -36,11 +36,9 @@ export const LoginForm = () => {
       return;
     }
 
-    
     const { email, password } = values;
     dispatch(authOperations.login({ email, password }));
 
-    console.log(values);
     resetForm();
   };
 
@@ -50,7 +48,7 @@ export const LoginForm = () => {
   };
 
   const onHandleClick = () => {
-    console.log('must redirect on another page');
+    // console.log('must redirect on another page');
   };
 
   return (

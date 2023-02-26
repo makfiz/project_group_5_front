@@ -7,7 +7,6 @@ import { selectUser } from '../../redux/auth/selectors';
 export const SendEmail = () => {
   const dispatch = useDispatch();
   const handleSend = () => {
-    console.log('send email');
     const email = useSelector(selectUser).email;
     dispatch(authOperations.againVerifyMail({ email }));
   };
