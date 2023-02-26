@@ -100,6 +100,55 @@ export const CommentsTitle = styled.p`
   }
 `;
 
+export const ModalDelWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-top: 50px;
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    width: 471px;
+  }
+
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    width: 580px;
+  }
+`;
+
+export const DelBtnWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 15px;
+`;
+
+export const DeleteModalButton = styled.button`
+  display: flex;
+  justify-content: center;
+  width: 70px;
+  padding: 6px;
+  background-color: ${p => p.theme.colors.transparent};
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: ${p => p.theme.fontWeight.medium};
+  font-size: ${p => p.theme.fontSizes.s};
+  line-height: 1.57;
+  letter-spacing: 0.04em;
+  color: ${p => p.theme.colors.black};
+
+  border: 2px solid ${p => p.theme.colors.hoverGoHome};
+  border-radius: ${p => p.theme.radii.large};
+  transition: border-color ${p => p.theme.transition.onHover};
+  transition: background-color ${p => p.theme.transition.onHover};
+  transition: color ${p => p.theme.transition.onHover};
+
+  :hover {
+    border-color: ${p => p.theme.colors.deleteBtnColor};
+    background-color: ${p => p.theme.colors.deleteBtnColor};
+    color: ${p => p.theme.colors.white};
+  }
+`;
+
 export const DeleteBtn = styled.button`
   position: absolute;
   top: 272px;
