@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 import { Box } from 'components/Box/Box';
+
+import { ReactComponent as PlusIcon } from '../../assets/icons/plusIcon.svg';
+import { AddModalNotice } from 'components/AddModalNotice/AddModalNotice';
+
 import {
   CategoriesWrap,
   CategoriesList,
@@ -10,9 +16,6 @@ import {
   AddPetBtn,
   AddPetBtnIconWrap,
 } from './NoticesCategories.styled';
-import { ReactComponent as PlusIcon } from '../../assets/icons/plusIcon.svg';
-import { AddModalNotice } from 'components/AddModalNotice/AddModalNotice';
-import { useNavigate } from 'react-router';
 
 export const NoticesCategories = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
