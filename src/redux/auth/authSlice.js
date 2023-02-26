@@ -12,10 +12,10 @@ const initialState = {
     phone: null,
     city: null,
     petList: null,
-    isLoading: false,
   },
   token: null,
   isLoggedIn: false,
+  isLoading: false,
   isRefreshing: false,
   error: null,
   currentUser: [],
@@ -135,21 +135,21 @@ const authSlice = createSlice({
       })
       .addCase(petsOperations.addPet.fulfilled, (state, action) => {
         state.user.petList = [...state.user.petList, action.payload.myNewPet];
-        isLoading = false;
+        state.isLoading = false;
       })
       .addCase(petsOperations.updatePetImage.fulfilled, (state, action) => {
         const index = state.user.petList.findIndex(
           pet => pet._id === action.payload.id
         );
         state.user.petList[index].petImage = action.payload.petImage;
-        isLoading = false;
+        state.isLoading = false;
       })
       .addCase(petsOperations.deletePet.fulfilled, (state, action) => {
         const index = state.user.petList.findIndex(
           pet => pet._id === action.payload._id
         );
         state.user.petList.splice(index, 1);
-        isLoading = false;
+        state.isLoading = false;
       })
       .addCase(authOperations.userUpload.fulfilled, (state, action) => {
         state.error = null;
@@ -175,7 +175,7 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(petsOperations.deletePet.pending, (state, action) => {
-        isLoading = true;
+        state.isLoading = true;
       });
   },
 });
