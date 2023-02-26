@@ -5,8 +5,8 @@ export const DeleteModalWrap = styled.div`
   top: 0;
   left: 0;
   justify-content: center;
-  width: calc(100% - 40px);
-  height: calc(100% - 40px);
+  width: 100%;
+  height: 100%;
   padding: 20px 20px;
 
   background-color: ${p => p.theme.colors.white};
@@ -38,13 +38,13 @@ export const DeleteModalButton = styled.button`
   width: 90%;
   padding-top: 6px;
   padding-bottom: 6px;
-  background-color: transparent;
+  background-color: ${p => p.theme.colors.transparent};
   cursor: pointer;
   font-family: inherit;
 
   border: 2px solid ${p => p.theme.colors.hoverGoHome};
   border-radius: ${p => p.theme.radii.large};
-  transition: border-color 300ms ease-in-out;
+  transition: border-color ${p => p.theme.transition.onHover};
 
   :last-child {
     margin-top: 10px;
@@ -69,5 +69,5 @@ export const DeleteModalButtonText = styled.span`
   line-height: 1.38;
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.hoverGoHome};
-  transition: color 300ms ease-in-out;
+  transition: color ${p => p.theme.transition.onHover};
 `;

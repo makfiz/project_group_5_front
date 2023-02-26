@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import Notiflix from 'notiflix';
 
 import Modal from 'components/Modal/Modal';
 import { Button } from 'components/Button/Button';
@@ -10,15 +9,12 @@ import { endPoints } from 'constants/EndPoints';
 
 import { renameNoticesCategory } from 'utils/renameNoticesCategory';
 import { convertLocationStringToCityName } from 'utils/convertLocationStringToCityName';
+import { showWarningNotification } from 'utils/showWarningNotification';
 
 // import { ReactComponent as HeartIcon } from '../../assets/icons/akarIconsHeart.svg';
 import noPhoto from '../../assets/default-img/default.jpg';
 import { selectUser } from 'redux/auth/selectors';
-import {
-  addNoticeToFavorite,
-  removeNoticeFromFavorite,
-  deleteOnFavoritePage,
-} from '../../redux/notices/operations';
+import { addNoticeToFavorite } from 'redux/notices/operations';
 
 import {
   Wraper,
@@ -74,16 +70,17 @@ export function LernMoreModal() {
   } = itemNotice[0];
 
   const place = convertLocationStringToCityName(location);
-  const [isFav, setIsFav] = useState(() => favoritesIn.includes(userId));
 
-  const notice = notices.filter(notice => notice.favoritesIn.includes(userId));
-  const chechNotice = notice.find(item => item._id === _id);
+  // const notice = notices.filter(notice => notice.favoritesIn.includes(userId));
+  // const chechNotice = notice.find(item => item._id === _id);
+
+  const chechNotice = favoritesIn.includes(userId);
 
   useEffect(() => {
     if (chechNotice) {
       setHeartColor(true);
     }
-  }, []);
+  }, [chechNotice, heartColor]);
 
   const onHandleClick = () => {
     dispatch(cleanNotice());
@@ -95,15 +92,21 @@ export function LernMoreModal() {
   };
 
   const onFavorite = () => {
-    setHeartColor(true);
-    const path = `${endPoints.noticesBase}${_id}${endPoints.noticesFavorite}`;
+    if (!userId) {
+      return showWarningNotification(
+        'Only authorized users can add to favorite',
+        2500
+      );
+    }
 
-    if (chechNotice) {
-      return Notiflix.Notify.failure('notice already in favorite', {
-        timeout: 2500,
-      });
-    } else {
+    if (chechNotice || heartColor) {
+      return showWarningNotification('Notice already in favorite', 2500);
+    }
+
+    if (!chechNotice && !heartColor) {
+      const path = `${endPoints.noticesBase}${_id}${endPoints.noticesFavorite}`;
       dispatch(addNoticeToFavorite({ path }));
+      setHeartColor(true);
     }
   };
 
@@ -173,12 +176,7 @@ export function LernMoreModal() {
                   onClick={phoneCall}
                 />
 
-                <Button
-                  isFav={isFav}
-                  style={StyledButton}
-                  type="button"
-                  onClick={onFavorite}
-                >
+                <Button style={StyledButton} type="button" onClick={onFavorite}>
                   <span>Add to</span>
                   {heartColor ? (
                     <IconHeartBg size={16} />

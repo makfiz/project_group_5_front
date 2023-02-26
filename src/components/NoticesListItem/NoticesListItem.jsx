@@ -2,7 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { BounceLoader } from 'react-spinners';
-import Notiflix from 'notiflix';
+
+import { showWarningNotification } from 'utils/showWarningNotification';
 import { calculateAndConvertAge } from 'utils/calculateAndConvertAge';
 import { renameNoticesCategory } from 'utils/renameNoticesCategory';
 import { convertLocationStringToCityName } from 'utils/convertLocationStringToCityName';
@@ -77,11 +78,9 @@ export const NoticesListItem = ({ ad, askedPage }) => {
     const path = `${endPoints.noticesBase}${_id}${endPoints.noticesFavorite}`;
 
     if (!isLoggedIn) {
-      return Notiflix.Notify.failure(
+      return showWarningNotification(
         'Only authorized users can add to favorite',
-        {
-          timeout: 2500,
-        }
+        2500
       );
     }
 
