@@ -8,14 +8,6 @@ import backgroundImageTab from '../../assets/images/background-tab.png';
 import portraitTab from '../../assets/images/portrait-tab.png';
 import backgroundImageTab2x from '../../assets/images/background-tab-2x.png';
 import portraitTab2x from '../../assets/images/portrait-tab-2x.png';
-import backgroundImageDesk from '../../assets/images/background-desk.png';
-import portraitDesk from '../../assets/images/portrait-desk.png';
-import backgroundImageDesk2x from '../../assets/images/background-desk-2x.png';
-import portraitDesk2x from '../../assets/images/portrait-desk-2x.png';
-import heartImg from '../../assets/images/heart-desk.png';
-import heartImg2x from '../../assets/images/heart-desk-2x.png';
-import backgroundImageDeskRP from 'assets/images/background-desk-rp.png';
-import backgroundImageDeskRP2x from 'assets/images/background-desk-rp-2x.png';
 import bgDesk from 'assets/images/bg-desk.png';
 import bgDesk2x from 'assets/images/bg-desk-2x.png';
 
@@ -65,44 +57,14 @@ export const PageWrapper = styled.div`
     }
   }
 
-  /* @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
-    width: ${p => p.theme.screenSizes.desktop};
-
-    padding-top: 92px;
-
-    background-image: url(${heartImg}), url(${portraitDesk}),
-      url(${backgroundImageDesk}), url(${backgroundImageDeskRP});
-
-    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
-
-    background-size: 92px 89px, 590px 640px, 1069px 393px, 495px 393px;
-
-    background-position-y: 14%, bottom, bottom, bottom;
-
-    background-position-x: 58%, 98%, 32px, right;
-
-    @media only screen and (-webkit-min-device-pixel-ratio: 2),
-      only screen and (min--moz-device-pixel-ratio: 2),
-      only screen and (-moz-min-device-pixel-ratio: 2),
-      only screen and (-o-min-device-pixel-ratio: 2/1),
-      only screen and (min-device-pixel-ratio: 2),
-      only screen and (min-resolution: 192dpi),
-      only screen and (min-resolution: 2dppx) {
-      background-image: url(${heartImg2x}), url(${portraitDesk2x}),
-        url(${backgroundImageDesk2x}), url(${backgroundImageDeskRP2x});
-    }
-  } */
-
   @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
-    /* width: ${p => p.theme.screenSizes.desktop}; */
-
     padding-top: 92px;
 
     background-image: url(${bgDesk});
 
     background-repeat: no-repeat;
 
-    background-size: cover;
+    background-size: contain;
 
     background-position-y: center;
 
