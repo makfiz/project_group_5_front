@@ -1,4 +1,8 @@
 import { Logo } from './Logo/Logo';
+
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { IoClose } from 'react-icons/io5';
+
 import { Container } from '../Container/Container';
 import {
   // Container,
@@ -37,16 +41,21 @@ export const Header = ({ toggleTheme, theme }) => {
       document.body.classList.remove('no-scroll');
     }
   }, [isMenuOpen]);
+
   const handleCloseMenu = () => {
     setIsMenuOpen(false);
   };
   const handleOpenMenu = () => {
     setIsMenuOpen(true);
   };
+
+  const handleMenu = () => {
+    setIsMenuOpen(isMenuOpen === false ? true : false);
+  };
   const isLoggedIn = useSelector(selectIsLoggedIn);
+
   return (
     <Container>
-      <ThemeToggle theme={theme} toggleTheme={toggleTheme}></ThemeToggle>
       {isMenuOpen ? (
         <>
           <MenuActive>
@@ -55,11 +64,9 @@ export const Header = ({ toggleTheme, theme }) => {
                 <Appbar>
                   <Logo />
                   <BurgerMenu>
-                    <OpenMenuIcon
-                      src={closeMenuSvg}
-                      alt=""
-                      onClick={handleCloseMenu}
-                    />
+                    <OpenMenuIcon onClick={handleMenu}>
+                      <IoClose size={40} />
+                    </OpenMenuIcon>
                   </BurgerMenu>
                 </Appbar>
                 <MenuList>
@@ -72,13 +79,10 @@ export const Header = ({ toggleTheme, theme }) => {
             ) : (
               <>
                 <Appbar>
-                  <Logo />
                   <BurgerMenu>
-                    <OpenMenuIcon
-                      src={closeMenuSvg}
-                      alt=""
-                      onClick={handleCloseMenu}
-                    />
+                    <OpenMenuIcon onClick={handleMenu}>
+                      <IoClose size={40} />
+                    </OpenMenuIcon>
                   </BurgerMenu>
                 </Appbar>
                 <MenuList>
@@ -98,38 +102,54 @@ export const Header = ({ toggleTheme, theme }) => {
               <>
                 <HeaderDescLeft>
                   <Logo />
+
                   <HeaderDescNav>
                     <Navigation onClick={handleCloseMenu} />
                   </HeaderDescNav>
                 </HeaderDescLeft>
+                <ThemeToggle
+                  theme={theme}
+                  toggleTheme={toggleTheme}
+                ></ThemeToggle>
                 <HeaderTabRight>
                   <TabAuthWrap>
                     <UserNav onClick={handleCloseMenu} />
                   </TabAuthWrap>
-                  <OpenMenuIcon
+                  <OpenMenuIcon onClick={handleMenu}>
+                    <GiHamburgerMenu size={30} />
+                  </OpenMenuIcon>
+                  {/* <OpenMenuIcon
                     src={openMenuSvg}
                     alt=""
                     onClick={handleOpenMenu}
-                  />
+                  /> */}
                 </HeaderTabRight>
               </>
             ) : (
               <>
                 <HeaderDescLeft>
                   <Logo />
+
                   <HeaderDescNav>
                     <Navigation onClick={handleCloseMenu} />
                   </HeaderDescNav>
                 </HeaderDescLeft>
+                <ThemeToggle
+                  theme={theme}
+                  toggleTheme={toggleTheme}
+                ></ThemeToggle>
                 <HeaderTabRight>
                   <TabAuthWrap>
                     <AuthNav onClick={handleCloseMenu} />
                   </TabAuthWrap>
-                  <OpenMenuIcon
+                  {/* <OpenMenuIcon
                     src={openMenuSvg}
                     alt=""
                     onClick={handleOpenMenu}
-                  />
+                  /> */}
+                  <OpenMenuIcon onClick={handleMenu}>
+                    <GiHamburgerMenu size={30} />
+                  </OpenMenuIcon>
                 </HeaderTabRight>
               </>
             )}

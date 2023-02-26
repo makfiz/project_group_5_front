@@ -1,34 +1,22 @@
-import styled from 'styled-components';
-
-const ToggleContainer = styled.button`
-  width: 40px;
-  height: 20px;
-  background-color: ${props => props.theme.colors.userAddPetBtnBg};
-  border-radius: 10px;
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-`;
-
-const ToggleSwitch = styled.span`
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background-color: ${props => props.theme.colors.userAddPetBtnBgHover};
-  transition: transform 0.2s;
-  transform: translateX(${props => props.theme.isDark ? '20px' : '0'});
-`;
+import { FaPaw } from "react-icons/fa";
+import {ToggleContainer, ToggleBtn, ToggleSwitch } from './ThemeToggle.styled'
 
 
 const ThemeToggle = ({ theme, toggleTheme }) => {
   // console.log("theme:", theme)
   // console.log("toggleTheme:", toggleTheme)
+
+  const displayMessadge = () => {
+    console.log('Change theme')
+
+  }
   return (
-    <ToggleContainer onClick={toggleTheme}>
-      <ToggleSwitch />
+    <ToggleContainer onMouseEnter={displayMessadge}>
+      <FaPaw size='20' fill='white' stroke='black' strokeWidth={7}/>
+      <ToggleBtn onClick={toggleTheme}>
+        <ToggleSwitch />
+      </ToggleBtn>
+      <FaPaw size='20' fill='black' stroke='white' strokeWidth={10}/>
     </ToggleContainer>
     // <button onClick={toggleTheme}>Toggle theme</button>
   );

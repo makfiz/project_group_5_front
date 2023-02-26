@@ -21,7 +21,10 @@ export const UserData = ({ user }) => {
           <UserPhoto user={user} />
         </UserPhotoThumb>
         <UserDataWrapper>
-          <UserDataItem name="name" label="Name" value={!name ? '' : name} />
+          <UserDataItem
+            name="name"
+            label="Name"
+            value={!name ? '' : name} />
           <UserDataItem
             name="email"
             label="Email"

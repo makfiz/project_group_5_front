@@ -8,6 +8,9 @@ import {
   InputLabel,
 } from './NewsForm.styled';
 
+import { GoSearch } from "react-icons/go";
+import { RiCloseCircleLine } from "react-icons/ri";
+
 import { ReactComponent as SearchIcon } from '../../../assets/icons/searchIcon.svg';
 import { ReactComponent as ResetForm } from '../../../assets/icons/resetForm.svg';
 
@@ -38,9 +41,11 @@ export const NewsForm = ({onSubmit, onClear}) => {
           />
           <SearchBtn type={smallScreen ? 'submit' : 'button'}>
             {value && !smallScreen ? (
-              <ResetForm onClick={handleClear} />
+            <RiCloseCircleLine size={24} onClick={handleClear} />
+            // <GoSearch onClick={handleClear}/>
             ) : (
-              <SearchIcon />
+              // <SearchIcon />
+              <GoSearch size={20} />
             )}
           </SearchBtn>
         </InputLabel>

@@ -36,9 +36,7 @@ export const App = () => {
   const [theme, setTheme] = useState(themeLight);
 
   const toggleTheme = () => {
-    console.log('toggle theme')
     setTheme(theme === themeLight ? themeDark : themeLight);
-    console.log("theme:", theme)
   };
 
   const dispatch = useDispatch();

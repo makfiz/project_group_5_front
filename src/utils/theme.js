@@ -17,6 +17,7 @@ export const theme = {
   colors: {
     // light
     bgc: '#fdf7f2',
+    bgcContrast: '#fdf7f2',
     bgcContent: '#ffffff',
     text: '#000000',
     white: '#ffffff',
@@ -93,6 +94,7 @@ export const themeDark = {
   colors: {
     // dark
     bgc: '#111212',
+    bgcContrast: '#434343',
     bgcContent: '#1C1F20',
     text: '#ffffff',
     white: '#000000',
@@ -101,23 +103,17 @@ export const themeDark = {
     navAccent: '#2196f3',
     hoverGoHome: '#F59256',
     titleColor: '#E2E2E2',
-    //^
     placeholderColor: '#E2E2E2',
-    // ??
     regModBack: '#000000',
-    //
     transparent: 'transparent',
     regModalTitleColor: ' #E2E2E2',
     regModalLinkText: 'rgba(226, 226, 226, 0.6)',
-    //
     regModalLink: '#3091EB',
     regModalActiveBtn: '#F59256',
-    //
     regModalplaceholderColor: 'rgba(226, 226, 226, 0.6)',
     error: 'red',
     deleteBtnColor: '#FF6101',
-    //
-    petModalplaceholder: 'rgba(27, 27, 27, 0.6)',
+    petModalplaceholder: 'rgba(236, 236, 236, 0.6)',
     userAddPetBtnBg: '#F59256',
     userAddPetBtnBgHover: '#FF6101',
   },
@@ -173,6 +169,7 @@ export const themeLight = {
   colors: {
     // light
     bgc: '#fdf7f2',
+    bgcContrast: '#fdf7f2',
     bgcContent: '#ffffff',
     text: '#000000',
     white: '#ffffff',
