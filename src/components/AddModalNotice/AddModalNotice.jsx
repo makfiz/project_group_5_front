@@ -115,15 +115,15 @@ export const AddModalNotice = ({ handleModalToggle }) => {
   const formik = useFormik({
     initialValues: {
       category: categorySetByDefault(),
-      title: 'titletest',
-      name: 'nametest',
-      birthday: '01.01.2022',
-      breed: 'breedtest',
-      sex: 'male',
-      location: 'test',
-      price: 1,
+      title: '',
+      name: '',
+      birthday: '',
+      breed: '',
+      sex: '',
+      location: '',
+      price: '',
       petImage: null,
-      comments: 'testtesttest',
+      comments: '',
     },
     validationSchema: validationSchemaStepOne,
     // onSubmit: values => {
