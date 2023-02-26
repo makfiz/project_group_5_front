@@ -73,7 +73,7 @@ export const PageWrapper = styled.div`
 
     background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
 
-    background-size: 8% auto, 50% auto, 1069px 393px, 495px 393px;
+    background-size: 92px 89px, 590px 640px, 1069px 393px, 495px 393px;
 
     background-position-y: 14%, bottom, bottom, bottom;
 
