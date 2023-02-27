@@ -1,4 +1,3 @@
-import React from 'react';
 import { useRef, useState } from 'react';
 
 import {
@@ -19,20 +18,27 @@ export const NewsForm = ({onSubmit, onClear}) => {
   const windowWidth = useRef(window.innerWidth);
   const smallScreen = windowWidth.current < 768;
 
-  const handleSubmit = e => {
+  function handleSubmit(e) {
     e.preventDefault();
     onSubmit(e);
   };
+
+  function handleInput(e){
+    setValue(e.target.value.trim());
+    onSubmit(e);
+  }
   
   const handleClear = e => {
     setValue('');
     onClear();
   }
+
   return (
       <SearchForm onSubmit={handleSubmit}>
         <InputLabel htmlFor="search">
           <SearchField
-            onInput={e => setValue(e.target.value.trim())}
+            // onInput={e => setValue(e.target.value.trim())}
+            onInput={e => handleInput(e)}
             type="text"
             placeholder="Search"
             name="search"
