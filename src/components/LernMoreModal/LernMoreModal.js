@@ -66,12 +66,12 @@ export function LernMoreModal() {
 
   const {
     _id,
-    title,
+    title = 'unknown',
     comments,
     category,
-    name,
-    birth,
-    breed,
+    name = 'unknown',
+    birth = 'unknown',
+    breed = 'unknown',
     location,
     sex,
     price,
