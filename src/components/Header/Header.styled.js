@@ -55,6 +55,7 @@ export const MenuNonActive = styled.div`
   justify-content: space-between;
   align-items: baseline;
   padding-top: 20px;
+  padding-bottom: 20px;
 `;
 export const MenuAuthBtnWrap = styled.div`
   display: flex;
