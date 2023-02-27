@@ -7,6 +7,7 @@ import { Box } from 'components/Box/Box';
 
 import { ReactComponent as PlusIcon } from '../../assets/icons/plusIcon.svg';
 import { AddModalNotice } from 'components/AddModalNotice/AddModalNotice';
+import { showWarningNotification } from 'utils';
 
 import {
   CategoriesWrap,
@@ -26,6 +27,16 @@ export const NoticesCategories = () => {
     setIsModalOpen(prev => {
       return !prev;
     });
+  };
+
+  const handleAddPetButtonClick = e => {
+    if (!isLoggedIn) {
+      return showWarningNotification(
+        'Only authorized users can add new notice',
+        2500
+      );
+    }
+    handleModalToggle();
   };
 
   return (
@@ -56,13 +67,7 @@ export const NoticesCategories = () => {
             </>
           )}
         </CategoriesList>
-        <AddPetBtn
-          type="button"
-          onClick={e => {
-            e.preventDefault();
-            token ? handleModalToggle() : navigate('/login');
-          }}
-        >
+        <AddPetBtn type="button" onClick={handleAddPetButtonClick}>
           Add pet
           <AddPetBtnIconWrap>
             <PlusIcon />
