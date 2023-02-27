@@ -6,11 +6,14 @@ const isMenuOpenSlice = createSlice({
     isMenuOpen: false,
   },
   reducers: {
-    toggleMenu(state, _) {
-      state.isMenuOpen = !state.isMenuOpen;
+    openMenu(state, _) {
+      state.isMenuOpen = true;
+    },
+    closeMenu(state, _) {
+      state.isMenuOpen = false;
     },
   },
 });
 
-export const { toggleMenu } = isMenuOpenSlice.actions;
+export const { openMenu, closeMenu } = isMenuOpenSlice.actions;
 export const toggleMenuReducer = isMenuOpenSlice.reducer;
