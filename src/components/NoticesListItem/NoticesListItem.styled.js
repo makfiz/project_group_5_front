@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import EllipsisText from 'react-ellipsis-text';
 
 export const ImgWrap = styled.div`
   position: relative;
@@ -24,8 +23,9 @@ export const ImgBadge = styled.p`
   justify-content: ${({ category }) =>
     category === 'sell' ? 'center' : 'flex-start'};
 
-  background-color: ${p => p.theme.colors.favoriteBg};
+  background-color: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(2px);
+
   border-top-right-radius: ${p => p.theme.radii.large};
   border-bottom-right-radius: ${p => p.theme.radii.large};
 
@@ -104,7 +104,7 @@ export const TextWrap = styled.div`
   }
 `;
 
-export const Title = styled(EllipsisText)`
+export const Title = styled.h2`
   margin-bottom: 20px;
   font-size: ${p => p.theme.fontSizes.lm};
   font-weight: ${p => p.theme.fontWeight.bold};

@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { BounceLoader } from 'react-spinners';
+import EllipsisText from 'react-ellipsis-text';
 
 import {
   showWarningNotification,
@@ -143,7 +144,9 @@ export const NoticesListItem = ({ ad, askedPage }) => {
       </ImgWrap>
 
       <TextWrap>
-        <Title text={title} length={15} />
+        <Title>
+          <EllipsisText text={title} length={15} />
+        </Title>
         <Box display="flex">
           <Box>
             <NoticesDescriptionText text="Breed:" />
@@ -154,7 +157,9 @@ export const NoticesListItem = ({ ad, askedPage }) => {
 
           <DescriptionDefinitions>
             <NoticesDescriptionText text={breed} />
-            <NoticesDescriptionText text={place} />
+            <NoticesDescriptionText
+              text={<EllipsisText text={place} length={15} />}
+            />
             <NoticesDescriptionText text={age} />
             {sellPage && <NoticesDescriptionText text={price} />}
           </DescriptionDefinitions>
