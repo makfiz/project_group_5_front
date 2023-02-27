@@ -81,7 +81,6 @@ export function LernMoreModal() {
   } = itemNotice[0];
 
   const place = convertLocationStringToCityName(location);
-  const checkNotice = favoritesIn.includes(userId);
 
   useEffect(() => {
     if (favoritesIn.includes(userId)) {
@@ -89,11 +88,10 @@ export function LernMoreModal() {
     } else {
       setHeartColor(false);
     }
-    console.log('heartColor', heartColor);
     if (!isLoading) {
       setIsUpdating(false);
     }
-  }, [checkNotice, favoritesIn, isLoading]);
+  }, [favoritesIn, isLoading, userId]);
 
   const onHandleClick = () => {
     dispatch(cleanNotice());
