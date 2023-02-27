@@ -121,7 +121,7 @@ export const AddModalNotice = ({ handleModalToggle }) => {
       breed: '',
       sex: '',
       location: '',
-      price: '',
+      price: '0',
       petImage: null,
       comments: '',
     },
@@ -216,11 +216,11 @@ export const AddModalNotice = ({ handleModalToggle }) => {
                 <RadioLabel>
                   <RadioInput
                     defaultChecked={
-                      formik.values.category === 'lost-found' ? true : false
+                      formik.values.category === 'lost_found' ? true : false
                     }
                     type="radio"
                     name="category"
-                    value="lost-found"
+                    value="lost_found"
                     id="lost-found"
                   />
                   <RadioButton>lost/found</RadioButton>
@@ -228,11 +228,11 @@ export const AddModalNotice = ({ handleModalToggle }) => {
                 <RadioLabel>
                   <RadioInput
                     defaultChecked={
-                      formik.values.category === 'for-free' ? true : false
+                      formik.values.category === 'in_good_hands' ? true : false
                     }
                     type="radio"
                     name="category"
-                    value="in good hands"
+                    value="in_good_hands"
                     id="in good hands"
                   />
                   <RadioButton>in good hands</RadioButton>
