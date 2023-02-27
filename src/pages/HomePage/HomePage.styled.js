@@ -64,7 +64,7 @@ export const PageWrapper = styled.div`
 
     background-repeat: no-repeat;
 
-    background-size: contain;
+    background-size: cover;
 
     background-position-y: center;
 
