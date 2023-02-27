@@ -106,7 +106,22 @@ export const AddModalNotice = ({ handleModalToggle }) => {
   // };
 
   const categorySetByDefault = () => {
-    const enterPoint = pathname.split('/').pop();
+    let enterPoint = pathname.split('/').pop();
+
+    switch (enterPoint) {
+      case 'lost-found':
+        enterPoint = 'lost_found';
+        break;
+
+      case 'for-free':
+        enterPoint = 'in_good_hands';
+        break;
+
+      default:
+        enterPoint = 'sell';
+        break;
+    }
+
     return enterPoint === 'notices' ? 'sell' : enterPoint;
   };
   const formik = useFormik({
