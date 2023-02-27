@@ -123,9 +123,9 @@ export const NoticesList = ({ askedPage }) => {
               ))}
             </List>
           </ListWrap>
-          <NoticesAddPetButtonMobile />
         </Box>
       )}
+      <NoticesAddPetButtonMobile />
       {noNotices && (
         <Box display="flex" justifyContent="center">
           <InformationText>...no notices yet</InformationText>
