@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
+import debounce from 'lodash.debounce';
 
 import { Title } from 'components/Title/Title';
 import { NewsList } from 'components/News/NewsList/NewsList';
@@ -35,9 +36,25 @@ const NewsPage = () => {
   }, [search]);
 
   function filterNews(e) {
-    const userSearch = e.target.elements.search.value;
-    setSearchParams({ search: userSearch });
+    let userSearch;
+    switch (e.type) {
+      case 'submit':
+        userSearch = e.target.elements.search.value;
+        setSearchParams({ search: userSearch });
+            break;
+      case 'input':
+        userSearch = e.target.value.trim();
+        userSearch ? setSearchParams({ search: userSearch }) : setSearchParams({ });
+      default:
+        return;
+    }
   }
+
+  const debouncedFiltration = useMemo(
+    () => debounce(filterNews, 500),
+    [search]
+  );
+
 
   function clearFiltration() {
     setSearchParams({});
@@ -46,7 +63,7 @@ const NewsPage = () => {
   const content = isLoading ? (
     <Loader />
   ) : (
-    <NewsList news={news} onSubmit={filterNews} onClear={clearFiltration} />
+    <NewsList news={news} onSubmit={debouncedFiltration} onClear={clearFiltration} />
   );
 
   return (
