@@ -15,7 +15,7 @@ import { authReducer } from './auth/authSlice';
 import { noticesReducer } from './notices/noticesSlice';
 import { noticesSearckQueryReducer } from './notices/searchQuerySlice';
 import { formReducer } from './form/formSlice';
-
+import { toggleMenuReducer } from './menu/menuSlice';
 // import  {petsApi}  from './Pet/PetsApi';
 
 const authPersistConfig = {
@@ -42,6 +42,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     noticesSearchQuery: persistedNoticesSearckQueryReducer,
     form: formReducer,
+    menuState: toggleMenuReducer,
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({

@@ -38,8 +38,8 @@ export const MenuList = styled.div`
 `;
 export const Appbar = styled.div`
   display: flex;
-  /* justify-content: space-between; */
-  justify-content: flex-end;
+  justify-content: space-between;
+  /* justify-content: flex-end; */
 `;
 
 export const MenuActive = styled.div`
@@ -47,13 +47,14 @@ export const MenuActive = styled.div`
   z-index: 999;
   background-color: ${p => p.theme.colors.transparent};
   flex-direction: column;
-  padding-top: 16px;
+  padding-top: 20px;
 `;
 export const MenuNonActive = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
+
   padding-top: 20px;
   padding-bottom: 20px;
 `;

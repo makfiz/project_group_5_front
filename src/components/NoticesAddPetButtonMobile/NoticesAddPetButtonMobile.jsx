@@ -12,6 +12,7 @@ import { selectIsLoggedIn } from 'redux/auth/selectors';
 import { showWarningNotification } from 'utils';
 
 export const NoticesAddPetButtonMobile = () => {
+  const menuState = useSelector(state => state.menuState.isMenuOpen);
   const navigate = useNavigate();
   const { token } = useSelector(state => state.auth);
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -34,11 +35,17 @@ export const NoticesAddPetButtonMobile = () => {
 
   return (
     <>
-      <AddPetMobileButton type="button" onClick={handleAddPetButtonClick}>
-        <AddPetMobileButtonText>Add pet</AddPetMobileButtonText>
-        <PlusIconMobile />
-      </AddPetMobileButton>
-      {isModalOpen && <AddModalNotice handleModalToggle={handleModalToggle} />}
+      {!menuState ? (
+        <>
+          <AddPetMobileButton type="button" onClick={handleAddPetButtonClick}>
+            <AddPetMobileButtonText>Add pet</AddPetMobileButtonText>
+            <PlusIconMobile />
+          </AddPetMobileButton>
+          {isModalOpen && (
+            <AddModalNotice handleModalToggle={handleModalToggle} />
+          )}
+        </>
+      ) : null}
     </>
   );
 };
