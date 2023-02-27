@@ -38,8 +38,8 @@ export const MenuList = styled.div`
 `;
 export const Appbar = styled.div`
   display: flex;
-  justify-content: space-between;
-  /* justify-content: flex-end; */
+  /* justify-content: space-between; */
+  justify-content: flex-end;
 `;
 
 export const MenuActive = styled.div`

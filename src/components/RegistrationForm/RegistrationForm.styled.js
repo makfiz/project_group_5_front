@@ -143,7 +143,8 @@ export const Input = styled(Field)`
 
   @media screen and (min-width: 768px) {
     width: 448px;
-    background-color: #fdf7f2;
+    /* background-color: red; */
+    background-color: ${p => p.theme.colors.bgc};
     padding-left: 32px;
     padding-top: 14px;
     padding-bottom: 14px;

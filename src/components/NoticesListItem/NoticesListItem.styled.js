@@ -33,7 +33,7 @@ export const ImgBadge = styled.p`
   font-weight: ${p => p.theme.fontWeight.medium};
   line-height: 1.25;
   letter-spacing: 0.04em;
-  color: ${p => p.theme.colors.titleColor};
+  color: #111111;
 
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
     padding: 6px 20px 6px;

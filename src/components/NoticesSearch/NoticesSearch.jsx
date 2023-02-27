@@ -8,6 +8,10 @@ import { selectNoticesSearchQuery } from 'redux/notices/selectors';
 import { searchParamsHandler } from 'utils';
 
 import { PageTitle } from 'components/PageTitle/PageTitle';
+
+import { GoSearch } from "react-icons/go";
+import { RiCloseCircleLine } from "react-icons/ri";
+
 import { ReactComponent as SearchIcon } from 'assets/icons/searchIcon.svg';
 import { ReactComponent as ResetForm } from 'assets/icons/resetForm.svg';
 import {
@@ -70,9 +74,11 @@ export const NoticesSearch = () => {
           />
           <SearchBtn type="submit">
             {value.trim() ? (
-              <ResetForm onClick={handleReset} />
+              // <ResetForm onClick={handleReset} />
+              <RiCloseCircleLine size={24} onClick={handleReset} />
             ) : (
-              <SearchIcon />
+                // <SearchIcon />
+                <GoSearch size={20}/>
             )}
           </SearchBtn>
         </InputLabel>

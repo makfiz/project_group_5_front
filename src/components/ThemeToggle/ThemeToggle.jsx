@@ -6,12 +6,8 @@ const ThemeToggle = ({ theme, toggleTheme }) => {
   // console.log("theme:", theme)
   // console.log("toggleTheme:", toggleTheme)
 
-  const displayMessadge = () => {
-    console.log('Change theme')
-
-  }
   return (
-    <ToggleContainer onMouseEnter={displayMessadge}>
+    <ToggleContainer >
       <FaPaw size='20' fill='white' stroke='black' strokeWidth={7}/>
       <ToggleBtn onClick={toggleTheme}>
         <ToggleSwitch />

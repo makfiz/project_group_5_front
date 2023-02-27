@@ -51,7 +51,7 @@ export const BtnClose = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fdf7f2;
+  background-color: ${p => p.theme.colors.bgc};
   border: none;
   @media screen and (min-width: 767px) {
     width: 44px;
@@ -136,7 +136,7 @@ export const BtnWrapperNext = styled.div`
 `;
 export const Input = styled(Field)`
   width: 240px;
-  background-color: #fdf7f2;
+  background-color: ${p => p.theme.colors.bgc};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: ${p => p.theme.radii.large};
   padding-top: 11px;
@@ -201,7 +201,7 @@ export const AddImgBtn = styled.button`
   position: relative;
   width: 208px;
   height: 208px;
-  background: #fdf7f2;
+  background-color: ${p => p.theme.colors.bgc};
   border-radius: 20px;
   margin: 0 auto;
   border: none;
@@ -257,7 +257,7 @@ export const TextArea = styled(Field)`
   padding-left: 14px;
   width: 240px;
   height: 100px;
-  background: #fdf7f2;
+  background-color: ${p => p.theme.colors.bgc};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: ${p => p.theme.radii.medium};
   margin-top: 8px;

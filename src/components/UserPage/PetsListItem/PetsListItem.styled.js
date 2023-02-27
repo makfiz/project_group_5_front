@@ -173,7 +173,7 @@ export const DeleteBtn = styled.button`
     width: 44px;
     height: 44px;
 
-    background-color: #fdf7f2;
+    background-color: ${p => p.theme.colors.bgc};
     border-radius: ${p => p.theme.radii.round};
   }
 `;

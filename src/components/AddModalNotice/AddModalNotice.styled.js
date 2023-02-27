@@ -26,9 +26,9 @@ export const BtnClose = styled.button`
   align-items: center;
   border-radius: 30px;
   border: thick;
-  background-color: #fdf7f2;
+  background-color: ${p => p.theme.colors.bgc};
   font-size: initial;
-  fill: ${p => p.theme.colors.titleColor};
+  /* fill: ${p => p.theme.colors.titleColor}; */
   &:hover,
   &:focus {
     fill: ${p => p.theme.colors.userAddPetBtnBgHover};
@@ -182,7 +182,7 @@ export const TextInput = styled.input`
   padding: 0;
   padding-left: 14px;
   border-radius: 40px;
-  background-color: #fdf7f2;
+  background-color: ${p => p.theme.colors.bgc};
   ::placeholder {
     font-family: 'Manrope, sans-serif';
     font-style: normal;
@@ -366,7 +366,7 @@ export const PhotoAddContainer = styled.label`
   box-sizing: border-box;
   // padding: 22px;
   border-radius: 20px;
-  background-color: #fdf7f2;
+  background-color: ${p => p.theme.colors.bgc};
   @media screen and (min-width: 768px) {
     width: 140px;
     height: 140px;
