@@ -29,7 +29,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { UserNav } from './Navigation/UserNav/UserNav';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 import ThemeToggle from 'components/ThemeToggle/ThemeToggle';
-import { toggleMenu } from 'redux/menu/menuSlice';
+import { openMenu, closeMenu } from 'redux/menu/menuSlice';
 
 export const Header = ({ toggleTheme, theme }) => {
   const dispatch = useDispatch();
@@ -47,17 +47,17 @@ export const Header = ({ toggleTheme, theme }) => {
   }, [menuState]);
 
   const handleCloseMenu = () => {
-    dispatch(toggleMenu());
+    dispatch(closeMenu());
     // setIsMenuOpen(false);
   };
   const handleOpenMenu = () => {
     // setIsMenuOpen(true);
-    dispatch(toggleMenu());
+    dispatch(openMenu());
   };
 
   const handleMenu = () => {
     // setIsMenuOpen(isMenuOpen === false ? true : false);
-    dispatch(toggleMenu());
+    dispatch(toggleMenu(isMenuOpen === false ? true : false));
   };
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
@@ -71,8 +71,8 @@ export const Header = ({ toggleTheme, theme }) => {
                 <Appbar>
                   <Logo />
                   <BurgerMenu>
-                    <OpenMenuIcon onClick={handleMenu}>
-                      <IoClose size={40} />
+                    <OpenMenuIcon>
+                      <IoClose onClick={handleCloseMenu} size={40} />
                     </OpenMenuIcon>
                   </BurgerMenu>
                 </Appbar>
@@ -87,9 +87,7 @@ export const Header = ({ toggleTheme, theme }) => {
               <>
                 <Appbar>
                   <BurgerMenu>
-                    <OpenMenuIcon onClick={handleMenu}>
-                      <IoClose size={40} />
-                    </OpenMenuIcon>
+                    <IoClose onClick={handleCloseMenu} size={40} />
                   </BurgerMenu>
                 </Appbar>
                 <MenuList>
@@ -122,8 +120,8 @@ export const Header = ({ toggleTheme, theme }) => {
                   <TabAuthWrap>
                     <UserNav onClick={handleCloseMenu} />
                   </TabAuthWrap>
-                  <OpenMenuIcon onClick={handleMenu}>
-                    <GiHamburgerMenu size={30} />
+                  <OpenMenuIcon>
+                    <GiHamburgerMenu onClick={handleOpenMenu} size={30} />
                   </OpenMenuIcon>
                   {/* <OpenMenuIcon
                     src={openMenuSvg}
@@ -154,8 +152,8 @@ export const Header = ({ toggleTheme, theme }) => {
                     alt=""
                     onClick={handleOpenMenu}
                   /> */}
-                  <OpenMenuIcon onClick={handleMenu}>
-                    <GiHamburgerMenu size={30} />
+                  <OpenMenuIcon>
+                    <GiHamburgerMenu onClick={handleOpenMenu} size={30} />
                   </OpenMenuIcon>
                 </HeaderTabRight>
               </>
