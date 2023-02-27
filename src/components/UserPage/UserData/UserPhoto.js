@@ -38,7 +38,7 @@ export function UserPhoto({ user }) {
   return (
     <form encType="multipart/form-data" onSubmit={handleSubmit}>
       <AvatarHolder>
-        {!avatarURL ? (
+        {!avatarURL && !img ? (
           <AddCross>
             <svg>
               <use href={icons + '#icon-bigPlus'} />
@@ -52,6 +52,7 @@ export function UserPhoto({ user }) {
           accept="image/*"
           onChange={e => {
             setImg(URL.createObjectURL(e.target.files[0]));
+
             setIsEditing(true);
           }}
         />
