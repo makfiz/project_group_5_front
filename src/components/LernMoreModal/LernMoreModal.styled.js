@@ -87,8 +87,8 @@ export const FavoriteWraper = styled.div`
   width: 158px;
   height: 28px;
 
-  background-color: ${p => p.theme.colors.favoriteBg};
-  backdrop-filter: blur(50px);
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(2px);
   border-top-right-radius: ${p => p.theme.radii.large};
   border-bottom-right-radius: ${p => p.theme.radii.large};
 `;
