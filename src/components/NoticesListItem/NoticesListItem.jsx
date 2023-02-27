@@ -92,22 +92,21 @@ export const NoticesListItem = ({ ad, askedPage }) => {
       );
     }
 
-    if (!loadingNotices) {
-      setIsUpdating(true);
-    }
-
     if (!inFavorite) {
+      setIsUpdating(true);
       dispatch(addNoticeToFavorite({ path }));
       setInFavorite(true);
       return;
     }
     if (askedPage === 'favorite') {
+      setIsUpdating(true);
       dispatch(deleteOnFavoritePage({ path }));
       setInFavorite(false);
 
       return;
     }
     if (askedPage !== 'favorite') {
+      setIsUpdating(true);
       dispatch(removeNoticeFromFavorite({ path }));
       setInFavorite(false);
 
