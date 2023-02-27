@@ -6,7 +6,12 @@ export const SharedLayout = ({ toggleTheme, theme }) => {
   return (
     <>
       <Header toggleTheme={toggleTheme} theme={theme} />
+
       <Suspense>
+
+      <Suspense fallback={null}>
+      
+
         <Outlet />
       </Suspense>
     </>
