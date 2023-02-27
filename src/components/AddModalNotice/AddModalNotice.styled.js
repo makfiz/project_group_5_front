@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import maleIcon from '../../assets/images/male.png';
 import femaleIcon from '../../assets/images/female.png';
-
+import { ErrorMessage } from 'formik';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -421,4 +421,11 @@ export const ActionButtons = styled.div`
   @media screen and (min-width: 768px) {
     flex-direction: row;
   }
+`;
+
+export const Error = styled.span`
+  color: ${p => p.theme.colors.error};
+  margin-bottom: ${p => p.theme.space[4]}px;
+  margin-left: ${p => p.theme.space[4]}px;
+  font-size: ${p => p.theme.fontSizes.s};
 `;

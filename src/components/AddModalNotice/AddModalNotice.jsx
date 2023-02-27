@@ -42,6 +42,7 @@ import {
   ImageInputWrapper,
   ImageTitle,
   AddedIamge,
+  Error,
 } from './AddModalNotice.styled';
 
 const validationSchemaStepOne = Yup.object().shape({
@@ -50,18 +51,18 @@ const validationSchemaStepOne = Yup.object().shape({
     .min(2, 'Title should be at least 2 characters long')
     .max(48, 'Title should be up to 48 characters long'),
   name: Yup.string()
-    .required('Name is required')
     .matches(
       /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
       'Only letters can be accepted'
     )
     .min(2, 'Name should be at least 2 characters long')
     .max(16, 'Name should be up to 16 characters long'),
-  birthDate: Yup.date().required('Birth date is required'),
+  birthday: Yup.string().matches(
+    /^(0?[1-9]|[1-2][0-9]|3[0-1])\.(0?[1-9]|1[0-2])\.\d{4}$/
+  ),
   breed: Yup.string()
-    .required('Breed is required')
     .matches(
-      /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
+      /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)?(?: [a-zA-Zа-яА-Я]+)*$/,
       'Only letters can be accepted'
     )
     .min(2, 'Breed should be at least 2 characters long')
@@ -76,17 +77,14 @@ const validationSchemaStepTwo = Yup.object().shape({
       'Should be at least two words separated by coma'
     )
     .required('City is required'),
-  price: Yup.number()
-    .typeError('Price must be a number')
+  price: Yup.string()
     .min(1, 'Price can not be 0')
     .when('category', (category, schema) => {
-      if (category === 'sell') {
+      if (category.join() === 'sell') {
         return schema.required('Price is required');
       }
       return schema;
     }),
-
-  petImage: Yup.mixed().required('Please add the picture'),
   comments: Yup.string()
     .required('Comment is required')
     .min(8, 'Title should be at least 8 characters long')
@@ -96,7 +94,6 @@ const validationSchemaStepTwo = Yup.object().shape({
 export const AddModalNotice = ({ handleModalToggle }) => {
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
   const [image, setImage] = useState(null);
-  // const { addNotices } = addNoticeToFavorite();
 
   const dispatch = useDispatch();
   const { pathname } = useLocation();
@@ -121,28 +118,14 @@ export const AddModalNotice = ({ handleModalToggle }) => {
       breed: '',
       sex: '',
       location: '',
-      price: '0',
+      price: '',
       petImage: null,
       comments: '',
     },
-    validationSchema: validationSchemaStepOne,
-    // onSubmit: values => {
-    //   const data = new FormData();
-    //   data.append('category', values.category);
-    //   data.append('title', values.title);
-    //   data.append('name', values.name);
-    //   data.append('birthday', values.birthday);
-    //   data.append('breed', values.breed);
-    //   data.append('sex', values.sex);
-    //   data.append('location', values.location);
-    //   data.append('price', values.price);
-    //   data.append('comments', values.comments);
-    //   data.append('petImage', values.petImage);
-    //   addNotices(data);
-    //   handleModalToggle();
-    //   navigate('/notices/own');
-    //   toast.success(`Your pet ${values.name} has been added to notices`);
-    // },
+    validateOnChange: false,
+    validationSchema: isFirstRegisterStep
+      ? validationSchemaStepOne
+      : validationSchemaStepTwo,
   });
 
   const onImageChange = e => {
@@ -159,7 +142,6 @@ export const AddModalNotice = ({ handleModalToggle }) => {
   }, [handleModalToggle]);
 
   const onSumbit = e => {
-    e.preventDefault();
     const {
       birthday,
       breed,
@@ -177,23 +159,50 @@ export const AddModalNotice = ({ handleModalToggle }) => {
     img.append('img', photoURL);
     dispatch(
       addNotice({
-        birth: birthday,
-        breed,
+        birth: !birthday ? 'unknown' : birthday,
+        breed: !breed ? 'unknown' : breed,
         category,
         comments,
         location,
-        name,
-        price: price.toString(),
+        name: !name ? 'unknown' : name,
+        price: formik.values.category === 'sell' ? price : '1',
         sex,
         title,
       })
     ).then(data => {
+      if (!photoURL) return;
       dispatch(
         NoticePetImageUpload({ noticeId: data.payload.notice._id, img })
       );
     });
 
     handleModalToggle();
+  };
+  const pageOneIsValid = () => {
+    if (
+      !formik.errors.title &&
+      !formik.errors.name &&
+      !formik.errors.birthday &&
+      !formik.errors.breed &&
+      formik.touched.title
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+  const pageTwoIsValid = () => {
+    console.log(formik.errors);
+
+    if (
+      !formik.errors.sex &&
+      !formik.errors.location &&
+      !formik.errors.price &&
+      !formik.errors.comments
+    ) {
+      return true;
+    }
+    return false;
   };
 
   return (
@@ -205,7 +214,23 @@ export const AddModalNotice = ({ handleModalToggle }) => {
           </CloseCross>
         </BtnClose>
         <Title>Add pet</Title>
-        <form encType="multipart/form-data" onSubmit={onSumbit}>
+
+        <form
+          encType="multipart/form-data"
+          onSubmit={async e => {
+            e.preventDefault();
+            try {
+              const formikErrors = await formik.validateForm();
+              console.log(formikErrors);
+              console.log(pageTwoIsValid());
+              if (pageTwoIsValid()) {
+                onSumbit(e);
+              }
+            } catch (error) {
+              console.log(error);
+            }
+          }}
+        >
           {isFirstRegisterStep && (
             <FirstForm>
               <UserComment>
@@ -257,11 +282,13 @@ export const AddModalNotice = ({ handleModalToggle }) => {
                     type="text"
                     value={formik.values.title}
                     onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                     name="title"
                     placeholder="Type name"
                     required
                   />
                 </TextLabel>
+                {formik.errors.title && <Error>{formik.errors.title}</Error>}
               </InputCont>
               <InputCont>
                 <TextLabel>
@@ -269,6 +296,7 @@ export const AddModalNotice = ({ handleModalToggle }) => {
                   <TextInput
                     value={formik.values.name}
                     onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                     name="name"
                     placeholder="Type name pet"
                     required
@@ -276,6 +304,7 @@ export const AddModalNotice = ({ handleModalToggle }) => {
                     maxLength="48"
                     title="Length of title should be 2-16 letters"
                   />
+                  {formik.errors.name && <Error>{formik.errors.name}</Error>}
                 </TextLabel>
               </InputCont>
               <InputCont>
@@ -284,12 +313,22 @@ export const AddModalNotice = ({ handleModalToggle }) => {
                   <DateInput
                     value={formik.values.birthday}
                     onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                     name="birthday"
                     placeholder="Type date of birth"
                     required
                     pattern="^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.](19|20)[0-9]{2}$"
                     title="Birthday should be in format dd.mm.yyyy"
                   />
+                  {formik.errors.birthday && (
+                    <Error>
+                      {formik.errors.birthday.includes(
+                        'birthday must match the following'
+                      )
+                        ? 'Birthday should be in format dd.mm.yyyy'
+                        : formik.errors.birthday}
+                    </Error>
+                  )}
                 </TextLabel>
               </InputCont>
               <InputCont>
@@ -298,12 +337,14 @@ export const AddModalNotice = ({ handleModalToggle }) => {
                   <TextInput
                     value={formik.values.breed}
                     onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                     name="breed"
                     placeholder="Type breed"
                     required
                     minLength="2"
                     maxLength="24"
                   />
+                  {formik.errors.breed && <Error>{formik.errors.breed}</Error>}
                 </TextLabel>
               </InputCont>
               <ActionButtons>
@@ -311,19 +352,19 @@ export const AddModalNotice = ({ handleModalToggle }) => {
                   Cancel
                 </Button>
 
-                {/* <Button
-                  type="button"
-                  onClick={() => {
-                    setIsFirstRegisterStep(!isFirstRegisterStep);
-                  }}
-                >
-                  Back
-                </Button> */}
-
                 <Button
                   type="button"
-                  onClick={() => {
-                    setIsFirstRegisterStep(!isFirstRegisterStep);
+                  // disabled={!pageOneIsValid()}
+                  onClick={async () => {
+                    try {
+                      const formikErrors = await formik.validateForm();
+                      if (pageOneIsValid()) {
+                        console.log(pageOneIsValid());
+                        setIsFirstRegisterStep(!isFirstRegisterStep);
+                      }
+                    } catch (error) {
+                      console.log(error);
+                    }
                   }}
                 >
                   Next
@@ -362,13 +403,11 @@ export const AddModalNotice = ({ handleModalToggle }) => {
                   <span className="checkmark"></span>
                   Female
                 </SexLabel>
+                {formik.errors.sex && <Error>{formik.errors.sex}</Error>}
               </SexFormBox>
               <InputCont>
                 <TextLabel htmlFor="locationPet">
-                  City, Region<Asterisk>*</Asterisk>:
-                  {formik.values.location !== '' && formik.errors.location ? (
-                    <p>{formik.errors.location}</p>
-                  ) : null}
+                  City, Region<Asterisk>*</Asterisk>
                   <TextInput
                     value={formik.values.location}
                     id="location"
@@ -378,14 +417,14 @@ export const AddModalNotice = ({ handleModalToggle }) => {
                     placeholder="Введіть місце"
                   />
                 </TextLabel>
+                {formik.errors.location && (
+                  <Error>{formik.errors.location}</Error>
+                )}
               </InputCont>
               <InputCont>
                 {formik.values.category === 'sell' && (
                   <TextLabel htmlFor="pricePet">
                     Price<Asterisk>*</Asterisk>:
-                    {formik.values.price !== '' && formik.errors.price ? (
-                      <p>{formik.errors.price}</p>
-                    ) : null}
                     <TextInput
                       id="pricePet"
                       name="price"
@@ -394,6 +433,9 @@ export const AddModalNotice = ({ handleModalToggle }) => {
                       value={formik.values.price}
                       placeholder="Введіть ціну"
                     />
+                    {formik.errors.price && (
+                      <Error>{formik.errors.price}</Error>
+                    )}
                   </TextLabel>
                 )}
               </InputCont>
@@ -436,9 +478,6 @@ export const AddModalNotice = ({ handleModalToggle }) => {
               <InputContTextArea>
                 <TextLabel htmlFor="commentsAd">
                   Comments<Asterisk>*</Asterisk>
-                  {formik.values.comments !== '' && formik.errors.comments ? (
-                    <p>{formik.errors.comments}</p>
-                  ) : null}
                 </TextLabel>
                 <TextAreaInput
                   id="commentsAd"
@@ -449,6 +488,9 @@ export const AddModalNotice = ({ handleModalToggle }) => {
                   onChange={formik.handleChange}
                   value={formik.values.comments}
                 />
+                {formik.errors.comments && (
+                  <Error>{formik.errors.comments}</Error>
+                )}
               </InputContTextArea>
               <ActionButtons>
                 <Button
