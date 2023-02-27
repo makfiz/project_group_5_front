@@ -123,8 +123,7 @@ export const ErrorMessage = styled(ErrorFormicError)`
   color: ${p => p.theme.colors.error};
   top: 45px;
   left: 0px;
-  /* margin-bottom: ${p => p.theme.space[4]}px;
-  margin-left: ${p => p.theme.space[4]}px; */
+
   font-size: ${p => p.theme.fontSizes.s};
 
   @media screen and (min-width: 768px) {
