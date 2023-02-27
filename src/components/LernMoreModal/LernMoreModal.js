@@ -1,24 +1,28 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import Notiflix from 'notiflix';
+import { MoonLoader } from 'react-spinners';
 
 import Modal from 'components/Modal/Modal';
 import { Button } from 'components/Button/Button';
-import { closeModal } from '../../redux/form/formSlice';
-import { cleanNotice } from '../../redux/notices/operations';
+import { closeModal } from 'redux/form/formSlice';
 import { endPoints } from 'constants/EndPoints';
+import {
+  renameNoticesCategory,
+  convertLocationStringToCityName,
+  showWarningNotification,
+} from 'utils';
 
-import { renameNoticesCategory } from 'utils/renameNoticesCategory';
-import { convertLocationStringToCityName } from 'utils/convertLocationStringToCityName';
-
-// import { ReactComponent as HeartIcon } from '../../assets/icons/akarIconsHeart.svg';
-import noPhoto from '../../assets/default-img/default.jpg';
 import { selectUser } from 'redux/auth/selectors';
 import {
   addNoticeToFavorite,
   removeNoticeFromFavorite,
-  deleteOnFavoritePage,
-} from '../../redux/notices/operations';
+  cleanNotice,
+} from 'redux/notices/operations';
+import {
+  addToFavoriteInModal,
+  removeFromFavoriteInModal,
+} from 'redux/notices/noticesSlice';
+import noPhoto from 'assets/default-img/default.jpg';
 
 import {
   Wraper,
@@ -44,7 +48,10 @@ import {
   Img,
   IconHeart,
   IconHeartBg,
+  ListItemEmail,
+  ListItemPhone,
 } from './LernMoreModal.styled';
+import { selectIsLoadingNotices } from 'redux/notices/selectors';
 
 export function LernMoreModal() {
   const [heartColor, setHeartColor] = useState(false);
@@ -52,9 +59,9 @@ export function LernMoreModal() {
   const dispatch = useDispatch();
   const itemNotice = useSelector(state => state.notices.notice);
   const openModal = useSelector(state => state.form.isModalOpen);
-  const notices = useSelector(state => state.notices.ads);
-
   const { id: userId } = useSelector(selectUser);
+  const isLoading = useSelector(selectIsLoadingNotices);
+  const [isUpdating, setIsUpdating] = useState(false);
 
   const {
     _id,
@@ -74,16 +81,17 @@ export function LernMoreModal() {
   } = itemNotice[0];
 
   const place = convertLocationStringToCityName(location);
-  const [isFav, setIsFav] = useState(() => favoritesIn.includes(userId));
-
-  const notice = notices.filter(notice => notice.favoritesIn.includes(userId));
-  const chechNotice = notice.find(item => item._id === _id);
 
   useEffect(() => {
-    if (chechNotice) {
+    if (favoritesIn.includes(userId)) {
       setHeartColor(true);
+    } else {
+      setHeartColor(false);
     }
-  }, []);
+    if (!isLoading) {
+      setIsUpdating(false);
+    }
+  }, [favoritesIn, isLoading, userId]);
 
   const onHandleClick = () => {
     dispatch(cleanNotice());
@@ -94,16 +102,31 @@ export function LernMoreModal() {
     window.location.href = `tel:${phone}`;
   };
 
-  const onFavorite = () => {
-    setHeartColor(true);
-    const path = `${endPoints.noticesBase}${_id}${endPoints.noticesFavorite}`;
+  const emailSend = () => {
+    window.location.href = `mailto:${email}`;
+  };
 
-    if (chechNotice) {
-      return Notiflix.Notify.failure('notice already in favorite', {
-        timeout: 2500,
-      });
-    } else {
+  const onFavorite = () => {
+    if (!userId) {
+      return showWarningNotification(
+        'Only authorized users can add to favorite',
+        2500
+      );
+    }
+
+    const path = `${endPoints.noticesBase}${_id}${endPoints.noticesFavorite}`;
+    if (heartColor) {
+      setHeartColor(false);
+      setIsUpdating(true);
+      dispatch(removeNoticeFromFavorite({ path }));
+      dispatch(removeFromFavoriteInModal({ noticeId: _id, userId }));
+    }
+
+    if (!heartColor) {
+      setHeartColor(true);
+      setIsUpdating(true);
       dispatch(addNoticeToFavorite({ path }));
+      dispatch(addToFavoriteInModal({ noticeId: _id, userId }));
     }
   };
 
@@ -151,8 +174,12 @@ export function LernMoreModal() {
                         <ListItem>{breed}</ListItem>
                         <ListItem>{place}</ListItem>
                         <ListItem>{sex}</ListItem>
-                        <ListItem>{email}</ListItem>
-                        <ListItem>{phone}</ListItem>
+                        <ListItemEmail onClick={emailSend}>
+                          {email}
+                        </ListItemEmail>
+                        <ListItemPhone onClick={phoneCall}>
+                          {phone}
+                        </ListItemPhone>
                         {category === 'sell' && <ListItem>{price}</ListItem>}
                       </List>
                     </RightPartWraper>
@@ -171,20 +198,31 @@ export function LernMoreModal() {
                   style={StyledButton}
                   type="button"
                   onClick={phoneCall}
+                  disabled={isLoading}
                 />
 
                 <Button
-                  isFav={isFav}
                   style={StyledButton}
                   type="button"
                   onClick={onFavorite}
+                  disabled={isLoading}
                 >
-                  <span>Add to</span>
                   {heartColor ? (
-                    <IconHeartBg size={16} />
+                    <span>{isUpdating ? 'Adding...' : 'Remove from '}</span>
                   ) : (
-                    <IconHeart size={16} />
+                    <span>{isUpdating ? 'Removing...' : 'Add to'}</span>
                   )}
+                  {!isUpdating && (
+                    <>
+                      {heartColor ? (
+                        <IconHeartBg size={16} />
+                      ) : (
+                        <IconHeart size={16} />
+                      )}
+                    </>
+                  )}
+
+                  {isUpdating && <MoonLoader size={16} color={'#FF6101'} />}
                 </Button>
               </ButtonWraper>
             </Container>

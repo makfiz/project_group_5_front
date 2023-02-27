@@ -2,15 +2,16 @@ import {
   AccountBtn,
   AccountBtnWrapper,
   AccountBtnText,
-  AccountBtnIcon,
+  // AccountBtnIcon,
 } from './UserNav.styled';
+import { ReactComponent as AccountBtnIconComp } from '../../../../assets/icons/accountBtnIcon.svg';
 
 export const UserNav = ({ onClick }) => {
   return (
     <>
-      <AccountBtn to="user" onClick={onClick}>
+      <AccountBtn to="user" onClick={onClick} type="button">
         <AccountBtnWrapper>
-          <AccountBtnIcon />
+          <AccountBtnIconComp />
           <AccountBtnText>Account</AccountBtnText>
         </AccountBtnWrapper>
       </AccountBtn>

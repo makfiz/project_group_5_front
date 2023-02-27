@@ -153,9 +153,6 @@ export const Input = styled(Field)`
     width: 458px;
   }
 
-  :not(:last-child) {
-    margin-bottom: 16px;
-  }
   ::placeholder {
     color: ${p => p.theme.colors.regModalplaceholderColor};
     font-size: ${p => p.theme.fontSizes.s};
@@ -163,13 +160,17 @@ export const Input = styled(Field)`
 `;
 
 export const ErrorMessage = styled(ErrorFormicError)`
+  position: absolute;
+  top: 37px;
+  left: 15px;
   color: ${p => p.theme.colors.error};
-  margin-bottom: ${p => p.theme.space[4]}px;
-  margin-left: ${p => p.theme.space[4]}px;
+
   font-size: ${p => p.theme.fontSizes.s};
 
   @media screen and (min-width: 768px) {
     margin-left: ${p => p.theme.space[5]}px;
+    top: 45px;
+    left: 0px;
   }
 `;
 
@@ -182,6 +183,7 @@ export const HideIcon = styled(FaEyeSlash)``;
 
 export const InputPasswordWraper = styled.div`
   position: relative;
+  margin-bottom: 16px;
 `;
 
 export const IconWraper = styled.div`
@@ -192,4 +194,24 @@ export const IconWraper = styled.div`
   @media screen and (min-width: 768px) {
     top: 14px;
   }
+`;
+
+export const EmailWraper = styled.div`
+  position: relative;
+  margin-bottom: 16px;
+`;
+
+export const NameWraper = styled.div`
+  position: relative;
+  margin-bottom: 16px;
+`;
+
+export const CityWraper = styled.div`
+  position: relative;
+  margin-bottom: 16px;
+`;
+
+export const PhoneWraper = styled.div`
+  position: relative;
+  margin-bottom: 16px;
 `;

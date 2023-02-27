@@ -21,6 +21,7 @@ import {
   HideIcon,
   InputPasswordWraper,
   IconWraper,
+  EmailWraper,
 } from './LoginForm.styled';
 import { schema } from 'utils/loginValidationSchema';
 
@@ -36,11 +37,9 @@ export const LoginForm = () => {
       return;
     }
 
-    
     const { email, password } = values;
     dispatch(authOperations.login({ email, password }));
 
-    console.log(values);
     resetForm();
   };
 
@@ -50,7 +49,7 @@ export const LoginForm = () => {
   };
 
   const onHandleClick = () => {
-    console.log('must redirect on another page');
+    // console.log('must redirect on another page');
   };
 
   return (
@@ -63,8 +62,10 @@ export const LoginForm = () => {
           validationSchema={schema}
         >
           <Form>
-            <Input type="email" name="email" placeholder="Email" />
-            <ErrorMessage component="span" name="email" />
+            <EmailWraper>
+              <Input type="email" name="email" placeholder="Email" />
+              <ErrorMessage component="span" name="email" />
+            </EmailWraper>
 
             <InputPasswordWraper>
               <Input
@@ -79,8 +80,8 @@ export const LoginForm = () => {
                   <HideIcon onClick={onShowPassword} />
                 )}
               </IconWraper>
+              <ErrorMessage component="span" name="password" />
             </InputPasswordWraper>
-            <ErrorMessage component="span" name="password" />
 
             <ButtonWraper>
               <Button

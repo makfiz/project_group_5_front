@@ -24,6 +24,10 @@ import {
   IconWraper,
   ShowIcon,
   HideIcon,
+  EmailWraper,
+  NameWraper,
+  CityWraper,
+  PhoneWraper,
 } from './RegistrationForm.styled';
 
 const initialValues = {
@@ -65,8 +69,6 @@ export const RegistrationForm = () => {
     dispatch(
       authOperations.registration({ email, password, name, city, phone })
     );
-    dispatch(sendingEmail());
-    dispatch(hideForm());
 
     setSendEmail(true);
     resetForm();
@@ -96,8 +98,10 @@ export const RegistrationForm = () => {
           <Form>
             {!onNext ? (
               <>
-                <Input type="email" name="email" placeholder="Email" />
-                <ErrorMessage component="span" name="email" />
+                <EmailWraper>
+                  <Input type="email" name="email" placeholder="Email" />
+                  <ErrorMessage component="span" name="email" />
+                </EmailWraper>
 
                 <InputPasswordWraper>
                   <Input
@@ -112,8 +116,8 @@ export const RegistrationForm = () => {
                       <HideIcon onClick={onShowPassword} />
                     )}
                   </IconWraper>
+                  <ErrorMessage component="span" name="password" />
                 </InputPasswordWraper>
-                <ErrorMessage component="span" name="password" />
 
                 <InputPasswordWraper>
                   <Input
@@ -129,8 +133,8 @@ export const RegistrationForm = () => {
                       <HideIcon onClick={onShowConfirmePassword} />
                     )}
                   </IconWraper>
+                  <ErrorMessage component="span" name="confirmPassword" />
                 </InputPasswordWraper>
-                <ErrorMessage component="span" name="confirmPassword" />
 
                 <NextButtonWraper>
                   <Button
@@ -147,16 +151,22 @@ export const RegistrationForm = () => {
               </>
             ) : (
               <>
-                <Input type="text" name="name" placeholder="Name" />
-                <ErrorMessage component="span" name="name" />
-                <Input type="text" name="city" placeholder="City, region" />
-                <ErrorMessage component="span" name="city" />
-                <Input
-                  type="number"
-                  name="mobilePhone"
-                  placeholder="Mobile phone"
-                />
-                <ErrorMessage component="span" name="mobilePhone" />
+                <NameWraper>
+                  <Input type="text" name="name" placeholder="Name" />
+                  <ErrorMessage component="span" name="name" />
+                </NameWraper>
+                <CityWraper>
+                  <Input type="text" name="city" placeholder="City, region" />
+                  <ErrorMessage component="span" name="city" />
+                </CityWraper>
+                <PhoneWraper>
+                  <Input
+                    type="tel"
+                    name="mobilePhone"
+                    placeholder="Mobile phone"
+                  />
+                  <ErrorMessage component="span" name="mobilePhone" />
+                </PhoneWraper>
                 <ButtonWraper>
                   <Button
                     style={StyledButton}

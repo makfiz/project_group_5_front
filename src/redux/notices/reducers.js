@@ -41,3 +41,15 @@ export const cleanNoticeReducer = (state, _) => {
   state.notice = [];
   state.isLoading = false;
 };
+
+export const addNotice = (state, action) => {
+  state.ads = [...state.ads, action.payload.notice];
+  state.isLoading = false;
+};
+
+export const NoticePetImageUpload = (state, action) => {
+  const index = state.ads.findIndex(notice => notice._id === action.payload.id);
+  console.log(action.payload);
+  state.ads[index].photoURL = action.payload.photoURL;
+  state.isLoading = false;
+};

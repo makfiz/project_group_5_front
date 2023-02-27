@@ -11,6 +11,8 @@ const extraActions = [
   operations.deleteOnFavoritePage,
   operations.deleteOwnNotice,
   operations.fetchNoticeById,
+  operations.addNotice,
+  operations.NoticePetImageUpload,
 ];
 const getActions = type => extraActions.map(action => action[type]);
 
@@ -24,6 +26,24 @@ const noticesSlice = createSlice({
     totalCount: 0,
     error: null,
     notice: [],
+  },
+  reducers: {
+    addToFavoriteInModal(state, action) {
+      const idx = state.ads.findIndex(ad => ad._id === action.payload.noticeId);
+      state.ads[idx].favoritesIn.push(action.payload.userId);
+      state.notice[0].favoritesIn.push(action.payload.userId);
+    },
+    removeFromFavoriteInModal(state, action) {
+      const idx = state.ads.findIndex(ad => ad._id === action.payload.noticeId);
+      const idxInFav = state.ads[idx].favoritesIn.findIndex(
+        userId => userId === action.payload.userId
+      );
+      state.ads[idx].favoritesIn.splice[(idxInFav, 1)];
+      const idxUser = state.notice[0].favoritesIn.findIndex(
+        userId => userId === action.payload.userId
+      );
+      state.notice[0].favoritesIn.splice(idxUser, 1);
+    },
   },
 
   extraReducers: builder =>
@@ -61,9 +81,16 @@ const noticesSlice = createSlice({
         reducers.fetchNoticeReducer
       )
       .addCase(operations.cleanNotice.fulfilled, reducers.cleanNoticeReducer)
+      .addCase(operations.addNotice.fulfilled, reducers.addNotice)
+      .addCase(
+        operations.NoticePetImageUpload.fulfilled,
+        reducers.NoticePetImageUpload
+      )
 
       .addMatcher(isAnyOf(...getActions('pending')), reducers.pendingReducer)
       .addMatcher(isAnyOf(...getActions('rejected')), reducers.rejectedReducer),
 });
 
+export const { addToFavoriteInModal, removeFromFavoriteInModal } =
+  noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;

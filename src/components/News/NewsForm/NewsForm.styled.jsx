@@ -28,8 +28,6 @@ export const InputLabel = styled.label`
 `;
 
 export const SearchField = styled.input`
-  //TODO: Delete box sizing
-  box-sizing: border-box;
   display: block;
   padding: 8px 11px;
   background-color: ${p => p.theme.colors.bgcContent};

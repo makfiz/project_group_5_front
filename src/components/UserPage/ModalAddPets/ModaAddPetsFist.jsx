@@ -1,7 +1,7 @@
 import { Form, Formik } from 'formik';
 import { stepOneValidSchema } from 'utils/validationPet';
 
-import icons from '../../../assets/icons/icons.svg';
+import icons from 'assets/icons/icons.svg';
 import { Button } from 'components/Button/Button';
 import {
   Container,

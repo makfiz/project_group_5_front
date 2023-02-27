@@ -6,7 +6,7 @@ import { selectUser, selectIsRefreshing } from 'redux/auth/selectors';
 
 import { UserData } from 'components/UserPage/UserData/UserData';
 import { PetsData } from 'components/UserPage/PetsData/PetsData';
-import { ContainerWrapper } from 'components/ContainerWrapper/ContainerWrapper';
+import { Container } from 'components/Container/Container';
 import { PetsList } from 'components/UserPage/PetsList/PetsList';
 import { Loader } from 'components/Loader/Loader';
 import { LoaderWrapper } from 'components/Loader/Loader.styled.jsx';
@@ -29,7 +29,7 @@ const UserPage = () => {
   }
 
   return (
-    <ContainerWrapper>
+    <Container>
       <MainWrapper>
         <UserData user={user} />
         <SecondaryWrapper>
@@ -37,7 +37,7 @@ const UserPage = () => {
           <PetsList />
         </SecondaryWrapper>
       </MainWrapper>
-    </ContainerWrapper>
+    </Container>
   );
 };
 

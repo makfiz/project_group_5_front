@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 import { Box } from 'components/Box/Box';
+
+import { ReactComponent as PlusIcon } from '../../assets/icons/plusIcon.svg';
+import { AddModalNotice } from 'components/AddModalNotice/AddModalNotice';
+import { showWarningNotification } from 'utils';
+
 import {
   CategoriesWrap,
   CategoriesList,
@@ -10,10 +17,27 @@ import {
   AddPetBtn,
   AddPetBtnIconWrap,
 } from './NoticesCategories.styled';
-import { ReactComponent as PlusIcon } from '../../assets/icons/plusIcon.svg';
 
 export const NoticesCategories = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const navigate = useNavigate();
+  const { token } = useSelector(state => state.auth);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleModalToggle = () => {
+    setIsModalOpen(prev => {
+      return !prev;
+    });
+  };
+
+  const handleAddPetButtonClick = e => {
+    if (!isLoggedIn) {
+      return showWarningNotification(
+        'Only authorized users can add new notice',
+        2500
+      );
+    }
+    handleModalToggle();
+  };
 
   return (
     <Box display="flex" justifyContent="center">
@@ -43,12 +67,15 @@ export const NoticesCategories = () => {
             </>
           )}
         </CategoriesList>
-        <AddPetBtn type="button">
+        <AddPetBtn type="button" onClick={handleAddPetButtonClick}>
           Add pet
           <AddPetBtnIconWrap>
             <PlusIcon />
           </AddPetBtnIconWrap>
         </AddPetBtn>
+        {isModalOpen && (
+          <AddModalNotice handleModalToggle={handleModalToggle} />
+        )}
       </CategoriesWrap>
     </Box>
   );

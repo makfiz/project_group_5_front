@@ -17,4 +17,5 @@ export const Backdrop = styled.div`
 export const StyledModal = styled.div`
   max-width: calc(100vw - 20px);
   max-height: calc(100vh - 20px);
+  overflow: auto;
 `;

@@ -1,12 +1,15 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { BarLoader } from 'react-spinners';
 import PropTypes from 'prop-types';
+
 import {
   selectTotalPages,
   selectIsLoadingNotices,
   selectIsNoticesError,
+  selectNotices,
+  selectNoticesSearchQuery,
 } from 'redux/notices/selectors';
 import {
   selectUser,
@@ -14,21 +17,13 @@ import {
   selectIsRefreshing,
 } from 'redux/auth/selectors';
 
-import {
-  selectNotices,
-  selectNoticesSearchQuery,
-} from 'redux/notices/selectors';
 import { endPoints } from 'constants/EndPoints';
-
-import {
-  fetchRoute,
-  fetchFavoriteRoute,
-  fetchOwnRoute,
-} from 'utils/fetchNoticesRoute';
+import { fetchRoute, fetchFavoriteRoute, fetchOwnRoute } from 'utils';
 
 import { Box } from 'components/Box/Box';
 import { NoticesListItem } from 'components/NoticesListItem/NoticesListItem';
 import { NoticesAddPetButtonMobile } from 'components/NoticesAddPetButtonMobile/NoticesAddPetButtonMobile';
+
 import {
   ListWrap,
   List,
@@ -128,9 +123,9 @@ export const NoticesList = ({ askedPage }) => {
               ))}
             </List>
           </ListWrap>
-          <NoticesAddPetButtonMobile />
         </Box>
       )}
+      <NoticesAddPetButtonMobile />
       {noNotices && (
         <Box display="flex" justifyContent="center">
           <InformationText>...no notices yet</InformationText>

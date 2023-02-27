@@ -56,7 +56,8 @@ export const BtnClose = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${p => p.theme.colors.bgcContrast};
+
+  background: ${p => p.theme.colors.background};
   border: none;
 
   @media screen and (min-width: 767px) {
@@ -95,7 +96,7 @@ export const BtnStyle = styled.button`
   &:hover,
   &:active {
     transition: box-shadow 250ms ease-out;
-    box-shadow: 0px 0px 2px 3px rgba(245, 146, 86, 0.6);
+    box-shadow: 0px 0px 2px 3px ${p => p.theme.colors.borderInput};
   }
   :not(:last-child) {
     margin-bottom: 12px;
@@ -109,7 +110,7 @@ export const BtnStyleEmpt = styled.button`
   background-color: ${p => p.theme.colors.transparent};
   color: ${p => p.theme.colors.black};
   border-radius: ${p => p.theme.radii.large};
-  border: 2px solid #f59256;
+  border: 2px solid ${p => p.theme.colors.userAddPetBtnBg};
   cursor: pointer;
 
   font-weight: ${p => p.theme.fontWeight.medium};
@@ -122,7 +123,7 @@ export const BtnStyleEmpt = styled.button`
   &:hover,
   &:active {
     transition: box-shadow 250ms ease-out;
-    box-shadow: 0px 0px 2px 3px rgba(245, 146, 86, 0.6);
+    box-shadow: 0px 0px 2px 3px ${p => p.theme.colors.borderInput};
   }
   :not(:last-child) {
     margin-bottom: 12px;
@@ -155,8 +156,10 @@ export const BtnWrapperNext = styled.div`
 export const Input = styled.input`
   color: red;
   width: 240px;
-  background-color: ${p => p.theme.colors.bgcContrast};
-  border: 1px solid rgba(245, 146, 86, 0.5);
+
+  background-color: ${p => p.theme.colors.background};
+  border: 1px solid ${p => p.theme.colors.borderInput};
+
   border-radius: ${p => p.theme.radii.large};
   padding-top: 11px;
   padding-bottom: 11px;
@@ -170,12 +173,14 @@ export const Input = styled.input`
     padding-left: 16px;
   }
 
-  &:hover,
-  &:active {
-    border: 2px solid #f59256;
-    background-color: transparent;
-    color: ${p => p.theme.colors.black};
-  }
+
+    &:hover,
+    &:active {
+      border: 2px solid ${p => p.theme.colors.userAddPetBtnBg};
+      background-color: transparent;
+      color: ${p => p.theme.colors.black};
+    }
+
 
   ::placeholder {
     color: ${p => p.theme.colors.black};
@@ -227,7 +232,9 @@ export const AddImgBtn = styled.button`
   position: relative;
   width: 208px;
   height: 208px;
-  /* background: #fdf7f2; */
+
+  background: ${p => p.theme.colors.background};
+
   border-radius: 20px;
 
   margin: 0 auto;
@@ -287,8 +294,10 @@ export const TextArea = styled.input`
   padding-left: 14px;
   width: 240px;
   height: 100px;
-  background-color: ${p => p.theme.colors.bgcContrast};
-  border: 1px solid rgba(245, 146, 86, 0.5);
+
+  background: ${p => p.theme.colors.background};
+  border: 1px solid ${p => p.theme.colors.borderInput};
+
   border-radius: ${p => p.theme.radii.medium};
   margin-top: 8px;
   resize: none;
@@ -302,8 +311,8 @@ export const TextArea = styled.input`
 
   &:hover,
   &:active {
-    border: 2px solid #f59256;
-    background-color: transparent;
+    border: 2px solid ${p => p.theme.colors.userAddPetBtnBg};
+    background-color: ${p => p.theme.colors.transparent};
     color: ${p => p.theme.colors.black};
   }
 

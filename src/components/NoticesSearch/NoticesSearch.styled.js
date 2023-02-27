@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const SearchBarWrap = styled.div`
-  padding: 42px 20px 28px;
+  padding-top: 42px;
+  padding-bottom: 28px;
 
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
     padding-top: 88px;
@@ -19,7 +20,6 @@ export const SearchForm = styled.form`
 `;
 export const InputLabel = styled.label`
   position: relative;
-  box-sizing: border-box;
   display: block;
   width: 200px;
 
@@ -32,8 +32,6 @@ export const InputLabel = styled.label`
 `;
 
 export const SearchField = styled.input`
-  //TODO: Delete box sizing
-  box-sizing: border-box;
   display: block;
   padding: 8px 11px;
   background-color: ${p => p.theme.colors.white};
@@ -47,8 +45,8 @@ export const SearchField = styled.input`
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.placeholderColor};
   outline: none;
-  border: 1px solid transparent;
-  transition: border-color 300ms ease-in-out;
+  border: 1px solid ${p => p.theme.colors.transparent};
+  transition: border-color ${p => p.theme.transition.onHover};
 
   :focus {
     border-color: ${p => p.theme.colors.hoverGoHome};
@@ -58,7 +56,7 @@ export const SearchField = styled.input`
     width: 280px;
   }
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
-    padding: 7px 12px 8px 19px;
+    padding: 7px 36px 8px 19px;
     border-radius: ${p => p.theme.radii.large};
     width: 608px;
 
@@ -77,7 +75,7 @@ export const SearchBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: transparent;
+  background-color: ${p => p.theme.colors.transparent};
   border: none;
   border-radius: ${p => p.theme.radii.round};
   cursor: pointer;
