@@ -31,6 +31,18 @@ const noticesSlice = createSlice({
     addToFavoriteInModal(state, action) {
       const idx = state.ads.findIndex(ad => ad._id === action.payload.noticeId);
       state.ads[idx].favoritesIn.push(action.payload.userId);
+      state.notice[0].favoritesIn.push(action.payload.userId);
+    },
+    removeFromFavoriteInModal(state, action) {
+      const idx = state.ads.findIndex(ad => ad._id === action.payload.noticeId);
+      const idxInFav = state.ads[idx].favoritesIn.findIndex(
+        userId => userId === action.payload.userId
+      );
+      state.ads[idx].favoritesIn.splice[(idxInFav, 1)];
+      const idxUser = state.notice[0].favoritesIn.findIndex(
+        userId => userId === action.payload.userId
+      );
+      state.notice[0].favoritesIn.splice(idxUser, 1);
     },
   },
 
@@ -79,5 +91,6 @@ const noticesSlice = createSlice({
       .addMatcher(isAnyOf(...getActions('rejected')), reducers.rejectedReducer),
 });
 
-export const { addToFavoriteInModal } = noticesSlice.actions;
+export const { addToFavoriteInModal, removeFromFavoriteInModal } =
+  noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;

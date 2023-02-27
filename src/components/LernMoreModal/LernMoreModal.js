@@ -13,8 +13,15 @@ import {
 } from 'utils';
 
 import { selectUser } from 'redux/auth/selectors';
-import { addNoticeToFavorite, cleanNotice } from 'redux/notices/operations';
-import { addToFavoriteInModal } from 'redux/notices/noticesSlice';
+import {
+  addNoticeToFavorite,
+  removeNoticeFromFavorite,
+  cleanNotice,
+} from 'redux/notices/operations';
+import {
+  addToFavoriteInModal,
+  removeFromFavoriteInModal,
+} from 'redux/notices/noticesSlice';
 import noPhoto from 'assets/default-img/default.jpg';
 
 import {
@@ -74,16 +81,17 @@ export function LernMoreModal() {
   } = itemNotice[0];
 
   const place = convertLocationStringToCityName(location);
-  const chechNotice = favoritesIn.includes(userId);
 
   useEffect(() => {
-    if (chechNotice) {
+    if (favoritesIn.includes(userId)) {
       setHeartColor(true);
+    } else {
+      setHeartColor(false);
     }
     if (!isLoading) {
       setIsUpdating(false);
     }
-  }, [chechNotice, heartColor, isLoading]);
+  }, [favoritesIn, isLoading, userId]);
 
   const onHandleClick = () => {
     dispatch(cleanNotice());
@@ -106,16 +114,19 @@ export function LernMoreModal() {
       );
     }
 
-    if (chechNotice || heartColor) {
-      return showWarningNotification('Notice already in favorite', 2500);
+    const path = `${endPoints.noticesBase}${_id}${endPoints.noticesFavorite}`;
+    if (heartColor) {
+      setHeartColor(false);
+      setIsUpdating(true);
+      dispatch(removeNoticeFromFavorite({ path }));
+      dispatch(removeFromFavoriteInModal({ noticeId: _id, userId }));
     }
 
-    if (!chechNotice && !heartColor) {
-      const path = `${endPoints.noticesBase}${_id}${endPoints.noticesFavorite}`;
+    if (!heartColor) {
+      setHeartColor(true);
       setIsUpdating(true);
       dispatch(addNoticeToFavorite({ path }));
       dispatch(addToFavoriteInModal({ noticeId: _id, userId }));
-      setHeartColor(true);
     }
   };
 
@@ -187,10 +198,20 @@ export function LernMoreModal() {
                   style={StyledButton}
                   type="button"
                   onClick={phoneCall}
+                  disabled={isLoading}
                 />
 
-                <Button style={StyledButton} type="button" onClick={onFavorite}>
-                  <span>Add to</span>
+                <Button
+                  style={StyledButton}
+                  type="button"
+                  onClick={onFavorite}
+                  disabled={isLoading}
+                >
+                  {heartColor ? (
+                    <span>{isUpdating ? 'Adding...' : 'Remove from '}</span>
+                  ) : (
+                    <span>{isUpdating ? 'Removing...' : 'Add to'}</span>
+                  )}
                   {!isUpdating && (
                     <>
                       {heartColor ? (
