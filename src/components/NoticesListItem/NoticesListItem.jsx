@@ -70,6 +70,8 @@ export const NoticesListItem = ({ ad, askedPage }) => {
       setIsUpdating(false);
       if (favoritesIn.includes(userId)) {
         setInFavorite(true);
+      } else {
+        setInFavorite(false);
       }
     }
 

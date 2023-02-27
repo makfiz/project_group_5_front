@@ -84,10 +84,6 @@ export function LernMoreModal() {
   const checkNotice = favoritesIn.includes(userId);
 
   useEffect(() => {
-    // if (checkNotice) {
-    //   setHeartColor(true);
-    // }
-    console.log('favoritesIn', favoritesIn);
     if (favoritesIn.includes(userId)) {
       setHeartColor(true);
     } else {
@@ -204,9 +200,15 @@ export function LernMoreModal() {
                   style={StyledButton}
                   type="button"
                   onClick={phoneCall}
+                  disabled={isLoading}
                 />
 
-                <Button style={StyledButton} type="button" onClick={onFavorite}>
+                <Button
+                  style={StyledButton}
+                  type="button"
+                  onClick={onFavorite}
+                  disabled={isLoading}
+                >
                   {heartColor ? (
                     <span>{isUpdating ? 'Adding...' : 'Remove from '}</span>
                   ) : (
