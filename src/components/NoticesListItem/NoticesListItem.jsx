@@ -76,7 +76,7 @@ export const NoticesListItem = ({ ad, askedPage }) => {
     return () => {};
   }, [loadingNotices, favoritesIn, userId]);
 
-  const age = calculateAndConvertAge(Date.parse(birth));
+  const age = calculateAndConvertAge(Date.parse(Date(birth)));
   const categoryTitle = renameNoticesCategory(category);
   const place = convertLocationStringToCityName(location);
   const sellPage = category === 'sell' && askedPage === 'sell';
