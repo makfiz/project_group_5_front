@@ -8,6 +8,8 @@ import { ModalTitle } from 'components/ModalTitle/ModalTitle';
 import { Button } from 'components/Button/Button';
 import { schema } from 'utils/registerValidationSchema';
 
+import { showWarningNotification } from 'utils';
+
 import {
   Wraper,
   LinkText,
@@ -50,7 +52,12 @@ export const RegistrationForm = () => {
   const [inputConfirmeType, setInputConfirmeType] = useState(true);
   const [sendEmail, setSendEmail] = useState(false);
 
+  const [field, setField] = useState(false);
+
   const handleNextClick = () => {
+    if (!field) {
+      return showWarningNotification('all fields must be filled', 2500);
+    }
     setOnNext(true);
   };
 
@@ -94,6 +101,14 @@ export const RegistrationForm = () => {
           initialValues={initialValues}
           onSubmit={handleSubmit}
           validationSchema={schema}
+          validateOnChange={true}
+          validate={values => {
+            if (!values.email || !values.password || !values.confirmPassword) {
+              setField(false);
+            } else {
+              setField(true);
+            }
+          }}
         >
           <Form>
             {!onNext ? (
