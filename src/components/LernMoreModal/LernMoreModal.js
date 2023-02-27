@@ -41,6 +41,8 @@ import {
   Img,
   IconHeart,
   IconHeartBg,
+  ListItemEmail,
+  ListItemPhone,
 } from './LernMoreModal.styled';
 import { selectIsLoadingNotices } from 'redux/notices/selectors';
 
@@ -90,6 +92,10 @@ export function LernMoreModal() {
 
   const phoneCall = () => {
     window.location.href = `tel:${phone}`;
+  };
+
+  const emailSend = () => {
+    window.location.href = `mailto:${email}`;
   };
 
   const onFavorite = () => {
@@ -157,8 +163,12 @@ export function LernMoreModal() {
                         <ListItem>{breed}</ListItem>
                         <ListItem>{place}</ListItem>
                         <ListItem>{sex}</ListItem>
-                        <ListItem>{email}</ListItem>
-                        <ListItem>{phone}</ListItem>
+                        <ListItemEmail onClick={emailSend}>
+                          {email}
+                        </ListItemEmail>
+                        <ListItemPhone onClick={phoneCall}>
+                          {phone}
+                        </ListItemPhone>
                         {category === 'sell' && <ListItem>{price}</ListItem>}
                       </List>
                     </RightPartWraper>
