@@ -62,7 +62,7 @@ export const FriendInfoItem = styled.li`
   margin-bottom: 4px;
 
   font-weight: ${props => props.theme.fontWeight.medium};
-  font-size: ${props => props.theme.fontSizes.xs};
+  font-size: 11px;
   line-height: 16px;
 
   transition: color ${props => props.theme.transition.onHover};
