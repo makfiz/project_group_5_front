@@ -44,9 +44,9 @@ export const NoticesListItem = ({ ad, askedPage }) => {
   const {
     _id,
     category,
-    title,
-    birth,
-    breed,
+    title = 'unknown',
+    birth = 'unknown',
+    breed = 'unknown',
     location,
     price,
     photoURL = noPhoto,
