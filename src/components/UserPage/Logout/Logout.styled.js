@@ -20,7 +20,7 @@ export const LogoutButton = styled.button`
   }
 
   @media (min-width: ${p => p.theme.screenSizes.desktop}) {
-    left: 17px;
+    left: 30px;
     bottom: 20px;
   }
 `;
