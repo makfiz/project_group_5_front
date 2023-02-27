@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { MoonLoader } from 'react-spinners';
 
 import Modal from 'components/Modal/Modal';
 import { Button } from 'components/Button/Button';
@@ -12,10 +13,8 @@ import {
 } from 'utils';
 
 import { selectUser } from 'redux/auth/selectors';
-import { addNoticeToFavorite } from 'redux/notices/operations';
-import { cleanNotice } from 'redux/notices/operations';
+import { addNoticeToFavorite, cleanNotice } from 'redux/notices/operations';
 import { addToFavoriteInModal } from 'redux/notices/noticesSlice';
-
 import noPhoto from 'assets/default-img/default.jpg';
 
 import {
@@ -42,7 +41,10 @@ import {
   Img,
   IconHeart,
   IconHeartBg,
+  ListItemEmail,
+  ListItemPhone,
 } from './LernMoreModal.styled';
+import { selectIsLoadingNotices } from 'redux/notices/selectors';
 
 export function LernMoreModal() {
   const [heartColor, setHeartColor] = useState(false);
@@ -50,9 +52,9 @@ export function LernMoreModal() {
   const dispatch = useDispatch();
   const itemNotice = useSelector(state => state.notices.notice);
   const openModal = useSelector(state => state.form.isModalOpen);
-  // const notices = useSelector(state => state.notices.ads);
-
   const { id: userId } = useSelector(selectUser);
+  const isLoading = useSelector(selectIsLoadingNotices);
+  const [isUpdating, setIsUpdating] = useState(false);
 
   const {
     _id,
@@ -78,7 +80,10 @@ export function LernMoreModal() {
     if (chechNotice) {
       setHeartColor(true);
     }
-  }, [chechNotice, heartColor]);
+    if (!isLoading) {
+      setIsUpdating(false);
+    }
+  }, [chechNotice, heartColor, isLoading]);
 
   const onHandleClick = () => {
     dispatch(cleanNotice());
@@ -87,6 +92,10 @@ export function LernMoreModal() {
 
   const phoneCall = () => {
     window.location.href = `tel:${phone}`;
+  };
+
+  const emailSend = () => {
+    window.location.href = `mailto:${email}`;
   };
 
   const onFavorite = () => {
@@ -103,6 +112,7 @@ export function LernMoreModal() {
 
     if (!chechNotice && !heartColor) {
       const path = `${endPoints.noticesBase}${_id}${endPoints.noticesFavorite}`;
+      setIsUpdating(true);
       dispatch(addNoticeToFavorite({ path }));
       dispatch(addToFavoriteInModal({ noticeId: _id, userId }));
       setHeartColor(true);
@@ -153,8 +163,12 @@ export function LernMoreModal() {
                         <ListItem>{breed}</ListItem>
                         <ListItem>{place}</ListItem>
                         <ListItem>{sex}</ListItem>
-                        <ListItem>{email}</ListItem>
-                        <ListItem>{phone}</ListItem>
+                        <ListItemEmail onClick={emailSend}>
+                          {email}
+                        </ListItemEmail>
+                        <ListItemPhone onClick={phoneCall}>
+                          {phone}
+                        </ListItemPhone>
                         {category === 'sell' && <ListItem>{price}</ListItem>}
                       </List>
                     </RightPartWraper>
@@ -177,11 +191,17 @@ export function LernMoreModal() {
 
                 <Button style={StyledButton} type="button" onClick={onFavorite}>
                   <span>Add to</span>
-                  {heartColor ? (
-                    <IconHeartBg size={16} />
-                  ) : (
-                    <IconHeart size={16} />
+                  {!isUpdating && (
+                    <>
+                      {heartColor ? (
+                        <IconHeartBg size={16} />
+                      ) : (
+                        <IconHeart size={16} />
+                      )}
+                    </>
                   )}
+
+                  {isUpdating && <MoonLoader size={16} color={'#FF6101'} />}
                 </Button>
               </ButtonWraper>
             </Container>

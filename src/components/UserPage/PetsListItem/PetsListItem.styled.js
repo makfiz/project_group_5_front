@@ -58,16 +58,6 @@ export const ImgWrapper = styled.div`
   }
 `;
 
-export const PetImage = styled.img`
-  width: 240px;
-  height: 240px;
-
-  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
-    width: 161px;
-    height: 161px;
-  }
-`;
-
 export const InfoWrapper = styled.div`
   overflow: auto;
 `;
@@ -107,6 +97,55 @@ export const CommentsTitle = styled.p`
     font-size: ${p => p.theme.fontSizes.m};
     line-height: 1.38;
     color: ${p => p.theme.colors.titleColor};
+  }
+`;
+
+export const ModalDelWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-top: 50px;
+
+  @media (min-width: ${p => p.theme.screenSizes.tablet}) {
+    width: 471px;
+  }
+
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    width: 580px;
+  }
+`;
+
+export const DelBtnWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 15px;
+`;
+
+export const DeleteModalButton = styled.button`
+  display: flex;
+  justify-content: center;
+  width: 100px;
+  padding: 6px;
+  background-color: ${p => p.theme.colors.transparent};
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: ${p => p.theme.fontWeight.medium};
+  font-size: ${p => p.theme.fontSizes.s};
+  line-height: 1.57;
+  letter-spacing: 0.04em;
+  color: ${p => p.theme.colors.black};
+
+  border: 2px solid ${p => p.theme.colors.hoverGoHome};
+  border-radius: ${p => p.theme.radii.large};
+  transition: border-color ${p => p.theme.transition.onHover};
+  transition: background-color ${p => p.theme.transition.onHover};
+  transition: color ${p => p.theme.transition.onHover};
+
+  :hover {
+    border-color: ${p => p.theme.colors.deleteBtnColor};
+    background-color: ${p => p.theme.colors.deleteBtnColor};
+    color: ${p => p.theme.colors.white};
   }
 `;
 

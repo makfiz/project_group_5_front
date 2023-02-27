@@ -8,12 +8,8 @@ import backgroundImageTab from '../../assets/images/background-tab.png';
 import portraitTab from '../../assets/images/portrait-tab.png';
 import backgroundImageTab2x from '../../assets/images/background-tab-2x.png';
 import portraitTab2x from '../../assets/images/portrait-tab-2x.png';
-import backgroundImageDesk from '../../assets/images/background-desk.png';
-import portraitDesk from '../../assets/images/portrait-desk.png';
-import backgroundImageDesk2x from '../../assets/images/background-desk-2x.png';
-import portraitDesk2x from '../../assets/images/portrait-desk-2x.png';
-import heartImg from '../../assets/images/heart-desk.png';
-import heartImg2x from '../../assets/images/heart-desk-2x.png';
+import bgDesk from 'assets/images/bg-desk.png';
+import bgDesk2x from 'assets/images/bg-desk-2x.png';
 
 export const PageWrapper = styled.div`
   height: 93vh;
@@ -44,7 +40,7 @@ export const PageWrapper = styled.div`
   }
 
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
-    padding-top: 88px;
+    /* padding-top: 88px; */
 
     background-image: url(${portraitTab}), url(${backgroundImageTab});
 
@@ -62,20 +58,17 @@ export const PageWrapper = styled.div`
   }
 
   @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
-    width: ${p => p.theme.screenSizes.desktop};
-
     padding-top: 92px;
 
-    background-image: url(${heartImg}), url(${portraitDesk}),
-      url(${backgroundImageDesk});
+    background-image: url(${bgDesk});
 
-    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-repeat: no-repeat;
 
-    background-size: 8% auto, 50% auto, 100% 60%;
+    background-size: 100%;
 
-    background-position-y: 14%, bottom, bottom;
+    background-position-y: center;
 
-    background-position-x: 58%, 98%, 32px;
+    background-position-x: center;
 
     @media only screen and (-webkit-min-device-pixel-ratio: 2),
       only screen and (min--moz-device-pixel-ratio: 2),
@@ -84,8 +77,7 @@ export const PageWrapper = styled.div`
       only screen and (min-device-pixel-ratio: 2),
       only screen and (min-resolution: 192dpi),
       only screen and (min-resolution: 2dppx) {
-      background-image: url(${heartImg2x}), url(${portraitDesk2x}),
-        url(${backgroundImageDesk2x});
+      background-image: url(${bgDesk2x});
     }
   }
 `;

@@ -3,7 +3,7 @@ import * as yup from 'yup';
 yup.addMethod(yup.string, 'numeric', function () {
   return this.matches(
     /^\+3\d{11}$/,
-    'the number must start with +3 and have digits only'
+    'the number must start with +3 and have digits only and have 12 numbers'
   );
 });
 

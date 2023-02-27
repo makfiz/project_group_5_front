@@ -35,7 +35,6 @@ export const ModalAddsPet = props => {
       const petObj = { name, dateOfBirth, breed, comments };
       const formData = new FormData();
       formData.append('petImage', petImage);
-
       handleRequest(petObj, formData);
 
       return;

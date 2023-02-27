@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+
   max-width: 320px;
   /* margin-right: auto;
   margin-left: auto; */
+
   padding-top: 60px;
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
     width: 768px;

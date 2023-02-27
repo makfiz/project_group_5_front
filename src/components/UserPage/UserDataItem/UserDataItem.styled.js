@@ -108,7 +108,9 @@ export const ShowInput = styled.input`
 export const EditButton = styled.button`
   position: absolute;
   top: 4px;
+
   left: 220px;
+
   height: 20px;
   width: 20px;
   border-radius: 50%;
@@ -136,7 +138,9 @@ export const EditButton = styled.button`
 export const DoneButton = styled.button`
   position: absolute;
   top: 4px;
+
   left: 220px;
+
   height: 20px;
   width: 20px;
   border-radius: 50%;

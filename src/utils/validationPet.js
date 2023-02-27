@@ -6,7 +6,7 @@ export const stepOneValidSchema = Yup.object({
     .max(16, 'Too Long!')
     .label('Name')
     .required('Name is required')
-    .matches(/^[a-zA-Z\s]+?$/iu, 'Only Latin letters'),
+    .matches(/^[A-Za-zА-Яа-яІіЇїЄє'-.]+$/),
   dateOfBirth: Yup.string()
     .matches(
       /^(0[1-9]|[1-2][0-9]|3[0-1])\.(0[1-9]|1[0-2])\.[0-9]{4}$/,
