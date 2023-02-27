@@ -152,10 +152,7 @@ export const Input = styled(Field)`
   @media screen and (min-width: 1280px) {
     width: 458px;
   }
-  /* 
-  :not(:last-child) {
-    margin-bottom: 16px;
-  } */
+
   ::placeholder {
     color: ${p => p.theme.colors.regModalplaceholderColor};
     font-size: ${p => p.theme.fontSizes.s};
@@ -164,15 +161,16 @@ export const Input = styled(Field)`
 
 export const ErrorMessage = styled(ErrorFormicError)`
   position: absolute;
-  top: 45px;
-  left: 0px;
+  top: 37px;
+  left: 15px;
   color: ${p => p.theme.colors.error};
-  /* margin-bottom: ${p => p.theme.space[4]}px;
-  margin-left: ${p => p.theme.space[4]}px; */
+
   font-size: ${p => p.theme.fontSizes.s};
 
   @media screen and (min-width: 768px) {
     margin-left: ${p => p.theme.space[5]}px;
+    top: 45px;
+    left: 0px;
   }
 `;
 

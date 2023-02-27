@@ -121,13 +121,15 @@ export const Input = styled(Field)`
 export const ErrorMessage = styled(ErrorFormicError)`
   position: absolute;
   color: ${p => p.theme.colors.error};
-  top: 45px;
-  left: 0px;
+  top: 37px;
+  left: 15px;
 
   font-size: ${p => p.theme.fontSizes.s};
 
   @media screen and (min-width: 768px) {
     margin-left: ${p => p.theme.space[5]}px;
+    top: 45px;
+    left: 0px;
   }
 `;
 
