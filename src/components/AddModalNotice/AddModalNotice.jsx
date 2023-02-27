@@ -94,6 +94,7 @@ const validationSchemaStepTwo = Yup.object().shape({
 export const AddModalNotice = ({ handleModalToggle }) => {
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
   const [image, setImage] = useState(null);
+  const [isValid, setIsValid] = useState(false);
 
   const dispatch = useDispatch();
   const { pathname } = useLocation();
@@ -157,6 +158,7 @@ export const AddModalNotice = ({ handleModalToggle }) => {
   }, [handleModalToggle]);
 
   const onSumbit = e => {
+    e.preventDefault();
     const {
       birthday,
       breed,
@@ -207,13 +209,14 @@ export const AddModalNotice = ({ handleModalToggle }) => {
   };
 
   const pageTwoIsValid = () => {
-    console.log(formik.errors);
-
     if (
       !formik.errors.sex &&
       !formik.errors.location &&
       !formik.errors.price &&
-      !formik.errors.comments
+      !formik.errors.comments &&
+      formik.values.comments !== '' &&
+      formik.values.location !== '' &&
+      formik.values.sex !== ''
     ) {
       return true;
     }
@@ -231,19 +234,18 @@ export const AddModalNotice = ({ handleModalToggle }) => {
         <Title>Add pet</Title>
 
         <form
+          onChange={() => {
+            formik.validateForm();
+            pageTwoIsValid();
+          }}
           encType="multipart/form-data"
-          onSubmit={async e => {
+          onSubmit={e => {
             e.preventDefault();
-            try {
-              const formikErrors = await formik.validateForm();
-              console.log(formikErrors);
-              console.log(pageTwoIsValid());
+            formik.validateForm().then(() => {
               if (pageTwoIsValid()) {
                 onSumbit(e);
               }
-            } catch (error) {
-              console.log(error);
-            }
+            });
           }}
         >
           {isFirstRegisterStep && (
@@ -370,15 +372,10 @@ export const AddModalNotice = ({ handleModalToggle }) => {
                 <Button
                   type="button"
                   // disabled={!pageOneIsValid()}
-                  onClick={async () => {
-                    try {
-                      const formikErrors = await formik.validateForm();
-                      if (pageOneIsValid()) {
-                        console.log(pageOneIsValid());
-                        setIsFirstRegisterStep(!isFirstRegisterStep);
-                      }
-                    } catch (error) {
-                      console.log(error);
+                  onClick={() => {
+                    formik.validateForm();
+                    if (pageOneIsValid()) {
+                      setIsFirstRegisterStep(!isFirstRegisterStep);
                     }
                   }}
                 >
@@ -418,8 +415,8 @@ export const AddModalNotice = ({ handleModalToggle }) => {
                   <span className="checkmark"></span>
                   Female
                 </SexLabel>
-                {formik.errors.sex && <Error>{formik.errors.sex}</Error>}
               </SexFormBox>
+              {formik.errors.sex && <Error>{formik.errors.sex}</Error>}
               <InputCont>
                 <TextLabel htmlFor="locationPet">
                   City, Region<Asterisk>*</Asterisk>
@@ -517,7 +514,9 @@ export const AddModalNotice = ({ handleModalToggle }) => {
                   Back
                 </Button>
 
-                <Button type="submit">Done</Button>
+                <Button disabled type="submit">
+                  Done
+                </Button>
               </ActionButtons>
             </>
           )}

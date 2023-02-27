@@ -182,6 +182,7 @@ export const TextInput = styled.input`
   padding: 0;
   padding-left: 14px;
   border-radius: 40px;
+  max-width: 450px;
   background-color: #fdf7f2;
   ::placeholder {
     font-family: 'Manrope, sans-serif';
