@@ -13,7 +13,7 @@ import bgDesk2x from 'assets/images/bg-desk-2x.png';
 
 export const PageWrapper = styled.div`
   height: 93vh;
-  width: 100vw;
+  width: auto;
 
   margin-left: auto;
   margin-right: auto;
@@ -64,7 +64,7 @@ export const PageWrapper = styled.div`
 
     background-repeat: no-repeat;
 
-    background-size: 100%;
+    background-size: cover;
 
     background-position-y: center;
 
