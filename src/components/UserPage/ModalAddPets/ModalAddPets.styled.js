@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Field, ErrorMessage } from 'formik';
 
 export const Container = styled.div`
-  background-color: ${p => p.theme.colors.white}; 
+  background-color: ${p => p.theme.colors.bgcContent};
   width: 280px;
   border-radius: ${p => p.theme.radii.medium};
   display: flex;
@@ -45,7 +45,7 @@ export const CloseCross = styled.svg`
     width: 20px;
     height: 20px;
   }
-`
+`;
 export const BtnClose = styled.div`
   position: absolute;
   right: 20px;
@@ -56,6 +56,7 @@ export const BtnClose = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
   background: ${p => p.theme.colors.background};
   border: none;
 
@@ -63,8 +64,7 @@ export const BtnClose = styled.div`
     width: 44px;
     height: 44px;
   }
-  
-`
+`;
 export const Wrapper = styled.div`
   padding: 40px 20px;
   display: flex;
@@ -75,7 +75,7 @@ export const Wrapper = styled.div`
   @media screen and (min-width: 767px) {
     padding: 40px;
   }
-`
+`;
 export const BtnStyle = styled.button`
   width: 240px;
   height: 40px;
@@ -93,7 +93,7 @@ export const BtnStyle = styled.button`
     width: 180px;
   }
 
-  &:hover,    
+  &:hover,
   &:active {
     transition: box-shadow 250ms ease-out;
     box-shadow: 0px 0px 2px 3px ${p => p.theme.colors.borderInput};
@@ -140,7 +140,7 @@ export const BtnWrapper = styled.div`
     flex-direction: row-reverse;
     justify-content: center;
   }
-`
+`;
 export const BtnWrapperNext = styled.div`
   margin-bottom: 12px;
   @media screen and (min-width: 768px) {
@@ -151,12 +151,15 @@ export const BtnWrapperNext = styled.div`
   @media screen and (min-width: 1280px) {
     margin-left: 24px;
   }
+`;
 
-`
-export const Input = styled(Field)`
+export const Input = styled.input`
+  color: red;
   width: 240px;
+
   background-color: ${p => p.theme.colors.background};
   border: 1px solid ${p => p.theme.colors.borderInput};
+
   border-radius: ${p => p.theme.radii.large};
   padding-top: 11px;
   padding-bottom: 11px;
@@ -170,6 +173,7 @@ export const Input = styled(Field)`
     padding-left: 16px;
   }
 
+
     &:hover,
     &:active {
       border: 2px solid ${p => p.theme.colors.userAddPetBtnBg};
@@ -177,12 +181,13 @@ export const Input = styled(Field)`
       color: ${p => p.theme.colors.black};
     }
 
-    ::placeholder {
-    color: ${p => p.theme.colors.petModalplaceholder};
+
+  ::placeholder {
+    color: ${p => p.theme.colors.black};
     font-size: ${p => p.theme.fontSizes.s};
 
     @media screen and (min-width: 768px) {
-    font-size: ${p => p.theme.fontSizes.m};
+      font-size: ${p => p.theme.fontSizes.m};
     }
   }
 `;
@@ -190,43 +195,46 @@ export const Input = styled(Field)`
 export const InputWrapper = styled.div`
   :not(:last-child) {
     margin-bottom: 16px;
-    
+
     @media screen and (min-width: 768px) {
-    margin-bottom: 28px;
+      margin-bottom: 28px;
     }
   }
-`
+`;
 export const PetLabel = styled.label`
   display: block;
   margin-bottom: 8px;
   fontsize: 18px;
   font-weight: 500;
-  line-height: 26,5px;
+  line-height: 26, 5px;
 
   @media screen and (min-width: 768px) {
     margin-bottom: 12px;
     fontsize: 24px;
   }
-`
+`;
 export const AddImgTitle = styled.p`
   text-align: center;
   color: ${p => p.theme.colors.titleColor};
   fontsize: 18px;
   font-weight: 500;
-  line-height: 21,86px;
+  line-height: 21, 86px;
   margin-bottom: 20px;
 
   @media screen and (min-width: 768px) {
-    line-height: 27,32px;
+    line-height: 27, 32px;
     fontsize: 20px;
   }
-`
+`;
 
 export const AddImgBtn = styled.button`
+  background-color: ${p => p.theme.colors.bgcContrast};
   position: relative;
   width: 208px;
   height: 208px;
+
   background: ${p => p.theme.colors.background};
+
   border-radius: 20px;
 
   margin: 0 auto;
@@ -234,25 +242,23 @@ export const AddImgBtn = styled.button`
   overflow: hidden;
   justify-content: center;
 
-  
-
   @media screen and (min-width: 767px) {
     width: 182px;
     height: 182px;
   }
-`
+`;
 export const AddCross = styled.svg`
   position: absolute;
   top: 80px;
   right: 75px;
   width: 48px;
   height: 48px;
- 
-@media screen and (min-width: 767px) {
+
+  @media screen and (min-width: 767px) {
     top: 65px;
     right: 63px;
-}
-`
+  }
+`;
 
 export const AddImg = styled.img`
   min-width: 182px;
@@ -263,14 +269,13 @@ export const AddImg = styled.img`
   right: 0;
   bottom: 0;
   object-fit: cover;
-`
+`;
 
 export const AddPhoto = styled.input`
   opacity: 0;
   width: 100%;
   height: 100%;
-
-`
+`;
 
 export const ComentsWrapper = styled.div`
   position: relative;
@@ -278,27 +283,31 @@ export const ComentsWrapper = styled.div`
   flex-direction: column;
   margin-top: 20px;
 
-@media screen and (min-width: 767px) {
-  margin-top: 40px;
+  @media screen and (min-width: 767px) {
+    margin-top: 40px;
   }
-`
-export const TextArea = styled(Field)`
+`;
+export const TextArea = styled.input`
+  color: red;
+
   padding-top: 12px;
   padding-left: 14px;
   width: 240px;
   height: 100px;
+
   background: ${p => p.theme.colors.background};
   border: 1px solid ${p => p.theme.colors.borderInput};
+
   border-radius: ${p => p.theme.radii.medium};
   margin-top: 8px;
   resize: none;
   outline: none;
 
-@media screen and (min-width: 767px) {
+  @media screen and (min-width: 767px) {
     width: 394px;
     height: 116px;
     margin-top: 12px;
-}
+  }
 
   &:hover,
   &:active {
@@ -308,17 +317,17 @@ export const TextArea = styled(Field)`
   }
 
   ::placeholder {
-    color: ${p => p.theme.colors.petModalplaceholder};
+    color: ${p => p.theme.colors.black};
     font-size: ${p => p.theme.fontSizes.m};
   }
-`
-  
+`;
+
 export const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-` 
+`;
 export const Error = styled(ErrorMessage)`
   color: ${p => p.theme.colors.error};
   margin-bottom: ${p => p.theme.space[4]}px;

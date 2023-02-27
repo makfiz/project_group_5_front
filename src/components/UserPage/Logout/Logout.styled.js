@@ -8,7 +8,7 @@ export const LogoutButton = styled.button`
   display: flex;
   align-items: center;
 
-  background-color: white;
+  background-color: ${p => p.theme.colors.bgcContent};
   cursor: pointer;
 
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
@@ -49,7 +49,7 @@ export const ButtonText = styled.span`
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.04em;
-  color: rgba(17, 17, 17, 0.6);
+  color: ${p => p.theme.colors.regModalLinkText};
 
   &:hover {
     color: ${p => p.theme.colors.regModalActiveBtn};

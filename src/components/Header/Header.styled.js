@@ -4,7 +4,7 @@ export const Container = styled.div`
   width: 280px;
   margin-right: auto;
   margin-left: auto;
-  background-color: #fdf7f2;
+  background-color: ${p => p.theme.colors.transparent};
   padding-top: 16px;
 
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
@@ -19,14 +19,14 @@ export const BurgerMenu = styled.div`
   display: flex;
 
   z-index: 999;
-  background-color: #fdf7f2;
+  background-color: ${p => p.theme.colors.transparent};
   flex-wrap: wrap;
 `;
 export const MenuList = styled.div`
   height: 100vh;
 
   z-index: 999;
-  background-color: #fdf7f2;
+  background-color: ${p => p.theme.colors.transparent};
 
   margin-top: 45px;
   display: flex;
@@ -38,14 +38,15 @@ export const MenuList = styled.div`
 `;
 export const Appbar = styled.div`
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  justify-content: flex-end;
 `;
+
 export const MenuActive = styled.div`
   display: flex;
   z-index: 999;
-  background-color: #fdf7f2;
+  background-color: ${p => p.theme.colors.transparent};
   flex-direction: column;
-
   padding-top: 16px;
 `;
 export const MenuNonActive = styled.div`
@@ -93,8 +94,11 @@ export const HeaderDescNav = styled.div`
   }
 `;
 
-export const OpenMenuIcon = styled.img`
+export const OpenMenuIcon = styled.div`
   cursor: pointer;
+  display: flex;
+  align-items: center;
+
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
     margin-left: 25px;
   }

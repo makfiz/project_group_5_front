@@ -39,6 +39,7 @@ export const UserPageHeader = styled.h2`
 `;
 
 export const UserInfoCard = styled.div`
+  background-color: ${props => props.theme.colors.bgcContent};
   position: relative;
   display: flex;
   flex-direction: column;
@@ -46,7 +47,7 @@ export const UserInfoCard = styled.div`
   margin-left: auto;
   margin-right: auto;
 
-  background: #ffffff;
+  /* background: #ffffff; */
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius: 20px;
 

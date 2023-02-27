@@ -91,8 +91,9 @@ export const Form = styled(FormicForm)`
 `;
 
 export const Input = styled(Field)`
+  color: ${p => p.theme.colors.black};
   width: 280px;
-  background-color: ${p => p.theme.colors.transparent};
+  background-color: ${p => p.theme.colors.bgc};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: ${p => p.theme.radii.large};
   padding-top: 11px;
@@ -102,7 +103,6 @@ export const Input = styled(Field)`
 
   @media screen and (min-width: 768px) {
     width: 448px;
-    background-color: #fdf7f2;
     padding-left: 32px;
     padding-top: 14px;
     padding-bottom: 14px;

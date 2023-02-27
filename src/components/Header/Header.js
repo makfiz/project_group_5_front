@@ -1,4 +1,8 @@
 import { Logo } from './Logo/Logo';
+
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { IoClose } from 'react-icons/io5';
+
 import { Container } from '../Container/Container';
 import {
   // Container,
@@ -24,8 +28,9 @@ import { AuthNav } from './Navigation/AuthNav/AuthNav';
 import { useSelector } from 'react-redux';
 import { UserNav } from './Navigation/UserNav/UserNav';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
+import ThemeToggle from 'components/ThemeToggle/ThemeToggle';
 
-export const Header = () => {
+export const Header = ({ toggleTheme, theme }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   //   const handleMenuClick = {};
   // const isLoggedIn = false;
@@ -36,13 +41,19 @@ export const Header = () => {
       document.body.classList.remove('no-scroll');
     }
   }, [isMenuOpen]);
+
   const handleCloseMenu = () => {
     setIsMenuOpen(false);
   };
   const handleOpenMenu = () => {
     setIsMenuOpen(true);
   };
+
+  const handleMenu = () => {
+    setIsMenuOpen(isMenuOpen === false ? true : false);
+  };
   const isLoggedIn = useSelector(selectIsLoggedIn);
+
   return (
     <Container>
       {isMenuOpen ? (
@@ -53,11 +64,9 @@ export const Header = () => {
                 <Appbar>
                   <Logo />
                   <BurgerMenu>
-                    <OpenMenuIcon
-                      src={closeMenuSvg}
-                      alt=""
-                      onClick={handleCloseMenu}
-                    />
+                    <OpenMenuIcon onClick={handleMenu}>
+                      <IoClose size={40} />
+                    </OpenMenuIcon>
                   </BurgerMenu>
                 </Appbar>
                 <MenuList>
@@ -70,13 +79,10 @@ export const Header = () => {
             ) : (
               <>
                 <Appbar>
-                  <Logo />
                   <BurgerMenu>
-                    <OpenMenuIcon
-                      src={closeMenuSvg}
-                      alt=""
-                      onClick={handleCloseMenu}
-                    />
+                    <OpenMenuIcon onClick={handleMenu}>
+                      <IoClose size={40} />
+                    </OpenMenuIcon>
                   </BurgerMenu>
                 </Appbar>
                 <MenuList>
@@ -96,38 +102,54 @@ export const Header = () => {
               <>
                 <HeaderDescLeft>
                   <Logo />
+
                   <HeaderDescNav>
                     <Navigation onClick={handleCloseMenu} />
                   </HeaderDescNav>
                 </HeaderDescLeft>
+                <ThemeToggle
+                  theme={theme}
+                  toggleTheme={toggleTheme}
+                ></ThemeToggle>
                 <HeaderTabRight>
                   <TabAuthWrap>
                     <UserNav onClick={handleCloseMenu} />
                   </TabAuthWrap>
-                  <OpenMenuIcon
+                  <OpenMenuIcon onClick={handleMenu}>
+                    <GiHamburgerMenu size={30} />
+                  </OpenMenuIcon>
+                  {/* <OpenMenuIcon
                     src={openMenuSvg}
                     alt=""
                     onClick={handleOpenMenu}
-                  />
+                  /> */}
                 </HeaderTabRight>
               </>
             ) : (
               <>
                 <HeaderDescLeft>
                   <Logo />
+
                   <HeaderDescNav>
                     <Navigation onClick={handleCloseMenu} />
                   </HeaderDescNav>
                 </HeaderDescLeft>
+                <ThemeToggle
+                  theme={theme}
+                  toggleTheme={toggleTheme}
+                ></ThemeToggle>
                 <HeaderTabRight>
                   <TabAuthWrap>
                     <AuthNav onClick={handleCloseMenu} />
                   </TabAuthWrap>
-                  <OpenMenuIcon
+                  {/* <OpenMenuIcon
                     src={openMenuSvg}
                     alt=""
                     onClick={handleOpenMenu}
-                  />
+                  /> */}
+                  <OpenMenuIcon onClick={handleMenu}>
+                    <GiHamburgerMenu size={30} />
+                  </OpenMenuIcon>
                 </HeaderTabRight>
               </>
             )}

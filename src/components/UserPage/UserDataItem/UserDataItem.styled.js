@@ -38,7 +38,7 @@ export const UserInfoLabel = styled.label`
   display: flex;
   align-items: center;
   letter-spacing: 0.04em;
-  color: #111111;
+  color: ${props => props.theme.colors.text};
 
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
     font-size: 18px;
@@ -47,11 +47,12 @@ export const UserInfoLabel = styled.label`
 `;
 
 export const EditInput = styled.input`
+  color: ${props => props.theme.colors.text};
   position: absolute;
   width: 160px;
   left: 50px;
   height: 24px;
-  background: #fdf7f2;
+  background: ${props => props.theme.colors.bgc};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
 
@@ -84,7 +85,7 @@ export const ShowInput = styled.input`
   left: 50px;
   height: 24px;
   border-style: none;
-  background: #ffffff;
+  background: ${props => props.theme.colors.bgcContent};
 
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
     position: absolute;
@@ -115,7 +116,7 @@ export const EditButton = styled.button`
   width: 20px;
   border-radius: 50%;
   border-style: none;
-  background: #fdf7f2;
+  background: ${props => props.theme.colors.bgcContent};
   backdrop-filter: blur(2px);
   cursor: pointer;
 
@@ -145,7 +146,7 @@ export const DoneButton = styled.button`
   width: 20px;
   border-radius: 50%;
   border-style: none;
-  background: #fdf7f2;
+  background: ${props => props.theme.colors.bgcContent};
   backdrop-filter: blur(2px);
   cursor: pointer;
 

@@ -1,7 +1,13 @@
-import { useEffect, lazy } from 'react';
+import { useEffect, lazy, useState } from 'react';
 import { Routes, Route, Navigate, useSearchParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import authOperations from '../redux/auth/operations';
+
+// change theme
+import { ThemeProvider } from 'styled-components';
+import { theme } from '../utils/theme';
+import { themeDark, themeLight } from '../utils/theme';
+import GlobalStyle from 'utils/GlobalStyle';
 
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import NewsPage from '../pages/NewsPage';
@@ -26,6 +32,13 @@ const ConfirmEmail = lazy(() =>
 );
 
 export const App = () => {
+  // for change theme
+  const [theme, setTheme] = useState(themeLight);
+
+  const toggleTheme = () => {
+    setTheme(theme === themeLight ? themeDark : themeLight);
+  };
+
   const dispatch = useDispatch();
 
   const [searchParams] = useSearchParams();
@@ -42,10 +55,12 @@ export const App = () => {
   }, [token, email, id, dispatch]);
 
   return (
-    <div>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+          <div>
       <Routes>
         {
-          <Route path="/" element={<SharedLayout />}>
+          <Route path="/" element={<SharedLayout theme={theme} toggleTheme={toggleTheme}/>}>
             <Route index element={<HomePage />} />
             <Route path="news" element={<NewsPage />} />
             <Route path="notices" element={<NoticesPage />}>
@@ -108,5 +123,6 @@ export const App = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
+  </ThemeProvider>
   );
 };

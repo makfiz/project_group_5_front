@@ -2,11 +2,14 @@ import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import { Header } from '../Header/Header';
 
-export const SharedLayout = () => {
+
+export const SharedLayout = ({ toggleTheme, theme }) => {
+
   return (
     <>
-      <Header />
-      <Suspense fallback={null}>
+      <Header toggleTheme={toggleTheme} theme={theme} />
+      <Suspense
+      
         <Outlet />
       </Suspense>
     </>
