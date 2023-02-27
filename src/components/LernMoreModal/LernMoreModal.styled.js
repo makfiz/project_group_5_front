@@ -248,7 +248,9 @@ export const ButtonWraper = styled.div`
 export const LeftPartWraper = styled.div`
   margin-right: 50px;
 `;
-export const RightPartWraper = styled.div``;
+export const RightPartWraper = styled.div`
+  overflow-y: hidden;
+`;
 
 export const List = styled.ul``;
 
