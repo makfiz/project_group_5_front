@@ -5,14 +5,14 @@ import { MdOutlineEdit, MdOutlineDone } from 'react-icons/md';
 export const UserDataItemWrapper = styled.div`
   position: relative;
   display: flex;
-  width: 280px;
+  width: 260px;
   height: 24px;
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 12px;
   padding-top: 0px;
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
-    width: 768px;
+    max-width: 768px;
     margin-bottom: 15px;
   }
   @media (min-width: ${p => p.theme.screenSizes.desktop}) {
@@ -48,7 +48,8 @@ export const UserInfoLabel = styled.label`
 
 export const EditInput = styled.input`
   position: absolute;
-  left: 82px;
+  width: 160px;
+  left: 50px;
   height: 24px;
   background: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
@@ -80,7 +81,7 @@ export const EditInput = styled.input`
 
 export const ShowInput = styled.input`
   position: absolute;
-  left: 82px;
+  left: 50px;
   height: 24px;
   border-style: none;
   background: #ffffff;
@@ -107,7 +108,9 @@ export const ShowInput = styled.input`
 export const EditButton = styled.button`
   position: absolute;
   top: 4px;
-  left: 233px;
+
+  left: 220px;
+
   height: 20px;
   width: 20px;
   border-radius: 50%;
@@ -135,7 +138,9 @@ export const EditButton = styled.button`
 export const DoneButton = styled.button`
   position: absolute;
   top: 4px;
-  left: 233px;
+
+  left: 220px;
+
   height: 20px;
   width: 20px;
   border-radius: 50%;

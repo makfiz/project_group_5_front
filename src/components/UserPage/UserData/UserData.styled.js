@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin-right: auto;
-  margin-left: auto;
+
+  max-width: 320px;
+  /* margin-right: auto;
+  margin-left: auto; */
+
   padding-top: 60px;
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
     width: 768px;
   }
   @media (min-width: ${p => p.theme.screenSizes.desktop}) {
-    width: 1280px;
+    max-width: 1280px;
   }
 `;
 
@@ -30,6 +33,9 @@ export const UserPageHeader = styled.h2`
     margin-bottom: 40px;
     margin-left: 32px;
   }
+  @media (min-width: ${p => p.theme.screenSizes.desktop}) {
+    margin-bottom: 24px;
+  } ;
 `;
 
 export const UserInfoCard = styled.div`
@@ -51,7 +57,9 @@ export const UserInfoCard = styled.div`
   padding-left: 16px;
 
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
-    max-width: 736px;
+    max-width: 768px;
+    min-width: 736px;
+    left: -32px;
     height: 311px;
     padding-top: 0px;
     padding-right: 0px;
@@ -65,6 +73,7 @@ export const UserInfoCard = styled.div`
   @media (min-width: ${p => p.theme.screenSizes.desktop}) {
     margin-left: 0px;
     max-width: 411px;
+    min-width: 411px;
     height: 541px;
     border-top-right-radius: 40px;
     border-bottom-right-radius: 40px;
@@ -95,8 +104,8 @@ export const UserDataWrapper = styled.div`
   margin-top: 70px;
   @media (min-width: ${p => p.theme.screenSizes.tablet}) {
     margin-top: 44px;
-    margin-left: 32px;
-    max-width: 380px;
+
+    max-width: 330px;
   }
   @media (min-width: ${p => p.theme.screenSizes.desktop}) {
     position: absolute;
