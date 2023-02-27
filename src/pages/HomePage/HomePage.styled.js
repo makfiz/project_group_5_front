@@ -40,7 +40,7 @@ export const PageWrapper = styled.div`
   }
 
   @media screen and (min-width: ${p => p.theme.screenSizes.tablet}) {
-    padding-top: 88px;
+    /* padding-top: 88px; */
 
     background-image: url(${portraitTab}), url(${backgroundImageTab});
 
@@ -64,7 +64,7 @@ export const PageWrapper = styled.div`
 
     background-repeat: no-repeat;
 
-    background-size: cover;
+    background-size: 100%;
 
     background-position-y: center;
 
