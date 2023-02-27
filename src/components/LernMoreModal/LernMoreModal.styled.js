@@ -328,6 +328,9 @@ export const Img = styled.img`
   height: 240px;
   object-fit: cover;
 
+  border-bottom-left-radius: ${p => p.theme.radii.large};
+  border-bottom-right-radius: ${p => p.theme.radii.large};
+
   @media screen and (min-width: 768px) {
     width: 288px;
     height: 328px;
