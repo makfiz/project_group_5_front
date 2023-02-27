@@ -282,6 +282,46 @@ export const ListItem = styled.li`
   }
 `;
 
+export const ListItemEmail = styled.li`
+  font-size: ${p => p.theme.fontSizes.s};
+  font-weight: ${p => p.theme.fontWeight.medium};
+  line-height: 1.36;
+  color: ${p => p.theme.colors.black};
+  cursor: pointer;
+
+  :hover {
+    color: ${p => p.theme.colors.userAddPetBtnBgHover};
+  }
+
+  :not(:last-child) {
+    margin-bottom: 8px;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: ${p => p.theme.fontSizes.m};
+  }
+`;
+
+export const ListItemPhone = styled.li`
+  font-size: ${p => p.theme.fontSizes.s};
+  font-weight: ${p => p.theme.fontWeight.medium};
+  line-height: 1.36;
+  color: ${p => p.theme.colors.black};
+  cursor: pointer;
+
+  :hover {
+    color: ${p => p.theme.colors.userAddPetBtnBgHover};
+  }
+
+  :not(:last-child) {
+    margin-bottom: 8px;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: ${p => p.theme.fontSizes.m};
+  }
+`;
+
 export const Img = styled.img`
   display: block;
   width: 240px;

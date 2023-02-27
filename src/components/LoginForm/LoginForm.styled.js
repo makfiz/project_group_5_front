@@ -112,9 +112,6 @@ export const Input = styled(Field)`
     width: 458px;
   }
 
-  :not(:last-child) {
-    margin-bottom: 16px;
-  }
   ::placeholder {
     color: ${p => p.theme.colors.regModalplaceholderColor};
     font-size: ${p => p.theme.fontSizes.s};
@@ -122,9 +119,11 @@ export const Input = styled(Field)`
 `;
 
 export const ErrorMessage = styled(ErrorFormicError)`
+  position: absolute;
   color: ${p => p.theme.colors.error};
-  margin-bottom: ${p => p.theme.space[4]}px;
-  margin-left: ${p => p.theme.space[4]}px;
+  top: 45px;
+  left: 0px;
+
   font-size: ${p => p.theme.fontSizes.s};
 
   @media screen and (min-width: 768px) {
@@ -151,4 +150,9 @@ export const IconWraper = styled.div`
   @media screen and (min-width: 768px) {
     top: 14px;
   }
+`;
+
+export const EmailWraper = styled.div`
+  position: relative;
+  margin-bottom: 16px;
 `;
