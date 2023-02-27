@@ -18,7 +18,7 @@ import { selectIsRefreshing } from 'redux/auth/selectors';
 import { RestrictedRoute } from './RestrictedRoute';
 
 const FriendsPage = lazy(() => import('../pages/FriendsPage'));
-const NoticesPage = lazy(() => import('../pages/NoticesPage'));
+const NoticesPage = lazy(() => import('../pages/NoticesPage/NoticesPage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
@@ -57,72 +57,81 @@ export const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-          <div>
-      <Routes>
-        {
-          <Route path="/" element={<SharedLayout theme={theme} toggleTheme={toggleTheme}/>}>
-            <Route index element={<HomePage />} />
-            <Route path="news" element={<NewsPage />} />
-            <Route path="notices" element={<NoticesPage />}>
-              <Route index element={<Navigate to="sell" />} />
-              <Route
-                path="lost-found"
-                element={<NoticesList askedPage="lost_found" />}
-              />
-              <Route
-                path="for-free"
-                element={<NoticesList askedPage="in_good_hands" />}
-              />
-              <Route
-                path="sell"
-                index
-                element={<NoticesList askedPage="sell" />}
-              />
-              <Route
-                path="favorite"
-                element={<NoticesList askedPage="favorite" />}
-              />
-              <Route path="own" element={<NoticesList askedPage="own" />} />
-            </Route>
-            <Route path="friends" element={<FriendsPage />} />
+      <div>
+        <Routes>
+          {
             <Route
-              path="registration"
-              element={
-                <RestrictedRoute redirectTo="/user" component={RegisterPage} />
-              }
-            />
-            <Route
-              path="registration-redirect"
-              element={
-                <RestrictedRoute
-                  redirectTo="/user"
-                  component={RegisterMethod}
+              path="/"
+              element={<SharedLayout theme={theme} toggleTheme={toggleTheme} />}
+            >
+              <Route index element={<HomePage />} />
+              <Route path="news" element={<NewsPage />} />
+              <Route path="notices" element={<NoticesPage />}>
+                <Route index element={<Navigate to="sell" />} />
+                <Route
+                  path="lost-found"
+                  element={<NoticesList askedPage="lost_found" />}
                 />
-              }
-            />
-            <Route
-              path="confirm-email"
-              element={
-                <RestrictedRoute redirectTo="/user" component={ConfirmEmail} />
-              }
-            />
-            <Route
-              path="login"
-              element={
-                <RestrictedRoute redirectTo="/user" component={LoginPage} />
-              }
-            />
-            <Route
-              path="user"
-              element={
-                <PrivateRoute redirectTo="/login" component={UserPage} />
-              }
-            />
-          </Route>
-        }
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </div>
-  </ThemeProvider>
+                <Route
+                  path="for-free"
+                  element={<NoticesList askedPage="in_good_hands" />}
+                />
+                <Route
+                  path="sell"
+                  index
+                  element={<NoticesList askedPage="sell" />}
+                />
+                <Route
+                  path="favorite"
+                  element={<NoticesList askedPage="favorite" />}
+                />
+                <Route path="own" element={<NoticesList askedPage="own" />} />
+              </Route>
+              <Route path="friends" element={<FriendsPage />} />
+              <Route
+                path="registration"
+                element={
+                  <RestrictedRoute
+                    redirectTo="/user"
+                    component={RegisterPage}
+                  />
+                }
+              />
+              <Route
+                path="registration-redirect"
+                element={
+                  <RestrictedRoute
+                    redirectTo="/user"
+                    component={RegisterMethod}
+                  />
+                }
+              />
+              <Route
+                path="confirm-email"
+                element={
+                  <RestrictedRoute
+                    redirectTo="/user"
+                    component={ConfirmEmail}
+                  />
+                }
+              />
+              <Route
+                path="login"
+                element={
+                  <RestrictedRoute redirectTo="/user" component={LoginPage} />
+                }
+              />
+              <Route
+                path="user"
+                element={
+                  <PrivateRoute redirectTo="/login" component={UserPage} />
+                }
+              />
+            </Route>
+          }
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+    </ThemeProvider>
   );
 };
