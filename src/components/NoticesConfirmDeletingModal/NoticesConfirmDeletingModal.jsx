@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { BeatLoader } from 'react-spinners';
@@ -22,9 +23,21 @@ export const NoticesConfirmDeletingModal = ({
   setDeleteModalIsOpen,
 }) => {
   const dispatch = useDispatch();
-  const loading = useSelector(selectIsLoadingNotices);
+  const isLoading = useSelector(selectIsLoadingNotices);
+  const [isUpdating, setIsUpdating] = useState(false);
+
+  useEffect(() => {
+    if (isLoading) return;
+
+    if (!isLoading) {
+      setIsUpdating(false);
+    }
+
+    return () => {};
+  }, [isLoading]);
 
   const handleDelete = () => {
+    setIsUpdating(true);
     const path = `${endPoints.pathDeleteOwn}${noticeId}`;
     dispatch(deleteOwnNotice({ path }));
   };
@@ -43,9 +56,9 @@ export const NoticesConfirmDeletingModal = ({
           </DeleteModalButton>
           <DeleteModalButton onClick={handleDelete} type="button">
             <DeleteModalButtonText>
-              {!loading ? 'YES, confirm' : 'Deleting...'}
+              {!isUpdating ? 'YES, confirm' : 'Deleting...'}
             </DeleteModalButtonText>
-            <BeatLoader size={10} color={'#F59256'} loading={loading} />
+            <BeatLoader size={10} color={'#F59256'} loading={isUpdating} />
           </DeleteModalButton>
         </Box>
       </DeleteModalInnerBlock>
