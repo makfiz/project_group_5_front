@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { MoonLoader } from 'react-spinners';
+import EllipsisText from 'react-ellipsis-text';
 
 import Modal from 'components/Modal/Modal';
 import { Button } from 'components/Button/Button';
@@ -76,8 +77,8 @@ export function LernMoreModal() {
     price,
     photoURL,
     favoritesIn,
-    email,
-    phone,
+    email = 'unknown',
+    phone = 'unknown',
   } = itemNotice[0];
 
   const place = convertLocationStringToCityName(location);
@@ -175,10 +176,15 @@ export function LernMoreModal() {
                         <ListItem>{place}</ListItem>
                         <ListItem>{sex}</ListItem>
                         <ListItemEmail onClick={emailSend}>
-                          {email}
+                          {
+                            <EllipsisText
+                              text={email ?? 'unknown'}
+                              length={16}
+                            />
+                          }
                         </ListItemEmail>
                         <ListItemPhone onClick={phoneCall}>
-                          {phone}
+                          {phone.trim() ? phone : 'unknown'}
                         </ListItemPhone>
                         {category === 'sell' && <ListItem>{price}</ListItem>}
                       </List>
