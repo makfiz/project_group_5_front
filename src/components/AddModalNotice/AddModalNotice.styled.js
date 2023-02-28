@@ -183,6 +183,7 @@ export const TextInput = styled.input`
   padding-left: 14px;
   border-radius: 40px;
   background-color: ${p => p.theme.colors.bgc};
+   max-width: 450px;
   ::placeholder {
     font-family: 'Manrope, sans-serif';
     font-style: normal;

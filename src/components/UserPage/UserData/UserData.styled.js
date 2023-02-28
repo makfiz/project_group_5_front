@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-
   max-width: 320px;
   /* margin-right: auto;
   margin-left: auto; */
@@ -111,7 +110,7 @@ export const UserDataWrapper = styled.div`
   @media (min-width: ${p => p.theme.screenSizes.desktop}) {
     position: absolute;
     top: 289px;
-    left: 16px;
+    left: 30px;
 
     margin-top: 0px;
     margin-left: 0px;
