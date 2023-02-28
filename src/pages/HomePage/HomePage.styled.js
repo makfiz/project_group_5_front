@@ -58,6 +58,9 @@ export const PageWrapper = styled.div`
   }
 
   @media screen and (min-width: ${p => p.theme.screenSizes.desktop}) {
+    height: 89.5vh;
+    width: 100%;
+
     padding-top: 92px;
 
     background-image: url(${bgDesk});

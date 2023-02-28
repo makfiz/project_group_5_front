@@ -12,7 +12,7 @@ export const ButtonStyles = `display: flex;
   cursor: pointer;
   transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-   `;
+  `;
 
 export const ButtonBasic = styled.button`
   ${ButtonStyles};
@@ -43,17 +43,17 @@ export const LinkBasic = styled.a`
   ${ButtonStyles};
   font-weight: ${p => p.theme.fontWeight.medium};
   font-family: Manrope, sans-serif;
-  background-color: #ffffff;
+  background-color: ${p => p.theme.colors.black};
   :hover,
   :focus {
-    background-color: #f59256;
-    color: #ffffff;
+    background-color: ${p => p.theme.colors.hoverGoHome};
+    color: ${p => p.theme.colors.black};
     transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
   &.active {
-    background-color: #f59256;
-    color: #ffffff;
+    background-color: ${p => p.theme.colors.hoverGoHome};
+    color: ${p => p.theme.colors.black};
   }
 `;
 
@@ -67,17 +67,17 @@ export const AddLinkCircle = styled.a`
   border-radius: 50%;
   border: none;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-  background-color: #f59256;
+  background-color: ${p => p.theme.colors.hoverGoHome};
   font-family: Manrope, sans-serif;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.3;
-  color: #ffffff;
+  color: ${p => p.theme.colors.white};
   transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   :hover,
   :focus-visible {
-    background-color: #ff6101;
+    background-color: ${p => p.theme.colors.deleteBtnColor};
     transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
 `;
@@ -90,12 +90,12 @@ export const AddLinkBasic = styled.a`
   font-weight: 500;
   line-height: 1.35;
   background-color: transparent;
-  color: #111111;
+  color: ${p => p.theme.colors.titleColor};
   cursor: pointer;
   :hover,
   :focus-visible {
     div {
-      background-color: #ff6101;
+      background-color: ${p => p.theme.colors.deleteBtnColor};
       transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
@@ -107,7 +107,7 @@ export const AddLinkBasic = styled.a`
     margin-left: 15px;
     width: 40px;
     height: 40px;
-    background-color: #f59256;
+    background-color: ${p => p.theme.colors.regModalActiveBtn};
     transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
 `;

@@ -8,7 +8,7 @@ export const BackDrop = styled.div`
   width: 100%;
   height: 100%;
   padding: 0 20px;
-  background-color: rgba(17, 17, 17, 0.6);
+  background-color: ${p => p.theme.colors.regModalLinkText};
   backdrop-filter: blur(10px);
   overflow: auto;
 `;
@@ -29,7 +29,7 @@ export const Modal = styled.div`
     }
     return 'translate(-50%, -50%)';
   }};
-  background-color: #fff;
+  background-color: ${p => p.theme.colors.white};
   width: 280px;
   border-radius: 20px;
   padding: ${p => {
@@ -64,12 +64,12 @@ export const CloseBtn = styled.button`
   height: 34px;
   width: 34px;
   border-radius: 50%;
-  background-color: #fdf7f2;
+  background-color: ${p => p.theme.colors.bgc};
   backdrop-filter: blur(2px);
   transition: background-color 300ms linear;
   :hover,
   :focus {
-    background-color: #f59256;
+    background-color: ${p => p.theme.colors.regModalActiveBtn};
   }
   svg {
     width: 28px;

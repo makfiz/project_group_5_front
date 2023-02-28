@@ -19,7 +19,7 @@ export const Calendar = styled(Datetime)`
     font-weight: 400;
     font-size: 14px;
     line-height: calc(19 / 14);
-    background-color: #fdf7f2;
+    background-color: ${p => p.theme.colors.bgc};
     border: 1px solid rgba(245, 146, 86, 0.5);
     border-radius: 40px;
     outline: none;
@@ -86,13 +86,13 @@ export const InputField = styled(Field)`
   font-weight: 400;
   font-size: 14px;
   line-height: calc(19 / 14);
-  background-color: #fdf7f2;
+  background-color: ${p => p.theme.colors.bgc};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   outline: none;
   transition: border-color 300ms linear;
   :focus {
-    border-color: #f59256;
+    border-color: ${p => p.theme.colors.regModalActiveBtn};
   }
   @media (min-width: 768px) {
     font-size: 16px;
@@ -132,7 +132,7 @@ export const InputFileWrap = styled.div`
     margin: 0 auto;
     width: 116px;
     height: 116px;
-    background: #fdf7f2;
+    background: ${p => p.theme.colors.bgc};
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -178,14 +178,14 @@ export const Textarea = styled(Field)`
   font-size: 14px;
   line-height: calc(19 / 14);
   color: rgba(27, 27, 27, 0.6);
-  background-color: #fdf7f2;
+  background-color: ${p => p.theme.colors.bgc};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 20px;
   outline: none;
   transition: border-color 300ms linear;
   resize: none;
   :focus {
-    border-color: #f59256;
+    border-color: ${p => p.theme.colors.regModalActiveBtn};
   }
 `;
 
@@ -243,15 +243,15 @@ export const SubmitBtn = styled.button`
   font-size: 16px;
   line-height: calc(22 / 16);
   letter-spacing: 0.04em;
-  color: #ffffff;
-  background-color: #f59256;
+  color: ${p => p.theme.colors.white};
+  background-color: ${p => p.theme.colors.regModalActiveBtn};
   border: 2px solid #f59256;
   border-radius: 40px;
   transition: color 300ms linear, background-color 300ms linear;
   :hover,
   :focus {
-    color: #f59256;
-    background-color: #fff;
+    color: ${p => p.theme.colors.regModalActiveBtn};
+    background-color: ${p => p.theme.colors.white};
   }
   @media (min-width: 768px) {
     width: 180px;

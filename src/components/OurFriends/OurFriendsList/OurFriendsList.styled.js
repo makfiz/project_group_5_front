@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  display: flex;
+  /* display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
 
   margin: 0 auto;
   width: 320px;
@@ -54,7 +54,7 @@ export const FriendsItem = styled.li`
   border-radius: ${props => props.theme.radii.large};
   box-shadow: ${props => props.theme.shadows.inputShadow};
 
-  padding: 12px 4px;
+  padding: 12px 6px 12px 4px;
   width: 272px;
 
   display: flex;

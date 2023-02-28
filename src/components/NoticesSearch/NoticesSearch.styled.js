@@ -76,6 +76,7 @@ export const SearchBtn = styled.button`
   justify-content: center;
   align-items: center;
   background-color: ${p => p.theme.colors.transparent};
+  color: ${p => p.theme.colors.black};
   border: none;
   border-radius: ${p => p.theme.radii.round};
   cursor: pointer;
